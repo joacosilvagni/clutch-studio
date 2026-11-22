@@ -2,6 +2,10 @@
 
 Formato: fecha · decisión · por qué. Las más nuevas arriba. No re-discutir sin un dato nuevo.
 
+- **2026-11-22 · Sitio organizado por categorías, no por auto.** Pocas veces vamos a tener la pieza para el auto exacto
+  del comprador, así que la navegación principal es por departamento y categoría. Dos departamentos: Accesorios
+  (físicos, dropshipping, protagonista) y Archivos 3D. El auto queda como filtro secundario y en `/fits/<modelo>/` para SEO.
+  Producto en `/products/<slug>/`. Pedido por Joaquín.
 - **2026-11-22 · Hosting en Cloudflare Workers Static Assets, no GitHub Pages.** Los términos de GitHub Pages
   prohíben usarlo para e-commerce. El Worker sirve `site/dist` y la API en el mismo dominio (sin CORS).
   Build y deploy desde GitHub Actions con `wrangler`. Aprobado por Joaquín.

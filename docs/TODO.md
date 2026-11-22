@@ -22,10 +22,12 @@ Marcá `[x]` al terminar y poné tu agente entre paréntesis si la tomaste. Recl
 - [ ] Worker: `POST /api/orders`, `POST /api/capture`, webhook PayPal con verificación de firma
 - [ ] Worker: descargas con token (72 h, 5 descargas), mail con Resend, reenvío de links, rate limiting
 - [ ] Migraciones D1 y wrangler config (sin secretos)
-- [ ] Sitio: home, catálogo con filtros, página por modelo, producto con atribución, carrito, checkout, confirmación
+- [x] Sitio: prototipo de home, departamentos, categorías, filtros, página por modelo, producto con atribución (Claude, PR #1)
+- [ ] Sitio: carrito, checkout y confirmación conectados al Worker
 - [ ] Free Library
 - [ ] SEO: sitemap, metadatos, datos estructurados de producto, Open Graph
-- [ ] Páginas legales: términos, privacidad, reembolsos digitales, no afiliación, créditos
+- [x] Páginas legales en borrador: términos, privacidad, devoluciones, no afiliación, créditos (Claude, PR #1)
+- [ ] Revisar textos legales antes de producción
 - [ ] Panel mínimo de órdenes (script local o página protegida con Cloudflare Access)
 - [ ] CI: tests + validación de catálogo en cada PR; deploy a Cloudflare desde `main`
 - [ ] Probar el flujo completo en PayPal sandbox (incluye ver si aparece el botón de tarjeta para comerciante AR)
@@ -37,6 +39,7 @@ Marcá `[x]` al terminar y poné tu agente entre paréntesis si la tomaste. Recl
 ## Fase 4 — Dropshipping
 - [ ] Investigar proveedores con API (CJ Dropshipping, AliExpress vía DSers): envíos a EE.UU./UE, calidad, integración con PayPal
 - [ ] Productos `kind: physical` sin logos, margen configurable, envío automático del pedido
+- [ ] Schema: categorías de accesorios y `fits: []` = universal para físicos (el sitio ya las soporta)
 
 ## Antes de producción
 - [ ] Cuenta bancaria de EE.UU. a nombre del titular de PayPal
