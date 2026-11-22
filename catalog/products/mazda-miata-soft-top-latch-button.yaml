@@ -1,0 +1,54 @@
+slug: mazda-miata-soft-top-latch-button
+status: draft
+kind: file
+title: Soft Top Latch Button for Mazda MX-5 Miata (NA/NB)
+summary: null
+description: null
+category: knobs-handles-bushings
+part_type: soft top latch button
+fits:
+  - make: Mazda
+    model_slug: mazda-miata
+    years:
+      from: 1989
+      to: 2005
+price_usd: null
+oem_part_numbers: []
+material:
+  recommended:
+    - PETG
+    - ASA
+  avoid:
+    - PLA
+  note: A parked car interior gets hot enough to warp PLA. Use PETG, or ASA for parts in direct sun.
+print_settings:
+  layer_height_mm: null
+  infill_percent: null
+  walls: null
+  supports: null
+  orientation: null
+  notes: null
+install_notes: null
+sources:
+  - platform: thingiverse
+    thing_id: 2124207
+    thing_url: https://www.thingiverse.com/thing:2124207
+    title_original: Soft Top Latch Button
+    author: null
+    author_url: null
+    license: CC-BY
+    license_raw: CC BY
+    verified_at: null
+    images_allowed: false
+    file_names: []
+    image_urls: []
+files: []
+images: []
+review:
+  state: pendiente de revisión manual
+  flags: []
+  notes:
+    - Escribir title, summary y description originales en inglés (no copiar al autor).
+    - Verificar licencia, autor y archivos con la API (import-seed con THINGIVERSE_TOKEN).
+created_at: 2026-11-22
+updated_at: 2026-11-22

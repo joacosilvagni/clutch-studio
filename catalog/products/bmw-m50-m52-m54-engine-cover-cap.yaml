@@ -1,0 +1,50 @@
+slug: bmw-m50-m52-m54-engine-cover-cap
+status: draft
+kind: file
+title: Engine Cover Cap
+summary: null
+description: null
+category: engine-bay
+part_type: engine cover cap
+fits: []
+price_usd: null
+oem_part_numbers: []
+material:
+  recommended:
+    - PETG
+    - ASA
+  avoid:
+    - PLA
+  note: A parked car interior gets hot enough to warp PLA. Use PETG, or ASA for parts in direct sun.
+print_settings:
+  layer_height_mm: null
+  infill_percent: null
+  walls: null
+  supports: null
+  orientation: null
+  notes: null
+install_notes: null
+sources:
+  - platform: thingiverse
+    thing_id: 3487379
+    thing_url: https://www.thingiverse.com/thing:3487379
+    title_original: Engine Cover Cap
+    author: null
+    author_url: null
+    license: CC-BY
+    license_raw: CC BY
+    verified_at: null
+    images_allowed: false
+    file_names: []
+    image_urls: []
+files: []
+images: []
+review:
+  state: pendiente de revisión manual
+  flags:
+    - '"BMW M50/M52/M54" no coincide con ningún modelo de config/models.yaml'
+  notes:
+    - Escribir title, summary y description originales en inglés (no copiar al autor).
+    - Verificar licencia, autor y archivos con la API (import-seed con THINGIVERSE_TOKEN).
+created_at: 2026-11-22
+updated_at: 2026-11-22

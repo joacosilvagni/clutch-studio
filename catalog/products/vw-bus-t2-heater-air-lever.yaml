@@ -1,0 +1,54 @@
+slug: vw-bus-t2-heater-air-lever
+status: draft
+kind: file
+title: Heater / Air Lever for Volkswagen Bus T1/T2 (Type 2)
+summary: null
+description: null
+category: knobs-handles-bushings
+part_type: heater / air lever
+fits:
+  - make: Volkswagen
+    model_slug: vw-bus-t2
+    years:
+      from: 1950
+      to: 1979
+price_usd: null
+oem_part_numbers: []
+material:
+  recommended:
+    - PETG
+    - ASA
+  avoid:
+    - PLA
+  note: A parked car interior gets hot enough to warp PLA. Use PETG, or ASA for parts in direct sun.
+print_settings:
+  layer_height_mm: null
+  infill_percent: null
+  walls: null
+  supports: null
+  orientation: null
+  notes: null
+install_notes: null
+sources:
+  - platform: thingiverse
+    thing_id: 5240355
+    thing_url: https://www.thingiverse.com/thing:5240355
+    title_original: Heater / Air Lever
+    author: null
+    author_url: null
+    license: CC-BY
+    license_raw: CC BY
+    verified_at: null
+    images_allowed: false
+    file_names: []
+    image_urls: []
+files: []
+images: []
+review:
+  state: pendiente de revisión manual
+  flags: []
+  notes:
+    - Escribir title, summary y description originales en inglés (no copiar al autor).
+    - Verificar licencia, autor y archivos con la API (import-seed con THINGIVERSE_TOKEN).
+created_at: 2026-11-22
+updated_at: 2026-11-22

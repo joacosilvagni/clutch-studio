@@ -1,0 +1,55 @@
+slug: jeep-cherokee-xj-switch-panel
+status: draft
+kind: file
+title: Switch Panel for Jeep Cherokee XJ
+summary: null
+description: null
+category: knobs-handles-bushings
+part_type: switch panel
+fits:
+  - make: Jeep
+    model_slug: jeep-cherokee-xj
+    years:
+      from: 1997
+      to: 2001
+price_usd: null
+oem_part_numbers: []
+material:
+  recommended:
+    - PETG
+    - ASA
+  avoid:
+    - PLA
+  note: A parked car interior gets hot enough to warp PLA. Use PETG, or ASA for parts in direct sun.
+print_settings:
+  layer_height_mm: null
+  infill_percent: null
+  walls: null
+  supports: null
+  orientation: null
+  notes: null
+install_notes: null
+sources:
+  - platform: thingiverse
+    thing_id: 3564521
+    thing_url: https://www.thingiverse.com/thing:3564521
+    title_original: Switch Panel
+    author: null
+    author_url: null
+    license: CC-BY
+    license_raw: CC BY
+    verified_at: null
+    images_allowed: false
+    file_names: []
+    image_urls: []
+files: []
+images: []
+review:
+  state: pendiente de revisión manual
+  flags:
+    - 'años tomados del texto "Jeep Cherokee XJ 97-01": confirmar'
+  notes:
+    - Escribir title, summary y description originales en inglés (no copiar al autor).
+    - Verificar licencia, autor y archivos con la API (import-seed con THINGIVERSE_TOKEN).
+created_at: 2026-11-22
+updated_at: 2026-11-22

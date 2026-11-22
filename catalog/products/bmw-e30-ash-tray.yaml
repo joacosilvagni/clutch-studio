@@ -1,0 +1,54 @@
+slug: bmw-e30-ash-tray
+status: draft
+kind: file
+title: Ash Tray for BMW E30
+summary: null
+description: null
+category: storage-cupholders
+part_type: ash tray
+fits:
+  - make: BMW
+    model_slug: bmw-e30
+    years:
+      from: 1982
+      to: 1994
+price_usd: null
+oem_part_numbers: []
+material:
+  recommended:
+    - PETG
+    - ASA
+  avoid:
+    - PLA
+  note: A parked car interior gets hot enough to warp PLA. Use PETG, or ASA for parts in direct sun.
+print_settings:
+  layer_height_mm: null
+  infill_percent: null
+  walls: null
+  supports: null
+  orientation: null
+  notes: null
+install_notes: null
+sources:
+  - platform: thingiverse
+    thing_id: 5164994
+    thing_url: https://www.thingiverse.com/thing:5164994
+    title_original: Ash Tray (cenicero)
+    author: null
+    author_url: null
+    license: CC-BY
+    license_raw: CC BY
+    verified_at: null
+    images_allowed: false
+    file_names: []
+    image_urls: []
+files: []
+images: []
+review:
+  state: pendiente de revisión manual
+  flags: []
+  notes:
+    - Escribir title, summary y description originales en inglés (no copiar al autor).
+    - Verificar licencia, autor y archivos con la API (import-seed con THINGIVERSE_TOKEN).
+created_at: 2026-11-22
+updated_at: 2026-11-22

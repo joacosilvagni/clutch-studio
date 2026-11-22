@@ -1,0 +1,54 @@
+slug: volvo-240-door-cards-clips
+status: draft
+kind: file
+title: Door cards clips for Volvo 240
+summary: null
+description: null
+category: clips-fasteners
+part_type: door cards clips
+fits:
+  - make: Volvo
+    model_slug: volvo-240
+    years:
+      from: 1974
+      to: 1993
+price_usd: null
+oem_part_numbers: []
+material:
+  recommended:
+    - PETG
+    - ASA
+  avoid:
+    - PLA
+  note: A parked car interior gets hot enough to warp PLA. Use PETG, or ASA for parts in direct sun.
+print_settings:
+  layer_height_mm: null
+  infill_percent: null
+  walls: null
+  supports: null
+  orientation: null
+  notes: null
+install_notes: null
+sources:
+  - platform: thingiverse
+    thing_id: 5735746
+    thing_url: https://www.thingiverse.com/thing:5735746
+    title_original: Door cards clips
+    author: null
+    author_url: null
+    license: CC-BY
+    license_raw: CC BY
+    verified_at: null
+    images_allowed: false
+    file_names: []
+    image_urls: []
+files: []
+images: []
+review:
+  state: pendiente de revisión manual
+  flags: []
+  notes:
+    - Escribir title, summary y description originales en inglés (no copiar al autor).
+    - Verificar licencia, autor y archivos con la API (import-seed con THINGIVERSE_TOKEN).
+created_at: 2026-11-22
+updated_at: 2026-11-22

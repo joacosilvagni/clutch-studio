@@ -1,0 +1,52 @@
+slug: vw-switch-blank
+status: draft
+kind: file
+title: Switch Blank
+summary: null
+description: null
+category: knobs-handles-bushings
+part_type: switch blank
+fits: []
+price_usd: null
+oem_part_numbers:
+  - "861957087"
+material:
+  recommended:
+    - PETG
+    - ASA
+  avoid:
+    - PLA
+  note: A parked car interior gets hot enough to warp PLA. Use PETG, or ASA for parts in direct sun.
+print_settings:
+  layer_height_mm: null
+  infill_percent: null
+  walls: null
+  supports: null
+  orientation: null
+  notes: null
+install_notes: null
+sources:
+  - platform: thingiverse
+    thing_id: 2424109
+    thing_url: https://www.thingiverse.com/thing:2424109
+    title_original: Switch Blank 861957087
+    author: null
+    author_url: null
+    license: CC-BY-SA
+    license_raw: CC BY-SA
+    verified_at: null
+    images_allowed: false
+    file_names: []
+    image_urls: []
+files: []
+images: []
+review:
+  state: pendiente de revisión manual
+  flags:
+    - '"VW" no coincide con ningún modelo de config/models.yaml'
+  notes:
+    - Escribir title, summary y description originales en inglés (no copiar al autor).
+    - Verificar licencia, autor y archivos con la API (import-seed con THINGIVERSE_TOKEN).
+    - "CC BY-SA: el archivo adaptado que se vende debe publicarse bajo CC BY-SA."
+created_at: 2026-11-22
+updated_at: 2026-11-22
