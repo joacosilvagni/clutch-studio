@@ -1,0 +1,122 @@
+# Licensing and filtering rules for the catalog pipeline.
+# Only licenses that allow commercial use AND derivatives are accepted.
+licenses:
+  allowed: [CC-BY, CC-BY-SA, CC0]
+  # Exact Thingiverse license strings -> normalized id. Anything not listed is rejected.
+  map:
+    "Creative Commons - Attribution": CC-BY
+    "Creative Commons - Attribution - Share Alike": CC-BY-SA
+    "Creative Commons - Public Domain Dedication": CC0
+    "Creative Commons - Attribution - Non-Commercial": CC-BY-NC
+    "Creative Commons - Attribution - Non-Commercial - Share Alike": CC-BY-NC-SA
+    "Creative Commons - Attribution - Non-Commercial - No Derivatives": CC-BY-NC-ND
+    "Creative Commons - Attribution - No Derivatives": CC-BY-ND
+    "Public Domain": PD
+    "GNU - GPL": GPL
+    "GNU - LGPL": LGPL
+    "BSD License": BSD
+    "All Rights Reserved": ARR
+  # Short forms used in the seed CSV.
+  seed_map:
+    "CC BY": CC-BY
+    "CC BY-SA": CC-BY-SA
+    "CC0": CC0
+
+filters:
+  # A title/description/tag hit on any of these discards the thing (whole-word, case-insensitive).
+  exclude:
+    - keychain
+    - key chain
+    - key ring
+    - keyring
+    - llavero
+    - ornament
+    - christmas
+    - emblem
+    - badge
+    - logo
+    - roundel
+    - lithophane
+    - wall art
+    - sign
+    - plaque
+    - figurine
+    - toy
+    - diorama
+    - hot wheels
+    - matchbox
+    - scale model
+    - model kit
+    - miniature
+    - rc body
+    - "1:8"
+    - "1:10"
+    - "1:12"
+    - "1:18"
+    - "1:24"
+    - "1:43"
+    - "1:64"
+    - "1/24"
+    - "1/43"
+    - "1/64"
+  # Functional-part words raise the score; drafts are sorted by score.
+  prefer:
+    - clip
+    - clips
+    - bracket
+    - mount
+    - holder
+    - cover
+    - cap
+    - knob
+    - handle
+    - bushing
+    - bezel
+    - vent
+    - panel
+    - grommet
+    - latch
+    - button
+    - spacer
+    - adapter
+    - adaptor
+    - trim
+    - tray
+    - cupholder
+    - cup holder
+    - shifter
+    - lever
+    - insert
+    - plug
+    - blank
+    - retainer
+    - grille
+    - gauge
+    - pod
+    - bearing
+    - screw
+    - strap
+    - tool
+  # Third-party brand names: never excluded automatically, but the draft is flagged
+  # so a human checks there is no logo or trademark use before approval.
+  brand_flags:
+    - ronal
+    - bbs
+    - recaro
+    - momo
+    - nardi
+    - hella
+    - bosch
+    - "m power"
+    - amg
+    - gti
+    - vdo
+    - porsche
+    - ferrari
+
+thingiverse:
+  # Minimum delay between API calls (ms). Keep it polite; raise it if you see 429s.
+  min_interval_ms: 1200
+  max_retries: 4
+  per_page: 30
+  max_pages_per_term: 3

@@ -1,0 +1,84 @@
+# Car models the catalog targets. `slug` is also the SEO route (/bmw-e30/).
+# `search` = terms sent to the Thingiverse search API for this model.
+# Years are production years used as defaults for drafts; review each part.
+models:
+  - slug: bmw-e30
+    make: BMW
+    model: E30
+    years: { from: 1982, to: 1994 }
+    search: ["BMW E30", "E30 interior", "E30 clip"]
+    aliases: ["e30"]
+  - slug: bmw-e36
+    make: BMW
+    model: E36
+    years: { from: 1990, to: 2000 }
+    search: ["BMW E36", "E36 clip"]
+    aliases: ["e36"]
+  - slug: mazda-miata
+    make: Mazda
+    model: MX-5 Miata (NA/NB)
+    years: { from: 1989, to: 2005 }
+    search: ["Miata NA", "Miata", "MX-5 NA", "Eunos Roadster"]
+    aliases: ["miata", "mx-5", "mx5", "eunos"]
+    # Later generations are not classics; a hit on these flags the draft.
+    not_if: ["nc", "nd"]
+  - slug: vw-beetle
+    make: Volkswagen
+    model: Beetle (Type 1)
+    years: { from: 1938, to: 2003 }
+    search: ["VW Beetle", "Volkswagen Type 1", "Super Beetle"]
+    aliases: ["beetle", "type 1", "kafer", "fusca", "vocho"]
+  - slug: vw-bus-t2
+    make: Volkswagen
+    model: Bus T1/T2 (Type 2)
+    years: { from: 1950, to: 1979 }
+    search: ["VW Bus T2", "VW T2", "Kombi", "Volkswagen Type 2"]
+    aliases: ["t2", "t1", "type 2", "kombi", "bus", "camper"]
+  - slug: vw-golf-mk1
+    make: Volkswagen
+    model: Golf / Rabbit Mk1
+    years: { from: 1974, to: 1983 }
+    search: ["Golf MK1", "VW Rabbit MK1", "Golf 1"]
+    aliases: ["mk1", "golf 1", "rabbit"]
+  - slug: vw-golf-mk2
+    make: Volkswagen
+    model: Golf Mk2
+    years: { from: 1983, to: 1992 }
+    search: ["Golf MK2", "Golf 2", "Jetta MK2"]
+    aliases: ["mk2", "golf 2"]
+  - slug: mercedes-w123
+    make: Mercedes-Benz
+    model: W123
+    years: { from: 1976, to: 1986 }
+    search: ["W123", "Mercedes W123"]
+    aliases: ["w123"]
+  - slug: volvo-240
+    make: Volvo
+    model: 240
+    years: { from: 1974, to: 1993 }
+    search: ["Volvo 240", "Volvo 245"]
+    aliases: ["240", "245", "244"]
+  - slug: jeep-cherokee-xj
+    make: Jeep
+    model: Cherokee XJ
+    years: { from: 1984, to: 2001 }
+    search: ["Jeep Cherokee XJ", "Cherokee XJ"]
+    aliases: ["xj", "cherokee"]
+  - slug: land-rover-defender
+    make: Land Rover
+    model: Defender
+    years: { from: 1983, to: 2016 }
+    search: ["Land Rover Defender", "Defender 90", "Defender 110"]
+    aliases: ["defender"]
+  - slug: saab-900
+    make: Saab
+    model: 900 (classic)
+    years: { from: 1978, to: 1993 }
+    search: ["Saab 900", "Saab 99"]
+    aliases: ["saab 900", "saab 99"]
+  - slug: chevrolet-c10
+    make: Chevrolet
+    model: C10 / C/K pickup
+    years: { from: 1960, to: 1987 }
+    search: ["Chevy C10", "Chevrolet C10", "Squarebody"]
+    aliases: ["c10", "chevy truck", "squarebody"]

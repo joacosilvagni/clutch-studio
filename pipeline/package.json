@@ -1,0 +1,16 @@
+{
+  "name": "@reprint-garage/pipeline",
+  "private": true,
+  "type": "module",
+  "description": "Catalog pipeline: Thingiverse search, license checks, product drafts.",
+  "scripts": {
+    "import-seed": "node src/cli/import-seed.mjs",
+    "search": "node src/cli/search.mjs",
+    "verify-licenses": "node src/cli/verify-licenses.mjs",
+    "validate": "node src/cli/validate-catalog.mjs",
+    "build-catalog": "node src/cli/build-catalog.mjs"
+  },
+  "dependencies": {
+    "yaml": "2.9.1"
+  }
+}

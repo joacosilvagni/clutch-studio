@@ -1,0 +1,15 @@
+{
+  "name": "reprint-garage",
+  "private": true,
+  "type": "module",
+  "workspaces": ["pipeline", "worker"],
+  "scripts": {
+    "test": "vitest run",
+    "catalog:validate": "node pipeline/src/cli/validate-catalog.mjs",
+    "catalog:build": "node pipeline/src/cli/build-catalog.mjs"
+  },
+  "devDependencies": {
+    "vitest": "5.1.1"
+  },
+  "engines": { "node": ">=22.13" }
+}

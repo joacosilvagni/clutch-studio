@@ -1,0 +1,18 @@
+{
+  "name": "@reprint-garage/worker",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "prebuild": "node ../pipeline/src/cli/build-catalog.mjs",
+    "dev": "npm run prebuild && wrangler dev",
+    "deploy": "npm run prebuild && wrangler deploy",
+    "typecheck": "tsc --noEmit",
+    "db:migrate:local": "wrangler d1 migrations apply reprint-garage --local",
+    "db:migrate:remote": "wrangler d1 migrations apply reprint-garage --remote"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "5.20261122.2",
+    "typescript": "5.9.3",
+    "wrangler": "4.166.0"
+  }
+}
