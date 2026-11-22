@@ -11,7 +11,7 @@ Marcá `[x]` al terminar y poné tu agente entre paréntesis si la tomaste. Recl
 - [x] Importar CSV semilla como borradores (Claude)
 - [x] Búsqueda en Thingiverse por modelo con filtro de licencias/adornos/logos, export CSV y borradores (Claude)
 - [x] Reverificación de licencias con exit code ≠ 0 si algo cambió (Claude)
-- [ ] Workflow programado semanal de reverificación que abra un issue si algo cambió
+- [x] Workflow programado semanal de reverificación que abra un issue si algo cambió (Claude)
 - [ ] Correr `import-seed` con `THINGIVERSE_TOKEN` para verificar autor/licencia/archivos de los 73 borradores
 - [ ] Revisión manual de los borradores con flags (marcas, modelos fuera de lista, años)
 - [ ] Escribir descripciones originales en inglés y fichas técnicas (material, parámetros, instalación)
@@ -19,15 +19,18 @@ Marcá `[x]` al terminar y poné tu agente entre paréntesis si la tomaste. Recl
 - [ ] Preparar ZIPs listos para imprimir + `ATTRIBUTION.txt` y subirlos a R2 (`products/<slug>/...`)
 
 ## Fase 2 — MVP de la tienda
-- [ ] Worker: `POST /api/orders`, `POST /api/capture`, webhook PayPal con verificación de firma
-- [ ] Worker: descargas con token (72 h, 5 descargas), mail con Resend, reenvío de links, rate limiting
-- [ ] Migraciones D1 y wrangler config (sin secretos)
+- [x] Worker: `POST /api/orders`, `POST /api/capture`, webhook PayPal con verificación de firma (Claude)
+- [x] Worker: descargas con token (72 h, 5 descargas), mail con Resend, reenvío de links, rate limiting (Claude)
+- [x] Migraciones D1 y wrangler config (sin secretos) (Claude)
+- [ ] Crear D1, R2 y secrets en Cloudflare; completar `database_id`, `PAYPAL_CLIENT_ID`, `SITE_URL`, `MAIL_FROM`
+- [ ] Sitio: conectar carrito y botones de PayPal a `/api/orders` y `/api/capture`; página `/downloads/` que llame a `/api/resend`
+- [ ] Definir cómo se entregan los productos `free: true` de la Free Library
 - [ ] Sitio: home, catálogo con filtros, página por modelo, producto con atribución, carrito, checkout, confirmación
 - [ ] Free Library
 - [ ] SEO: sitemap, metadatos, datos estructurados de producto, Open Graph
 - [ ] Páginas legales: términos, privacidad, reembolsos digitales, no afiliación, créditos
 - [ ] Panel mínimo de órdenes (script local o página protegida con Cloudflare Access)
-- [ ] CI: tests + validación de catálogo en cada PR; deploy a Cloudflare desde `main`
+- [x] CI: tests + validación de catálogo en cada PR; deploy a Cloudflare desde `main` (activar con `DEPLOY_ENABLED`) (Claude)
 - [ ] Probar el flujo completo en PayPal sandbox (incluye ver si aparece el botón de tarjeta para comerciante AR)
 
 ## Fase 3 — Contenido para Facebook
