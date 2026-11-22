@@ -1,0 +1,30 @@
+name: Verify licenses
+# Weekly re-check of every Thingiverse license in the catalog. Opens an issue if anything changed.
+on:
+  schedule:
+    - cron: '17 9 * * 1' # Mondays 09:17 UTC
+  workflow_dispatch:
+permissions:
+  contents: read
+  issues: write
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Re-check licenses (approved products)
+        id: verify
+        env:
+          THINGIVERSE_TOKEN: ${{ secrets.THINGIVERSE_TOKEN }}
+        run: node pipeline/src/cli/verify-licenses.mjs --report license-report.md
+        continue-on-error: true
+      - name: Open an issue when something changed
+        if: steps.verify.outcome == 'failure'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh issue create --title "Licencias: cambios detectados $(date -u +%F)" --body-file license-report.md --label licencias || gh issue create --title "Licencias: cambios detectados $(date -u +%F)" --body-file license-report.md

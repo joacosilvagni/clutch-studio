@@ -2,14 +2,20 @@
   "name": "clutch-studio",
   "private": true,
   "type": "module",
-  "workspaces": ["pipeline", "worker"],
+  "workspaces": [
+    "pipeline",
+    "worker"
+  ],
   "scripts": {
     "test": "vitest run",
     "catalog:validate": "node pipeline/src/cli/validate-catalog.mjs",
-    "catalog:build": "node pipeline/src/cli/build-catalog.mjs"
+    "catalog:build": "node pipeline/src/cli/build-catalog.mjs",
+    "typecheck": "npm run typecheck -w worker"
   },
   "devDependencies": {
     "vitest": "4.1.12"
   },
-  "engines": { "node": ">=22.13" }
+  "engines": {
+    "node": ">=22.13"
+  }
 }

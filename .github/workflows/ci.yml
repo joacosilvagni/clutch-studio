@@ -1,0 +1,27 @@
+name: CI
+on:
+  pull_request:
+  push:
+    branches: [main]
+permissions:
+  contents: read
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Tests (pipeline + worker)
+        run: npm test
+      - name: Validate catalog
+        run: npm run catalog:validate
+      - name: Typecheck worker
+        run: npm run catalog:build && npm run typecheck -w worker
+      - name: Build site
+        if: hashFiles('site/package.json') != ''
+        working-directory: site
+        run: npm ci && npm run build
