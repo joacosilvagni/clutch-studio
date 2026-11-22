@@ -24,8 +24,8 @@ jobs:
           node-version: 22
           cache: npm
       - run: npm ci
-      - run: npm test
       - run: npm run catalog:build
+      - run: npm test
       - name: Build site
         working-directory: site
         run: npm ci && npm run build

@@ -15,12 +15,14 @@ jobs:
           node-version: 22
           cache: npm
       - run: npm ci
+      - name: Build worker catalog (tests import it)
+        run: npm run catalog:build
       - name: Tests (pipeline + worker)
         run: npm test
       - name: Validate catalog
         run: npm run catalog:validate
       - name: Typecheck worker
-        run: npm run catalog:build && npm run typecheck -w worker
+        run: npm run typecheck
       - name: Build site
         if: hashFiles('site/package.json') != ''
         working-directory: site
