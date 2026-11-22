@@ -1,39 +1,41 @@
 ---
 import { brand } from '../data/brand';
 import Base from '../layouts/Base.astro';
-import CarPicker from '../components/CarPicker.astro';
 import ProductCard from '../components/ProductCard.astro';
 import TrustStrip from '../components/TrustStrip.astro';
 import PartArt from '../components/PartArt.astro';
-import { makes, models, categories, getMake, yearsLabel } from '../data/catalog';
+import { departments, categoriesFor, categoryUrl } from '../data/catalog';
 import { getProducts } from '../data/products';
 const all = await getProducts();
-const byModel = (s: string) => all.filter((p) => p.models.includes(s)).length;
 const byCat = (s: string) => all.filter((p) => p.category === s).length;
-const freeCount = all.filter((p) => p.priceUsd === 0).length;
-// Featured: packs first, then priced files, up to 6.
-const featured = [...all].sort((a, b) => Number(b.kind === 'pack') - Number(a.kind === 'pack') || Number(b.priceUsd != null) - Number(a.priceUsd != null)).slice(0, 6);
-const ld = { '@context': 'https://schema.org', '@type': 'OnlineStore', name: brand.name, url: Astro.site?.href, description: 'Print-ready 3D files for discontinued classic car parts.' };
+const accessories = all.filter((p) => p.department === 'accessories').slice(0, 4);
+const files = [...all.filter((p) => p.department === '3d-files')]
+  .sort((a, b) => Number(b.kind === 'pack') - Number(a.kind === 'pack') || Number(b.priceUsd != null) - Number(a.priceUsd != null))
+  .slice(0, 4);
+const [acc, f3d] = departments;
+const ld = { '@context': 'https://schema.org', '@type': 'OnlineStore', name: brand.name, url: Astro.site?.href, description: brand.tagline };
 ---
-<Base title={brand.name} description="Print-ready STL and 3MF files for discontinued parts on classic and youngtimer cars. Real part numbers, tested print settings and install guides." jsonLd={ld}>
+<Base title={brand.name} description="Car accessories and print-ready 3D files for classic and youngtimer owners. Universal-fit gear shipped to you, plus STL/3MF files for discontinued parts." jsonLd={ld}>
   <section class="hero">
     <div class="wrap hero-grid">
       <div>
-        <p class="eyebrow">3D files for classic cars · {models.length} models · {makes.length} makes</p>
-        <h1>Discontinued parts, <span>back in print.</span></h1>
-        <p class="lede">The clip, knob or bezel the dealer stopped making in 1997. Download a tested STL and 3MF, print it in PETG or ASA, and get your car back together tonight.</p>
-        <CarPicker />
-        <p class="hint mono">Already know the part number? <a href="/parts/">Browse by part type</a></p>
+        <p class="eyebrow">For classic & youngtimer owners</p>
+        <h1>Gear for cars that <span>outlived their parts.</span></h1>
+        <p class="lede">Accessories that make an old car easier to live with, and print-ready files for the small parts the dealer stopped making decades ago.</p>
+        <div class="ctas">
+          <a class="btn btn--accent" href="/accessories/">Shop accessories</a>
+          <a class="btn btn--ghost" href="/3d-files/">Browse 3D files</a>
+        </div>
       </div>
-      <div class="hero-art">
+      <div class="hero-art" aria-hidden="true">
         <div class="sheet">
-          <div class="sheet-top"><span>SHEET 01 / E30</span><span>REV A</span></div>
-          <PartArt glyph="clip" size="hero" label="OEM 51161932255" />
-          <table class="spec">
-            <tr><th>Fits</th><td>BMW E30 (1982–1994)</td></tr>
-            <tr><th>Material</th><td>PETG · 0.20 mm · 4 walls</td></tr>
-            <tr><th>Includes</th><td>STL · 3MF · PDF guide</td></tr>
-          </table>
+          <div class="sheet-top"><span>CATALOG 01</span><span>REV A</span></div>
+          <div class="sheet-grid">
+            <PartArt glyph="phone" label="Tech" />
+            <PartArt glyph="lamp" label="Lighting" />
+            <PartArt glyph="clip" label="3D file" />
+            <PartArt glyph="drop" label="Detailing" />
+          </div>
         </div>
       </div>
     </div>
@@ -41,17 +43,19 @@ const ld = { '@context': 'https://schema.org', '@type': 'OnlineStore', name: bra
 
   <section class="section">
     <div class="wrap">
-      <p class="eyebrow">Step one</p>
-      <h2>Shop by car</h2>
-      <div class="grid grid--tight models">
-        {models.map((m) => (
-          <a href={`/${m.slug}/`} class="model">
-            <span class="mk">{getMake(m.make).name}</span>
-            <strong>{m.name}</strong>
-            <span class="yrs mono">{yearsLabel(m)}</span>
-            <span class="n mono">{byModel(m.slug)} files</span>
-          </a>
-        ))}
+      <div class="depts">
+        <a class="dept dept--main" href="/accessories/">
+          <p class="eyebrow">Department 01</p>
+          <h2>{acc.name}</h2>
+          <p>{acc.pitch}</p>
+          <span class="go mono">Shop accessories →</span>
+        </a>
+        <a class="dept" href="/3d-files/">
+          <p class="eyebrow">Department 02</p>
+          <h2>{f3d.name}</h2>
+          <p>{f3d.pitch}</p>
+          <span class="go mono">Browse files →</span>
+        </a>
       </div>
     </div>
   </section>
@@ -59,43 +63,23 @@ const ld = { '@context': 'https://schema.org', '@type': 'OnlineStore', name: bra
   <section class="section">
     <div class="wrap">
       <div class="row">
-        <div><p class="eyebrow">On the bench</p><h2>Packs & best first prints</h2></div>
-        <a class="btn btn--ghost" href="/makes/">See everything</a>
+        <div><p class="eyebrow">Accessories</p><h2>Shop by category</h2></div>
+        <a class="btn btn--ghost" href="/accessories/">All accessories</a>
       </div>
-      {featured.length ? <div class="grid">{featured.map((p) => <ProductCard product={p} />)}</div> : <p class="notice">The first files are being tested and documented. Check back soon, or <a href="/support/#request">request a part</a>.</p>}
-    </div>
-  </section>
-
-  <section class="section how">
-    <div class="wrap">
-      <p class="eyebrow">How it works</p>
-      <h2>From download to installed</h2>
-      <ol class="steps">
-        <li><span class="mono">01</span><h3>Find your car</h3><p>Every file lists make, model, years and the OEM part number when we have it verified.</p></li>
-        <li><span class="mono">02</span><h3>Download the pack</h3><p>STL for any slicer, a ready 3MF plate, and a PDF tech sheet with print settings.</p></li>
-        <li><span class="mono">03</span><h3>Print & fit</h3><p>Use PETG for cabin parts and ASA for anything that sees sun or heat. Install notes included.</p></li>
-      </ol>
-      <p class="muted">No printer? Most local print shops and online print services accept STL/3MF. <a href="/how-it-works/#no-printer">Here is how to order a print</a>.</p>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="wrap">
-      <p class="eyebrow">Step one, the other way</p>
-      <h2>Shop by part type</h2>
       <div class="grid grid--tight">
-        {categories.map((c) => (
-          <a href={`/parts/${c.slug}/`} class="cat">
+        {categoriesFor('accessories').map((c) => (
+          <a href={categoryUrl(c)} class="cat">
             <PartArt glyph={c.glyph} />
             <strong>{c.name}</strong>
-            <span class="mono muted">{byCat(c.slug)} files</span>
+            <span class="mono muted">{byCat(c.slug) === 1 ? "1 product" : byCat(c.slug) ? `${byCat(c.slug)} products` : "Coming soon"}</span>
           </a>
         ))}
       </div>
+      {accessories.length > 0 && <div class="grid more">{accessories.map((p) => <ProductCard product={p} />)}</div>}
     </div>
   </section>
 
-  <section class="section">
+  <section class="section band">
     <div class="wrap">
       <p class="eyebrow">Why buy here</p>
       <h2>Straight answers, no fluff</h2>
@@ -104,17 +88,37 @@ const ld = { '@context': 'https://schema.org', '@type': 'OnlineStore', name: bra
   </section>
 
   <section class="section">
+    <div class="wrap">
+      <div class="row">
+        <div><p class="eyebrow">3D print files</p><h2>Print the part nobody makes</h2></div>
+        <a class="btn btn--ghost" href="/3d-files/">All files</a>
+      </div>
+      <div class="grid grid--tight">
+        {categoriesFor('3d-files').map((c) => (
+          <a href={categoryUrl(c)} class="cat">
+            <PartArt glyph={c.glyph} />
+            <strong>{c.name}</strong>
+            <span class="mono muted">{byCat(c.slug) === 1 ? "1 file" : `${byCat(c.slug)} files`}</span>
+          </a>
+        ))}
+      </div>
+      {files.length > 0 && <div class="grid more">{files.map((p) => <ProductCard product={p} />)}</div>}
+      <p class="muted carline">Restoring a specific classic? <a href="/fits/">Check model-specific files by car</a>.</p>
+    </div>
+  </section>
+
+  <section class="section">
     <div class="wrap split">
       <div class="free">
         <p class="eyebrow">Free Library</p>
-        <h2>{freeCount > 0 ? `${freeCount} workshop files, free forever` : "Workshop files, free forever"}</h2>
-        <p>Bleeder tools, caps and jigs. No account needed. Try our print settings before you buy anything.</p>
+        <h2>Workshop files, free forever</h2>
+        <p>Bleeder tools, caps and jigs. Try our print settings before you buy anything.</p>
         <a class="btn" href="/free-library/">Open the Free Library</a>
       </div>
-      <div class="request" id="request">
+      <div class="request">
         <p class="eyebrow">Can't find it?</p>
         <h2>Request a part</h2>
-        <p>Tell us the car, years and the part number or a photo. The most requested parts get modelled first.</p>
+        <p>Tell us what you need, accessory or printed part. The most requested items get added first.</p>
         <a class="btn btn--ghost" href="/support/#request">Send a request</a>
       </div>
     </div>
@@ -122,40 +126,37 @@ const ld = { '@context': 'https://schema.org', '@type': 'OnlineStore', name: bra
 </Base>
 
 <style>
-  .hero { padding-block: clamp(32px, 6vw, 72px); border-bottom: 1px solid var(--rule); background:
-    radial-gradient(circle at 1px 1px, rgba(29,28,26,.12) 1px, transparent 0) 0 0 / 22px 22px; }
+  .hero { padding-block: clamp(36px, 7vw, 88px); border-bottom: 1px solid var(--rule); background:
+    radial-gradient(ellipse at 80% 0%, rgba(226, 88, 42, .14), transparent 55%),
+    radial-gradient(circle at 1px 1px, rgba(255, 255, 255, .06) 1px, transparent 0) 0 0 / 22px 22px; }
   .hero-grid { display: grid; gap: 40px; align-items: center; }
   h1 span { color: var(--accent); display: block; }
-  .hint { margin-top: 14px; font-size: .78rem; color: var(--ink-3); }
+  .ctas { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 8px; }
   .hero-art { display: none; }
   .sheet { background: var(--card); border: 1px solid var(--rule); border-radius: var(--radius); padding: 12px; box-shadow: var(--shadow); transform: rotate(1.5deg); }
   .sheet-top { display: flex; justify-content: space-between; font: 600 .7rem/1 var(--mono); color: var(--ink-3); letter-spacing: .1em; padding: 4px 2px 12px; }
-  .sheet .spec { margin-top: 8px; }
+  .sheet-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
   @media (min-width: 900px) { .hero-grid { grid-template-columns: 1.15fr .85fr; } .hero-art { display: block; } }
 
-  .model { display: grid; gap: 2px; padding: 16px; background: var(--card); border: 1px solid var(--rule); border-radius: var(--radius); text-decoration: none; position: relative; transition: border-color .15s, transform .15s; }
-  .model:hover { border-color: var(--ink); transform: translateY(-2px); color: inherit; }
-  .mk { font: 600 .7rem/1 var(--mono); text-transform: uppercase; letter-spacing: .1em; color: var(--accent-ink); }
-  .model strong { font: 700 1.5rem/1.05 var(--display); text-transform: uppercase; margin: 4px 0; }
-  .yrs { color: var(--ink-2); }
-  .n { color: var(--ink-3); font-size: .72rem; margin-top: 6px; }
+  .depts { display: grid; gap: 16px; }
+  .dept { display: grid; gap: 4px; padding: 28px; border-radius: var(--radius); border: 1px solid var(--rule); background: var(--card); text-decoration: none; transition: border-color .15s, transform .15s; }
+  .dept:hover { border-color: var(--ink-3); transform: translateY(-2px); color: inherit; }
+  .dept h2 { margin: 0 0 4px; }
+  .dept p { color: var(--ink-2); margin: 0; }
+  .dept--main { background: linear-gradient(135deg, color-mix(in srgb, var(--accent) 22%, var(--card)), var(--card) 70%); border-color: color-mix(in srgb, var(--accent) 40%, var(--rule)); }
+  .go { margin-top: 14px; color: var(--accent-ink); font-size: .8rem; }
+  @media (min-width: 800px) { .depts { grid-template-columns: 1.4fr 1fr; } .dept--main { padding: 40px; } .dept--main h2 { font-size: clamp(2.2rem, 4vw, 3.2rem); } }
 
   .row { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: end; gap: 16px; margin-bottom: 20px; }
   .row h2 { margin: 0; }
-
-  .how { background: var(--ink); color: var(--paper); border: 0 !important; }
-  .how .eyebrow, .how .muted { color: #a9a294; }
-  .how a { color: var(--paper); }
-  .steps { list-style: none; padding: 0; margin: 24px 0; display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); }
-  .steps li { border-top: 2px solid var(--accent); padding-top: 16px; }
-  .steps .mono { color: var(--accent); }
-  .steps h3 { margin-top: 8px; text-transform: uppercase; }
-  .steps p { color: #cfc8bb; }
-
   .cat { display: grid; gap: 8px; padding: 8px 8px 14px; background: var(--card); border: 1px solid var(--rule); border-radius: var(--radius); text-decoration: none; }
-  .cat:hover { border-color: var(--ink); color: inherit; }
+  .cat:hover { border-color: var(--ink-3); color: inherit; }
   .cat strong { font: 700 1.15rem/1.1 var(--display); text-transform: uppercase; padding-inline: 4px; }
   .cat .mono { padding-inline: 4px; font-size: .72rem; }
+  .more { margin-top: 20px; }
+  .carline { margin-top: 20px; }
+
+  .band { background: var(--deep); }
 
   .split { display: grid; gap: 16px; }
   .split > div { padding: 28px; border-radius: var(--radius); border: 1px solid var(--rule); background: var(--card); }

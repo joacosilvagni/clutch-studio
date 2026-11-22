@@ -5,7 +5,7 @@
 export type Make = { slug: string; name: string };
 
 export type Model = {
-  slug: string; // also the SEO route: /bmw-e30/
+  slug: string; // secondary SEO route: /fits/bmw-e30/
   make: string; // Make.slug
   name: string; // "E30"
   fullName: string; // "BMW 3 Series (E30)"
@@ -13,10 +13,13 @@ export type Model = {
   blurb: string;
 };
 
-export type Category = { slug: string; name: string; short: string; glyph: Glyph };
-export type Glyph = 'clip' | 'gauge' | 'cup' | 'knob' | 'lamp' | 'engine' | 'tool' | 'panel';
+// Two departments. Accessories (physical, dropshipped) is the headline; 3D files is the second line.
+export type DepartmentSlug = 'accessories' | '3d-files';
+export type Department = { slug: DepartmentSlug; name: string; short: string; pitch: string };
+export type Category = { slug: string; department: DepartmentSlug; name: string; short: string; glyph: Glyph; blurb: string };
+export type Glyph = 'clip' | 'gauge' | 'cup' | 'knob' | 'lamp' | 'engine' | 'tool' | 'panel' | 'phone' | 'drop' | 'shield' | 'seat';
 
-// `physical` is reserved for the later dropshipping phase. Nothing uses it yet.
+// `physical` = dropshipped accessories (Accessories department).
 export type ProductKind = 'file' | 'pack' | 'physical';
 
 // View model used by the pages. Built from the catalog YAML in src/data/products.ts.
@@ -24,7 +27,8 @@ export type Product = {
   slug: string;
   title: string;
   kind: ProductKind;
-  models: string[]; // known Model.slug values; the first one is canonical
+  department: DepartmentSlug;
+  models: string[]; // known Model.slug values; empty = universal or fitment not confirmed
   fitYears: Record<string, [number, number]>; // per-model years from the catalog (may be narrower than the model)
   category: string;
   priceUsd: number | null; // null = not priced yet (drafts)
@@ -75,21 +79,38 @@ export const models: Model[] = [
   { slug: 'chevrolet-c10', make: 'chevrolet', name: 'C10 (Square Body)', fullName: 'Chevrolet C/K C10 (Square Body)', years: [1973, 1987], blurb: 'Bench seat cupholders, pull strap covers and knobs.' },
 ];
 
+export const departments: Department[] = [
+  { slug: 'accessories', name: 'Car Accessories', short: 'Accessories', pitch: 'Universal-fit gear for older cars: interior, tech, lighting, detailing and garage.' },
+  { slug: '3d-files', name: '3D Print Files', short: '3D Files', pitch: 'Print-ready STL + 3MF for the small parts nobody makes anymore.' },
+];
+
 export const categories: Category[] = [
-  { slug: 'clips-fasteners', name: 'Clips & fasteners', short: 'Clips', glyph: 'clip' },
-  { slug: 'interior-trim', name: 'Interior trim & panels', short: 'Trim', glyph: 'panel' },
-  { slug: 'gauge-pods-bezels', name: 'Gauge pods & bezels', short: 'Gauges', glyph: 'gauge' },
-  { slug: 'knobs-handles-bushings', name: 'Knobs, handles & bushings', short: 'Knobs', glyph: 'knob' },
-  { slug: 'storage-cupholders', name: 'Storage & cupholders', short: 'Storage', glyph: 'cup' },
-  { slug: 'exterior-lighting', name: 'Exterior & lighting', short: 'Exterior', glyph: 'lamp' },
-  { slug: 'engine-bay', name: 'Engine bay', short: 'Engine', glyph: 'engine' },
-  { slug: 'workshop-tools', name: 'Workshop tools & jigs', short: 'Tools', glyph: 'tool' },
+  // Accessories (physical)
+  { slug: 'interior-comfort', department: 'accessories', name: 'Interior & comfort', short: 'Interior', glyph: 'seat', blurb: 'Seat covers, organizers, mats and cabin upgrades.' },
+  { slug: 'phone-tech', department: 'accessories', name: 'Phone & tech', short: 'Tech', glyph: 'phone', blurb: 'Mounts, chargers and Bluetooth for cars that predate both.' },
+  { slug: 'lighting-electrical', department: 'accessories', name: 'Lighting & electrical', short: 'Lighting', glyph: 'lamp', blurb: 'LED swaps, work lights and wiring helpers.' },
+  { slug: 'detailing-care', department: 'accessories', name: 'Detailing & care', short: 'Detailing', glyph: 'drop', blurb: 'Brushes, towels and covers to keep the paint original.' },
+  { slug: 'garage-tools', department: 'accessories', name: 'Garage & tools', short: 'Garage', glyph: 'tool', blurb: 'Trim tools, organizers and small workshop kit.' },
+  { slug: 'exterior-protection', department: 'accessories', name: 'Exterior & protection', short: 'Exterior', glyph: 'shield', blurb: 'Car covers, guards and road-trip gear.' },
+  // 3D print files
+  { slug: 'clips-fasteners', department: '3d-files', name: 'Clips & fasteners', short: 'Clips', glyph: 'clip', blurb: 'Trim clips, grommets and screws.' },
+  { slug: 'interior-trim', department: '3d-files', name: 'Interior trim & panels', short: 'Trim', glyph: 'panel', blurb: 'Panels, covers and blanks.' },
+  { slug: 'gauge-pods-bezels', department: '3d-files', name: 'Gauge pods & bezels', short: 'Gauges', glyph: 'gauge', blurb: 'Pods and bezels for extra gauges.' },
+  { slug: 'knobs-handles-bushings', department: '3d-files', name: 'Knobs, handles & bushings', short: 'Knobs', glyph: 'knob', blurb: 'Knobs, levers, handles and bushings.' },
+  { slug: 'storage-cupholders', department: '3d-files', name: 'Storage & cupholders', short: 'Storage', glyph: 'cup', blurb: 'Cupholders, trays and holders.' },
+  { slug: 'exterior-lighting', department: '3d-files', name: 'Exterior & lighting', short: 'Exterior', glyph: 'lamp', blurb: 'Caps, blanks and lamp parts.' },
+  { slug: 'engine-bay', department: '3d-files', name: 'Engine bay', short: 'Engine', glyph: 'engine', blurb: 'Caps, covers and brackets.' },
+  { slug: 'workshop-tools', department: '3d-files', name: 'Workshop tools & jigs', short: 'Tools', glyph: 'tool', blurb: 'Printable tools and jigs.' },
 ];
 
 // ---------- helpers ----------
 export const getMake = (slug: string) => makes.find((m) => m.slug === slug)!;
 export const getModel = (slug: string) => models.find((m) => m.slug === slug)!;
 export const getCategory = (slug: string) => categories.find((c) => c.slug === slug)!;
+export const getDepartment = (slug: DepartmentSlug) => departments.find((d) => d.slug === slug)!;
+export const categoriesFor = (dept: DepartmentSlug) => categories.filter((c) => c.department === dept);
+export const categoryUrl = (c: Category) => `/${c.department}/${c.slug}/`;
+export const modelUrl = (m: Model) => `/fits/${m.slug}/`;
 export const modelsForMake = (slug: string) => models.filter((m) => m.make === slug);
 
 export const yearsLabel = (m: Model) => `${m.years[0]}–${m.years[1]}`;

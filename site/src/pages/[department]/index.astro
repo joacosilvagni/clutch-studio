@@ -1,0 +1,55 @@
+---
+import Base from '../../layouts/Base.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import PartArt from '../../components/PartArt.astro';
+import ProductBrowser from '../../components/ProductBrowser.astro';
+import { departments, categoriesFor, categoryUrl, type Department } from '../../data/catalog';
+import { productsForDepartment } from '../../data/products';
+
+export function getStaticPaths() {
+  return departments.map((d) => ({ params: { department: d.slug }, props: { dept: d } }));
+}
+const { dept } = Astro.props as { dept: Department };
+const items = await productsForDepartment(dept.slug);
+const cats = categoriesFor(dept.slug);
+const isAcc = dept.slug === 'accessories';
+---
+<Base title={dept.name} description={`${dept.name} for classic and youngtimer cars. ${dept.pitch}`}>
+  <section class="section">
+    <div class="wrap">
+      <Breadcrumbs items={[['Home', '/'], [dept.name]]} />
+      <p class="eyebrow">{isAcc ? 'Shipped to your door' : 'Instant download'}</p>
+      <h1>{dept.name}</h1>
+      <p class="lede">{dept.pitch}</p>
+
+      <div class="grid grid--tight cats">
+        {cats.map((c) => {
+          const n = items.filter((p) => p.category === c.slug).length;
+          return (
+            <a href={categoryUrl(c)} class="cat">
+              <PartArt glyph={c.glyph} />
+              <strong>{c.name}</strong>
+              <span class="mono muted">{n ? `${n} ${isAcc ? 'product' : 'file'}${n === 1 ? '' : 's'}` : 'Coming soon'}</span>
+            </a>
+          );
+        })}
+      </div>
+
+      <h2 class="all">{isAcc ? 'All accessories' : 'All files'}</h2>
+      <ProductBrowser
+        items={items}
+        emptyText={isAcc
+          ? 'The first accessories are being picked and tested. Every product will say if it is universal or which cars it fits.'
+          : 'The first files are being tested and documented. Check back soon.'}
+      />
+    </div>
+  </section>
+</Base>
+<style>
+  .cats { margin: 8px 0 40px; }
+  .cat { display: grid; gap: 8px; padding: 8px 8px 14px; background: var(--card); border: 1px solid var(--rule); border-radius: var(--radius); text-decoration: none; }
+  .cat:hover { border-color: var(--ink-3); color: inherit; }
+  .cat strong { font: 700 1.15rem/1.1 var(--display); text-transform: uppercase; padding-inline: 4px; }
+  .cat .mono { padding-inline: 4px; font-size: .72rem; }
+  .all { margin-top: 8px; }
+</style>

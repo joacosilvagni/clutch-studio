@@ -1,0 +1,44 @@
+---
+import Base from '../../layouts/Base.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import ProductBrowser from '../../components/ProductBrowser.astro';
+import { models, getMake, yearsLabel, fitsLabel, type Model } from '../../data/catalog';
+import { getProducts, fitSummaryKind } from '../../data/products';
+
+export function getStaticPaths() {
+  return models.map((m) => ({ params: { model: m.slug }, props: { model: m } }));
+}
+const { model } = Astro.props as { model: Model };
+const make = getMake(model.make);
+const all = await getProducts();
+const specific = all.filter((p) => p.models.includes(model.slug));
+const universal = all.filter((p) => fitSummaryKind(p) === 'universal');
+---
+<Base title={`Parts & accessories for ${make.name} ${model.name} (${yearsLabel(model)})`} description={`3D printable parts and universal accessories that fit the ${fitsLabel(model)}. ${model.blurb}`}>
+  <section class="section">
+    <div class="wrap">
+      <Breadcrumbs items={[['Home', '/'], ['Browse by car', '/fits/'], [`${make.name} ${model.name}`]]} />
+      <p class="eyebrow">{make.name} · {yearsLabel(model)}</p>
+      <h1>{model.fullName}</h1>
+      <p class="lede">{model.blurb}</p>
+
+      <h2>Made for the {model.name}</h2>
+      <ProductBrowser items={specific} emptyText="No model-specific products yet. Request a part and we'll prioritize it." />
+
+      {universal.length > 0 && (
+        <>
+          <h2 class="u">Universal accessories that fit too</h2>
+          <ProductBrowser items={universal} />
+        </>
+      )}
+
+      <p class="notice fine">
+        Not affiliated with {make.name}. "{make.name}" and "{model.name}" are used only to describe which vehicle a part fits.
+      </p>
+    </div>
+  </section>
+</Base>
+<style>
+  .u { margin-top: 40px; }
+  .fine { margin-top: 32px; font-size: .85rem; }
+</style>

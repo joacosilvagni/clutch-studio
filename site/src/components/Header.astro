@@ -1,12 +1,12 @@
 ---
 import Logo from './Logo.astro';
-import { makes, modelsForMake, categories } from '../data/catalog';
+import { departments, categoriesFor, categoryUrl } from '../data/catalog';
 const path = Astro.url.pathname;
 const nav = [
-  { href: '/makes/', label: 'Shop by car' },
-  { href: '/parts/', label: 'Parts' },
+  { href: '/accessories/', label: 'Accessories' },
+  { href: '/3d-files/', label: '3D Print Files' },
+  { href: '/shop/', label: 'Shop all' },
   { href: '/free-library/', label: 'Free Library' },
-  { href: '/how-it-works/', label: 'How it works' },
 ];
 ---
 <header class="site-header">
@@ -24,14 +24,16 @@ const nav = [
         <summary aria-label="Menu"><span></span><span></span><span></span></summary>
         <div class="panel">
           {nav.map((n) => <a class="big" href={n.href}>{n.label}</a>)}
-          <p class="eyebrow">Popular cars</p>
-          <div class="chips">
-            {makes.flatMap((mk) => modelsForMake(mk.slug).slice(0, 1)).map((m) => <a href={`/${m.slug}/`} class="tag">{m.slug.replace(/-/g, ' ')}</a>)}
-          </div>
-          <p class="eyebrow">Part types</p>
-          <div class="chips">
-            {categories.map((c) => <a href={`/parts/${c.slug}/`} class="tag tag--blue">{c.short}</a>)}
-          </div>
+          {departments.map((d) => (
+            <>
+              <p class="eyebrow">{d.name}</p>
+              <div class="chips">
+                {categoriesFor(d.slug).map((c) => <a href={categoryUrl(c)} class:list={['tag', d.slug === 'accessories' ? 'tag--green' : 'tag--blue']}>{c.short}</a>)}
+              </div>
+            </>
+          ))}
+          <p class="eyebrow">Specific car?</p>
+          <a href="/fits/" class="tag">Browse by car</a>
         </div>
       </details>
     </div>
@@ -39,15 +41,16 @@ const nav = [
 </header>
 
 <style>
-  .site-header { position: sticky; top: 0; z-index: 20; background: color-mix(in srgb, var(--paper) 92%, transparent); backdrop-filter: blur(8px); border-bottom: 1px solid var(--rule); }
+  .site-header { position: sticky; top: 0; z-index: 20; background: color-mix(in srgb, var(--paper) 88%, transparent); backdrop-filter: blur(10px); border-bottom: 1px solid var(--rule); }
   .bar { display: flex; align-items: center; justify-content: space-between; gap: 16px; min-height: 68px; }
   .desktop { display: none; gap: 28px; }
-  .desktop a { font: 600 1.05rem/1 var(--display); text-transform: uppercase; letter-spacing: 0.06em; text-decoration: none; padding: 8px 0; border-bottom: 2px solid transparent; }
-  .desktop a[aria-current='page'] { border-color: var(--accent); }
+  .desktop a { font: 600 1.05rem/1 var(--display); text-transform: uppercase; letter-spacing: 0.06em; text-decoration: none; padding: 8px 0; border-bottom: 2px solid transparent; color: var(--ink-2); }
+  .desktop a:hover { color: var(--ink); }
+  .desktop a[aria-current='page'] { border-color: var(--accent); color: var(--ink); }
   .actions { display: flex; align-items: center; gap: 6px; }
   .cart { position: relative; display: grid; place-items: center; width: 44px; height: 44px; border-radius: 50%; }
   .cart:hover { background: var(--paper-2); color: var(--ink); }
-  .count { position: absolute; top: 4px; right: 2px; min-width: 18px; height: 18px; border-radius: 9px; background: var(--ink); color: var(--paper); font: 600 0.65rem/18px var(--mono); text-align: center; }
+  .count { position: absolute; top: 4px; right: 2px; min-width: 18px; height: 18px; border-radius: 9px; background: var(--accent); color: #fff; font: 600 0.65rem/18px var(--mono); text-align: center; }
   .mobile summary { list-style: none; width: 44px; height: 44px; display: grid; place-content: center; gap: 5px; cursor: pointer; border-radius: 50%; }
   .mobile summary::-webkit-details-marker { display: none; }
   .mobile summary span { display: block; width: 22px; height: 2px; background: var(--ink); transition: transform 0.15s; }
@@ -58,7 +61,7 @@ const nav = [
   .big { display: block; font: 700 1.8rem/1.2 var(--display); text-transform: uppercase; text-decoration: none; padding: 8px 0; border-bottom: 1px dashed var(--rule); }
   .panel .eyebrow { margin-top: 20px; }
   .chips { display: flex; flex-wrap: wrap; gap: 8px; }
-  .chips a { text-decoration: none; }
+  .panel a.tag { text-decoration: none; }
   @media (min-width: 900px) {
     .desktop { display: flex; }
     .mobile { display: none; }

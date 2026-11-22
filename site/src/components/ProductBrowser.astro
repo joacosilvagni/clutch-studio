@@ -1,0 +1,81 @@
+---
+// Product grid with client-side filters. Car fitment is a secondary filter, never the main navigation.
+import ProductCard from './ProductCard.astro';
+import { categories, getModel, getMake, type Product } from '../data/catalog';
+interface Props { items: Product[]; showCategoryFilter?: boolean; emptyText?: string }
+const { items, showCategoryFilter = true, emptyText = 'Nothing here yet. New products are being tested.' } = Astro.props;
+const cats = categories.filter((c) => items.some((p) => p.category === c.slug));
+const modelSlugs = [...new Set(items.flatMap((p) => p.models))];
+const carOptions = modelSlugs.map(getModel).sort((a, b) => a.fullName.localeCompare(b.fullName));
+---
+{items.length === 0 ? (
+  <p class="notice">{emptyText}</p>
+) : (
+  <div data-browser>
+    <div class="bar">
+      {showCategoryFilter && cats.length > 1 && (
+        <div class="chips" role="group" aria-label="Filter by category">
+          <button type="button" aria-pressed="true" data-cat="">All ({items.length})</button>
+          {cats.map((c) => <button type="button" aria-pressed="false" data-cat={c.slug}>{c.short} ({items.filter((p) => p.category === c.slug).length})</button>)}
+        </div>
+      )}
+      {carOptions.length > 0 && (
+        <label class="fit">
+          <span class="mono">Fits</span>
+          <select data-fit>
+            <option value="">Any car</option>
+            <option value="universal">Universal fit only</option>
+            {carOptions.map((m) => <option value={m.slug}>{getMake(m.make).name} {m.name}</option>)}
+          </select>
+        </label>
+      )}
+    </div>
+    <div class="grid" data-grid>{items.map((p) => <ProductCard product={p} />)}</div>
+    <p class="notice" data-none hidden>No matches. Try "Any car" or another category.</p>
+  </div>
+)}
+
+<script>
+  document.querySelectorAll<HTMLElement>('[data-browser]').forEach((root) => {
+    let cat = '';
+    let fit = '';
+    const cards = root.querySelectorAll<HTMLElement>('[data-product]');
+    const none = root.querySelector<HTMLElement>('[data-none]')!;
+    const apply = () => {
+      let shown = 0;
+      cards.forEach((c) => {
+        const okCat = !cat || c.dataset.cat === cat;
+        const models = (c.dataset.models || '').split(' ');
+        // A car-specific filter still shows universal products: they fit too.
+        const okFit = !fit || (fit === 'universal' ? c.dataset.universal === '1' : models.includes(fit) || c.dataset.universal === '1');
+        const show = okCat && okFit;
+        c.hidden = !show;
+        if (show) shown++;
+      });
+      none.hidden = shown > 0;
+    };
+    root.querySelector('.chips')?.addEventListener('click', (e) => {
+      const b = (e.target as HTMLElement).closest('button');
+      if (!b) return;
+      root.querySelectorAll('.chips button').forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
+      cat = b.dataset.cat || '';
+      apply();
+    });
+    root.querySelector<HTMLSelectElement>('[data-fit]')?.addEventListener('change', (e) => {
+      fit = (e.target as HTMLSelectElement).value;
+      apply();
+    });
+  });
+</script>
+
+<style>
+  .bar { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; justify-content: space-between; margin: 8px 0 18px; }
+  .chips { display: flex; gap: 8px; overflow-x: auto; max-width: 100%; padding-bottom: 4px; scrollbar-width: thin; }
+  .chips button { flex: none; min-height: 40px; padding: 0 16px; border-radius: 999px; border: 1.5px solid var(--rule); background: transparent; font: 600 .95rem var(--display); text-transform: uppercase; letter-spacing: .05em; cursor: pointer; color: var(--ink-2); }
+  .chips button:hover { border-color: var(--ink-3); color: var(--ink); }
+  .chips button[aria-pressed='true'] { background: var(--ink); border-color: var(--ink); color: var(--paper); }
+  .fit { display: inline-flex; align-items: center; gap: 10px; }
+  .fit .mono { font-size: .72rem; text-transform: uppercase; letter-spacing: .1em; color: var(--ink-3); }
+  .fit select { min-height: 40px; border-radius: 999px; border: 1.5px solid var(--rule); background: var(--card); color: var(--ink); padding: 0 14px; font: 500 .95rem var(--body); max-width: 70vw; }
+  [data-product][hidden] { display: none; }
+</style>

@@ -4,7 +4,7 @@ export const brand = {
   first: 'Clutch', // bold part of the wordmark
   rest: 'Studio',
   initials: 'CS',
-  tagline: 'Discontinued parts, back in print.',
+  tagline: 'Gear for cars that outlived their parts.',
   skuPrefix: 'CS',
   supportEmail: 'support@[your-domain]',
 };

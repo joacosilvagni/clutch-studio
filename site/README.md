@@ -10,31 +10,34 @@ npm run build    # -> dist/
 ```
 
 ## Brand
-- **Name:** Clutch Studio (provisional; change it in `src/data/brand.ts`, `public/favicon.svg`, `astro.config.mjs`). **Tagline:** "Discontinued parts, back in print."
-- **Look:** workshop manual / parts catalog. Paper `#f2ede3`, ink `#1d1c1a`, safety orange `#e2582a`,
-  blueprint blue for part renders. Barlow Condensed (display), Barlow (body), JetBrains Mono (specs).
-- **Signature shape:** the part tag (`.tag`) and the logo badge.
+- **Name:** Clutch Studio (provisional; change it in `src/data/brand.ts`, `public/favicon.svg`, `astro.config.mjs`).
+- **Tagline:** "Gear for cars that outlived their parts."
+- **Look:** dark garage. Background `#131417`, text `#ece6da`, safety orange `#e2582a`, blueprint blue for
+  placeholder renders. Barlow Condensed (display), Barlow (body), JetBrains Mono (specs). Tokens in `src/styles/global.css`.
 
-## Site map
+## Information architecture
+Category-first. Most buyers will not find their exact car, so the car is a **secondary filter**, never the main nav.
+
+Two departments:
+1. **Car Accessories** (`kind: physical`, dropshipped) — the headline department.
+   Categories: interior-comfort, phone-tech, lighting-electrical, detailing-care, garage-tools, exterior-protection.
+2. **3D Print Files** (`kind: file | pack`).
+   Categories: clips-fasteners, interior-trim, gauge-pods-bezels, knobs-handles-bushings, storage-cupholders,
+   exterior-lighting, engine-bay, workshop-tools.
+
+Fitment on every product is one of: universal (physical with no `fits`), specific (has `fits`), or
+"check fitment" (file with no confirmed `fits`).
+
 | Route | Page |
 |---|---|
-| `/` | Home: car picker, shop by car, featured packs, how it works, part types, trust, Free Library |
-| `/makes/` | All makes → models with years |
-| `/<model-slug>/` | SEO model page, e.g. `/bmw-e30/`, filter by part type |
-| `/<model-slug>/<product-slug>/` | Product: fits, OEM no., print specs, install, license, reviews |
-| `/parts/`, `/parts/<category>/` | Browse by part type |
-| `/free-library/` | Free files |
-| `/how-it-works/`, `/support/` | Printing guide, no-printer help, part requests |
-| `/cart/` | Placeholder (checkout via Worker + PayPal, not built here) |
+| `/` | Home: hero, the two departments, accessory categories, trust, 3D file categories, Free Library |
+| `/accessories/`, `/accessories/<category>/` | Accessories department and categories |
+| `/3d-files/`, `/3d-files/<category>/` | 3D files department and categories |
+| `/shop/` | Everything, with category chips and a "Fits" car filter |
+| `/products/<slug>/` | Product page (layout adapts to physical vs file) |
+| `/fits/`, `/fits/<model-slug>/` | Secondary index by car: model-specific products + universal ones |
+| `/free-library/`, `/how-it-works/`, `/support/`, `/cart/` | Support pages (cart is a placeholder) |
 | `/legal/{terms,privacy,refunds,non-affiliation,attributions}/` | Draft legal pages |
-| `/accessories/` | **Reserved** for the dropshipping phase (`kind: 'physical'`). Not built. |
-
-## Taxonomy
-Make → Model (with years) → Part category. A product can fit several models; its canonical URL
-uses the first one.
-
-Categories: clips-fasteners, interior-trim, gauge-pods-bezels, knobs-handles-bushings,
-storage-cupholders, exterior-lighting, engine-bay, workshop-tools.
 
 ## Rules baked in
 - Every product is `status: 'draft'` until approved. OEM numbers only when verified.
@@ -43,6 +46,7 @@ storage-cupholders, exterior-lighting, engine-bay, workshop-tools.
   reviews and no `aggregateRating` in JSON-LD until real reviews exist (FTC 16 CFR 465, UK DMCC, EU UCPD).
 - Trust signals are only things true at launch. Add "print-tested" per product once it is actually printed.
 - Cart sends only slugs + quantities to `/api/orders`; never prices.
+- No return/shipping promises for accessories until the supplier terms are known.
 
 ## Data
 Products are read from the shared catalog `../catalog/products/*.yaml` (one file per product, written by

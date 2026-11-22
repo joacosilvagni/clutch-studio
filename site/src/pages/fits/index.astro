@@ -1,0 +1,40 @@
+---
+import Base from '../../layouts/Base.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import { makes, modelsForMake, modelUrl, yearsLabel } from '../../data/catalog';
+import { getProducts } from '../../data/products';
+const all = await getProducts();
+const count = (s: string) => all.filter((p) => p.models.includes(s)).length;
+---
+<Base title="Browse by car" description="Model-specific 3D files and accessories for classic and youngtimer cars, listed by make and model.">
+  <section class="section">
+    <div class="wrap">
+      <Breadcrumbs items={[['Home', '/'], ['Browse by car']]} />
+      <p class="eyebrow">Secondary index</p>
+      <h1>Browse by car</h1>
+      <p class="lede">Most of what we sell is universal. These are the products made for one specific model. Each page also shows universal accessories, since those fit too.</p>
+      <div class="makes">
+        {makes.map((mk) => (
+          <section id={mk.slug} class="make">
+            <h2>{mk.name}</h2>
+            <ul>
+              {modelsForMake(mk.slug).map((m) => (
+                <li><a href={modelUrl(m)}><strong>{m.name}</strong><span class="mono">{yearsLabel(m)}</span><span class="mono muted">{count(m.slug)} model-specific →</span></a></li>
+              ))}
+            </ul>
+          </section>
+        ))}
+      </div>
+    </div>
+  </section>
+</Base>
+<style>
+  .makes { display: grid; gap: 16px; margin-top: 24px; grid-template-columns: repeat(auto-fill, minmax(min(100%, 320px), 1fr)); }
+  .make { background: var(--card); border: 1px solid var(--rule); border-radius: var(--radius); padding: 20px; scroll-margin-top: 90px; }
+  .make h2 { font-size: 1.6rem; border-bottom: 2px solid var(--rule); padding-bottom: 8px; }
+  ul { list-style: none; padding: 0; margin: 0; }
+  li a { display: grid; grid-template-columns: 1fr auto; gap: 2px 12px; padding: 12px 0; border-bottom: 1px dashed var(--rule); text-decoration: none; }
+  li:last-child a { border: 0; }
+  strong { font: 700 1.25rem/1.1 var(--display); text-transform: uppercase; }
+  .muted { grid-column: 1 / -1; font-size: .72rem; }
+</style>

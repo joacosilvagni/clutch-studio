@@ -1,5 +1,5 @@
 import { getCollection } from 'astro:content';
-import { models, categories, type Product } from './catalog';
+import { models, categories, getCategory, type Product } from './catalog';
 
 // Production lists ONLY approved products. Drafts show in `astro dev`, or in a preview build
 // with PUBLIC_SHOW_DRAFTS=true. Never set that flag for the production deploy.
@@ -21,7 +21,8 @@ export async function getProducts(): Promise<Product[]> {
       kind: d.kind,
       models: d.fits.map((f) => f.model_slug).filter((s) => knownModels.has(s)),
       fitYears: Object.fromEntries(d.fits.map((f) => [f.model_slug, [f.years.from, f.years.to]])),
-      category: d.category && knownCats.has(d.category) ? d.category : 'interior-trim',
+      category: d.category && knownCats.has(d.category) ? d.category : d.kind === 'physical' ? 'interior-comfort' : 'interior-trim',
+      department: 'accessories',
       priceUsd: d.price_usd != null ? Number(d.price_usd) : null,
       summary: d.summary ?? null,
       description: d.description ?? null,
@@ -48,15 +49,20 @@ export async function getProducts(): Promise<Product[]> {
       status: d.status,
       reviewFlags: d.review?.flags ?? [],
     }))
-    // A product needs at least one known model to have a URL; physical goods are not sold yet.
-    .filter((p) => p.models.length > 0 && p.kind !== 'physical')
+    .map((p) => ({ ...p, department: getCategory(p.category).department }))
     .filter((p) => p.status === 'approved' || SHOW_DRAFTS)
     .sort((a, b) => a.slug.localeCompare(b.slug));
   return cache;
 }
 
-export const productUrl = (p: Product) => `/${p.models[0]}/${p.slug}/`;
+export const productUrl = (p: Product) => `/products/${p.slug}/`;
+export const productsForDepartment = async (d: string) => (await getProducts()).filter((p) => p.department === d);
+export const isUniversal = (p: Product) => p.models.length === 0;
 export const productsForModel = async (slug: string) => (await getProducts()).filter((p) => p.models.includes(slug));
 export const productsForCategory = async (slug: string) => (await getProducts()).filter((p) => p.category === slug);
 export const freeProducts = async () => (await getProducts()).filter((p) => p.priceUsd === 0);
 export const findProduct = async (slug: string) => (await getProducts()).find((p) => p.slug === slug);
+
+// Short fitment line for cards and product pages.
+export const fitSummaryKind = (p: Product): 'specific' | 'universal' | 'unconfirmed' =>
+  p.models.length ? 'specific' : p.kind === 'physical' ? 'universal' : 'unconfirmed';
