@@ -1,0 +1,29 @@
+---
+// Only claims that are true on day one. Add "Print-tested" badges per product once each file is actually printed.
+interface Props { compact?: boolean }
+const { compact = false } = Astro.props;
+const items = [
+  { t: 'Licensed for sale', d: 'Every file is commercially licensed (CC BY, BY-SA or CC0) and credited.', href: '/legal/attributions/' },
+  { t: 'Fit guarantee', d: "If a file doesn't fit the car it lists, tell us and we refund it.", href: '/legal/refunds/' },
+  { t: 'Real humans on email', d: 'Print or install question? Reply to your order email.', href: '/support/' },
+  { t: 'Instant download', d: 'STL + 3MF + PDF tech sheet, yours to reprint forever.', href: '/how-it-works/' },
+];
+---
+<ul class:list={['trust', { compact }]}>
+  {items.map((i, n) => (
+    <li>
+      <span class="num">0{n + 1}</span>
+      <div><a href={i.href}><strong>{i.t}</strong></a><p>{i.d}</p></div>
+    </li>
+  ))}
+</ul>
+<style>
+  .trust { list-style: none; padding: 0; margin: 0; display: grid; gap: 1px; background: var(--rule); border: 1px solid var(--rule); border-radius: var(--radius); overflow: hidden; grid-template-columns: repeat(auto-fit, minmax(min(100%, 230px), 1fr)); }
+  li { background: var(--card); padding: 18px; display: flex; gap: 14px; }
+  .num { font: 600 .8rem/1.6 var(--mono); color: var(--accent); }
+  a { text-decoration: none; }
+  strong { font: 700 1.2rem/1.2 var(--display); text-transform: uppercase; letter-spacing: .03em; }
+  p { margin: 4px 0 0; font-size: .92rem; color: var(--ink-2); }
+  .compact { grid-template-columns: 1fr; }
+  .compact li { padding: 12px 14px; }
+</style>

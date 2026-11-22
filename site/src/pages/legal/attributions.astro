@@ -1,0 +1,14 @@
+---
+import LegalPage from '../../components/LegalPage.astro';
+import { getProducts, productUrl } from '../../data/products';
+const products = await getProducts();
+---
+<LegalPage title="Licenses & attributions" description="Original designers and licenses for every file we sell.">
+  <p>Our files are based on designs shared under licenses that allow commercial use. We credit every original designer here and on each product page.</p>
+  <table class="spec">
+    <thead><tr><th>Product</th><td><strong>License · author · source</strong></td></tr></thead>
+    <tbody>
+      {products.map((p) => <tr><th><a href={productUrl(p)}>{p.title}</a></th><td>{p.sources.map((s) => <span class="src">{s.licenseLabel} · {s.author ?? "author pending verification"} · <a href={s.url} rel="nofollow noopener">source</a></span>)}</td></tr>)}
+    </tbody>
+  </table>
+</LegalPage>

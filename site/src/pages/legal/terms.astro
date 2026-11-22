@@ -1,0 +1,14 @@
+---
+import { brand } from '../../data/brand';
+import LegalPage from '../../components/LegalPage.astro';
+---
+<LegalPage title="Terms of sale" description={`Terms of sale for ${brand.name} digital files.`}>
+  <h2>What you buy</h2>
+  <p>You buy a digital file (STL, 3MF and PDF) delivered by download link. No physical product is shipped.</p>
+  <h2>License</h2>
+  <p>Each file keeps the license of the original design (CC BY, CC BY-SA or CC0), shown on its product page. Our tech sheets and packaging are licensed to you for personal use.</p>
+  <h2>Use at your own risk</h2>
+  <p>Printed parts are not OEM parts. Do not print safety-critical parts (brakes, steering, seat belts, airbags, fuel system). You are responsible for the material, print quality and installation.</p>
+  <h2>Payments</h2>
+  <p>Prices are in USD and processed by PayPal. Local taxes (VAT/GST) are added at checkout where required.</p>
+</LegalPage>

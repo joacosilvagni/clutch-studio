@@ -1,0 +1,62 @@
+import { getCollection } from 'astro:content';
+import { models, categories, type Product } from './catalog';
+
+// Production lists ONLY approved products. Drafts show in `astro dev`, or in a preview build
+// with PUBLIC_SHOW_DRAFTS=true. Never set that flag for the production deploy.
+export const SHOW_DRAFTS = import.meta.env.DEV || import.meta.env.PUBLIC_SHOW_DRAFTS === 'true';
+
+const knownModels = new Set(models.map((m) => m.slug));
+const knownCats = new Set(categories.map((c) => c.slug));
+const LICENSE_LABEL: Record<string, string> = { 'CC-BY': 'CC BY', 'CC-BY-SA': 'CC BY-SA', CC0: 'CC0' };
+
+let cache: Product[] | null = null;
+
+export async function getProducts(): Promise<Product[]> {
+  if (cache) return cache;
+  const entries = await getCollection('products');
+  cache = entries
+    .map(({ data: d }): Product => ({
+      slug: d.slug,
+      title: d.title,
+      kind: d.kind,
+      models: d.fits.map((f) => f.model_slug).filter((s) => knownModels.has(s)),
+      fitYears: Object.fromEntries(d.fits.map((f) => [f.model_slug, [f.years.from, f.years.to]])),
+      category: d.category && knownCats.has(d.category) ? d.category : 'interior-trim',
+      priceUsd: d.price_usd != null ? Number(d.price_usd) : null,
+      summary: d.summary ?? null,
+      description: d.description ?? null,
+      oem: d.oem_part_numbers,
+      material: { recommended: d.material?.recommended ?? [], avoid: d.material?.avoid ?? [], note: d.material?.note ?? null },
+      print: {
+        layer: d.print_settings?.layer_height_mm != null ? `${d.print_settings.layer_height_mm} mm` : null,
+        infill: d.print_settings?.infill_percent != null ? `${d.print_settings.infill_percent}%` : null,
+        walls: d.print_settings?.walls ?? null,
+        supports: d.print_settings?.supports ?? null,
+        orientation: d.print_settings?.orientation ?? null,
+        notes: d.print_settings?.notes ?? null,
+      },
+      includes: d.includes ?? [],
+      install: (d.install_notes ?? '').split('\n').map((s) => s.trim()).filter(Boolean),
+      sources: d.sources.map((s) => ({
+        url: s.thing_url,
+        author: s.author ?? null,
+        authorUrl: s.author_url ?? null,
+        license: s.license,
+        licenseLabel: s.license_raw ?? LICENSE_LABEL[s.license] ?? s.license,
+        verified: !!s.verified_at,
+      })),
+      status: d.status,
+      reviewFlags: d.review?.flags ?? [],
+    }))
+    // A product needs at least one known model to have a URL; physical goods are not sold yet.
+    .filter((p) => p.models.length > 0 && p.kind !== 'physical')
+    .filter((p) => p.status === 'approved' || SHOW_DRAFTS)
+    .sort((a, b) => a.slug.localeCompare(b.slug));
+  return cache;
+}
+
+export const productUrl = (p: Product) => `/${p.models[0]}/${p.slug}/`;
+export const productsForModel = async (slug: string) => (await getProducts()).filter((p) => p.models.includes(slug));
+export const productsForCategory = async (slug: string) => (await getProducts()).filter((p) => p.category === slug);
+export const freeProducts = async () => (await getProducts()).filter((p) => p.priceUsd === 0);
+export const findProduct = async (slug: string) => (await getProducts()).find((p) => p.slug === slug);

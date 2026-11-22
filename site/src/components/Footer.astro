@@ -1,0 +1,48 @@
+---
+import { brand } from '../data/brand';
+import Logo from './Logo.astro';
+const year = new Date().getFullYear();
+const cols = [
+  { title: 'Shop', links: [['Shop by car', '/makes/'], ['Parts by type', '/parts/'], ['Free Library', '/free-library/'], ['Cart', '/cart/']] },
+  { title: 'Help', links: [['How it works', '/how-it-works/'], ['Printing guide', '/how-it-works/#printing'], ['Support', '/support/'], ['Request a part', '/support/#request']] },
+  { title: 'Legal', links: [['Terms of sale', '/legal/terms/'], ['Privacy', '/legal/privacy/'], ['Refunds (digital)', '/legal/refunds/'], ['Non-affiliation', '/legal/non-affiliation/'], ['Licenses & attributions', '/legal/attributions/']] },
+];
+---
+<footer class="site-footer">
+  <div class="wrap top">
+    <div class="brand">
+      <Logo inverted />
+      <p>Discontinued parts, back in print. Tested 3D files for classic and youngtimer cars, with real part numbers and install notes.</p>
+    </div>
+    {cols.map((c) => (
+      <nav aria-label={c.title}>
+        <p class="h">{c.title}</p>
+        <ul>{c.links.map(([l, h]) => <li><a href={h}>{l}</a></li>)}</ul>
+      </nav>
+    ))}
+  </div>
+  <div class="wrap fine">
+    <p>
+      {brand.name} is an independent store and is not affiliated with, endorsed by or sponsored by any vehicle manufacturer.
+      Make and model names are used only to describe compatibility. <a href="/legal/non-affiliation/">Read more</a>.
+    </p>
+    <p>© {year} {brand.name}. Prices in USD.</p>
+  </div>
+</footer>
+
+<style>
+  .site-footer { background: var(--ink); color: #cfc8bb; margin-top: 40px; }
+  .top { display: grid; gap: 32px; padding-block: 56px 32px; grid-template-columns: 1fr 1fr; }
+  .brand { grid-column: 1 / -1; max-width: 42ch; }
+  .brand p { margin-top: 16px; font-size: 0.95rem; }
+  .h { font: 600 0.75rem/1 var(--mono); text-transform: uppercase; letter-spacing: 0.14em; color: var(--accent); margin-bottom: 14px; }
+  ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+  a { color: #efe9dd; text-decoration: none; }
+  a:hover { color: var(--accent); }
+  .fine { border-top: 1px solid #3a3833; padding-block: 20px 32px; font-size: 0.82rem; color: #9a9385; }
+  .fine a { text-decoration: underline; }
+  @media (min-width: 900px) {
+    .top { grid-template-columns: 2fr 1fr 1fr 1fr; }
+    .brand { grid-column: auto; }
+  }
+</style>

@@ -1,0 +1,28 @@
+---
+import { makes, modelsForMake, yearsLabel } from '../data/catalog';
+---
+<form class="picker" action="/makes/" method="get" data-car-picker>
+  <label for="car" class="visually-hidden">Choose your car</label>
+  <select id="car" name="car" required>
+    <option value="">Choose your car…</option>
+    {makes.map((mk) => (
+      <optgroup label={mk.name}>
+        {modelsForMake(mk.slug).map((m) => <option value={m.slug}>{mk.name} {m.name} ({yearsLabel(m)})</option>)}
+      </optgroup>
+    ))}
+  </select>
+  <button class="btn btn--accent" type="submit">Find parts</button>
+</form>
+<script>
+  document.querySelectorAll<HTMLFormElement>('[data-car-picker]').forEach((f) => {
+    f.addEventListener('submit', (e) => {
+      const v = (f.elements.namedItem('car') as HTMLSelectElement).value;
+      if (v) { e.preventDefault(); location.href = `/${v}/`; }
+    });
+  });
+</script>
+<style>
+  .picker { display: flex; flex-direction: column; gap: 10px; max-width: 560px; }
+  select { appearance: none; min-height: 52px; padding: 0 44px 0 18px; border-radius: 999px; border: 2px solid var(--ink); background: var(--card) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='18' height='18' fill='none' stroke='%231d1c1a' stroke-width='2.5'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E") no-repeat right 16px center; font: 500 1rem var(--body); color: var(--ink); flex: 1; }
+  @media (min-width: 560px) { .picker { flex-direction: row; } }
+</style>

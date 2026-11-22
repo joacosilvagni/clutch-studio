@@ -1,0 +1,8 @@
+---
+import { brand } from '../../data/brand';
+import LegalPage from '../../components/LegalPage.astro';
+---
+<LegalPage title="Non-affiliation notice" description={`${brand.name} is not affiliated with any vehicle manufacturer.`}>
+  <p>{brand.name} is an independent store. We are not affiliated with, authorized, endorsed or sponsored by BMW, Mazda, Volkswagen, Mercedes-Benz, Volvo, Jeep/Stellantis, Land Rover, Saab, General Motors or any other manufacturer.</p>
+  <p>Manufacturer and model names, and OEM part numbers, are used only to describe compatibility ("fits BMW E30 (1982–1994)"). All trademarks belong to their owners. We do not use manufacturer logos.</p>
+</LegalPage>

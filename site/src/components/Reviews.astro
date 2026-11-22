@@ -1,0 +1,52 @@
+---
+// Reviews come only from verified buyers (download link holders). No seeded or invented reviews:
+// that breaks the FTC rule on fake reviews (16 CFR 465), UK DMCC Act and EU UCPD, and PayPal's AUP.
+// When the review backend exists (Worker + D1), pass real `reviews` in; until then the empty state renders.
+interface Review { author: string; country: string; rating: number; date: string; body: string; printer?: string }
+interface Props { productTitle: string; reviews?: Review[] }
+const { productTitle, reviews = [] } = Astro.props;
+const avg = reviews.length ? reviews.reduce((a, r) => a + r.rating, 0) / reviews.length : 0;
+---
+<section class="reviews" aria-labelledby="reviews-h">
+  <div class="head">
+    <h2 id="reviews-h">Reviews</h2>
+    {reviews.length > 0 && <p class="mono">{avg.toFixed(1)} / 5 · {reviews.length} verified {reviews.length === 1 ? 'buyer' : 'buyers'}</p>}
+  </div>
+
+  {reviews.length === 0 ? (
+    <div class="empty">
+      <svg viewBox="0 0 120 24" aria-hidden="true" class="stars">
+        {[0, 1, 2, 3, 4].map((i) => <path transform={`translate(${i * 24} 0)`} d="M12 2l2.9 6.1 6.6.8-4.9 4.5 1.3 6.6L12 16.8 6.1 20l1.3-6.6L2.5 8.9l6.6-.8Z" fill="none" stroke="currentColor" stroke-width="1.5" />)}
+      </svg>
+      <div>
+        <h3>No reviews yet. Be the first.</h3>
+        <p>
+          Printed the {productTitle}? Every buyer gets a review link in their download email.
+          Tell other owners how it fit, what printer and filament you used, and post a photo of it installed.
+        </p>
+        <p class="mono muted">Only verified buyers can review. We never edit or remove honest reviews.</p>
+      </div>
+    </div>
+  ) : (
+    <ul class="list">
+      {reviews.map((r) => (
+        <li>
+          <p class="mono">{'★'.repeat(r.rating)}{'☆'.repeat(5 - r.rating)} · {r.author}, {r.country} · {r.date}</p>
+          <p>{r.body}</p>
+          {r.printer && <p class="mono muted">Printed on {r.printer}</p>}
+          <span class="tag tag--green">Verified buyer</span>
+        </li>
+      ))}
+    </ul>
+  )}
+</section>
+<style>
+  .head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 8px; }
+  .empty { display: grid; gap: 18px; padding: 22px; border: 1.5px dashed var(--rule); border-radius: var(--radius); background: var(--card); }
+  .stars { width: 120px; color: var(--ink-3); }
+  .empty h3 { margin-bottom: 8px; }
+  .empty p { color: var(--ink-2); margin-bottom: 8px; }
+  .list { list-style: none; padding: 0; display: grid; gap: 12px; }
+  .list li { padding: 16px; background: var(--card); border: 1px solid var(--rule); border-radius: var(--radius); }
+  @media (min-width: 700px) { .empty { grid-template-columns: auto 1fr; align-items: start; } }
+</style>

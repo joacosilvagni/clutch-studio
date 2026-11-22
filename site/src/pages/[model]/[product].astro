@@ -1,0 +1,160 @@
+---
+import { brand } from '../../data/brand';
+import Base from '../../layouts/Base.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import PartArt from '../../components/PartArt.astro';
+import Reviews from '../../components/Reviews.astro';
+import TrustStrip from '../../components/TrustStrip.astro';
+import ProductCard from '../../components/ProductCard.astro';
+import { getModel, getMake, getCategory, productFitsLabel, priceLabel, type Product } from '../../data/catalog';
+import { getProducts, SHOW_DRAFTS } from '../../data/products';
+
+export async function getStaticPaths() {
+  const all = await getProducts();
+  return all.map((p) => ({ params: { model: p.models[0], product: p.slug }, props: { product: p, all } }));
+}
+const { product: p, all } = Astro.props as { product: Product; all: Product[] };
+const model = getModel(p.models[0]);
+const make = getMake(model.make);
+const cat = getCategory(p.category);
+const fits = p.models.map(getModel);
+const included = p.includes.map((s) => all.find((x) => x.slug === s)).filter((x): x is Product => !!x);
+const related = all.filter((x) => x.slug !== p.slug && x.models.includes(model.slug)).slice(0, 3);
+const mentionsModel = p.title.toLowerCase().includes(model.name.toLowerCase().split(' ')[0]);
+const y = p.fitYears[model.slug] ?? model.years;
+const title = mentionsModel ? `${p.title} (${y[0]}–${y[1]})` : `${p.title}, fits ${productFitsLabel(p, model)}`;
+const lede = p.summary ?? p.description;
+const dash = (v: unknown) => (v == null || v === '' ? '—' : String(v));
+const isShareAlike = p.sources.some((s) => s.license === 'CC-BY-SA');
+// No aggregateRating/review in JSON-LD until real verified reviews exist.
+const ld = {
+  '@context': 'https://schema.org', '@type': 'Product', name: title, description: lede ?? title,
+  category: cat.name, sku: `${brand.skuPrefix}-${p.slug}`, ...(p.oem.length ? { mpn: p.oem[0] } : {}),
+  brand: { '@type': 'Brand', name: brand.name },
+  ...(p.priceUsd != null ? { offers: { '@type': 'Offer', price: p.priceUsd.toFixed(2), priceCurrency: 'USD', availability: 'https://schema.org/InStock', url: new URL(Astro.url.pathname, Astro.site).href } } : {}),
+};
+---
+<Base title={title} description={`${lede ?? p.title}. Print-ready STL + 3MF for ${fits.map((m) => productFitsLabel(p, m)).join(', ')}.`} jsonLd={ld} noindex={p.status !== 'approved'}>
+  <section class="section">
+    <div class="wrap">
+      <Breadcrumbs items={[['Home', '/'], [make.name, `/makes/#${make.slug}`], [model.name, `/${model.slug}/`], [p.title]]} />
+      <div class="layout">
+        <div class="media">
+          <PartArt glyph={cat.glyph} size="hero" label={p.oem[0] ? `OEM ${p.oem[0]}` : cat.name} />
+          <p class="mono muted cap">Render placeholder. Real photos of the printed and installed part go here.</p>
+        </div>
+
+        <div class="buy">
+          <div class="tags">
+            {p.status === 'draft' && <span class="tag tag--accent">Draft listing</span>}
+            {p.kind === 'pack' && <span class="tag tag--accent">Pack · {included.length} parts</span>}
+            <a href={`/parts/${cat.slug}/`} class="tag tag--blue">{cat.name}</a>
+          </div>
+          <h1 class="ptitle">{p.title}</h1>
+          <p class="fits">Fits {fits.map((m, i) => <>{i > 0 && ' · '}<a href={`/${m.slug}/`}>{productFitsLabel(p, m)}</a></>)}</p>
+          {lede ? <p class="lede">{lede}</p> : <p class="lede muted">Description coming soon.</p>}
+
+          <div class="pricebox">
+            <p class="price">{priceLabel(p)} {p.priceUsd != null && <span class="mono muted">USD · digital download</span>}</p>
+            <button class="btn btn--accent" type="button" disabled data-slug={p.slug}>
+              {p.priceUsd === 0 ? 'Free download (coming soon)' : 'Add to cart · checkout coming soon'}
+            </button>
+            <p class="mono muted small">Instant download after payment. Files are yours to reprint for personal use. Physical parts are not shipped.</p>
+          </div>
+
+          <table class="spec">
+            <tr><th>OEM part no.</th><td>{p.oem.length ? p.oem.join(', ') : 'Not verified yet'}</td></tr>
+            <tr><th>Years</th><td>{fits.map((m) => { const r = p.fitYears[m.slug] ?? m.years; return `${m.name}: ${r[0]}–${r[1]}`; }).join(' · ')}</td></tr>
+            <tr><th>Material</th><td>{p.material.recommended.join(' or ') || '—'}{p.material.avoid.length > 0 && <span class="muted"> · avoid {p.material.avoid.join(', ')}</span>}</td></tr>
+            <tr><th>Layer / infill</th><td>{dash(p.print.layer)} · {dash(p.print.infill)}</td></tr>
+            <tr><th>Walls / supports</th><td>{dash(p.print.walls)} · {dash(p.print.supports)}</td></tr>
+            <tr><th>Orientation</th><td>{dash(p.print.orientation)}</td></tr>
+            <tr><th>Files</th><td>STL · 3MF · PDF tech sheet</td></tr>
+          </table>
+          {p.material.note && <p class="small muted note">{p.material.note}</p>}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {SHOW_DRAFTS && p.reviewFlags.length > 0 && (
+    <section class="wrap"><div class="notice"><strong>Review flags (only visible in draft preview):</strong><ul>{p.reviewFlags.map((f) => <li>{f}</li>)}</ul></div></section>
+  )}
+
+  {included.length > 0 && (
+    <section class="section">
+      <div class="wrap">
+        <h2>What's in the pack</h2>
+        <div class="grid">{included.map((x) => <ProductCard product={x} />)}</div>
+      </div>
+    </section>
+  )}
+
+  <section class="section">
+    <div class="wrap cols">
+      <div>
+        <h2>Install</h2>
+        {p.install.length ? <ol class="install">{p.install.map((s) => <li>{s}</li>)}</ol> : <p class="muted">Install notes are included in the PDF tech sheet.</p>}
+        {p.print.notes && <p>{p.print.notes}</p>}
+        <p class="muted">Not sure about material? See the <a href="/how-it-works/#printing">printing guide</a>. Stuck? Reply to your order email.</p>
+      </div>
+      <aside class="license">
+        <p class="eyebrow">License & credit</p>
+        {p.sources.map((s) => (
+          <p>
+            <strong>{s.licenseLabel}</strong>. Original design by{' '}
+            {s.author ? (s.authorUrl ? <a href={s.authorUrl} rel="nofollow noopener" target="_blank">{s.author}</a> : <span>{s.author}</span>) : <span class="mono">author pending verification</span>},{' '}
+            <a href={s.url} rel="nofollow noopener" target="_blank">source</a>. We tested, documented and packaged it.
+          </p>
+        ))}
+        {isShareAlike && <p class="small">ShareAlike: the files you download are shared under the same CC BY-SA license.</p>}
+        <a href="/legal/attributions/" class="mono small">All licenses & attributions</a>
+      </aside>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap cols">
+      <Reviews productTitle={p.title} />
+      <div>
+        <h2 class="visually-hidden">Our promises</h2>
+        <TrustStrip compact />
+      </div>
+    </div>
+  </section>
+
+  {related.length > 0 && (
+    <section class="section">
+      <div class="wrap">
+        <h2>More for the {model.name}</h2>
+        <div class="grid">{related.map((x) => <ProductCard product={x} />)}</div>
+      </div>
+    </section>
+  )}
+</Base>
+
+<style>
+  .layout { display: grid; gap: 28px; }
+  .media { position: sticky; top: 84px; align-self: start; }
+  .cap { font-size: .72rem; margin-top: 8px; }
+  .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 12px; }
+  .tags a { text-decoration: none; }
+  .ptitle { font-size: clamp(2.2rem, 6vw, 3.6rem); }
+  .fits { font: 600 1rem/1.4 var(--body); }
+  .pricebox { display: grid; gap: 10px; padding: 18px; margin: 20px 0; background: var(--card); border: 1px solid var(--rule); border-radius: var(--radius); }
+  .price { font: 700 2rem/1 var(--display); margin: 0; }
+  .price .mono { font-size: .75rem; font-weight: 400; }
+  .small { font-size: .8rem; margin: 0; }
+  .note { margin-top: 10px; }
+  .cols { display: grid; gap: 32px; }
+  .install { padding-left: 1.2em; }
+  .install li { margin-bottom: .6em; padding-left: .3em; }
+  .install li::marker { font-family: var(--mono); color: var(--accent); }
+  .license { padding: 20px; border: 1px solid var(--rule); border-radius: var(--radius); background: var(--card); align-self: start; }
+  .notice ul { margin: 6px 0 0; }
+  @media (max-width: 899px) { .media { position: static; } }
+  @media (min-width: 900px) {
+    .layout { grid-template-columns: 1.1fr 1fr; gap: 48px; }
+    .cols { grid-template-columns: 1.4fr 1fr; gap: 48px; }
+  }
+</style>

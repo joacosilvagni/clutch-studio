@@ -1,0 +1,19 @@
+---
+import { brand } from '../data/brand';
+import Base from '../layouts/Base.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+---
+<Base title="Support" description="Get help with a download, a print or a fitment question, or request a part.">
+  <section class="section">
+    <div class="wrap prose">
+      <Breadcrumbs items={[['Home', '/'], ['Support']]} />
+      <h1>Support</h1>
+      <p class="lede">Real humans who own old cars. We answer by email, usually within one business day.</p>
+      <h2>Order or download problems</h2>
+      <p>Reply to your order email, or write to <span class="mono">{brand.supportEmail}</span> with your order number.</p>
+      <h2 id="request">Request a part</h2>
+      <p>Send the make, model, years, the OEM part number if you have it, and a photo with a ruler next to the part. Requests help us decide what to model next.</p>
+      <p class="notice">Prototype: the request form will post to a Cloudflare Worker. Not wired yet.</p>
+    </div>
+  </section>
+</Base>

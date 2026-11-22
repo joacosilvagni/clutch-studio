@@ -1,0 +1,27 @@
+---
+import { brand } from '../data/brand';
+import Base from '../layouts/Base.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+---
+<Base title="How it works" description={`How buying, downloading and printing ${brand.name} files works, with material and print setting advice.`}>
+  <section class="section">
+    <div class="wrap prose">
+      <Breadcrumbs items={[['Home', '/'], ['How it works']]} />
+      <h1>How it works</h1>
+      <p class="lede">You buy a digital file, not a physical part. Here is everything you get and how to turn it into a part on your car.</p>
+      <h2>What's in every download</h2>
+      <ul>
+        <li><strong>STL</strong> files for any slicer.</li>
+        <li><strong>3MF</strong> plate with orientation and settings already set.</li>
+        <li><strong>PDF tech sheet</strong>: fitment, years, OEM part number (when verified), material, print settings and install steps.</li>
+      </ul>
+      <h2 id="printing">Printing guide</h2>
+      <p><strong>PETG</strong> for cabin parts out of direct sun: clips, bushings, knobs. <strong>ASA</strong> for anything exposed to UV or heat: exterior parts, dash tops, engine bay. Avoid PLA for car parts; it softens in a parked car.</p>
+      <p>Use at least 4 walls on clips and anything that takes load. Print bushings at 100% infill.</p>
+      <h2 id="no-printer">No printer?</h2>
+      <p>Send the STL to a local print shop, a makerspace, or an online print service. Ask for the material listed on the tech sheet.</p>
+      <h2>Licenses</h2>
+      <p>Our files are based on designs published under licenses that allow commercial use (CC BY, CC BY-SA, CC0), always credited. See <a href="/legal/attributions/">licenses & attributions</a>.</p>
+    </div>
+  </section>
+</Base>

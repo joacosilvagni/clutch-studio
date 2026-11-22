@@ -1,0 +1,16 @@
+---
+import Base from '../layouts/Base.astro';
+import Breadcrumbs from './Breadcrumbs.astro';
+interface Props { title: string; description: string }
+const { title, description } = Astro.props;
+---
+<Base title={title} description={description}>
+  <section class="section">
+    <div class="wrap prose">
+      <Breadcrumbs items={[['Home', '/'], ['Legal'], [title]]} />
+      <h1>{title}</h1>
+      <p class="notice">Draft template. Needs review before launch; not legal advice.</p>
+      <slot />
+    </div>
+  </section>
+</Base>
