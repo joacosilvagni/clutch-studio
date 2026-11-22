@@ -4,7 +4,7 @@ import YAML from 'yaml';
 
 const KEY_ORDER = [
   'slug', 'status', 'kind', 'title', 'summary', 'description', 'category', 'part_type', 'fits',
-  'price_usd', 'oem_part_numbers', 'material', 'print_settings', 'install_notes', 'includes',
+  'price_usd', 'free', 'oem_part_numbers', 'material', 'print_settings', 'install_notes', 'includes',
   'sources', 'files', 'images', 'review', 'created_at', 'updated_at',
 ];
 

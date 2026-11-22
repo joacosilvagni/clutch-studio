@@ -134,6 +134,12 @@ describe('schema', () => {
     expect(errors.join('\n')).toMatch(/"missing" no existe/);
     expect(errors.join('\n')).toMatch(/slug duplicado/);
   });
+  it('allows free Free Library products at 0.00 only when flagged', () => {
+    expect(validateProduct(approvedProduct({ free: true, price_usd: '0.00' }), { allowedLicenses: ALLOWED })).toEqual([]);
+    expect(validateProduct(approvedProduct({ price_usd: '0.00' }), { allowedLicenses: ALLOWED }).join()).toMatch(/price_usd/);
+    expect(validateProduct(approvedProduct({ free: true, price_usd: '3.00' }), { allowedLicenses: ALLOWED }).join()).toMatch(/0\.00/);
+    expect(buildWorkerCatalog([approvedProduct({ free: true, price_usd: '0.00' })]).products).toEqual({});
+  });
   it('converts prices without floats', () => {
     expect(priceToCents('19.99')).toBe(1999);
     expect(priceToCents('19.9')).toBeNull();
