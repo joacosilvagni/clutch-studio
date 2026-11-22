@@ -32,7 +32,7 @@
   ],
   "vars": {
     "PAYPAL_ENV": "sandbox",
-    "PAYPAL_CLIENT_ID": "",
+    "PAYPAL_CLIENT_ID": "BAABNklSErIZ4x9p3JdeXtMVe4ySKeYfC2PspuKGXJ7rjbcQ6zGRfRuPj52tf1OU1IJfQSoHD0mjTCWISk",
     "PAYPAL_MERCHANT_ID": "",
     "SITE_URL": "https://example.com",
     "MAIL_FROM": "Clutch Studio <orders@example.com>",
