@@ -1,5 +1,5 @@
 {
-  "name": "@reprint-garage/pipeline",
+  "name": "@clutch-studio/pipeline",
   "private": true,
   "type": "module",
   "description": "Catalog pipeline: Thingiverse search, license checks, product drafts.",

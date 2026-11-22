@@ -1,5 +1,5 @@
 {
-  "name": "reprint-garage",
+  "name": "clutch-studio",
   "private": true,
   "type": "module",
   "workspaces": ["pipeline", "worker"],
@@ -9,7 +9,7 @@
     "catalog:build": "node pipeline/src/cli/build-catalog.mjs"
   },
   "devDependencies": {
-    "vitest": "5.1.1"
+    "vitest": "4.1.12"
   },
   "engines": { "node": ">=22.13" }
 }
