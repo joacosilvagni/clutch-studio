@@ -125,7 +125,8 @@ describe('schema', () => {
     expect(errs({ files: [] }).join()).toMatch(/files/);
     expect(errs({ review: { flags: ['logo?'] } }).join()).toMatch(/flag/);
     expect(errs({ files: [{ r2_key: '../secrets' }] }).join()).toMatch(/r2_key/);
-    expect(errs({ kind: 'physical' }).join()).toMatch(/dropshipping/);
+    expect(validateProduct(approvedProduct({ kind: 'physical', fits: [], category: 'phone-tech', files: [], sources: [] }), { allowedLicenses: ALLOWED })).toEqual([]);
+    expect(errs({ fits: [] }).join()).toMatch(/sin fits/);
   });
   it('checks packs and duplicate slugs across the catalog', () => {
     const a = approvedProduct();

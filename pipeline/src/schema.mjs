@@ -16,6 +16,13 @@ export const CATEGORIES = [
   'exterior-lighting',
   'engine-bay',
   'workshop-tools',
+  // Physical accessories (dropshipping)
+  'interior-comfort',
+  'phone-tech',
+  'lighting-electrical',
+  'detailing-care',
+  'garage-tools',
+  'exterior-protection',
 ];
 export const MODEL_SLUGS = [
   'bmw-e30',
@@ -104,12 +111,12 @@ export function validateProduct(p, { allowedLicenses, fileSlug } = {}) {
     if (!nonEmpty(p.title)) e.push('aprobado sin title');
     if (!nonEmpty(p.description)) e.push('aprobado sin description original');
     if (!p.category) e.push('aprobado sin category');
-    if (!Array.isArray(p.fits) || p.fits.length === 0) e.push('aprobado sin fits');
+    // fits: [] on a physical product means universal fit.
+    if (p.kind !== 'physical' && (!Array.isArray(p.fits) || p.fits.length === 0)) e.push('aprobado sin fits');
     const cents = priceToCents(p.price_usd);
     if (p.free === true) {
       if (cents !== 0) e.push('free: true requiere price_usd "0.00"');
     } else if (cents == null || cents < MIN_PRICE_CENTS) e.push(`aprobado sin price_usd >= ${(MIN_PRICE_CENTS / 100).toFixed(2)}`);
-    if (p.kind === 'physical') e.push('kind: physical está reservado para la fase de dropshipping');
     if (p.kind === 'file') {
       if (!Array.isArray(p.files) || p.files.length === 0) e.push('aprobado sin files en R2');
       if (!Array.isArray(p.sources) || p.sources.length === 0) e.push('aprobado sin sources (atribución)');
