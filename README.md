@@ -114,6 +114,15 @@ Los `POST /api/*` exigen `Origin` igual a `SITE_URL` y `Content-Type: applicatio
 
 ## Deploy
 
+Secretos (todos en GitHub → Settings → Secrets and variables → Actions, nunca en el repo):
+`CLOUDFLARE_API_TOKEN`, `CLOUDFLARE_ACCOUNT_ID`, `PAYPAL_CLIENT_SECRET`, `THINGIVERSE_TOKEN` y, más adelante,
+`PAYPAL_WEBHOOK_ID` y `RESEND_API_KEY`. Workflows manuales (pestaña Actions):
+- **Bootstrap Cloudflare**: crea D1 y el bucket R2 privado y aplica migraciones (una vez; se puede re-correr).
+- **Verify seed drafts**: verifica los borradores del CSV contra la API de Thingiverse y abre un PR.
+
+El deploy resuelve el `database_id` real en CI (no se commitea) y sincroniza los secretos del Worker con
+`wrangler secret bulk` a partir de los secretos de GitHub.
+
 `.github/workflows/deploy.yml` despliega en cada push a `main` cuando la variable del repo `DEPLOY_ENABLED` es
 `true` y existen los secrets `CLOUDFLARE_API_TOKEN` (con permisos mínimos: Workers, D1 y R2 de esta cuenta) y
 `CLOUDFLARE_ACCOUNT_ID`. `ci.yml` corre tests, validación del catálogo, typecheck y build del sitio en cada PR.
