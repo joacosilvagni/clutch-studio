@@ -3,16 +3,16 @@ import { brand } from '../data/brand';
 import Logo from './Logo.astro';
 const year = new Date().getFullYear();
 const cols = [
-  { title: 'Shop', links: [['Shop by car', '/makes/'], ['Parts by type', '/parts/'], ['Free Library', '/free-library/'], ['Cart', '/cart/']] },
+  { title: 'Shop', links: [['Car accessories', '/accessories/'], ['3D print files', '/3d-files/'], ['Shop all', '/shop/'], ['Free Library', '/free-library/'], ['Browse by car', '/fits/']] },
   { title: 'Help', links: [['How it works', '/how-it-works/'], ['Printing guide', '/how-it-works/#printing'], ['Support', '/support/'], ['Request a part', '/support/#request']] },
-  { title: 'Legal', links: [['Terms of sale', '/legal/terms/'], ['Privacy', '/legal/privacy/'], ['Refunds (digital)', '/legal/refunds/'], ['Non-affiliation', '/legal/non-affiliation/'], ['Licenses & attributions', '/legal/attributions/']] },
+  { title: 'Legal', links: [['Terms of sale', '/legal/terms/'], ['Privacy', '/legal/privacy/'], ['Refunds', '/legal/refunds/'], ['Non-affiliation', '/legal/non-affiliation/'], ['Licenses & attributions', '/legal/attributions/']] },
 ];
 ---
 <footer class="site-footer">
   <div class="wrap top">
     <div class="brand">
-      <Logo inverted />
-      <p>Discontinued parts, back in print. Tested 3D files for classic and youngtimer cars, with real part numbers and install notes.</p>
+      <Logo />
+      <p>Gear and printable parts for people who keep old cars on the road. Accessories shipped to your door, and tested 3D files for the parts nobody makes anymore.</p>
     </div>
     {cols.map((c) => (
       <nav aria-label={c.title}>
@@ -31,7 +31,7 @@ const cols = [
 </footer>
 
 <style>
-  .site-footer { background: var(--ink); color: #cfc8bb; margin-top: 40px; }
+  .site-footer { background: var(--deep); border-top: 1px solid var(--rule); color: #cfc8bb; margin-top: 40px; }
   .top { display: grid; gap: 32px; padding-block: 56px 32px; grid-template-columns: 1fr 1fr; }
   .brand { grid-column: 1 / -1; max-width: 42ch; }
   .brand p { margin-top: 16px; font-size: 0.95rem; }

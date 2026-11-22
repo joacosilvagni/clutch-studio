@@ -1,23 +1,27 @@
 /* Clutch Studio — workshop-manual look: paper, ink, safety orange, part tags. */
 :root {
-  --paper: #f2ede3;
-  --paper-2: #e8e1d3;
-  --card: #fbf8f2;
-  --ink: #1d1c1a;
-  --ink-2: #4a4740;
-  --ink-3: #7a756a;
-  --rule: #cfc6b4;
+  /* Dark garage palette. Token names kept: --paper = page background, --ink = main text. */
+  --paper: #131417;
+  --paper-2: #1b1c20;
+  --card: #1a1b1f;
+  --card-2: #212328;
+  --ink: #ece6da;
+  --ink-2: #bdb6a8;
+  --ink-3: #8b8579;
+  --rule: #2e3036;
   --accent: #e2582a; /* safety orange */
-  --accent-ink: #b8401a;
-  --green: #2f5d4a; /* garage-door green */
-  --blue: #2c4a6b; /* blueprint */
+  --accent-ink: #f2895f; /* orange for text on dark */
+  --green: #6fbf98;
+  --blue: #86aee0;
+  --blueprint: #1c2f47;
+  --deep: #0c0d0f; /* footer, feature bands */
   --radius: 10px;
-  --shadow: 0 1px 0 rgba(29, 28, 26, 0.08), 0 8px 24px -16px rgba(29, 28, 26, 0.35);
+  --shadow: 0 1px 0 rgba(255, 255, 255, 0.03) inset, 0 10px 30px -18px rgba(0, 0, 0, 0.9);
   --display: 'Barlow Condensed', 'Arial Narrow', sans-serif;
   --body: 'Barlow', system-ui, sans-serif;
   --mono: 'JetBrains Mono', ui-monospace, monospace;
   --wrap: 1180px;
-  color-scheme: light;
+  color-scheme: dark;
 }
 
 *,
@@ -88,11 +92,12 @@ p { margin: 0 0 1em; }
   cursor: pointer;
   transition: transform 0.12s ease, background 0.12s ease;
 }
-.btn:hover { color: var(--paper); background: var(--accent-ink); border-color: var(--accent-ink); }
+.btn:hover { color: #fff; background: var(--accent); border-color: var(--accent); }
 .btn:active { transform: translateY(1px); }
 .btn--ghost { background: transparent; color: var(--ink); }
 .btn--ghost:hover { background: var(--ink); color: var(--paper); border-color: var(--ink); }
 .btn--accent { background: var(--accent); border-color: var(--accent); color: #fff; }
+.btn--accent:hover { background: #c94a1f; border-color: #c94a1f; }
 .btn[disabled] { opacity: 0.55; cursor: not-allowed; }
 
 /* Part tag (the brand's signature shape) */
