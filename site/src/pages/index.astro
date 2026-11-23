@@ -19,7 +19,7 @@ const catPic = (slug: string) => withImg.find((p) => p.category === slug)?.image
 const catCount = (slug: string) => files.filter((p) => p.category === slug).length;
 const ld = { '@context': 'https://schema.org', '@type': 'OnlineStore', name: brand.name, url: Astro.site?.href, description: brand.tagline };
 ---
-<Base title={brand.name} description="Print-ready STL and 3MF files for discontinued classic car parts, delivered instantly after payment. Plus car accessories for classic and youngtimer owners." jsonLd={ld}>
+<Base title={brand.name} description="Print-ready STL files for discontinued classic car parts, delivered instantly after payment. Plus car accessories for classic and youngtimer owners." jsonLd={ld}>
   <section class="hero">
     <div class="glow" aria-hidden="true"></div>
     <div class="wrap hero-grid">
@@ -33,7 +33,7 @@ const ld = { '@context': 'https://schema.org', '@type': 'OnlineStore', name: bra
         </div>
         <ul class="proof">
           <li><InstantBadge size="md" label="Instant download" /></li>
-          <li><span class="dot"></span>STL + 3MF + PDF guide</li>
+          <li><span class="dot"></span>Print-ready STL files</li>
           <li><span class="dot"></span>Secure PayPal checkout</li>
         </ul>
       </div>
@@ -115,7 +115,7 @@ const ld = { '@context': 'https://schema.org', '@type': 'OnlineStore', name: bra
       <ul class="facts">
         <li><InstantBadge size="md" label="On screen right after payment" /></li>
         <li><strong>Emailed too</strong><span>Links also arrive in your inbox.</span></li>
-        <li><strong>Fit guarantee</strong><span>If a file doesn't fit the car it lists, we refund it.</span></li>
+        <li><strong>Clear fitment</strong><span>Every file lists the cars and years it fits.</span></li>
         <li><strong>Licensed & credited</strong><span>Commercial licenses only (CC BY, BY-SA, CC0).</span></li>
       </ul>
     </div>
