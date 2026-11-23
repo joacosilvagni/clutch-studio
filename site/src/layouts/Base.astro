@@ -43,6 +43,10 @@ const fullTitle = title === brand.name ? title : `${title} | ${brand.name}`;
     <Header />
     <main id="main"><slot /></main>
     <Footer />
+    <script>
+      import { bindCartButtons } from '../scripts/cart';
+      bindCartButtons();
+    </script>
   </body>
 </html>
 

@@ -4,6 +4,8 @@ import { models, categories, getCategory, type Product } from './catalog';
 // Production lists ONLY approved products. Drafts show in `astro dev`, or in a preview build
 // with PUBLIC_SHOW_DRAFTS=true. Never set that flag for the production deploy.
 export const SHOW_DRAFTS = import.meta.env.DEV || import.meta.env.PUBLIC_SHOW_DRAFTS === 'true';
+// Sandbox preview (PayPal sandbox): also lists test: true products so checkout can be tried end to end.
+export const SANDBOX = import.meta.env.PUBLIC_SANDBOX === 'true';
 
 const knownModels = new Set(models.map((m) => m.slug));
 const knownCats = new Set(categories.map((c) => c.slug));
@@ -47,11 +49,13 @@ export async function getProducts(): Promise<Product[]> {
         verified: !!s.verified_at,
       })),
       status: d.status,
+      test: d.test,
+      free: d.free,
       reviewFlags: d.review?.flags ?? [],
       images: d.images.map((i) => ({ src: i.src, alt: i.alt ?? d.title, kind: i.kind ?? 'photo' })),
     }))
     .map((p) => ({ ...p, department: getCategory(p.category).department }))
-    .filter((p) => p.status === 'approved' || SHOW_DRAFTS)
+    .filter((p) => (p.test ? SANDBOX || SHOW_DRAFTS : p.status === 'approved' || SHOW_DRAFTS))
     .sort((a, b) => a.slug.localeCompare(b.slug));
   return cache;
 }
@@ -73,7 +77,7 @@ export const thumbSrc = (src: string) => (src.startsWith('/images/products/') ? 
 export const hasImage = (p: Product) => p.images.length > 0;
 // Digital products can be bought now; physical ones wait for the dropshipping phase.
 export const isDigital = (p: Product) => p.department === '3d-files';
-export const isBuyable = (p: Product) => isDigital(p) && p.priceUsd != null && p.priceUsd > 0;
+export const isBuyable = (p: Product) => isDigital(p) && !p.free && p.priceUsd != null && p.priceUsd > 0;
 /** Products with images first, then priced, then the rest. */
 export const showcaseOrder = (a: Product, b: Product) =>
   Number(hasImage(b)) - Number(hasImage(a)) || Number(b.priceUsd != null) - Number(a.priceUsd != null) || a.title.localeCompare(b.title);

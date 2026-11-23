@@ -1,0 +1,95 @@
+---
+import Base from '../layouts/Base.astro';
+import InstantBadge from '../components/InstantBadge.astro';
+import { shop } from '../data/shop';
+---
+<Base title="Your downloads" description="Your order is confirmed. Download your files." noindex>
+  <section class="section">
+    <div class="wrap order" data-order>
+      <div class="panel order__box" data-order-ok hidden>
+        <InstantBadge size="md" label="Payment confirmed" />
+        <h1>Your files are ready</h1>
+        <p class="order__lede">Download them now. We also sent these links to your PayPal email address.</p>
+        <ul class="order__files" data-order-files></ul>
+        <p class="order__fine">
+          Each link works for {shop.downloadHours} hours and {shop.downloadsPerFile} downloads. Lost the email or the links expired?
+          <a href="/downloads/">Get fresh links</a> sent to your PayPal email.
+        </p>
+      </div>
+
+      <div class="panel order__box" data-order-msg hidden>
+        <h1>Thank you</h1>
+        <p class="order__lede" data-order-message></p>
+      </div>
+
+      <div class="panel order__box" data-order-none hidden>
+        <h1>No recent order here</h1>
+        <p class="order__lede">We couldn't find a recent purchase in this browser. If you paid, your download links are in your email.</p>
+        <a class="btn btn--accent btn--lg" href="/3d-files/">Browse 3D files</a>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<script>
+  type Link = { title: string; file_name: string; url: string };
+  const root = document.querySelector<HTMLElement>('[data-order]')!;
+  const show = (sel: string) => (root.querySelector<HTMLElement>(sel)!.hidden = false);
+  let last: { downloads?: Link[] | null; message?: string } | null = null;
+  try {
+    last = JSON.parse(sessionStorage.getItem('cs.lastOrder') ?? 'null');
+  } catch {
+    last = null;
+  }
+  // Only our own /d/<token> links are rendered.
+  const ours = (u: string) => {
+    try {
+      const url = new URL(u, location.href);
+      return url.origin === location.origin && url.pathname.startsWith('/d/');
+    } catch {
+      return false;
+    }
+  };
+  const links = (last?.downloads ?? []).filter((d) => d && typeof d.url === 'string' && ours(d.url));
+
+  if (links.length) {
+    const ul = root.querySelector<HTMLUListElement>('[data-order-files]')!;
+    for (const d of links) {
+      const li = document.createElement('li');
+      const info = document.createElement('div');
+      const t = document.createElement('strong');
+      t.textContent = d.title;
+      const f = document.createElement('span');
+      f.textContent = d.file_name;
+      info.append(t, f);
+      const a = document.createElement('a');
+      a.className = 'btn btn--lg order__dl';
+      a.href = d.url;
+      a.target = '_blank';
+      a.rel = 'noopener';
+      a.textContent = 'Download';
+      li.append(info, a);
+      ul.append(li);
+    }
+    show('[data-order-ok]');
+  } else if (last?.message) {
+    root.querySelector('[data-order-message]')!.textContent = last.message;
+    show('[data-order-msg]');
+  } else {
+    show('[data-order-none]');
+  }
+</script>
+
+<style>
+  .order { max-width: 760px; }
+  .order__box { padding: 32px; display: grid; gap: 14px; justify-items: start; }
+  .order__box h1 { margin: 0; }
+  .order__lede { margin: 0; color: var(--ink-2); }
+  .order__files { list-style: none; margin: 8px 0; padding: 0; display: grid; gap: 12px; width: 100%; }
+  .order__files :global(li) { display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 16px 18px; border-radius: var(--radius-sm); background: rgba(94, 226, 160, .07); border: 1px solid rgba(94, 226, 160, .25); }
+  .order__files :global(li > div) { display: grid; gap: 4px; }
+  .order__files :global(li span) { color: var(--ink-3); font-size: .85rem; }
+  .order__files :global(.order__dl) { background: var(--instant); color: #08130d; border-color: var(--instant); font-weight: 700; min-width: 160px; }
+  .order__fine { margin: 0; font-size: .85rem; color: var(--ink-3); }
+  [hidden] { display: none !important; }
+</style>

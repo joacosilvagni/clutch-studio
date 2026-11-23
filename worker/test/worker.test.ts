@@ -126,6 +126,16 @@ describe('checkout and delivery', () => {
     expect((t.db.prepare('SELECT status, email_status FROM orders').get() as any)).toEqual({ status: 'PAID', email_status: 'sent' });
   });
 
+  it('redirects mail to MAIL_SANDBOX_TO only in sandbox', async () => {
+    for (const [env, expected] of [['sandbox', 'owner@inbox.test'], ['live', 'buyer@example.com']] as const) {
+      const w = paypalWorld();
+      const t = makeDeps(w.fn, { PAYPAL_ENV: env, MAIL_SANDBOX_TO: 'owner@inbox.test' } as any);
+      expect((await buy(w, t, [{ slug: 'bmw-e30-dash-clip' }])).status).toBe(200);
+      await t.settle();
+      expect(w.state.emails[0].to).toEqual([expected]);
+    }
+  });
+
   it('GET shows a page without consuming; POST streams the file and counts down to 0', async () => {
     const w = paypalWorld();
     const t = makeDeps(w.fn);
