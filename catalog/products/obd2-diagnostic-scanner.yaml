@@ -1,0 +1,53 @@
+slug: obd2-diagnostic-scanner
+status: draft
+kind: physical
+title: OBD2 Diagnostic Scanner (KONNWEI KW310)
+summary: 'Plug-in code reader for OBD2 cars: read and clear fault codes, live data, I/M readiness.'
+description: A handheld scanner that plugs into the OBD2 port (petrol cars from 1996 in the US, 2001 in Europe) and shows
+  what set the check-engine light. It reads and clears fault codes, shows live sensor data and freeze-frame, and checks emissions
+  readiness before an inspection. No app, no battery, no subscription.
+category: garage-tools
+part_type: null
+fits: []
+price_usd: '34.95'
+oem_part_numbers: []
+install_notes: null
+sources: []
+files: []
+images:
+- src: https://cc-west-usa.cjdropshipping.com/1623916429061.jpg
+  alt: OBD2 Diagnostic Scanner (KONNWEI KW310)
+  kind: photo
+- src: https://cc-west-usa.cjdropshipping.com/1623916419511.jpg
+  alt: OBD2 Diagnostic Scanner (KONNWEI KW310)
+  kind: photo
+supplier:
+  platform: cj
+  product_url: https://cjdropshipping.com/product/-p-1405434203297943552.html
+  pid: '1405434203297943552'
+  variant: Black
+  cost_usd: '10.74'
+  weight_g: 205
+  shipping:
+    US:
+      cost_usd: '6.86'
+      days: 5-11
+      method: LuWei Ordinary US
+    EU:
+      cost_usd: '6.80'
+      days: 4-11
+      method: CJPacket Ordinary I
+  quoted_at: '2026-11-23'
+review:
+  state: pendiente de aprobación de Joaquín
+  flags: []
+  notes:
+  - 'Demanda: Joaquín mandó el KW330 de AliExpress (4,7★, 822 valoraciones, 4.000+ vendidos). En CJ está el KW310 de la misma
+    marca: 300 tiendas.'
+  - 'Imágenes enlazadas al CDN de CJ: descargarlas a site/public antes de aprobar.'
+  - Precio con envío incluido. Margen calculado contra el envío más caro y comisión PayPal 5,4% + USD 0,30.
+  - 'KONNWEI es la marca del propio escáner (producto original), no una marca de autos: se puede nombrar.'
+  - 'CJ no tiene envío a Australia para este producto: venderlo solo a EE.UU. y UE, o buscar otra fuente.'
+  - Aclarar en la ficha que no sirve para autos pre-OBD2 (la mayoría de los clásicos).
+created_at: '2026-11-23'
+updated_at: '2026-11-23'

@@ -46,7 +46,7 @@ supplier:
       method: CJPacket Eub Special Line
   quoted_at: '2026-11-23'
 review:
-  state: pendiente de aprobación de Joaquín
+  state: aprobado por Joaquín en el chat (2026-11-23); falta completar lo de las notas para pasar a approved
   flags: []
   notes:
   - 'Demanda: AliExpress: soportes magnéticos 100K+ vendidos, 4,5★. CJ: 1.657 tiendas, 76 pedidos.'

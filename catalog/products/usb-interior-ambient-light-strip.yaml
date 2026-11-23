@@ -46,7 +46,7 @@ supplier:
       method: CJPacket Eub
   quoted_at: '2026-11-23'
 review:
-  state: pendiente de aprobación de Joaquín
+  state: aprobado por Joaquín en el chat (2026-11-23); falta completar lo de las notas para pasar a approved
   flags: []
   notes:
   - 'Demanda: AliExpress: tiras EL/neón USB para interior 30K+ vendidas, 4,5★. CJ: 1.158 tiendas lo listan.'

@@ -43,7 +43,7 @@ supplier:
       method: CJPacket Eub
   quoted_at: '2026-11-23'
 review:
-  state: pendiente de aprobación de Joaquín
+  state: aprobado por Joaquín en el chat (2026-11-23); falta completar lo de las notas para pasar a approved
   flags: []
   notes:
   - 'Demanda: AliExpress: kits de cepillo para parabrisas 100K+ vendidos, 4,4★. CJ: 131 tiendas, 36 pedidos (producto nuevo,

@@ -46,7 +46,7 @@ supplier:
       method: CJPacket Liquid Line
   quoted_at: '2026-11-23'
 review:
-  state: pendiente de aprobación de Joaquín
+  state: aprobado por Joaquín en el chat (2026-11-23); falta completar lo de las notas para pasar a approved
   flags: []
   notes:
   - 'Demanda: Amazon (vía ProductLair): cargadores retráctiles 6K+ ventas/mes, 4,8★. CJ: 1.014 tiendas, 189 pedidos.'

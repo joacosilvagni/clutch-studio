@@ -1,0 +1,53 @@
+slug: usb-roof-star-light
+status: draft
+kind: physical
+title: USB Roof Star Light
+summary: Pocket-size projector that fills the headliner with stars. Sound-activated, plugs into USB.
+description: A tiny USB projector that throws a field of moving stars across the headliner. The head swivels to aim it, and
+  in sound mode the stars pulse with the music. It plugs into any USB port and comes out again in a second.
+category: lighting-electrical
+part_type: null
+fits: []
+price_usd: '17.95'
+oem_part_numbers: []
+install_notes: null
+sources: []
+files: []
+images:
+- src: https://cc-west-usa.oss-accelerate.aliyuncs.com/1613529530982.jpg
+  alt: USB Roof Star Light
+  kind: photo
+- src: https://cc-west-usa.oss-accelerate.aliyuncs.com/1613529530986.jpg
+  alt: USB Roof Star Light
+  kind: photo
+supplier:
+  platform: cj
+  product_url: https://cjdropshipping.com/product/-p-1361868169215610880.html
+  pid: '1361868169215610880'
+  variant: 3W-Purple
+  cost_usd: '3.09'
+  weight_g: 70
+  shipping:
+    US:
+      cost_usd: '5.55'
+      days: 5-11
+      method: LuWei Ordinary US
+    EU:
+      cost_usd: '5.39'
+      days: 4-11
+      method: CJPacket Ordinary I
+    AU:
+      cost_usd: '5.46'
+      days: 6-10
+      method: CJPacket Eub
+  quoted_at: '2026-11-23'
+review:
+  state: pendiente de aprobación de Joaquín
+  flags: []
+  notes:
+  - 'Demanda: AliExpress: proyectores de estrellas para el techo 20K+ vendidos, 4,4★. CJ: 80 tiendas, 5 pedidos.'
+  - 'Imágenes enlazadas al CDN de CJ: descargarlas a site/public antes de aprobar.'
+  - Precio con envío incluido. Margen calculado contra el envío más caro y comisión PayPal 5,4% + USD 0,30.
+  - 'La línea a Australia (CJPacket Eub) no tiene tracking: elegir otra.'
+created_at: '2026-11-23'
+updated_at: '2026-11-23'

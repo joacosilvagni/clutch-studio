@@ -32,7 +32,12 @@ Leelo antes de empezar y actualizalo al terminar (ver `AGENTS.md`).
   3 destinos e imágenes. Nueva categoría `wall-art-decor` (sitio y schema).
 - Decisiones (Joaquín): sin saldo previo en CJ, cada pedido se paga con tarjeta al entrar la venta; destinos EE.UU., UE y
   Australia; Reino Unido afuera al lanzar (VAT desde la primera venta).
-- Pendiente: Joaquín aprueba/descarta productos; re-cotizar envío de las variantes multipack (notas en cada YAML); bajar las
+- Revisión de Joaquín (23/11): aprobó tira LED, cargador, soporte, aspiradora, organizador entre asientos, limpiador de
+  parabrisas y cepillos (quedan en draft con la aprobación anotada, falta lo de las notas). Descartó posavasos, organizador
+  de respaldo y cartel. Sumé kit LED RGB para pies, escáner OBD2 KONNWEI KW310 (sin envío a Australia en CJ) y luz de
+  estrellas USB. Pidió cuadros: propuesta de impresión bajo demanda con diseños propios sin marcas.
+  Pidió logos de marcas de autos: no se hace (falsificación, PayPal lo prohíbe).
+- Pendiente: re-cotizar envío de las variantes multipack (notas en cada YAML); bajar las
   imágenes del CDN de CJ a `site/public`; elegir líneas con tracking (PayPal lo exige); política de devoluciones y plazos.
 
 ### 2026-11-23 · Claude (diseño) — Portadas y 3D
