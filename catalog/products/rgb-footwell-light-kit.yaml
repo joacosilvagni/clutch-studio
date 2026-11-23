@@ -15,13 +15,13 @@ install_notes: null
 sources: []
 files: []
 images:
-- src: https://cc-west-usa.oss-accelerate.aliyuncs.com/4ef86e00-cfad-4937-8633-bdd5eb9b3512.jpg
+- src: /media/products/rgb-footwell-light-kit/1.webp
   alt: RGB Footwell Light Kit with Remote
   kind: photo
-- src: https://cc-west-usa.oss-accelerate.aliyuncs.com/876da99e-2130-43a5-8330-64aaa4368972.jpg
+- src: /media/products/rgb-footwell-light-kit/2.webp
   alt: RGB Footwell Light Kit with Remote
   kind: photo
-- src: https://cc-west-usa.oss-accelerate.aliyuncs.com/76a7f646-3996-439c-b8a1-745ca83b7179.jpg
+- src: /media/products/rgb-footwell-light-kit/3.webp
   alt: RGB Footwell Light Kit with Remote
   kind: photo
 supplier:
