@@ -1,12 +1,157 @@
 ---
 import Base from '../layouts/Base.astro';
+import { shop } from '../data/shop';
 ---
-<Base title="Cart" description="Your cart." noindex>
+<Base title="Cart" description="Your cart. Digital files download instantly after payment." noindex>
   <section class="section">
-    <div class="wrap prose">
+    <div class="wrap prose cart" data-cart data-client-id={shop.paypalClientId} data-currency={shop.currency}>
       <h1>Cart</h1>
-      <p class="notice">Your cart is empty. Checkout (PayPal) is not live in this prototype.</p>
-      <a class="btn" href="/shop/">Shop all</a>
+
+      <div data-cart-empty hidden>
+        <p class="notice">Your cart is empty.</p>
+        <a class="btn" href="/3d-files/">Browse 3D files</a>
+      </div>
+
+      <div data-cart-full hidden>
+        <ul class="cart__items" data-cart-items></ul>
+        <p class="cart__total">Total <strong data-cart-total></strong> <span class="mono muted">USD</span></p>
+
+        <div class="cart__instant">
+          <strong>Instant download.</strong> As soon as PayPal confirms the payment you get your download
+          links on the next page, and we email you a copy. No account needed.
+        </div>
+
+        {shop.sandbox && (
+          <p class="notice">Sandbox preview: payments use PayPal's test environment and no real money moves. Log in with a PayPal sandbox buyer account.</p>
+        )}
+
+        <div class="cart__pay" data-paypal-buttons></div>
+        <p class="cart__status" data-cart-status role="status" aria-live="polite"></p>
+        <p class="mono muted small">
+          Payments are processed by PayPal (PayPal balance or card). We never see your card details.
+          Links stay valid for {shop.downloadHours} hours with {shop.downloadsPerFile} downloads per file;
+          you can request fresh links from the email.
+        </p>
+      </div>
     </div>
   </section>
 </Base>
+
+<script>
+  import { getCart, removeFromCart, clearCart, cartTotal, type CartItem } from '../scripts/cart';
+
+  const root = document.querySelector<HTMLElement>('[data-cart]')!;
+  const empty = root.querySelector<HTMLElement>('[data-cart-empty]')!;
+  const full = root.querySelector<HTMLElement>('[data-cart-full]')!;
+  const list = root.querySelector<HTMLUListElement>('[data-cart-items]')!;
+  const total = root.querySelector<HTMLElement>('[data-cart-total]')!;
+  const status = root.querySelector<HTMLElement>('[data-cart-status]')!;
+  const payBox = root.querySelector<HTMLElement>('[data-paypal-buttons]')!;
+  const money = (n: number) => `$${n.toFixed(2)}`;
+  let buttonsRendered = false;
+
+  const ERRORS: Record<string, string> = {
+    unknown_product: 'One of the items is no longer available. We removed it from your cart; please try again.',
+    rate_limited: 'Too many attempts. Please wait a minute and try again.',
+    payment_not_completed: 'PayPal did not complete the payment. You have not been charged.',
+    payment_mismatch: 'The payment did not match your order. Please contact support before trying again.',
+  };
+
+  function setStatus(msg: string, isError = false) {
+    status.textContent = msg;
+    status.classList.toggle('is-error', isError);
+  }
+
+  function render() {
+    const items = getCart();
+    empty.hidden = items.length > 0;
+    full.hidden = items.length === 0;
+    list.replaceChildren(
+      ...items.map((i: CartItem) => {
+        const li = document.createElement('li');
+        const a = document.createElement('a');
+        a.href = `/products/${i.slug}/`;
+        a.textContent = i.title;
+        const price = document.createElement('span');
+        price.className = 'mono';
+        price.textContent = money(i.priceUsd);
+        const rm = document.createElement('button');
+        rm.type = 'button';
+        rm.className = 'linkish';
+        rm.textContent = 'Remove';
+        rm.addEventListener('click', () => removeFromCart(i.slug));
+        li.append(a, price, rm);
+        return li;
+      }),
+    );
+    total.textContent = money(cartTotal(items));
+    if (items.length && !buttonsRendered) loadPayPal();
+  }
+
+  async function api(path: string, body: unknown) {
+    const res = await fetch(path, { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify(body) });
+    const data = await res.json().catch(() => ({}));
+    if (!res.ok) throw Object.assign(new Error(data?.error ?? `http_${res.status}`), { code: data?.error, detail: data?.message });
+    return data;
+  }
+
+  function loadPayPal() {
+    buttonsRendered = true;
+    const s = document.createElement('script');
+    const q = new URLSearchParams({ 'client-id': root.dataset.clientId!, currency: root.dataset.currency!, intent: 'capture', components: 'buttons' });
+    s.src = `https://www.paypal.com/sdk/js?${q}`;
+    s.onload = renderButtons;
+    s.onerror = () => setStatus('Could not load PayPal. Check your connection or disable blockers for this page.', true);
+    document.head.append(s);
+  }
+
+  function renderButtons() {
+    const paypal = (window as any).paypal;
+    paypal
+      .Buttons({
+        style: { layout: 'vertical', shape: 'rect', label: 'pay' },
+        createOrder: async () => {
+          setStatus('');
+          try {
+            const { id } = await api('/api/orders', { items: getCart().map((i) => ({ slug: i.slug })) });
+            return id;
+          } catch (e: any) {
+            if (e.code === 'unknown_product' && e.detail) {
+              const slug = String(e.detail).split(': ').pop();
+              if (slug) removeFromCart(slug);
+            }
+            setStatus(ERRORS[e.code] ?? 'Could not start the payment. Please try again.', true);
+            throw e;
+          }
+        },
+        onApprove: async (data: { orderID: string }) => {
+          setStatus('Payment approved. Preparing your downloads…');
+          try {
+            const result = await api('/api/capture', { orderID: data.orderID });
+            sessionStorage.setItem('cs.lastOrder', JSON.stringify({ ...result, at: Date.now() }));
+            clearCart();
+            location.assign('/order/');
+          } catch (e: any) {
+            setStatus(ERRORS[e.code] ?? 'We could not confirm the payment. If you were charged, your links will arrive by email; otherwise contact support.', true);
+          }
+        },
+        onCancel: () => setStatus('Payment cancelled. Your cart is still here.'),
+        onError: () => setStatus('PayPal reported an error. You have not been charged. Please try again.', true),
+      })
+      .render(payBox);
+  }
+
+  window.addEventListener('cart:change', render);
+  render();
+</script>
+
+<style>
+  .cart__items { list-style: none; padding: 0; margin: 0 0 16px; display: grid; gap: 10px; }
+  .cart__items :global(li) { display: grid; grid-template-columns: 1fr auto auto; gap: 16px; align-items: center; padding: 10px 0; border-bottom: 1px solid var(--line, #2a2c31); }
+  .cart__total { font-size: 1.25rem; }
+  .cart__instant { border-left: 3px solid var(--accent); padding: 8px 14px; margin: 16px 0; }
+  .cart__pay { max-width: 420px; margin: 20px 0 8px; }
+  .cart__status.is-error { color: var(--accent); }
+  :global(.linkish) { background: none; border: 0; color: inherit; text-decoration: underline; cursor: pointer; padding: 0; font: inherit; }
+  [hidden] { display: none !important; }
+</style>

@@ -1,0 +1,56 @@
+---
+// Buy box for digital products. The design thread places and styles it; behaviour lives here.
+// Wrapper contract: <div data-buy-box data-slug data-title data-price>.
+import type { Product } from '../data/catalog';
+import { isBuyable } from '../data/products';
+import { shop } from '../data/shop';
+
+interface Props { product: Product }
+const { product: p } = Astro.props;
+const buyable = isBuyable(p);
+---
+<div class="buy-box" data-buy-box data-slug={p.slug} data-title={p.title} data-price={p.priceUsd ?? ''}>
+  {buyable ? (
+    <>
+      <button class="btn btn--accent buy-box__add" type="button" data-add-to-cart>Add to cart · ${p.priceUsd!.toFixed(2)}</button>
+      <a class="btn buy-box__go" href="/cart/" data-go-to-cart hidden>In your cart · Checkout</a>
+      <p class="buy-box__note">
+        <strong>Instant download.</strong> Pay with PayPal or card and your files are ready right away on the
+        confirmation page, plus a copy of the links by email. Links work for {shop.downloadHours} hours,
+        {shop.downloadsPerFile} downloads per file.
+      </p>
+    </>
+  ) : (
+    <button class="btn" type="button" disabled>
+      {p.kind === 'physical' ? 'Coming soon' : p.free ? 'Free download (coming soon)' : 'Not available yet'}
+    </button>
+  )}
+</div>
+
+<script>
+  import { addToCart, inCart } from '../scripts/cart';
+
+  for (const box of document.querySelectorAll<HTMLElement>('[data-buy-box]')) {
+    const add = box.querySelector<HTMLButtonElement>('[data-add-to-cart]');
+    const go = box.querySelector<HTMLAnchorElement>('[data-go-to-cart]');
+    if (!add || !go) continue;
+    const slug = box.dataset.slug!;
+    const sync = () => {
+      const has = inCart(slug);
+      add.hidden = has;
+      go.hidden = !has;
+    };
+    add.addEventListener('click', () => {
+      addToCart({ slug, title: box.dataset.title ?? slug, priceUsd: Number(box.dataset.price) });
+      sync();
+    });
+    window.addEventListener('cart:change', sync);
+    sync();
+  }
+</script>
+
+<style>
+  .buy-box { display: grid; gap: 10px; }
+  .buy-box__note { font-size: 0.875rem; margin: 0; opacity: 0.85; }
+  [hidden] { display: none !important; }
+</style>

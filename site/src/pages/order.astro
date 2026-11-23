@@ -1,0 +1,81 @@
+---
+import Base from '../layouts/Base.astro';
+import { shop } from '../data/shop';
+---
+<Base title="Your downloads" description="Your order is confirmed. Download your files." noindex>
+  <section class="section">
+    <div class="wrap prose order" data-order>
+      <div data-order-ok hidden>
+        <p class="mono order__eyebrow">Payment confirmed</p>
+        <h1>Your files are ready</h1>
+        <p>Download them now. We also emailed these links to your PayPal email address.</p>
+        <ul class="order__files" data-order-files></ul>
+        <p class="mono muted small">
+          Each link works for {shop.downloadHours} hours and {shop.downloadsPerFile} downloads. Lost the email or the links
+          expired? <a href="/support/">Contact support</a> with your PayPal email.
+        </p>
+      </div>
+
+      <div data-order-msg hidden>
+        <h1>Thank you</h1>
+        <p data-order-message></p>
+      </div>
+
+      <div data-order-none hidden>
+        <h1>No recent order</h1>
+        <p>We couldn't find a recent purchase in this browser. If you paid, your download links are in your email.</p>
+        <a class="btn" href="/3d-files/">Browse 3D files</a>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<script>
+  type Link = { title: string; file_name: string; url: string };
+  const root = document.querySelector<HTMLElement>('[data-order]')!;
+  const show = (sel: string) => (root.querySelector<HTMLElement>(sel)!.hidden = false);
+  let last: { status?: string; downloads?: Link[] | null; message?: string; at?: number } | null = null;
+  try {
+    last = JSON.parse(sessionStorage.getItem('cs.lastOrder') ?? 'null');
+  } catch {
+    last = null;
+  }
+  const sameSite = (u: string) => {
+    try {
+      const url = new URL(u, location.href);
+      return url.origin === location.origin && url.pathname.startsWith('/d/');
+    } catch {
+      return false;
+    }
+  };
+
+  if (last?.downloads?.length) {
+    const ul = root.querySelector<HTMLUListElement>('[data-order-files]')!;
+    for (const d of last.downloads.filter((d) => sameSite(d.url))) {
+      const li = document.createElement('li');
+      const name = document.createElement('span');
+      name.textContent = `${d.title} · ${d.file_name}`;
+      const a = document.createElement('a');
+      a.className = 'btn btn--accent';
+      a.href = d.url;
+      a.target = '_blank';
+      a.rel = 'noopener';
+      a.textContent = 'Download';
+      li.append(name, a);
+      ul.append(li);
+    }
+    show('[data-order-ok]');
+  } else if (last?.message) {
+    root.querySelector('[data-order-message]')!.textContent = last.message;
+    show('[data-order-msg]');
+  } else {
+    show('[data-order-none]');
+  }
+</script>
+
+<style>
+  .order__eyebrow { color: var(--accent); letter-spacing: 0.08em; text-transform: uppercase; }
+  .order__files { list-style: none; padding: 0; display: grid; gap: 12px; margin: 20px 0; }
+  .order__files :global(li) { display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 12px 0; border-bottom: 1px solid var(--line, #2a2c31); }
+  [hidden] { display: none !important; }
+</style>

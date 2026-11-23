@@ -12,6 +12,8 @@ const products = defineCollection({
   schema: z.object({
     slug: z.string(),
     status: z.enum(['draft', 'approved']),
+    test: z.boolean().default(false),
+    free: z.boolean().default(false),
     kind: z.enum(['file', 'pack', 'physical']),
     title: z.string(),
     summary: str,

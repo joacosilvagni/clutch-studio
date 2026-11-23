@@ -6,6 +6,7 @@ import PartArt from '../../components/PartArt.astro';
 import Reviews from '../../components/Reviews.astro';
 import TrustStrip from '../../components/TrustStrip.astro';
 import ProductCard from '../../components/ProductCard.astro';
+import BuyButton from '../../components/BuyButton.astro';
 import { getModel, getCategory, getDepartment, categoryUrl, modelUrl, productFitsLabel, priceLabel, type Product } from '../../data/catalog';
 import { getProducts, fitSummaryKind, SHOW_DRAFTS } from '../../data/products';
 
@@ -68,14 +69,8 @@ const ld = {
 
           <div class="pricebox">
             <p class="price">{priceLabel(p)} {p.priceUsd != null && <span class="mono muted">USD{isFile ? ' · digital download' : ''}</span>}</p>
-            <button class="btn btn--accent" type="button" disabled data-slug={p.slug}>
-              {p.priceUsd === 0 ? 'Free download (coming soon)' : 'Add to cart · checkout coming soon'}
-            </button>
-            <p class="mono muted small">
-              {isFile
-                ? 'Instant download after payment. Files are yours to reprint for personal use. No physical part is shipped.'
-                : 'Shipping cost and delivery time are shown at checkout before you pay.'}
-            </p>
+            <BuyButton product={p} />
+            {!isFile && <p class="mono muted small">Shipping cost and delivery time are shown at checkout before you pay.</p>}
           </div>
 
           {isFile && (

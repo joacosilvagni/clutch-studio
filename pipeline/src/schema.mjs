@@ -85,6 +85,15 @@ export function validateProduct(p, { allowedLicenses, fileSlug } = {}) {
 
   if (p.price_usd != null && priceToCents(p.price_usd) == null) e.push('price_usd debe ser un texto como "9.00"');
   if (p.free != null && typeof p.free !== 'boolean') e.push('free debe ser true o false');
+  // test: true = sandbox-only product to exercise checkout end to end. Never approved, never listed in production.
+  if (p.test != null && typeof p.test !== 'boolean') e.push('test debe ser true o false');
+  if (p.test === true) {
+    if (approved) e.push('un producto test: true no puede estar aprobado');
+    if (p.kind !== 'file') e.push('test: true solo aplica a kind: file');
+    const tc = priceToCents(p.price_usd);
+    if (tc == null || tc < MIN_PRICE_CENTS) e.push(`test: true requiere price_usd >= ${(MIN_PRICE_CENTS / 100).toFixed(2)}`);
+    if (!Array.isArray(p.files) || p.files.length === 0) e.push('test: true requiere files');
+  }
   if (p.includes != null && (!Array.isArray(p.includes) || !p.includes.every((s) => SLUG_RE.test(s))))
     e.push('includes debe ser una lista de slugs');
   if (p.kind !== 'pack' && Array.isArray(p.includes) && p.includes.length) e.push('includes solo aplica a kind: pack');

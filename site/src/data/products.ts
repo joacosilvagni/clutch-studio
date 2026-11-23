@@ -4,6 +4,8 @@ import { models, categories, getCategory, type Product } from './catalog';
 // Production lists ONLY approved products. Drafts show in `astro dev`, or in a preview build
 // with PUBLIC_SHOW_DRAFTS=true. Never set that flag for the production deploy.
 export const SHOW_DRAFTS = import.meta.env.DEV || import.meta.env.PUBLIC_SHOW_DRAFTS === 'true';
+// Sandbox preview (PayPal sandbox): also lists test: true products so checkout can be tried end to end.
+export const SANDBOX = import.meta.env.PUBLIC_SANDBOX === 'true';
 
 const knownModels = new Set(models.map((m) => m.slug));
 const knownCats = new Set(categories.map((c) => c.slug));
@@ -47,13 +49,19 @@ export async function getProducts(): Promise<Product[]> {
         verified: !!s.verified_at,
       })),
       status: d.status,
+      test: d.test,
+      free: d.free,
       reviewFlags: d.review?.flags ?? [],
     }))
     .map((p) => ({ ...p, department: getCategory(p.category).department }))
-    .filter((p) => p.status === 'approved' || SHOW_DRAFTS)
+    .filter((p) => (p.test ? SANDBOX || SHOW_DRAFTS : p.status === 'approved' || SHOW_DRAFTS))
     .sort((a, b) => a.slug.localeCompare(b.slug));
   return cache;
 }
+
+// Digital products the Worker can sell: priced files and packs (test items only on the sandbox preview).
+export const isBuyable = (p: Product) =>
+  p.kind !== 'physical' && !p.free && p.priceUsd != null && p.priceUsd > 0 && (p.status === 'approved' || (p.test && SANDBOX));
 
 export const productUrl = (p: Product) => `/products/${p.slug}/`;
 export const productsForDepartment = async (d: string) => (await getProducts()).filter((p) => p.department === d);
