@@ -7,6 +7,7 @@ Leelo antes de empezar y actualizalo al terminar (ver `AGENTS.md`).
 | Agente | Tarea | Rama | Desde |
 | --- | --- | --- | --- |
 | Claude (diseño) | Portadas, visor 3D y vitrina de los 73 productos | claude/media-3d | 2026-11-23 |
+| Claude (catálogo) | Buscar más piezas 3D (Thingiverse) y cargarlas como draft | claude/project-thread-3f4aeg | 2026-11-23 |
 
 ## Bloqueos
 
