@@ -37,9 +37,9 @@ supplier:
       days: 4-11
       method: CJPacket Ordinary I
     AU:
-      cost_usd: '5.46'
-      days: 6-10
-      method: CJPacket Eub
+      cost_usd: '5.70'
+      days: 5-14
+      method: CJPacket Liquid Line
   quoted_at: '2026-11-23'
 review:
   state: aprobado por Joaquín en el chat (2026-11-23); falta completar lo de las notas para pasar a approved
@@ -48,6 +48,5 @@ review:
   - 'Demanda: AliExpress: proyectores de estrellas para el techo 20K+ vendidos, 4,4★. CJ: 80 tiendas, 5 pedidos.'
   - 'Imágenes enlazadas al CDN de CJ: descargarlas a site/public antes de aprobar.'
   - Precio con envío incluido. Margen calculado contra el envío más caro y comisión PayPal 5,4% + USD 0,30.
-  - 'La línea a Australia (CJPacket Eub) no tiene tracking: elegir otra.'
 created_at: '2026-11-23'
 updated_at: '2026-11-23'

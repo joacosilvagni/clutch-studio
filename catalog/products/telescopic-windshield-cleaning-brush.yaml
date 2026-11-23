@@ -38,9 +38,9 @@ supplier:
       days: 4-11
       method: CJPacket Ordinary I
     AU:
-      cost_usd: '6.84'
-      days: 6-10
-      method: CJPacket Eub
+      cost_usd: '7.50'
+      days: 5-14
+      method: CJPacket Liquid Line
   quoted_at: '2026-11-23'
 review:
   state: aprobado por Joaquín en el chat (2026-11-23); falta completar lo de las notas para pasar a approved

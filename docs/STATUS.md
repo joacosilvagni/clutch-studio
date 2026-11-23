@@ -24,6 +24,13 @@ Leelo antes de empezar y actualizalo al terminar (ver `AGENTS.md`).
 
 ## Log de sesiones (lo más nuevo arriba)
 
+### 2026-11-23 · Claude (dropshipping) — Accesorios listos para activar
+- Hecho: pósters borrados (Joaquín los descartó). Workflow `fetch-images.yml` + `pipeline/src/cli/fetch-images.mjs`:
+  en cada push a `claude/**`/`codex/**` que toque `catalog/products/`, baja las fotos de CJ a
+  `site/public/media/products/<slug>/` (webp 1200 px) y reescribe el YAML. Envío a Australia recotizado por
+  CJPacket Liquid Line (con seguimiento) para 6 productos; todos dejan USD 14+ netos.
+- Pendiente: Joaquín pasa a `approved` los que quiera; confirmar con CJ el envío del escáner OBD2 a Australia.
+
 ### 2026-11-23 · Claude (dropshipping) — Pósters de autos reales y piso de ganancia
 - Hecho: 7 pósters de autos reales en borrador (Printful, fotos de Wikimedia Commons con licencia libre, USD 39,95,
   unos USD 17-18 de ganancia neta). Campo `artwork` en el schema (fuente, autor, licencia; `verified_at` obligatorio para
