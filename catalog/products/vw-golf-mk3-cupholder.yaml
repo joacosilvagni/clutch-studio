@@ -43,9 +43,10 @@ review:
   state: pendiente de revisión manual
   flags:
     - '"VW Golf MK3" no coincide con ningún modelo de config/models.yaml'
+    - "no se pudo verificar en la API: Thingiverse 403 en /things/6833286/files"
   notes:
     - Escribir title, summary y description originales en inglés (no copiar al autor).
     - Verificar licencia, autor y archivos con la API (import-seed con THINGIVERSE_TOKEN).
     - "CC BY-SA: el archivo adaptado que se vende debe publicarse bajo CC BY-SA."
-created_at: 2026-11-22
-updated_at: 2026-11-22
+created_at: 2026-11-23
+updated_at: 2026-11-23

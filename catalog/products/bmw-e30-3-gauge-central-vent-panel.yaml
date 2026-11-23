@@ -46,9 +46,10 @@ files: []
 images: []
 review:
   state: pendiente de revisión manual
-  flags: []
+  flags:
+    - "no se pudo verificar en la API: Thingiverse 403 en /things/4727137"
   notes:
     - Escribir title, summary y description originales en inglés (no copiar al autor).
     - Verificar licencia, autor y archivos con la API (import-seed con THINGIVERSE_TOKEN).
-created_at: 2026-11-22
-updated_at: 2026-11-22
+created_at: 2026-11-23
+updated_at: 2026-11-23
