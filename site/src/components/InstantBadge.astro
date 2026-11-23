@@ -1,0 +1,15 @@
+---
+// The "files arrive immediately" promise. Used on cards, product pages and the cart.
+interface Props { size?: 'sm' | 'md'; label?: string }
+const { size = 'sm', label = 'Instant download' } = Astro.props;
+---
+<span class:list={['instant', size]}>
+  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13 2 4 14h7l-1 8 9-12h-7l1-8Z" fill="currentColor" /></svg>
+  {label}
+</span>
+<style>
+  .instant { display: inline-flex; align-items: center; gap: 6px; color: var(--instant); font: 600 .78rem/1 var(--body); letter-spacing: .01em; white-space: nowrap; }
+  .instant svg { width: 14px; height: 14px; filter: drop-shadow(0 0 6px rgba(94, 226, 160, .5)); }
+  .md { font-size: .92rem; gap: 8px; }
+  .md svg { width: 18px; height: 18px; }
+</style>

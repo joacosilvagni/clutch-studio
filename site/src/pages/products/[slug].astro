@@ -2,12 +2,12 @@
 import { brand } from '../../data/brand';
 import Base from '../../layouts/Base.astro';
 import Breadcrumbs from '../../components/Breadcrumbs.astro';
-import PartArt from '../../components/PartArt.astro';
+import ProductMedia from '../../components/ProductMedia.astro';
+import BuyBox from '../../components/BuyBox.astro';
 import Reviews from '../../components/Reviews.astro';
-import TrustStrip from '../../components/TrustStrip.astro';
 import ProductCard from '../../components/ProductCard.astro';
-import { getModel, getCategory, getDepartment, categoryUrl, modelUrl, productFitsLabel, priceLabel, type Product } from '../../data/catalog';
-import { getProducts, fitSummaryKind, SHOW_DRAFTS } from '../../data/products';
+import { getModel, getCategory, getDepartment, categoryUrl, modelUrl, productFitsLabel, type Product } from '../../data/catalog';
+import { getProducts, fitSummaryKind, isDigital, isBuyable, showcaseOrder, SHOW_DRAFTS } from '../../data/products';
 
 export async function getStaticPaths() {
   const all = await getProducts();
@@ -16,80 +16,70 @@ export async function getStaticPaths() {
 const { product: p, all } = Astro.props as { product: Product; all: Product[] };
 const cat = getCategory(p.category);
 const dept = getDepartment(p.department);
-const isFile = p.department === '3d-files';
+const digital = isDigital(p);
 const fits = p.models.map(getModel);
 const fk = fitSummaryKind(p);
 const included = p.includes.map((s) => all.find((x) => x.slug === s)).filter((x): x is Product => !!x);
-// Related: same category first, then same car.
 const related = [
-  ...all.filter((x) => x.slug !== p.slug && x.category === p.category),
-  ...all.filter((x) => x.slug !== p.slug && x.category !== p.category && x.models.some((m) => p.models.includes(m))),
-].slice(0, 3);
+  ...all.filter((x) => x.slug !== p.slug && x.models.some((m) => p.models.includes(m))).sort(showcaseOrder),
+  ...all.filter((x) => x.slug !== p.slug && x.category === p.category && !x.models.some((m) => p.models.includes(m))).sort(showcaseOrder),
+].slice(0, 4);
 const titleMentionsCar = fits.some((m) => p.title.toLowerCase().includes(m.name.toLowerCase().split(' ')[0]));
 const title = fits.length && !titleMentionsCar ? `${p.title}, fits ${productFitsLabel(p, fits[0])}` : p.title;
 const lede = p.summary ?? p.description;
 const dash = (v: unknown) => (v == null || v === '' ? '—' : String(v));
 const isShareAlike = p.sources.some((s) => s.license === 'CC-BY-SA');
+const isRender = p.images[0]?.kind === 'render';
 // No aggregateRating/review in JSON-LD until real verified reviews exist.
 const ld = {
   '@context': 'https://schema.org', '@type': 'Product', name: title, description: lede ?? title,
   category: cat.name, sku: `${brand.skuPrefix}-${p.slug}`, ...(p.oem.length ? { mpn: p.oem[0] } : {}),
   brand: { '@type': 'Brand', name: brand.name },
+  ...(p.images[0] ? { image: new URL(p.images[0].src, Astro.site).href } : {}),
   ...(p.priceUsd != null ? { offers: { '@type': 'Offer', price: p.priceUsd.toFixed(2), priceCurrency: 'USD', availability: 'https://schema.org/InStock', url: new URL(Astro.url.pathname, Astro.site).href } } : {}),
 };
 ---
-<Base title={title} description={`${lede ?? p.title}.${isFile ? ' Print-ready STL + 3MF.' : ''}`} jsonLd={ld} noindex={p.status !== 'approved'}>
-  <section class="section">
+<Base title={title} description={`${lede ?? p.title}.${digital ? ' Print-ready STL + 3MF, instant download.' : ''}`} jsonLd={ld} noindex={p.status !== 'approved'}>
+  <section class="section--tight">
     <div class="wrap">
       <Breadcrumbs items={[['Home', '/'], [dept.name, `/${dept.slug}/`], [cat.name, categoryUrl(cat)], [p.title]]} />
       <div class="layout">
-        <div class="media">
-          <PartArt glyph={cat.glyph} size="hero" label={p.oem[0] ? `OEM ${p.oem[0]}` : cat.name} />
-          <p class="mono muted cap">{isFile ? 'Render placeholder. Real photos of the printed and installed part go here.' : 'Product photos go here.'}</p>
+        <div class="gallery">
+          <ProductMedia product={p} size="hero" eager />
+          {isRender && <p class="cap">Illustrative render. Your print will show layer lines and the colour of your filament.</p>}
+          {!p.images.length && <p class="cap">Photos coming soon.</p>}
         </div>
 
-        <div class="buy">
+        <div class="info">
           <div class="tags">
-            {p.status === 'draft' && <span class="tag tag--accent">Draft listing</span>}
-            <span class:list={['tag', isFile ? 'tag--blue' : 'tag--green']}>{isFile ? '3D file · instant download' : 'Ships to you'}</span>
-            {p.kind === 'pack' && <span class="tag tag--accent">Pack · {included.length} parts</span>}
+            {p.status === 'draft' && <span class="tag">Draft listing</span>}
             <a href={categoryUrl(cat)} class="tag">{cat.name}</a>
+            {p.kind === 'pack' && <span class="tag tag--accent">Pack · {included.length} parts</span>}
           </div>
           <h1 class="ptitle">{p.title}</h1>
 
-          <div class:list={['fitbox', fk]}>
-            <span class="mono">Fitment</span>
-            {fk === 'universal' && <p><strong>Universal fit.</strong> Check the dimensions below against your car.</p>}
-            {fk === 'unconfirmed' && <p><strong>Check fitment.</strong> We're still confirming which models this fits. Email us before you buy.</p>}
-            {fk === 'specific' && <p>{fits.map((m, i) => <>{i > 0 && ' · '}<a href={modelUrl(m)}>{productFitsLabel(p, m)}</a></>)}</p>}
+          <div class:list={['fit', fk]}>
+            {fk === 'universal' && <p><strong>Universal fit.</strong> Check the dimensions against your car.</p>}
+            {fk === 'unconfirmed' && <p><strong>Check fitment.</strong> We're confirming which models this fits. <a href="/support/">Ask us</a> before you buy.</p>}
+            {fk === 'specific' && <p><span class="muted">Fits</span> {fits.map((m, i) => <>{i > 0 && ', '}<a href={modelUrl(m)}>{productFitsLabel(p, m)}</a></>)}</p>}
           </div>
 
-          {lede ? <p class="lede">{lede}</p> : <p class="lede muted">Description coming soon.</p>}
+          {lede && <p class="lede">{lede}</p>}
 
-          <div class="pricebox">
-            <p class="price">{priceLabel(p)} {p.priceUsd != null && <span class="mono muted">USD{isFile ? ' · digital download' : ''}</span>}</p>
-            <button class="btn btn--accent" type="button" disabled data-slug={p.slug}>
-              {p.priceUsd === 0 ? 'Free download (coming soon)' : 'Add to cart · checkout coming soon'}
-            </button>
-            <p class="mono muted small">
-              {isFile
-                ? 'Instant download after payment. Files are yours to reprint for personal use. No physical part is shipped.'
-                : 'Shipping cost and delivery time are shown at checkout before you pay.'}
-            </p>
-          </div>
+          <BuyBox product={p} />
 
-          {isFile && (
-            <>
+          {digital && (
+            <details class="specs" open>
+              <summary>Print specs</summary>
               <table class="spec">
                 <tr><th>OEM part no.</th><td>{p.oem.length ? p.oem.join(', ') : 'Not verified yet'}</td></tr>
                 <tr><th>Material</th><td>{p.material.recommended.join(' or ') || '—'}{p.material.avoid.length > 0 && <span class="muted"> · avoid {p.material.avoid.join(', ')}</span>}</td></tr>
                 <tr><th>Layer / infill</th><td>{dash(p.print.layer)} · {dash(p.print.infill)}</td></tr>
                 <tr><th>Walls / supports</th><td>{dash(p.print.walls)} · {dash(p.print.supports)}</td></tr>
-                <tr><th>Orientation</th><td>{dash(p.print.orientation)}</td></tr>
-                <tr><th>Files</th><td>STL · 3MF · PDF tech sheet</td></tr>
+                <tr><th>You get</th><td>STL · 3MF · PDF tech sheet</td></tr>
               </table>
-              {p.material.note && <p class="small muted note">{p.material.note}</p>}
-            </>
+              {p.material.note && <p class="note">{p.material.note}</p>}
+            </details>
           )}
         </div>
       </div>
@@ -97,89 +87,95 @@ const ld = {
   </section>
 
   {SHOW_DRAFTS && p.reviewFlags.length > 0 && (
-    <section class="wrap"><div class="notice"><strong>Review flags (only visible in draft preview):</strong><ul>{p.reviewFlags.map((f) => <li>{f}</li>)}</ul></div></section>
+    <section class="wrap"><div class="notice"><strong>Review flags (draft preview only):</strong><ul>{p.reviewFlags.map((f) => <li>{f}</li>)}</ul></div></section>
   )}
 
   {included.length > 0 && (
-    <section class="section">
+    <section class="section--tight">
       <div class="wrap">
         <h2>What's in the pack</h2>
-        <div class="grid">{included.map((x) => <ProductCard product={x} />)}</div>
+        <div class="grid grid--2m">{included.map((x) => <ProductCard product={x} />)}</div>
       </div>
     </section>
   )}
 
-  {isFile && (
-    <section class="section">
-      <div class="wrap cols">
-        <div>
-          <h2>Install</h2>
-          {p.install.length ? <ol class="install">{p.install.map((s) => <li>{s}</li>)}</ol> : <p class="muted">Install notes are included in the PDF tech sheet.</p>}
-          {p.print.notes && <p>{p.print.notes}</p>}
-          <p class="muted">Not sure about material? See the <a href="/how-it-works/#printing">printing guide</a>. Stuck? Reply to your order email.</p>
-        </div>
+  <section class="section--tight">
+    <div class="wrap cols">
+      <div>
+        {digital && (
+          <>
+            <h2>Install</h2>
+            {p.install.length ? <ol class="install">{p.install.map((s) => <li>{s}</li>)}</ol> : <p class="muted">Step-by-step install notes are in the PDF tech sheet.</p>}
+            {p.print.notes && <p>{p.print.notes}</p>}
+          </>
+        )}
+        <Reviews productTitle={p.title} />
+      </div>
+      {digital && (
         <aside class="license">
-          <p class="eyebrow">License & credit</p>
+          <span class="eyebrow">License & credit</span>
           {p.sources.map((s) => (
             <p>
               <strong>{s.licenseLabel}</strong>. Original design by{' '}
-              {s.author ? (s.authorUrl ? <a href={s.authorUrl} rel="nofollow noopener" target="_blank">{s.author}</a> : <span>{s.author}</span>) : <span class="mono">author pending verification</span>},{' '}
+              {s.author ? (s.authorUrl ? <a href={s.authorUrl} rel="nofollow noopener" target="_blank">{s.author}</a> : <span>{s.author}</span>) : <span class="muted">author pending verification</span>},{' '}
               <a href={s.url} rel="nofollow noopener" target="_blank">source</a>. We tested, documented and packaged it.
             </p>
           ))}
-          {isShareAlike && <p class="small">ShareAlike: the files you download are shared under the same CC BY-SA license.</p>}
-          <a href="/legal/attributions/" class="mono small">All licenses & attributions</a>
+          {isShareAlike && <p class="small">ShareAlike: your files are shared under the same CC BY-SA license.</p>}
+          <a href="/legal/attributions/" class="small">All licenses & attributions</a>
         </aside>
-      </div>
-    </section>
-  )}
-
-  <section class="section">
-    <div class="wrap cols">
-      <Reviews productTitle={p.title} />
-      <div>
-        <h2 class="visually-hidden">Our promises</h2>
-        <TrustStrip compact />
-      </div>
+      )}
     </div>
   </section>
 
   {related.length > 0 && (
-    <section class="section">
+    <section class="section--tight">
       <div class="wrap">
         <h2>You might also need</h2>
-        <div class="grid">{related.map((x) => <ProductCard product={x} />)}</div>
+        <div class="grid grid--2m">{related.map((x) => <ProductCard product={x} />)}</div>
       </div>
     </section>
+  )}
+
+  {isBuyable(p) && (
+    <div class="sticky-buy" data-sticky-buy>
+      <div>
+        <strong>${p.priceUsd!.toFixed(2)}</strong>
+        <span>Instant download</span>
+      </div>
+      <a href="#buy" class="btn btn--accent">Buy now</a>
+    </div>
   )}
 </Base>
 
 <style>
   .layout { display: grid; gap: 28px; }
-  .media { position: sticky; top: 84px; align-self: start; }
-  .cap { font-size: .72rem; margin-top: 8px; }
-  .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 12px; }
-  .tags a { text-decoration: none; }
-  .ptitle { font-size: clamp(2.2rem, 6vw, 3.6rem); }
-  .fitbox { display: grid; gap: 4px; padding: 12px 14px; border-radius: var(--radius); border: 1px solid var(--rule); background: var(--card); margin-bottom: 16px; }
-  .fitbox .mono { font-size: .7rem; text-transform: uppercase; letter-spacing: .12em; color: var(--ink-3); }
-  .fitbox p { margin: 0; font-weight: 600; }
-  .fitbox.universal { border-color: color-mix(in srgb, var(--green) 50%, var(--rule)); }
-  .fitbox.unconfirmed { border-color: color-mix(in srgb, var(--accent) 50%, var(--rule)); }
-  .pricebox { display: grid; gap: 10px; padding: 18px; margin: 20px 0; background: var(--card); border: 1px solid var(--rule); border-radius: var(--radius); }
-  .price { font: 700 2rem/1 var(--display); margin: 0; }
-  .price .mono { font-size: .75rem; font-weight: 400; }
-  .small { font-size: .8rem; margin: 0; }
-  .note { margin-top: 10px; }
+  .gallery { align-self: start; }
+  .cap { font-size: .78rem; color: var(--ink-3); margin-top: 10px; }
+  .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 14px; }
+  .ptitle { font-size: clamp(2.2rem, 5vw, 3.6rem); }
+  .fit p { margin: 0 0 14px; font-size: .98rem; }
+  .fit a { font-weight: 600; }
+  .fit.unconfirmed p { color: var(--accent-ink); }
+  .lede { font-size: 1.05rem; }
+  .specs { margin-top: 18px; padding: 4px 18px 10px; border-radius: var(--radius); border: 1px solid var(--line); background: var(--paper-2); }
+  .specs summary { cursor: pointer; padding: 12px 0; font-weight: 600; }
+  .note { font-size: .82rem; color: var(--ink-3); margin: 10px 0 4px; }
   .cols { display: grid; gap: 32px; }
-  .install { padding-left: 1.2em; }
+  .install { padding-left: 1.3em; margin-bottom: 36px; }
   .install li { margin-bottom: .6em; padding-left: .3em; }
-  .install li::marker { font-family: var(--mono); color: var(--accent); }
-  .license { padding: 20px; border: 1px solid var(--rule); border-radius: var(--radius); background: var(--card); align-self: start; }
+  .install li::marker { color: var(--accent); font-weight: 700; }
+  .license { padding: 22px; border-radius: var(--radius); background: var(--card); border: 1px solid var(--line); align-self: start; font-size: .92rem; color: var(--ink-2); }
+  .small { font-size: .82rem; }
   .notice ul { margin: 6px 0 0; }
-  @media (max-width: 899px) { .media { position: static; } }
-  @media (min-width: 900px) {
-    .layout { grid-template-columns: 1.1fr 1fr; gap: 48px; }
-    .cols { grid-template-columns: 1.4fr 1fr; gap: 48px; }
+  .sticky-buy { position: fixed; left: 12px; right: 12px; bottom: 12px; z-index: 25; display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 10px 10px 10px 18px; border-radius: 999px; background: rgba(23, 24, 28, .92); backdrop-filter: blur(12px); border: 1px solid var(--rule); box-shadow: var(--shadow); }
+  .sticky-buy div { display: grid; line-height: 1.2; }
+  .sticky-buy span { font-size: .75rem; color: var(--instant); }
+  .sticky-buy .btn { min-height: 44px; }
+  @media (min-width: 960px) {
+    .layout { grid-template-columns: 1.15fr 1fr; gap: 56px; }
+    .gallery { position: sticky; top: 96px; }
+    .cols { grid-template-columns: 1.5fr 1fr; gap: 56px; }
+    .sticky-buy { display: none; }
   }
 </style>

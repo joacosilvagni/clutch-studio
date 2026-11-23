@@ -30,7 +30,7 @@ const carOptions = modelSlugs.map(getModel).sort((a, b) => a.fullName.localeComp
         </label>
       )}
     </div>
-    <div class="grid" data-grid>{items.map((p) => <ProductCard product={p} />)}</div>
+    <div class="grid grid--2m" data-grid>{items.map((p) => <ProductCard product={p} />)}</div>
     <p class="notice" data-none hidden>No matches. Try "Any car" or another category.</p>
   </div>
 )}
@@ -71,11 +71,11 @@ const carOptions = modelSlugs.map(getModel).sort((a, b) => a.fullName.localeComp
 <style>
   .bar { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; justify-content: space-between; margin: 8px 0 18px; }
   .chips { display: flex; gap: 8px; overflow-x: auto; max-width: 100%; padding-bottom: 4px; scrollbar-width: thin; }
-  .chips button { flex: none; min-height: 40px; padding: 0 16px; border-radius: 999px; border: 1.5px solid var(--rule); background: transparent; font: 600 .95rem var(--display); text-transform: uppercase; letter-spacing: .05em; cursor: pointer; color: var(--ink-2); }
+  .chips button { flex: none; min-height: 40px; padding: 0 16px; border-radius: 999px; border: 1px solid var(--rule); background: transparent; font: 500 .88rem var(--body); cursor: pointer; color: var(--ink-2); }
   .chips button:hover { border-color: var(--ink-3); color: var(--ink); }
   .chips button[aria-pressed='true'] { background: var(--ink); border-color: var(--ink); color: var(--paper); }
   .fit { display: inline-flex; align-items: center; gap: 10px; }
   .fit .mono { font-size: .72rem; text-transform: uppercase; letter-spacing: .1em; color: var(--ink-3); }
-  .fit select { min-height: 40px; border-radius: 999px; border: 1.5px solid var(--rule); background: var(--card); color: var(--ink); padding: 0 14px; font: 500 .95rem var(--body); max-width: 70vw; }
+  .fit select { min-height: 40px; border-radius: 999px; border: 1px solid var(--rule); background: var(--card); color: var(--ink); padding: 0 14px; font: 500 .95rem var(--body); max-width: 70vw; }
   [data-product][hidden] { display: none; }
 </style>
