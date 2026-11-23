@@ -1,0 +1,222 @@
+---
+import { brand } from '../data/brand';
+import Base from '../layouts/Base.astro';
+import ProductCard from '../components/ProductCard.astro';
+import PartArt from '../components/PartArt.astro';
+import InstantBadge from '../components/InstantBadge.astro';
+import { categoriesFor, categoryUrl, getDepartment } from '../data/catalog';
+import { getProducts, showcaseOrder, thumbSrc, productUrl } from '../data/products';
+
+const all = await getProducts();
+const files = all.filter((p) => p.department === '3d-files').sort(showcaseOrder);
+const withImg = files.filter((p) => p.images.length);
+const heroPics = withImg.slice(0, 4);
+const featured = files.slice(0, 8);
+const accessories = all.filter((p) => p.department === 'accessories').sort(showcaseOrder).slice(0, 4);
+const acc = getDepartment('accessories');
+// One representative image per 3D-file category, when we have one.
+const catPic = (slug: string) => withImg.find((p) => p.category === slug)?.images[0];
+const catCount = (slug: string) => files.filter((p) => p.category === slug).length;
+const ld = { '@context': 'https://schema.org', '@type': 'OnlineStore', name: brand.name, url: Astro.site?.href, description: brand.tagline };
+---
+<Base title={brand.name} description="Print-ready STL files for discontinued classic car parts, delivered instantly after payment. Plus car accessories for classic and youngtimer owners." jsonLd={ld}>
+  <section class="hero">
+    <div class="glow" aria-hidden="true"></div>
+    <div class="wrap hero-grid">
+      <div class="copy">
+        <span class="eyebrow">For classic & youngtimer owners</span>
+        <h1>The part they stopped making? <span>Print it tonight.</span></h1>
+        <p class="lede">Tested, print-ready 3D files for the clips, knobs and bezels nobody sells anymore. Pay once, download instantly, reprint forever.</p>
+        <div class="ctas">
+          <a class="btn btn--accent btn--lg" href="/3d-files/">Shop 3D files</a>
+          <a class="btn btn--ghost btn--lg" href="/accessories/">Accessories</a>
+        </div>
+        <ul class="proof">
+          <li><InstantBadge size="md" label="Instant download" /></li>
+          <li><span class="dot"></span>Print-ready STL files</li>
+          <li><span class="dot"></span>Secure PayPal checkout</li>
+        </ul>
+      </div>
+      <div class="pics" aria-hidden={heroPics.length ? undefined : 'true'}>
+        {heroPics.length >= 4
+          ? heroPics.map((p, i) => (
+              <a href={productUrl(p)} class:list={['pic', `p${i}`]} tabindex="-1">
+                <img src={i === 0 ? p.images[0].src : thumbSrc(p.images[0].src)} alt={p.images[0].alt} width="600" height="600" loading={i < 2 ? 'eager' : 'lazy'} />
+              </a>
+            ))
+          : ['clip', 'gauge', 'knob', 'cup'].map((g, i) => <div class:list={['pic', `p${i}`]}><PartArt glyph={g as any} /></div>)}
+      </div>
+    </div>
+  </section>
+
+  <section class="steps-band">
+    <div class="wrap steps">
+      <div class="step"><span class="n">1</span><div><strong>Pick your part</strong><p>Every file lists the cars, years and OEM number it replaces.</p></div></div>
+      <div class="step"><span class="n">2</span><div><strong>Pay with PayPal</strong><p>Card or PayPal balance. Prices in USD, no account needed.</p></div></div>
+      <div class="step hl"><span class="n">3</span><div><strong>Download instantly</strong><p>Links appear on screen the second payment clears, and land in your inbox.</p></div></div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="row">
+        <div><span class="eyebrow">3D print files</span><h2>Fresh off the bench</h2></div>
+        <a class="btn btn--ghost" href="/3d-files/">View all files</a>
+      </div>
+      <div class="grid grid--2m">{featured.map((p, i) => <ProductCard product={p} eager={i < 4} />)}</div>
+    </div>
+  </section>
+
+  <section class="section cats-sec">
+    <div class="wrap">
+      <span class="eyebrow">Shop by part type</span>
+      <h2>What broke?</h2>
+      <div class="cats">
+        {categoriesFor('3d-files').map((c) => {
+          const pic = catPic(c.slug);
+          return (
+            <a href={categoryUrl(c)} class="cat">
+              {pic ? <img src={thumbSrc(pic.src)} alt="" width="600" height="600" loading="lazy" /> : <PartArt glyph={c.glyph} />}
+              <span class="cat-t"><strong>{c.name}</strong><small>{catCount(c.slug)} {catCount(c.slug) === 1 ? 'file' : 'files'}</small></span>
+            </a>
+          );
+        })}
+      </div>
+      <p class="muted carline">Restoring a specific classic? <a href="/fits/">Browse files by car</a>.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <a href="/accessories/" class="acc">
+        <div class="acc-copy">
+          <span class="eyebrow">Department 02</span>
+          <h2>{acc.name}</h2>
+          <p>{acc.pitch}</p>
+          <div class="chips">{categoriesFor('accessories').map((c) => <span class="tag">{c.short}</span>)}</div>
+          <span class="btn btn--ghost">{accessories.length ? 'Shop accessories' : 'See what is coming'}</span>
+        </div>
+        <div class="acc-art" aria-hidden="true">
+          {['seat', 'phone', 'lamp', 'drop'].map((g) => <PartArt glyph={g as any} />)}
+        </div>
+      </a>
+      {accessories.length > 0 && <div class="grid grid--2m more">{accessories.map((p) => <ProductCard product={p} />)}</div>}
+    </div>
+  </section>
+
+  <section class="section promise">
+    <div class="wrap promise-grid">
+      <div>
+        <span class="eyebrow">Our promise</span>
+        <h2>Bought it? It's yours in seconds.</h2>
+        <p class="lede">No waiting for an email that never comes. Your download links appear on the confirmation page the moment PayPal confirms payment, and a copy goes to your inbox. Lost them? Request fresh links any time.</p>
+        <a class="btn" href="/how-it-works/">How delivery works</a>
+      </div>
+      <ul class="facts">
+        <li><InstantBadge size="md" label="On screen right after payment" /></li>
+        <li><strong>Emailed too</strong><span>Links also arrive in your inbox.</span></li>
+        <li><strong>Clear fitment</strong><span>Every file lists the cars and years it fits.</span></li>
+        <li><strong>Licensed & credited</strong><span>Commercial licenses only (CC BY, BY-SA, CC0).</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap split">
+      <a class="tile" href="/free-library/">
+        <span class="eyebrow">Free Library</span>
+        <h3>Workshop files, free forever</h3>
+        <p>Try our print settings before you spend a cent.</p>
+        <span class="go">Open the library →</span>
+      </a>
+      <a class="tile" href="/support/#request">
+        <span class="eyebrow">Can't find it?</span>
+        <h3>Request a part</h3>
+        <p>Send the car, years and a photo. Most-requested parts get modelled first.</p>
+        <span class="go">Send a request →</span>
+      </a>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .hero { position: relative; overflow: hidden; padding-block: clamp(40px, 7vw, 96px) clamp(48px, 7vw, 88px); }
+  .glow { position: absolute; inset: -20% -10% auto auto; width: 70vw; height: 70vw; max-width: 900px; max-height: 900px; background: radial-gradient(closest-side, rgba(255, 106, 43, .18), transparent); pointer-events: none; }
+  .hero-grid { position: relative; display: grid; gap: 40px; align-items: center; }
+  h1 { font-size: clamp(2.8rem, 7.4vw, 5.6rem); }
+  h1 span { display: block; color: var(--accent); }
+  .ctas { display: flex; flex-wrap: wrap; gap: 10px; margin: 26px 0 22px; }
+  .proof { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 10px 22px; font-size: .92rem; color: var(--ink-2); }
+  .proof li { display: inline-flex; align-items: center; gap: 8px; }
+  .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--ink-3); }
+  .pics { display: grid; grid-template-columns: 1.3fr 1fr; grid-template-rows: 1fr 1fr; gap: 12px; aspect-ratio: 1.15; }
+  .pic { border-radius: var(--radius); overflow: hidden; background: #1b1b1d; border: 1px solid var(--line); }
+  .pic img, .pic :global(.art) { width: 100%; height: 100%; object-fit: cover; border-radius: 0; aspect-ratio: auto; transition: transform .6s cubic-bezier(.2, .7, .2, 1); }
+  .pic:hover img { transform: scale(1.05); }
+  .p0 { grid-row: span 2; }
+  .p3 { display: none; }
+  @media (min-width: 960px) {
+    .hero-grid { grid-template-columns: 1.05fr 1fr; gap: 56px; }
+    .pics { grid-template-columns: 1.2fr 1fr 1fr; grid-template-rows: 1fr 1fr; aspect-ratio: 1.3; }
+    .p0 { grid-row: span 2; }
+    .p1 { grid-column: span 2; }
+    .p3 { display: block; }
+  }
+
+  .steps-band { border-block: 1px solid var(--line); background: var(--paper-2); }
+  .steps { display: grid; gap: 0; }
+  .step { display: flex; gap: 16px; padding: 22px 4px; border-bottom: 1px solid var(--line); }
+  .step:last-child { border: 0; }
+  .n { flex: none; display: grid; place-items: center; width: 34px; height: 34px; border-radius: 50%; border: 1px solid var(--rule); font: 700 .9rem/1 var(--body); color: var(--ink-2); }
+  .step strong { display: block; font-size: 1rem; margin-bottom: 2px; }
+  .step p { margin: 0; font-size: .9rem; color: var(--ink-3); }
+  .step.hl .n { background: var(--instant); border-color: var(--instant); color: #08130d; box-shadow: 0 0 18px rgba(94, 226, 160, .45); }
+  .step.hl strong { color: var(--instant); }
+  @media (min-width: 800px) {
+    .steps { grid-template-columns: repeat(3, 1fr); }
+    .step { border-bottom: 0; border-right: 1px solid var(--line); padding: 26px 28px; }
+    .step:first-child { padding-left: 0; }
+  }
+
+  .row { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: end; gap: 16px; margin-bottom: 26px; }
+  .row h2 { margin: 0; }
+
+  .cats-sec { background: linear-gradient(180deg, transparent, var(--paper-2) 30%, var(--paper-2) 70%, transparent); }
+  .cats { display: grid; gap: 12px; grid-template-columns: repeat(2, 1fr); margin-top: 8px; }
+  .cat { position: relative; display: block; aspect-ratio: 1; border-radius: var(--radius); overflow: hidden; border: 1px solid var(--line); background: #1b1b1d; text-decoration: none; }
+  .cat img, .cat :global(.art) { width: 100%; height: 100%; object-fit: cover; aspect-ratio: auto; border-radius: 0; transition: transform .5s; }
+  .cat:hover img { transform: scale(1.06); }
+  .cat::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 45%, rgba(0, 0, 0, .85)); }
+  .cat-t { position: absolute; left: 14px; right: 14px; bottom: 12px; z-index: 1; display: grid; gap: 2px; }
+  .cat-t strong { font: 700 1.25rem/1.05 var(--display); text-transform: uppercase; color: #fff; }
+  .cat-t small { color: var(--ink-2); font-size: .78rem; }
+  .cat:hover { color: inherit; border-color: rgba(255, 255, 255, .2); }
+  @media (min-width: 700px) { .cats { grid-template-columns: repeat(4, 1fr); } }
+  .carline { margin-top: 22px; }
+
+  .acc { display: grid; gap: 24px; padding: clamp(24px, 4vw, 48px); border-radius: calc(var(--radius) + 6px); text-decoration: none; background: radial-gradient(120% 140% at 0% 0%, rgba(255, 106, 43, .16), transparent 55%), var(--card); border: 1px solid var(--line); align-items: center; }
+  .acc:hover { color: inherit; border-color: rgba(255, 106, 43, .35); }
+  .acc h2 { font-size: clamp(2.2rem, 5vw, 3.4rem); }
+  .acc p { color: var(--ink-2); max-width: 46ch; }
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; margin: 6px 0 22px; }
+  .acc-art { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .acc-art :global(.art) { border-radius: 12px; }
+  @media (min-width: 860px) { .acc { grid-template-columns: 1.1fr 1fr; } }
+  .more { margin-top: 18px; }
+
+  .promise { background: var(--deep); border-block: 1px solid var(--line); }
+  .promise-grid { display: grid; gap: 32px; align-items: center; }
+  .facts { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+  .facts li { display: grid; gap: 2px; padding: 18px 20px; border-radius: var(--radius-sm); background: var(--card); border: 1px solid var(--line); }
+  .facts li:first-child { border-color: rgba(94, 226, 160, .3); background: rgba(94, 226, 160, .06); }
+  .facts span { color: var(--ink-3); font-size: .9rem; }
+  @media (min-width: 900px) { .promise-grid { grid-template-columns: 1.2fr 1fr; gap: 64px; } }
+
+  .split { display: grid; gap: 16px; }
+  .tile { display: grid; gap: 4px; padding: 28px; border-radius: var(--radius); background: var(--card); border: 1px solid var(--line); text-decoration: none; }
+  .tile:hover { color: inherit; border-color: rgba(255, 255, 255, .2); }
+  .tile h3 { font-size: 1.8rem; text-transform: uppercase; }
+  .tile p { color: var(--ink-2); }
+  .go { color: var(--accent-ink); font-weight: 600; font-size: .92rem; }
+  @media (min-width: 800px) { .split { grid-template-columns: 1fr 1fr; } }
+</style>

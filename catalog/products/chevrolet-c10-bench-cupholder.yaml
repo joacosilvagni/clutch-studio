@@ -43,7 +43,10 @@ sources:
     file_names: []
     image_urls: []
 files: []
-images: []
+images:
+  - src: /images/products/chevrolet-c10-bench-cupholder.webp
+    alt: "Bench Cupholder for Chevrolet C10 / C/K pickup, illustrative render"
+    kind: render
 review:
   state: pendiente de revisión manual
   flags: []

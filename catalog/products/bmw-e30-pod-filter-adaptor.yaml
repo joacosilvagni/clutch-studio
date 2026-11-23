@@ -48,7 +48,10 @@ sources:
     file_names: []
     image_urls: []
 files: []
-images: []
+images:
+  - src: /images/products/bmw-e30-pod-filter-adaptor.webp
+    alt: "Pod filter adaptor for BMW E30, illustrative render"
+    kind: render
 review:
   state: pendiente de revisión manual
   flags: []

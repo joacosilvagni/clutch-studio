@@ -44,7 +44,10 @@ sources:
     file_names: []
     image_urls: []
 files: []
-images: []
+images:
+  - src: /images/products/bmw-e30-interior-twist-clips-dash-console.webp
+    alt: "Interior Twist Clips dash/console for BMW E30, illustrative render"
+    kind: render
 review:
   state: pendiente de revisión manual
   flags: []

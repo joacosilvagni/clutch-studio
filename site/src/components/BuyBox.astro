@@ -1,0 +1,69 @@
+---
+// Price + purchase actions. Behaviour is bound by the checkout script (src/scripts/cart.ts) through
+// data attributes: [data-add-to-cart] adds the slug, [data-buy-now] adds it and opens /cart/.
+// Only slugs ever leave the browser; prices come from the server catalog.
+import InstantBadge from './InstantBadge.astro';
+import { priceLabel, type Product } from '../data/catalog';
+import { isBuyable, isDigital } from '../data/products';
+interface Props { product: Product }
+const { product: p } = Astro.props;
+const digital = isDigital(p);
+const buyable = isBuyable(p);
+---
+<div class="buybox" id="buy" data-buy-box data-slug={p.slug}>
+  <div class="price-row">
+    <span class="price">{priceLabel(p)}</span>
+    {p.priceUsd != null && p.priceUsd > 0 && <span class="cur">USD</span>}
+  </div>
+
+  {digital && (
+    <div class="instant-box">
+      <InstantBadge size="md" label="Instant download" />
+      <p>Your files appear on screen as soon as PayPal confirms payment, and we email you the links too.</p>
+    </div>
+  )}
+
+  {buyable ? (
+    <div class="actions">
+      <button type="button" class="btn btn--accent btn--lg btn--block" data-buy-now data-slug={p.slug}>Buy now</button>
+      <button type="button" class="btn btn--ghost btn--lg btn--block" data-add-to-cart data-slug={p.slug}>Add to cart</button>
+      <p class="msg" data-cart-msg role="status" aria-live="polite"></p>
+    </div>
+  ) : p.priceUsd === 0 ? (
+    <div class="actions"><button type="button" class="btn btn--ghost btn--lg btn--block" disabled>Free download coming soon</button></div>
+  ) : digital ? (
+    <div class="actions"><button type="button" class="btn btn--ghost btn--lg btn--block" disabled>Coming soon</button></div>
+  ) : (
+    <div class="actions"><a class="btn btn--ghost btn--lg btn--block" href="/support/#request">Notify me when it launches</a></div>
+  )}
+
+  <ul class="assure">
+    {digital ? (
+      <>
+        <li>Print-ready STL files, yours to reprint</li>
+        <li>Pay with PayPal or card, no account needed</li>
+        <li>Questions about fit? Email us before you buy</li>
+      </>
+    ) : (
+      <>
+        <li>Ships to your door; shipping shown at checkout</li>
+        <li>Pay with PayPal or card</li>
+      </>
+    )}
+  </ul>
+</div>
+
+<style>
+  .buybox { display: grid; gap: 16px; padding: 22px; border-radius: var(--radius); background: var(--card); border: 1px solid var(--line); }
+  .price-row { display: flex; align-items: baseline; gap: 8px; }
+  .price { font: 700 2.4rem/1 var(--body); letter-spacing: -.02em; }
+  .cur { color: var(--ink-3); font-size: .85rem; }
+  .instant-box { padding: 14px 16px; border-radius: var(--radius-sm); background: rgba(94, 226, 160, .07); border: 1px solid rgba(94, 226, 160, .25); }
+  .instant-box p { margin: 6px 0 0; font-size: .88rem; color: var(--ink-2); }
+  .actions { display: grid; gap: 10px; }
+  .msg { margin: 0; min-height: 1.2em; font-size: .88rem; color: var(--instant); }
+  .msg:empty { display: none; }
+  .assure { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; font-size: .88rem; color: var(--ink-2); }
+  .assure li { display: flex; gap: 10px; align-items: flex-start; }
+  .assure li::before { content: ''; flex: none; width: 16px; height: 16px; margin-top: 2px; border-radius: 50%; background: rgba(94, 226, 160, .15) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%235ee2a0' stroke-width='3'%3E%3Cpath d='m5 12 5 5 9-10'/%3E%3C/svg%3E") center / 10px no-repeat; }
+</style>

@@ -43,7 +43,10 @@ sources:
     file_names: []
     image_urls: []
 files: []
-images: []
+images:
+  - src: /images/products/bmw-e30-3-gauge-central-vent-panel.webp
+    alt: "3 gauge central vent panel for BMW E30, illustrative render"
+    kind: render
 review:
   state: pendiente de revisión manual
   flags: []

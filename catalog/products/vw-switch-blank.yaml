@@ -39,7 +39,10 @@ sources:
     file_names: []
     image_urls: []
 files: []
-images: []
+images:
+  - src: /images/products/vw-switch-blank.webp
+    alt: "Switch Blank, illustrative render"
+    kind: render
 review:
   state: pendiente de revisión manual
   flags:

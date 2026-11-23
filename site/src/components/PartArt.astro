@@ -1,0 +1,45 @@
+---
+// Blueprint-style placeholder until real renders/photos exist.
+import type { Glyph } from '../data/catalog';
+interface Props { glyph: Glyph; label?: string; size?: 'card' | 'hero' }
+const { glyph, label = '', size = 'card' } = Astro.props;
+const paths: Record<Glyph, string> = {
+  clip: '<rect x="44" y="30" width="32" height="12" rx="3"/><path d="M52 42v34l8 10 8-10V42"/><path d="M56 54h8M56 64h8"/>',
+  gauge: '<circle cx="60" cy="60" r="30"/><circle cx="60" cy="60" r="22"/><path d="M60 60l14-12"/><path d="M42 72h36" stroke-dasharray="3 4"/>',
+  cup: '<path d="M40 38h40l-5 50H45Z"/><ellipse cx="60" cy="38" rx="20" ry="5"/><path d="M44 54h32"/>',
+  knob: '<circle cx="60" cy="52" r="22"/><path d="M60 30v10"/><rect x="52" y="74" width="16" height="16" rx="2"/>',
+  lamp: '<rect x="30" y="40" width="60" height="40" rx="8"/><path d="M42 50l36 20M42 70l36-20" stroke-dasharray="4 4"/>',
+  engine: '<rect x="34" y="44" width="52" height="34" rx="4"/><path d="M44 44v-8h32v8M86 54h8v14h-8M34 58h-8"/>',
+  tool: '<path d="M36 84l30-30"/><circle cx="74" cy="46" r="12"/><path d="M70 42l8 8"/>',
+  seat: '<path d="M44 30h22a6 6 0 0 1 6 6v30H44Z"/><path d="M40 66h40v10H40ZM46 76v12M74 76v12"/>',
+  phone: '<rect x="46" y="28" width="28" height="52" rx="5"/><path d="M56 34h8"/><path d="M40 86h40M60 80v6"/>',
+  drop: '<path d="M60 28c10 16 20 26 20 38a20 20 0 0 1-40 0c0-12 10-22 20-38Z"/><path d="M50 68a10 10 0 0 0 10 10"/>',
+  shield: '<path d="M60 28l26 10v18c0 18-12 28-26 34-14-6-26-16-26-34V38Z"/><path d="M48 58l8 8 16-16"/>',
+  panel: '<rect x="30" y="36" width="60" height="48" rx="6"/><circle cx="46" cy="60" r="7"/><circle cx="74" cy="60" r="7"/>',
+};
+---
+<div class:list={['art', size]} aria-hidden="true">
+  <svg viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" set:html={paths[glyph]} />
+  {label && <span class="lbl">{label}</span>}
+</div>
+<style>
+  .art {
+    position: relative;
+    aspect-ratio: 4 / 3;
+    display: grid;
+    place-items: center;
+    color: #e9eef5;
+    background-color: var(--blueprint);
+    background-image:
+      linear-gradient(rgba(255,255,255,.08) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,.08) 1px, transparent 1px),
+      linear-gradient(rgba(255,255,255,.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px);
+    background-size: 40px 40px, 40px 40px, 8px 8px, 8px 8px;
+    border-radius: calc(var(--radius) - 4px);
+    overflow: hidden;
+  }
+  svg { width: 46%; height: auto; }
+  .hero svg { width: 40%; }
+  .lbl { position: absolute; left: 10px; bottom: 8px; font: 500 0.68rem/1 var(--mono); letter-spacing: .08em; opacity: .8; text-transform: uppercase; }
+</style>

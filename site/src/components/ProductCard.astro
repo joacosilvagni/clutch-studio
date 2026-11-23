@@ -1,0 +1,50 @@
+---
+import ProductMedia from './ProductMedia.astro';
+import InstantBadge from './InstantBadge.astro';
+import { type Product, getModel, productFitsLabel, priceLabel } from '../data/catalog';
+import { productUrl, fitSummaryKind, isDigital } from '../data/products';
+interface Props { product: Product; eager?: boolean }
+const { product: p, eager = false } = Astro.props;
+const fits = p.models.map((s) => getModel(s));
+const fk = fitSummaryKind(p);
+const fitLine =
+  fk === 'universal' ? 'Universal fit' :
+  fk === 'unconfirmed' ? 'Check fitment' :
+  fits.length > 2 ? `Fits ${fits.length} models` : `Fits ${fits.map((m) => productFitsLabel(p, m)).join(' · ')}`;
+const digital = isDigital(p);
+---
+<article class="card" data-product data-cat={p.category} data-dept={p.department} data-models={p.models.join(' ')} data-universal={fk === 'universal' ? '1' : '0'}>
+  <a href={productUrl(p)} class="link">
+    <div class="pic">
+      <ProductMedia product={p} eager={eager} />
+      <div class="flags">
+        {p.kind === 'pack' && <span class="tag tag--accent">Pack</span>}
+        {p.priceUsd === 0 && <span class="tag tag--green">Free</span>}
+        {p.status === 'draft' && <span class="tag draft">Draft</span>}
+      </div>
+    </div>
+    <div class="body">
+      <h3>{p.title}</h3>
+      <p class="fits">{fitLine}</p>
+      <div class="foot">
+        <span class="price">{priceLabel(p)}</span>
+        {digital ? <InstantBadge /> : <span class="ship">Ships to you</span>}
+      </div>
+    </div>
+  </a>
+</article>
+<style>
+  .card { height: 100%; }
+  .link { display: flex; flex-direction: column; height: 100%; text-decoration: none; color: inherit; padding: 10px; border-radius: var(--radius); background: var(--card); border: 1px solid var(--line); transition: border-color .2s, background .2s, transform .2s; }
+  .link:hover { color: inherit; border-color: rgba(255, 255, 255, .18); background: var(--card-2); transform: translateY(-3px); }
+  .pic { position: relative; }
+  .flags { position: absolute; top: 10px; left: 10px; display: flex; gap: 6px; }
+  .flags .tag { backdrop-filter: blur(6px); background: rgba(10, 10, 12, .55); }
+  .draft { color: var(--ink-3); }
+  .body { display: flex; flex-direction: column; flex: 1; padding: 14px 6px 4px; }
+  h3 { font: 600 1.02rem/1.3 var(--body); letter-spacing: 0; margin: 0 0 4px; text-transform: none; }
+  .fits { font-size: .84rem; color: var(--ink-3); margin: 0 0 14px; }
+  .foot { margin-top: auto; display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+  .price { font: 700 1.15rem/1 var(--body); }
+  .ship { font-size: .78rem; color: var(--ink-2); }
+</style>

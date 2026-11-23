@@ -1,0 +1,18 @@
+---
+import Base from '../layouts/Base.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import ProductCard from '../components/ProductCard.astro';
+import { freeProducts } from '../data/products';
+const items = await freeProducts();
+---
+<Base title="Free Library" description="Free 3D printable workshop tools, caps and jigs for classic cars. No account needed.">
+  <section class="section">
+    <div class="wrap">
+      <Breadcrumbs items={[['Home', '/'], ['Free Library']]} />
+      <p class="eyebrow">Free, forever</p>
+      <h1>Free Library</h1>
+      <p class="lede">Small tools and parts we think every owner should have. Same tech sheets as the paid files, so you can judge our work before you spend a cent.</p>
+      {items.length ? <div class="grid">{items.map((p) => <ProductCard product={p} />)}</div> : <p class="notice">The first free files are being tested. Check back soon.</p>}
+    </div>
+  </section>
+</Base>

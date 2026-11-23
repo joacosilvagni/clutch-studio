@@ -1,0 +1,22 @@
+---
+import { brand } from '../data/brand';
+interface Props { inverted?: boolean }
+const { inverted = false } = Astro.props;
+---
+<a href="/" class:list={['logo', { inverted }]} aria-label={`${brand.name} home`}>
+  <svg class="mark" viewBox="0 0 44 32" aria-hidden="true">
+    <path d="M2 4a3 3 0 0 1 3-3h26l11 11v8L31 31H5a3 3 0 0 1-3-3Z" fill="currentColor" />
+    <circle cx="35" cy="16" r="3.2" fill="var(--logo-bg)" />
+    <text x="17" y="22" text-anchor="middle" font-family="Barlow Condensed, Arial Narrow, sans-serif" font-weight="800" font-size="17" fill="var(--logo-bg)">{brand.initials}</text>
+  </svg>
+  <span class="word"><b>{brand.first}</b> {brand.rest}</span>
+</a>
+<style>
+  .logo { --logo-bg: var(--paper); display: inline-flex; align-items: center; gap: 10px; text-decoration: none; color: var(--ink); }
+  .logo.inverted { --logo-bg: var(--ink); color: var(--paper); }
+  .mark { width: 44px; height: 32px; }
+  .word { font: 600 1.5rem/1 var(--display); text-transform: uppercase; letter-spacing: 0.04em; }
+  .word b { font-weight: 800; }
+  .logo:hover { color: inherit; }
+  .logo:hover .mark { color: var(--accent); }
+</style>

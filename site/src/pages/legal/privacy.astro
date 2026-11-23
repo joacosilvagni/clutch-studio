@@ -1,0 +1,12 @@
+---
+import { brand } from '../../data/brand';
+import LegalPage from '../../components/LegalPage.astro';
+---
+<LegalPage title="Privacy policy" description={`How ${brand.name} handles your data.`}>
+  <h2>What we collect</h2>
+  <p>Email address and order details needed to deliver your download and answer support. Payment data is handled by PayPal; we never see your card.</p>
+  <h2>Cookies</h2>
+  <p>Only what is needed for the cart and checkout. No advertising trackers.</p>
+  <h2>Your rights (GDPR / UK GDPR)</h2>
+  <p>You can ask for a copy of your data or for its deletion at any time by email.</p>
+</LegalPage>

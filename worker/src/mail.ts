@@ -13,7 +13,10 @@ export async function sendDownloadEmail(
   fetchImpl: typeof fetch,
   args: { to: string; orderId: string; links: DownloadLink[]; expiresHours: number; maxDownloads: number; idempotencyKey: string },
 ): Promise<boolean> {
-  const { to, orderId, links, expiresHours, maxDownloads } = args;
+  const { orderId, links, expiresHours, maxDownloads } = args;
+  // Sandbox buyers have fake addresses and Resend's test sender only reaches the account owner,
+  // so sandbox mail can be redirected. Never in live mode.
+  const to = env.PAYPAL_ENV === 'sandbox' && env.MAIL_SANDBOX_TO ? env.MAIL_SANDBOX_TO : args.to;
   const items = links
     .map((l) => `<li><a href="${escapeHtml(l.url)}">${escapeHtml(l.title)} (${escapeHtml(l.file_name)})</a></li>`)
     .join('');

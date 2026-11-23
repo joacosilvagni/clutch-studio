@@ -1,0 +1,34 @@
+---
+// Product image, or a blueprint placeholder when the product has no image yet.
+import PartArt from './PartArt.astro';
+import { getCategory, type Product } from '../data/catalog';
+import { thumbSrc } from '../data/products';
+interface Props { product: Product; size?: 'card' | 'hero'; eager?: boolean }
+const { product: p, size = 'card', eager = false } = Astro.props;
+const img = p.images[0];
+const cat = getCategory(p.category);
+---
+{img ? (
+  <div class:list={['media', size]}>
+    <img
+      src={size === 'card' ? thumbSrc(img.src) : img.src}
+      srcset={size === 'hero' ? `${thumbSrc(img.src)} 600w, ${img.src} 1200w` : undefined}
+      sizes={size === 'hero' ? '(min-width: 900px) 600px, 100vw' : undefined}
+      alt={img.alt}
+      width={size === 'card' ? 600 : 1200}
+      height={size === 'card' ? 600 : 1200}
+      loading={eager ? 'eager' : 'lazy'}
+      decoding="async"
+    />
+  </div>
+) : (
+  <div class:list={['media', 'empty', size]}>
+    <PartArt glyph={cat.glyph} label={p.oem[0] ? `OEM ${p.oem[0]}` : cat.short} />
+  </div>
+)}
+<style>
+  .media { position: relative; aspect-ratio: 1; border-radius: calc(var(--radius) - 4px); overflow: hidden; background: #1b1b1d; }
+  .media img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s cubic-bezier(.2, .7, .2, 1); }
+  .media.empty :global(.art) { aspect-ratio: 1; height: 100%; border-radius: 0; }
+  :global(a:hover) > .media img, :global(a:hover) .media img { transform: scale(1.04); }
+</style>

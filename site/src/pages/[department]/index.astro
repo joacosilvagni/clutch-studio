@@ -1,0 +1,43 @@
+---
+import Base from '../../layouts/Base.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import CategoryTile from '../../components/CategoryTile.astro';
+import ProductBrowser from '../../components/ProductBrowser.astro';
+import { departments, categoriesFor, categoryUrl, type Department } from '../../data/catalog';
+import { productsForDepartment, showcaseOrder } from '../../data/products';
+
+export function getStaticPaths() {
+  return departments.map((d) => ({ params: { department: d.slug }, props: { dept: d } }));
+}
+const { dept } = Astro.props as { dept: Department };
+const items = (await productsForDepartment(dept.slug)).sort(showcaseOrder);
+const cats = categoriesFor(dept.slug);
+const isAcc = dept.slug === 'accessories';
+---
+<Base title={dept.name} description={`${dept.name} for classic and youngtimer cars. ${dept.pitch}`}>
+  <section class="section">
+    <div class="wrap">
+      <Breadcrumbs items={[['Home', '/'], [dept.name]]} />
+      <span class="eyebrow">{isAcc ? 'Shipped to your door' : 'Instant download after payment'}</span>
+      <h1>{dept.name}</h1>
+      <p class="lede">{dept.pitch}</p>
+
+      <div class="cats">
+        {cats.map((c) => <CategoryTile category={c} count={items.filter((p) => p.category === c.slug).length} image={items.find((p) => p.category === c.slug && p.images.length)?.images[0]} />)}
+      </div>
+
+      <h2 class="all">{isAcc ? 'All accessories' : 'All files'}</h2>
+      <ProductBrowser
+        items={items}
+        emptyText={isAcc
+          ? 'The first accessories are being picked and tested. Every product will say if it is universal or which cars it fits.'
+          : 'The first files are being tested and documented. Check back soon.'}
+      />
+    </div>
+  </section>
+</Base>
+<style>
+  .cats { display: grid; gap: 12px; grid-template-columns: repeat(2, 1fr); margin: 18px 0 48px; }
+  @media (min-width: 700px) { .cats { grid-template-columns: repeat(4, 1fr); } }
+  .all { margin-top: 8px; }
+</style>

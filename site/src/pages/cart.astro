@@ -1,0 +1,205 @@
+---
+import Base from '../layouts/Base.astro';
+import InstantBadge from '../components/InstantBadge.astro';
+import { shop } from '../data/shop';
+import { getProducts, isBuyable, productUrl, thumbSrc } from '../data/products';
+
+// Display data for every product that can be bought. Informational only: the Worker re-prices orders.
+const buyable = (await getProducts()).filter(isBuyable);
+const catalog = Object.fromEntries(
+  buyable.map((p) => [p.slug, { title: p.title, price: p.priceUsd!, url: productUrl(p), img: p.images[0] ? thumbSrc(p.images[0].src) : null }]),
+);
+---
+<Base title="Cart" description="Your cart. Digital files download instantly after payment." noindex>
+  <section class="section">
+    <div class="wrap cart" data-cart data-client-id={shop.paypalClientId} data-currency={shop.currency} data-catalog={JSON.stringify(catalog)}>
+      <h1>Cart</h1>
+
+      <div class="panel cart__empty" data-cart-empty hidden>
+        <p>Your cart is empty.</p>
+        <a class="btn btn--accent btn--lg" href="/3d-files/">Browse 3D files</a>
+      </div>
+
+      <div class="cart__grid" data-cart-full hidden>
+        <div class="panel cart__list">
+          <ul data-cart-items></ul>
+        </div>
+
+        <aside class="panel cart__pay">
+          <p class="cart__total"><span>Total</span> <strong data-cart-total></strong> <span class="cur">USD</span></p>
+          <div class="cart__instant">
+            <InstantBadge size="md" label="Instant download" />
+            <p>Your files appear on the next screen the moment PayPal confirms payment. We email you the links too. No account needed.</p>
+          </div>
+          {shop.sandbox && (
+            <p class="tag cart__sandbox">Sandbox preview · test payments only, no real money moves</p>
+          )}
+          <div data-paypal-buttons></div>
+          <p class="cart__status" data-cart-status role="status" aria-live="polite"></p>
+          <p class="cart__fine">
+            Secure payment by PayPal (balance or card). We never see your card details. Links work for
+            {shop.downloadHours} hours, {shop.downloadsPerFile} downloads per file.
+          </p>
+        </aside>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<script>
+  import { getCart, removeFromCart, clearCart } from '../scripts/cart';
+
+  type Info = { title: string; price: number; url: string; img: string | null };
+  const root = document.querySelector<HTMLElement>('[data-cart]')!;
+  const catalog: Record<string, Info> = JSON.parse(root.dataset.catalog || '{}');
+  const $ = <T extends HTMLElement>(s: string) => root.querySelector<T>(s)!;
+  const empty = $('[data-cart-empty]');
+  const full = $('[data-cart-full]');
+  const list = $<HTMLUListElement>('[data-cart-items]');
+  const total = $('[data-cart-total]');
+  const status = $('[data-cart-status]');
+  const payBox = $('[data-paypal-buttons]');
+  const money = (n: number) => `$${n.toFixed(2)}`;
+  let paypalLoaded = false;
+
+  const ERRORS: Record<string, string> = {
+    unknown_product: 'One of the items is no longer available. We removed it from your cart; please try again.',
+    rate_limited: 'Too many attempts. Please wait a minute and try again.',
+    payment_not_completed: 'PayPal did not complete the payment. You have not been charged.',
+    payment_mismatch: 'The payment did not match your order. Please contact support before trying again.',
+  };
+
+  function setStatus(msg: string, isError = false) {
+    status.textContent = msg;
+    status.classList.toggle('is-error', isError);
+  }
+
+  // Slugs that this build can't sell (unlisted or removed) are dropped silently.
+  function items() {
+    const slugs = getCart();
+    for (const s of slugs) if (!catalog[s]) removeFromCart(s);
+    return slugs.filter((s) => catalog[s]).map((slug) => ({ slug, ...catalog[slug] }));
+  }
+
+  function render() {
+    const its = items();
+    empty.hidden = its.length > 0;
+    full.hidden = its.length === 0;
+    list.replaceChildren(
+      ...its.map((i) => {
+        const li = document.createElement('li');
+        if (i.img) {
+          const img = document.createElement('img');
+          img.src = i.img;
+          img.alt = '';
+          img.width = 64;
+          img.height = 64;
+          li.append(img);
+        } else li.append(document.createElement('span'));
+        const info = document.createElement('div');
+        const a = document.createElement('a');
+        a.href = i.url;
+        a.textContent = i.title;
+        const tag = document.createElement('span');
+        tag.className = 'tag tag--instant';
+        tag.textContent = 'Instant download';
+        info.append(a, tag);
+        const price = document.createElement('span');
+        price.className = 'cart__price';
+        price.textContent = money(i.price);
+        const rm = document.createElement('button');
+        rm.type = 'button';
+        rm.className = 'cart__rm';
+        rm.textContent = 'Remove';
+        rm.addEventListener('click', () => removeFromCart(i.slug));
+        li.append(info, price, rm);
+        return li;
+      }),
+    );
+    total.textContent = money(Math.round(its.reduce((s, i) => s + i.price, 0) * 100) / 100);
+    if (its.length && !paypalLoaded) loadPayPal();
+  }
+
+  async function api(path: string, body: unknown) {
+    const res = await fetch(path, { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify(body) });
+    const data = await res.json().catch(() => ({}));
+    if (!res.ok) throw Object.assign(new Error(data?.error ?? `http_${res.status}`), { code: data?.error, detail: data?.message });
+    return data;
+  }
+
+  function loadPayPal() {
+    paypalLoaded = true;
+    const s = document.createElement('script');
+    const q = new URLSearchParams({ 'client-id': root.dataset.clientId!, currency: root.dataset.currency!, intent: 'capture', components: 'buttons' });
+    s.src = `https://www.paypal.com/sdk/js?${q}`;
+    s.onload = renderButtons;
+    s.onerror = () => setStatus('Could not load PayPal. Check your connection or allow paypal.com on this page.', true);
+    document.head.append(s);
+  }
+
+  function renderButtons() {
+    (window as any).paypal
+      .Buttons({
+        style: { layout: 'vertical', shape: 'rect', label: 'pay', height: 48 },
+        createOrder: async () => {
+          setStatus('');
+          try {
+            const { id } = await api('/api/orders', { items: items().map((i) => ({ slug: i.slug })) });
+            return id;
+          } catch (e: any) {
+            if (e.code === 'unknown_product' && e.detail) {
+              const slug = String(e.detail).split(': ').pop();
+              if (slug) removeFromCart(slug);
+            }
+            setStatus(ERRORS[e.code] ?? 'Could not start the payment. Please try again.', true);
+            throw e;
+          }
+        },
+        onApprove: async (data: { orderID: string }) => {
+          setStatus('Payment approved. Preparing your downloads…');
+          try {
+            const result = await api('/api/capture', { orderID: data.orderID });
+            sessionStorage.setItem('cs.lastOrder', JSON.stringify({ ...result, at: Date.now() }));
+            clearCart();
+            location.assign('/order/');
+          } catch (e: any) {
+            setStatus(ERRORS[e.code] ?? 'We could not confirm the payment. If you were charged, your links will arrive by email; otherwise contact support.', true);
+          }
+        },
+        onCancel: () => setStatus('Payment cancelled. Your cart is still here.'),
+        onError: () => setStatus('PayPal reported an error. You have not been charged. Please try again.', true),
+      })
+      .render(payBox);
+  }
+
+  window.addEventListener('cart:change', render);
+  render();
+</script>
+
+<style>
+  .cart h1 { margin-bottom: 24px; }
+  .cart__empty { padding: 32px; display: grid; gap: 16px; justify-items: start; }
+  .cart__grid { display: grid; gap: 24px; grid-template-columns: minmax(0, 1fr) minmax(300px, 380px); align-items: start; }
+  @media (max-width: 860px) { .cart__grid { grid-template-columns: 1fr; } }
+  .cart__list { padding: 8px 20px; }
+  .cart__list ul { list-style: none; margin: 0; padding: 0; }
+  .cart__list :global(li) { display: grid; grid-template-columns: 64px 1fr auto auto; gap: 16px; align-items: center; padding: 16px 0; border-bottom: 1px solid var(--line); }
+  .cart__list :global(li:last-child) { border-bottom: 0; }
+  .cart__list :global(img) { border-radius: var(--radius-sm); object-fit: cover; background: var(--deep); }
+  .cart__list :global(li > div) { display: grid; gap: 6px; justify-items: start; }
+  .cart__list :global(li a) { color: var(--ink); font-weight: 600; text-decoration: none; }
+  .cart__list :global(.cart__price) { font-weight: 700; }
+  .cart__list :global(.cart__rm) { background: none; border: 0; color: var(--ink-3); cursor: pointer; font: inherit; font-size: .85rem; text-decoration: underline; }
+  .cart__pay { padding: 22px; display: grid; gap: 16px; position: sticky; top: 24px; }
+  .cart__total { display: flex; align-items: baseline; gap: 10px; margin: 0; font-size: 1.05rem; }
+  .cart__total strong { font-size: 2rem; letter-spacing: -.02em; }
+  .cur { color: var(--ink-3); font-size: .85rem; }
+  .cart__instant { padding: 14px 16px; border-radius: var(--radius-sm); background: rgba(94, 226, 160, .07); border: 1px solid rgba(94, 226, 160, .25); }
+  .cart__instant p { margin: 6px 0 0; font-size: .88rem; color: var(--ink-2); }
+  .cart__sandbox { margin: 0; justify-self: start; }
+  .cart__status { margin: 0; min-height: 1.2em; font-size: .9rem; color: var(--instant); }
+  .cart__status:empty { display: none; }
+  .cart__status.is-error { color: var(--accent); }
+  .cart__fine { margin: 0; font-size: .8rem; color: var(--ink-3); }
+  [hidden] { display: none !important; }
+</style>

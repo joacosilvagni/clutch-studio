@@ -1,0 +1,25 @@
+---
+import Base from '../../layouts/Base.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import ProductBrowser from '../../components/ProductBrowser.astro';
+import { categories, getDepartment, type Category } from '../../data/catalog';
+import { productsForCategory } from '../../data/products';
+
+export function getStaticPaths() {
+  return categories.map((c) => ({ params: { department: c.department, category: c.slug }, props: { category: c } }));
+}
+const { category: c } = Astro.props as { category: Category };
+const dept = getDepartment(c.department);
+const items = await productsForCategory(c.slug);
+---
+<Base title={`${c.name} | ${dept.name}`} description={`${c.name} for classic and youngtimer cars. ${c.blurb}`}>
+  <section class="section">
+    <div class="wrap">
+      <Breadcrumbs items={[['Home', '/'], [dept.name, `/${dept.slug}/`], [c.name]]} />
+      <p class="eyebrow">{dept.name}</p>
+      <h1>{c.name}</h1>
+      <p class="lede">{c.blurb}</p>
+      <ProductBrowser items={items} showCategoryFilter={false} emptyText="Coming soon. Want something specific here? Request it from the support page." />
+    </div>
+  </section>
+</Base>

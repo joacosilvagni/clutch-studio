@@ -4,9 +4,12 @@ import { priceToCents } from './schema.mjs';
  * Minimal, sellable view of the catalog for the Worker. A pack resolves to the files of
  * its members; the buyer gets one download link per file.
  */
-export function buildWorkerCatalog(products) {
+export function buildWorkerCatalog(products, { includeTest = false } = {}) {
   // Free Library items are never sold, so the Worker does not know them.
-  const approved = products.filter((p) => p.status === 'approved' && p.kind !== 'physical' && p.free !== true);
+  // Sandbox-only test products (test: true) are included only when includeTest is set.
+  const sellable = (p) =>
+    (p.status === 'approved' || (includeTest && p.test === true)) && p.kind !== 'physical' && p.free !== true;
+  const approved = products.filter(sellable);
   const bySlug = new Map(approved.map((p) => [p.slug, p]));
   const out = {};
   for (const p of approved) {
