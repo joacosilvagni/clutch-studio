@@ -39,7 +39,7 @@ supplier:
       method: CJPacket Ordinary I
   quoted_at: '2026-11-23'
 review:
-  state: pendiente de aprobación de Joaquín
+  state: aprobado por Joaquín en el chat (2026-11-23); falta completar lo de las notas para pasar a approved
   flags: []
   notes:
   - 'Demanda: Joaquín mandó el KW330 de AliExpress (4,7★, 822 valoraciones, 4.000+ vendidos). En CJ está el KW310 de la misma
