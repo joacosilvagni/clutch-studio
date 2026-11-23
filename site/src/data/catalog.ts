@@ -49,6 +49,7 @@ export type Product = {
   sources: { url: string; author: string | null; authorUrl: string | null; license: string; licenseLabel: string; verified: boolean }[];
   status: 'draft' | 'approved';
   reviewFlags: string[];
+  images: { src: string; alt: string; kind: 'photo' | 'render' }[];
 };
 
 export const makes: Make[] = [

@@ -48,6 +48,7 @@ export async function getProducts(): Promise<Product[]> {
       })),
       status: d.status,
       reviewFlags: d.review?.flags ?? [],
+      images: d.images.map((i) => ({ src: i.src, alt: i.alt ?? d.title, kind: i.kind ?? 'photo' })),
     }))
     .map((p) => ({ ...p, department: getCategory(p.category).department }))
     .filter((p) => p.status === 'approved' || SHOW_DRAFTS)
@@ -66,3 +67,13 @@ export const findProduct = async (slug: string) => (await getProducts()).find((p
 // Short fitment line for cards and product pages.
 export const fitSummaryKind = (p: Product): 'specific' | 'universal' | 'unconfirmed' =>
   p.models.length ? 'specific' : p.kind === 'physical' ? 'universal' : 'unconfirmed';
+
+// Small variant generated next to each product image (<name>-sm.webp).
+export const thumbSrc = (src: string) => (src.startsWith('/images/products/') ? src.replace(/\.webp$/, '-sm.webp') : src);
+export const hasImage = (p: Product) => p.images.length > 0;
+// Digital products can be bought now; physical ones wait for the dropshipping phase.
+export const isDigital = (p: Product) => p.department === '3d-files';
+export const isBuyable = (p: Product) => isDigital(p) && p.priceUsd != null && p.priceUsd > 0;
+/** Products with images first, then priced, then the rest. */
+export const showcaseOrder = (a: Product, b: Product) =>
+  Number(hasImage(b)) - Number(hasImage(a)) || Number(b.priceUsd != null) - Number(a.priceUsd != null) || a.title.localeCompare(b.title);

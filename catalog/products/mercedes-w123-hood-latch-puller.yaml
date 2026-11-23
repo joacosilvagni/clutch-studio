@@ -43,7 +43,10 @@ sources:
     file_names: []
     image_urls: []
 files: []
-images: []
+images:
+  - src: /images/products/mercedes-w123-hood-latch-puller.webp
+    alt: "Hood latch puller for Mercedes-Benz W123, illustrative render"
+    kind: render
 review:
   state: pendiente de revisión manual
   flags: []

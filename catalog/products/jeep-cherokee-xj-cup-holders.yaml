@@ -43,7 +43,10 @@ sources:
     file_names: []
     image_urls: []
 files: []
-images: []
+images:
+  - src: /images/products/jeep-cherokee-xj-cup-holders.webp
+    alt: "Cup Holders for Jeep Cherokee XJ, illustrative render"
+    kind: render
 review:
   state: pendiente de revisión manual
   flags: []
