@@ -38,3 +38,8 @@ Formato: fecha · decisión · por qué. Las más nuevas arriba. No re-discutir 
 - Destinos de físicos: EE.UU., UE y Australia. Reino Unido excluido al lanzar (registro de VAT desde la primera venta ≤ £135).
 - Precio con envío incluido; margen calculado contra el envío más caro de los 3 destinos más la comisión de PayPal.
 - El costo y el envío del proveedor viven en `supplier` del YAML y nunca se muestran en el sitio.
+- Piso de ganancia: cada producto físico debe dejar al menos USD 10 netos por pedido (después del envío más caro y PayPal).
+  Se subieron precios de los que no llegaban (decisión de Joaquín, 23/11).
+- Pósters de autos reales: impresión bajo demanda en Printful con fotos de Wikimedia Commons bajo CC0, CC BY o CC BY-SA
+  (Unsplash y Pexels prohíben vender copias sin cambios). La foto se acredita en el campo `artwork` y en la página del
+  producto, con aviso de que no es oficial. Antes de imprimir se borran patentes y se retocan emblemas visibles.

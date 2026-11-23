@@ -142,6 +142,14 @@ describe('schema', () => {
     const uk = { ...supplier, shipping: { ...supplier.shipping, UK: { cost_usd: '7.00', days: '6-10' } } };
     expect(validateProduct(approvedProduct({ ...physical, supplier: uk }), { allowedLicenses: ALLOWED }).join()).toMatch(/UK: destino no habilitado/);
     expect(validateProduct({ ...physical, status: 'draft', kind: 'file' }, { allowedLicenses: ALLOWED })).toContain('supplier solo aplica a kind: physical');
+    // Posters: the printed photo needs a Commons source, an allowed license, an author and a verified license to approve.
+    const artwork = { source_url: 'https://commons.wikimedia.org/wiki/File:Car.jpg', author: 'Someone', license: 'CC-BY-SA', verified_at: '2026-11-23' };
+    const poster = { ...physical, supplier: { ...supplier, platform: 'printful', product_url: 'https://www.printful.com/x' }, artwork };
+    expect(validateProduct(approvedProduct(poster), { allowedLicenses: ALLOWED })).toEqual([]);
+    expect(validateProduct(approvedProduct({ ...poster, artwork: { ...artwork, verified_at: null } }), { allowedLicenses: ALLOWED }).join()).toMatch(/artwork sin verified_at/);
+    expect(validateProduct(approvedProduct({ ...poster, artwork: { ...artwork, license: 'CC-BY-NC' } }), { allowedLicenses: ALLOWED }).join()).toMatch(/artwork.license/);
+    expect(validateProduct(approvedProduct({ ...poster, artwork: { ...artwork, source_url: 'https://example.com/a.jpg' } }), { allowedLicenses: ALLOWED }).join()).toMatch(/artwork.source_url/);
+    expect(validateProduct(approvedProduct({ ...poster, artwork: { ...artwork, author: '' } }), { allowedLicenses: ALLOWED }).join()).toMatch(/artwork sin author/);
     expect(errs({ fits: [] }).join()).toMatch(/sin fits/);
   });
   it('checks packs and duplicate slugs across the catalog', () => {

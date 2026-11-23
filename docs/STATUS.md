@@ -24,6 +24,14 @@ Leelo antes de empezar y actualizalo al terminar (ver `AGENTS.md`).
 
 ## Log de sesiones (lo más nuevo arriba)
 
+### 2026-11-23 · Claude (dropshipping) — Pósters de autos reales y piso de ganancia
+- Hecho: 7 pósters de autos reales en borrador (Printful, fotos de Wikimedia Commons con licencia libre, USD 39,95,
+  unos USD 17-18 de ganancia neta). Campo `artwork` en el schema (fuente, autor, licencia; `verified_at` obligatorio para
+  aprobar), crédito de la foto en la página del producto y en atribuciones, `printful` como proveedor. Subidos los precios
+  de 5 accesorios para que dejen al menos USD 10 netos.
+- Pendiente: cuenta de Printful, plazos reales de envío, retocar emblemas y patentes, descargar imágenes a `site/public`,
+  aprobación de Joaquín.
+
 ### 2026-11-23 · Claude (dropshipping) — 10 accesorios físicos de CJ
 - Hecho (rama `claude/project-thread-w0cows`): 10 productos `kind: physical` en `draft` (luces LED, tecnología, interior,
   detailing y un cartel de chapa), elegidos por demanda (ventas y puntaje en AliExpress, tiendas que lo listan y pedidos en CJ)

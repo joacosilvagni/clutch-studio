@@ -50,7 +50,9 @@ export const R2_KEY_RE = /^products\/[a-z0-9-]+\/[A-Za-z0-9._-]+$/;
 export const MIN_PRICE_CENTS = 100;
 // Physical products ship to these destinations only (UK excluded at launch: VAT registration from the first sale).
 export const SHIP_TO = ['US', 'EU', 'AU'];
-export const SUPPLIERS = ['cj'];
+export const SUPPLIERS = ['cj', 'printful'];
+// Photos printed on physical products (posters) come from Wikimedia Commons with a free license.
+const ARTWORK_URL_RE = /^https:\/\/commons\.wikimedia\.org\/wiki\/File:.+/;
 const COST_RE = /^\d{1,4}\.\d{2}$/;
 
 const isObj = (v) => v !== null && typeof v === 'object' && !Array.isArray(v);
@@ -144,6 +146,19 @@ export function validateProduct(p, { allowedLicenses, fileSlug } = {}) {
     }
   }
 
+  // artwork: the photo printed on a physical product (poster). Credit is shown on the site.
+  if (p.artwork != null) {
+    const a = p.artwork;
+    if (p.kind !== 'physical') e.push('artwork solo aplica a kind: physical');
+    if (!isObj(a)) e.push('artwork inválido');
+    else {
+      if (!nonEmpty(a.source_url) || !ARTWORK_URL_RE.test(a.source_url)) e.push('artwork.source_url debe ser https://commons.wikimedia.org/wiki/File:...');
+      if (!allowedLicenses?.includes(a.license)) e.push(`artwork.license ${a.license} no permitida`);
+      if (!nonEmpty(a.author)) e.push('artwork sin author (atribución obligatoria)');
+      if (a.verified_at != null && !DATE_RE.test(String(a.verified_at))) e.push('artwork.verified_at debe ser YYYY-MM-DD');
+    }
+  }
+
   if (p.status === 'preview') {
     if (!nonEmpty(p.title)) e.push('preview sin title');
     if (!p.category) e.push('preview sin category');
@@ -178,6 +193,7 @@ export function validateProduct(p, { allowedLicenses, fileSlug } = {}) {
             e.push(`físico aprobado sin envío verificado a ${dest} (cost_usd y days)`);
       }
       if (!Array.isArray(p.images) || p.images.length === 0) e.push('físico aprobado sin images');
+      if (isObj(p.artwork) && !p.artwork.verified_at) e.push('artwork sin verified_at: verificar la licencia de la foto antes de aprobar');
     }
     if (p.kind === 'pack' && (!Array.isArray(p.includes) || p.includes.length < 2)) e.push('un pack aprobado necesita al menos 2 includes');
     for (const [i, s] of (p.sources ?? []).entries()) {

@@ -47,6 +47,8 @@ export type Product = {
   includes: string[];
   install: string[];
   sources: { url: string; author: string | null; authorUrl: string | null; license: string; licenseLabel: string; verified: boolean }[];
+  // Photo printed on a physical product (posters), credited on the product page.
+  artwork: { url: string; title: string | null; author: string; authorUrl: string | null; license: string; licenseLabel: string } | null;
   status: 'draft' | 'preview' | 'approved'; // preview = listed with cover and 3D view, not for sale yet
   test: boolean; // sandbox-only checkout test product
   free: boolean; // Free Library
