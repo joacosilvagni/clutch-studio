@@ -30,3 +30,11 @@ Formato: fecha · decisión · por qué. Las más nuevas arriba. No re-discutir 
   El Worker solo conoce productos aprobados (compilados a `worker/src/generated/catalog.json`).
 - **2026-11-22 · Licencias aceptadas: CC BY, CC BY-SA, CC0.** NC y ND excluidas. BY-SA obliga a publicar
   el archivo adaptado bajo BY-SA.
+
+## 2026-11-23 — Dropshipping
+- Proveedor: CJ Dropshipping (API documentada para pedidos, envíos y tracking; IOSS propio para la UE). AliExpress se usa
+  para medir demanda.
+- Sin saldo prefondeado en CJ: cada pedido se paga con tarjeta recién cuando entra la venta (decisión de Joaquín).
+- Destinos de físicos: EE.UU., UE y Australia. Reino Unido excluido al lanzar (registro de VAT desde la primera venta ≤ £135).
+- Precio con envío incluido; margen calculado contra el envío más caro de los 3 destinos más la comisión de PayPal.
+- El costo y el envío del proveedor viven en `supplier` del YAML y nunca se muestran en el sitio.

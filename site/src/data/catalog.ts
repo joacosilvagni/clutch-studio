@@ -100,6 +100,7 @@ export const categories: Category[] = [
   { slug: 'detailing-care', department: 'accessories', name: 'Detailing & care', short: 'Detailing', glyph: 'drop', blurb: 'Brushes, towels and covers to keep the paint original.' },
   { slug: 'garage-tools', department: 'accessories', name: 'Garage & tools', short: 'Garage', glyph: 'tool', blurb: 'Trim tools, organizers and small workshop kit.' },
   { slug: 'exterior-protection', department: 'accessories', name: 'Exterior & protection', short: 'Exterior', glyph: 'shield', blurb: 'Car covers, guards and road-trip gear.' },
+  { slug: 'wall-art-decor', department: 'accessories', name: 'Wall art & garage decor', short: 'Decor', glyph: 'panel', blurb: 'Posters, signs and prints for the garage or the den.' },
   // 3D print files
   { slug: 'clips-fasteners', department: '3d-files', name: 'Clips & fasteners', short: 'Clips', glyph: 'clip', blurb: 'Trim clips, grommets and screws.' },
   { slug: 'interior-trim', department: '3d-files', name: 'Interior trim & panels', short: 'Trim', glyph: 'panel', blurb: 'Panels, covers and blanks.' },

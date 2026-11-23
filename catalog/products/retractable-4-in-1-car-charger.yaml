@@ -1,0 +1,58 @@
+slug: retractable-4-in-1-car-charger
+status: draft
+kind: physical
+title: 4-in-1 Retractable Car Charger
+summary: Socket charger with two pull-out cables and two USB ports, so four phones charge at once.
+description: Plugs into the 12 V socket and gives you two retractable cables plus two spare USB ports. The cables pull out
+  to the length you need and wind back in, so there is no tangle in the console. Handy in older cars that have one cigarette-lighter
+  socket and nothing else.
+category: phone-tech
+part_type: null
+fits: []
+price_usd: '27.95'
+oem_part_numbers: []
+install_notes: null
+sources: []
+files: []
+images:
+- src: https://oss-cf.cjdropshipping.com/product/2026/05/26/03/33a4a277-8a50-45ef-86ab-c549d44a4749.jpg
+  alt: 4-in-1 Retractable Car Charger
+  kind: photo
+- src: https://oss-cf.cjdropshipping.com/product/2026/01/23/02/27c31141-730e-4a10-9f21-b7a8fed13e0a_trans.jpeg
+  alt: 4-in-1 Retractable Car Charger
+  kind: photo
+- src: https://oss-cf.cjdropshipping.com/product/2026/01/23/02/5f48e931-7a66-4dc0-97ff-11b1b5ee3a9c_trans.jpeg
+  alt: 4-in-1 Retractable Car Charger
+  kind: photo
+supplier:
+  platform: cj
+  product_url: https://cjdropshipping.com/product/-p-2601230246311621700.html
+  pid: '2601230246311621700'
+  variant: Aluminum USB-C + Lightning
+  cost_usd: '3.19'
+  weight_g: 175
+  shipping:
+    US:
+      cost_usd: '6.69'
+      days: 7-13
+      method: CJPacket SP Sensitive
+    EU:
+      cost_usd: '8.34'
+      days: 12-20
+      method: CJPacket Euro Sensitive (duties included)
+    AU:
+      cost_usd: '7.27'
+      days: 5-14
+      method: CJPacket Liquid Line
+  quoted_at: '2026-11-23'
+review:
+  state: pendiente de aprobación de Joaquín
+  flags: []
+  notes:
+  - 'Demanda: Amazon (vía ProductLair): cargadores retráctiles 6K+ ventas/mes, 4,8★. CJ: 1.014 tiendas, 189 pedidos.'
+  - 'Imágenes enlazadas al CDN de CJ: descargarlas a site/public antes de aprobar.'
+  - Precio con envío incluido. Margen calculado contra el envío más caro de los 3 destinos y comisión PayPal 5,4% + USD 0,30.
+  - 'No usar la palabra "Apple" en el sitio: decir "Lightning" o "iPhone-compatible" solo si se verifica.'
+  - 'Electrónico: confirmar certificación CE/FCC con CJ antes de aprobar.'
+created_at: '2026-11-23'
+updated_at: '2026-11-23'

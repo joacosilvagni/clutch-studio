@@ -40,9 +40,11 @@ Marcá `[x]` al terminar y poné tu agente entre paréntesis si la tomaste. Recl
 - [ ] Registro de grupos (lista de Joaquín) y de dónde/cuándo se publicó
 
 ## Fase 4 — Dropshipping
-- [ ] Investigar proveedores con API (CJ Dropshipping, AliExpress vía DSers): envíos a EE.UU./UE, calidad, integración con PayPal
+- [x] Investigar proveedores con API: elegido CJ Dropshipping (plan del 2026-11-23)
+- [x] Primeros 10 accesorios en draft con costo y envío cotizado (US/EU/AU)
+- [ ] Aprobar productos, bajar imágenes a site/public, re-cotizar multipacks, elegir líneas con tracking
 - [ ] Productos `kind: physical` sin logos, margen configurable, envío automático del pedido
-- [ ] Schema: categorías de accesorios y `fits: []` = universal para físicos (el sitio ya las soporta)
+- [x] Schema: categorías de accesorios, `fits: []` = universal, `supplier` y `wall-art-decor`
 
 ## Antes de producción
 - [ ] Cuenta bancaria de EE.UU. a nombre del titular de PayPal
