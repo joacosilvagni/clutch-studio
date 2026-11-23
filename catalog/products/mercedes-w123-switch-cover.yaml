@@ -1,5 +1,5 @@
 slug: mercedes-w123-switch-cover
-status: draft
+status: preview
 kind: file
 title: Switch cover for Mercedes-Benz W123
 summary: null
@@ -34,8 +34,8 @@ sources:
     thing_id: 3242739
     thing_url: https://www.thingiverse.com/thing:3242739
     title_original: Switch cover
-    author: null
-    author_url: null
+    author: "sparus"
+    author_url: "https://www.thingiverse.com/sparus"
     license: CC-BY
     license_raw: CC BY
     verified_at: null
@@ -43,7 +43,10 @@ sources:
     file_names: []
     image_urls: []
 files: []
-images: []
+images:
+  - src: /media/portadas/3242739.webp
+    alt: "Switch cover for Mercedes-Benz W123, illustrative render of a possible matte black print"
+    kind: render
 review:
   state: pendiente de revisión manual
   flags: []
@@ -51,4 +54,4 @@ review:
     - Escribir title, summary y description originales en inglés (no copiar al autor).
     - Verificar licencia, autor y archivos con la API (import-seed con THINGIVERSE_TOKEN).
 created_at: 2026-11-22
-updated_at: 2026-11-22
+updated_at: 2026-11-23

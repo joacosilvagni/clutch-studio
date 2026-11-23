@@ -1,5 +1,5 @@
 slug: bmw-e30-gauge-vent-small
-status: draft
+status: preview
 kind: file
 title: Gauge Vent small for BMW E30
 summary: null
@@ -34,8 +34,8 @@ sources:
     thing_id: 3808304
     thing_url: https://www.thingiverse.com/thing:3808304
     title_original: Gauge Vent small
-    author: null
-    author_url: null
+    author: "J0Mueller"
+    author_url: "https://www.thingiverse.com/J0Mueller"
     license: CC-BY
     license_raw: CC BY
     verified_at: null
@@ -43,7 +43,10 @@ sources:
     file_names: []
     image_urls: []
 files: []
-images: []
+images:
+  - src: /media/portadas/3808304.webp
+    alt: "Gauge Vent small for BMW E30, illustrative render of a possible matte black print"
+    kind: render
 review:
   state: pendiente de revisión manual
   flags: []
@@ -51,4 +54,4 @@ review:
     - Escribir title, summary y description originales en inglés (no copiar al autor).
     - Verificar licencia, autor y archivos con la API (import-seed con THINGIVERSE_TOKEN).
 created_at: 2026-11-22
-updated_at: 2026-11-22
+updated_at: 2026-11-23

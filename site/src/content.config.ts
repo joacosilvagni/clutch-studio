@@ -11,7 +11,7 @@ const products = defineCollection({
   loader: glob({ pattern: '*.yaml', base: '../catalog/products' }),
   schema: z.object({
     slug: z.string(),
-    status: z.enum(['draft', 'approved']),
+    status: z.enum(['draft', 'preview', 'approved']),
     test: z.boolean().default(false),
     free: z.boolean().default(false),
     kind: z.enum(['file', 'pack', 'physical']),
@@ -37,6 +37,7 @@ const products = defineCollection({
       .array(
         z.object({
           thing_url: z.string(),
+          thing_id: z.coerce.string().nullish(),
           title_original: str,
           author: str,
           author_url: str,

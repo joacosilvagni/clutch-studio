@@ -5,7 +5,8 @@
  * Drafts may be incomplete. `status: approved` products must pass every check, because
  * approved products are the only ones the site lists and the Worker sells.
  */
-export const STATUSES = ['draft', 'approved'];
+// preview: listed on the site with its cover and 3D view, but never sold (no price/files needed).
+export const STATUSES = ['draft', 'preview', 'approved'];
 export const KINDS = ['file', 'pack', 'physical'];
 export const CATEGORIES = [
   'clips-fasteners',
@@ -88,7 +89,7 @@ export function validateProduct(p, { allowedLicenses, fileSlug } = {}) {
   // test: true = sandbox-only product to exercise checkout end to end. Never approved, never listed in production.
   if (p.test != null && typeof p.test !== 'boolean') e.push('test debe ser true o false');
   if (p.test === true) {
-    if (approved) e.push('un producto test: true no puede estar aprobado');
+    if (p.status !== 'draft') e.push('un producto test: true no puede estar aprobado ni en vitrina (solo draft)');
     if (p.kind !== 'file') e.push('test: true solo aplica a kind: file');
     const tc = priceToCents(p.price_usd);
     if (tc == null || tc < MIN_PRICE_CENTS) e.push(`test: true requiere price_usd >= ${(MIN_PRICE_CENTS / 100).toFixed(2)}`);
@@ -114,6 +115,16 @@ export function validateProduct(p, { allowedLicenses, fileSlug } = {}) {
       p.files.forEach((f, i) => {
         if (!isObj(f) || !R2_KEY_RE.test(String(f.r2_key ?? ''))) e.push(`files[${i}].r2_key inválido (products/<slug>/<archivo>)`);
       });
+  }
+
+  if (p.status === 'preview') {
+    if (!nonEmpty(p.title)) e.push('preview sin title');
+    if (!p.category) e.push('preview sin category');
+    if (!Array.isArray(p.sources) || p.sources.length === 0) e.push('preview sin sources (atribución)');
+    for (const [i, s] of (p.sources ?? []).entries()) {
+      if (!allowedLicenses?.includes(s.license)) e.push(`sources[${i}] licencia ${s.license} no permitida`);
+      if (!nonEmpty(s.author)) e.push(`sources[${i}] sin author (atribución obligatoria)`);
+    }
   }
 
   if (approved) {

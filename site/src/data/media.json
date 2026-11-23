@@ -1,0 +1,1578 @@
+{
+ "4727137": {
+  "cover": {
+   "src": "/media/portadas/4727137.webp",
+   "width": 1254,
+   "height": 1254
+  },
+  "models": [
+   {
+    "src": "/media/modelos/4727137-01.glb",
+    "label": "3_gauge_central_vent.stl",
+    "name": "3 gauge central vent",
+    "bytes": 1657384,
+    "optimized": false
+   }
+  ],
+  "defaultModel": 0,
+  "coverModel": 0
+ },
+ "5164994": {
+  "cover": {
+   "src": "/media/portadas/5164994.webp",
+   "width": 1254,
+   "height": 1254
+  },
+  "models": [
+   {
+    "src": "/media/modelos/5164994-01.glb",
+    "label": "Ash_Tray_Cup_Holder_v5.stl",
+    "name": "Ash Tray Cup Holder v5",
+    "bytes": 586644,
+    "optimized": false
+   }
+  ],
+  "defaultModel": 0,
+  "coverModel": 0
+ },
+ "6457996": {
+  "cover": {
+   "src": "/media/portadas/6457996.webp",
+   "width": 1254,
+   "height": 1254
+  },
+  "models": [
+   {
+    "src": "/media/modelos/6457996-01.glb",
+    "label": "Air_filter_bracket_v2.stl",
+    "name": "Air filter bracket v2",
+    "bytes": 113188,
+    "optimized": false
+   }
+  ],
+  "defaultModel": 0,
+  "coverModel": 0
+ },
+ "5486248": {
+  "cover": {
+   "src": "/media/portadas/5486248.webp",
+   "width": 1254,
+   "height": 1254
+  },
+  "models": [
+   {
+    "src": "/media/modelos/5486248-01.glb",
+    "label": "E30_-_51161932255_-_Interior_Twist_Clip_v2.STL",
+    "name": "E30 - 51161932255 - Interior Twist Clip v2",
+    "bytes": 508808,
+    "optimized": false
+   },
+   {
+    "src": "/media/modelos/5486248-02.glb",
+    "label": "E30_-_KickPanel_-_Twist_Clip.STL",
+    "name": "E30 - KickPanel - Twist Clip",
+    "bytes": 531596,
+    "optimized": false
+   }
+  ],
+  "defaultModel": 0,
+  "coverModel": 0
+ },
+ "4793457": {
+  "cover": {
+   "src": "/media/portadas/4793457.webp",
+   "width": 1254,
+   "height": 1254
+  },
+  "models": [
+   {
+    "src": "/media/modelos/4793457-01.glb",
+    "label": "BMW_E30_Tweeter.stl",
+    "name": "BMW E30 Tweeter",
+    "bytes": 1715860,
+    "optimized": false
+   }
+  ],
+  "defaultModel": 0,
+  "coverModel": 0
+ },
+ "3473236": {
+  "cover": {
+   "src": "/media/portadas/3473236.webp",
+   "width": 1254,
+   "height": 1254
+  },
+  "models": [
+   {
+    "src": "/media/modelos/3473236-01.glb",
+    "label": "E30Lueftungsgitter.stl",
+    "name": "E30Lueftungsgitter",
+    "bytes": 520876,
+    "optimized": false
+   }
+  ],
+  "defaultModel": 0,
+  "coverModel": 0
+ },
+ "3808304": {
+  "cover": {
+   "src": "/media/portadas/3808304.webp",
+   "width": 1254,
+   "height": 1254
+  },
+  "models": [
+   {
+    "src": "/media/modelos/3808304-01.glb",
+    "label": "BMW_E30_gauge_vent_small.stl",
+    "name": "BMW E30 gauge vent small",
+    "bytes": 458812,
+    "optimized": false
+   }
+  ],
+  "defaultModel": 0,
+  "coverModel": 0
+ },
+ "3749718": {
+  "cover": {
+   "src": "/media/portadas/3749718.webp",
+   "width": 1254,
+   "height": 1254
+  },
+  "models": [
+   {
+    "src": "/media/modelos/3749718-01.glb",
+    "label": "E30_Screw.stl",
+    "name": "E30 Screw",
+    "bytes": 54420,
+    "optimized": false
+   }
+  ],
+  "defaultModel": 0,
+  "coverModel": 0
+ },
+ "4784522": {
+  "cover": {
+   "src": "/media/portadas/4784522.webp",
+   "width": 1254,
+   "height": 1254
+  },
+  "models": [
+   {
+    "src": "/media/modelos/4784522-01.glb",
+    "label": "BMW_61131267476.stl",
+    "name": "BMW 61131267476",
+    "bytes": 1199096,
+    "optimized": false
+   }
+  ],
+  "defaultModel": 0,
+  "coverModel": 0
+ },
+ "4676039": {
+  "cover": {
+   "src": "/media/portadas/4676039.webp",
+   "width": 1254,
+   "height": 1254
+  },
+  "models": [
+   {
+    "src": "/media/modelos/4676039-01.glb",
+    "label": "BMW_E36_CupHolder.stl",
+    "name": "BMW E36 CupHolder",
+    "bytes": 713352,
+    "optimized": false
+   }
+  ],
+  "defaultModel": 0,
+  "coverModel": 0
+ },
+ "5445684": {
+  "cover": {
+   "src": "/media/portadas/5445684.webp",
+   "width": 1254,
+   "height": 1254
+  },
+  "models": [
+   {
+    "src": "/media/modelos/5445684-01.glb",
+    "label": "dolot_w_hujogenie-Body_Meshed.stl",
+    "name": "dolot w hujogenie-Body Meshed",
+    "bytes": 6115272,
+    "optimized": true
+   }
+  ],
+  "defaultModel": 0,
+  "coverModel": 0
+ },
+ "5445675": {
+  "cover": {
+   "src": "/media/portadas/5445675.webp",
+   "width": 1254,
+   "height": 1254
+  },
+  "models": [
+   {
+    "src": "/media/modelos/5445675-01.glb",
+    "label": "za\u015blepka_hujogenu.stl",
+    "name": "za\u015blepka hujogenu",
+    "bytes": 543172,
+    "optimized": false
+   }
+  ],
+  "defaultModel": 0,
+  "coverModel": 0
+ },
+ "6706670": {
+  "cover": {
+   "src": "/media/portadas/6706670.webp",
+   "width": 1254,
+   "height": 1254
+  },
+  "models": [
+   {
+    "src": "/media/modelos/6706670-01.glb",
+    "label": "E36MountWithoutPhoneSlotV5.stl",
+    "name": "E36MountWithoutPhoneSlotV5",
+    "bytes": 69200,
+    "optimized": false
+   },
+   {
+    "src": "/media/modelos/6706670-02.glb",
+    "label": "E36phoneMountV5.stl",
+    "name": "E36phoneMountV5",
+    "bytes": 466748,
+    "optimized": false
+   },
+   {
+    "src": "/media/modelos/6706670-03.glb",
+    "label": "GalaxyS22withCaceSlot.obj",
+    "name": "GalaxyS22withCaceSlot",
+    "bytes": 1181360,
+    "optimized": false
+   }
+  ],
+  "defaultModel": 1,
+  "coverModel": 1
+ },
+ "5984137": {
+  "cover": {
+   "src": "/media/portadas/5984137.webp",
+   "width": 1254,
+   "height": 1254
+  },
+  "models": [
+   {
+    "src": "/media/modelos/5984137-01.glb",
+    "label": "e36-centerVent-blank-v2.stl",
+    "name": "e36-centerVent-blank-v2",
+    "bytes": 52056,
+    "optimized": false
+   },
+   {
+    "src": "/media/modelos/5984137-02.glb",
+    "label": "e36-centerVent-double-52mm-v2.stl",
+    "name": "e36-centerVent-double-52mm-v2",
+    "bytes": 177152,
+    "optimized": false
+   },
+   {
+    "src": "/media/modelos/5984137-03.glb",
+    "label": "e36-centerVent-double-60mm.stl",
+    "name": "e36-centerVent-double-60mm",
+    "bytes": 110840,
+    "optimized": false
+   },
+   {
+    "src": "/media/modelos/5984137-04.glb",
+    "label": "e36-centerVent-single-52mm-v2.stl",
+    "name": "e36-centerVent-single-52mm-v2",
+    "bytes": 91348,
+    "optimized": false
+   },
+   {
+    "src": "/media/modelos/5984137-05.glb",
+    "label": "e36-centerVent-single-60mm-v2.stl",
+    "name": "e36-centerVent-single-60mm-v2",
+    "bytes": 109136,
+    "optimized": false
+   },
+   {
+    "src": "/media/modelos/5984137-06.glb",
+    "label": "e36-centerVent-triple-52mm-v2.stl",
+    "name": "e36-centerVent-triple-52mm-v2",
+    "bytes": 205400,
+    "optimized": false
+   },
+   {
+    "src": "/media/modelos/5984137-07.glb",
+    "label": "e36-centerVent-ventOnly-v2.stl",
+    "name": "e36-centerVent-ventOnly-v2",
+    "bytes": 70852,
+    "optimized": false
+   }
+  ],
+  "defaultModel": 5,
+  "coverModel": 5
+ },
+ "6299324": {
+  "cover": {
+   "src": "/media/portadas/6299324.webp",
+   "width": 1254,
+   "height": 1254
+  },
+  "models": [
+   {
+    "src": "/media/modelos/6299324-01.glb",
+    "label": "ClipBMW.stl",
+    "name": "ClipBMW",
+    "bytes": 162716,
+    "optimized": false
+   }
+  ],
+  "defaultModel": 0,
+  "coverModel": 0
+ },
+ "3487379": {
+  "cover": {
+   "src": "/media/portadas/3487379.webp",
+   "width": 1254,
+   "height": 1254
+  },
+  "models": [
+   {
+    "src": "/media/modelos/3487379-01.glb",
+    "label": "M50-M52-M54-Engine-Cover-Cap.stl",
+    "name": "M50-M52-M54-Engine-Cover-Cap",
+    "bytes": 1507008,
+    "optimized": false
+   }
+  ],
+  "defaultModel": 0,
+  "coverModel": 0
+ },
+ "4292490": {
+  "cover": {
+   "src": "/media/portadas/4292490.webp",
+   "width": 1254,
+   "height": 1254
+  },
+  "models": [
+   {
+    "src": "/media/modelos/4292490-01.glb",
+    "label": "E36_shifter_v2.stl",
+    "name": "E36 shifter v2",
+    "bytes": 627100,
+    "optimized": false
+   }
+  ],
+  "defaultModel": 0,
+  "coverModel": 0
+ },
+ "4356708": {
+  "cover": {
+   "src": "/media/portadas/4356708.webp",
+   "width": 1254,
+   "height": 1254
+  },
+  "models": [
+   {
+    "src": "/media/modelos/4356708-01.glb",
+    "label": "destornillador_radiador_bmw.STL",
+    "name": "destornillador radiador bmw",
+    "bytes": 2067708,
+    "optimized": false
+   }
+  ],
+  "defaultModel": 0,
+  "coverModel": 0
+ },
+ "5351015": {
+  "cover": {
+   "src": "/media/portadas/5351015.webp",
+   "width": 1254,
+   "height": 1254
+  },
+  "models": [
+   {
+    "src": "/media/modelos/5351015-01.glb",
+    "label": "1968_Chevy_C10_Cupholder.stl",
+    "name": "1968 Chevy C10 Cupholder",
+    "bytes": 236380,
+    "optimized": false
+   }
+  ],
+  "defaultModel": 0,
+  "coverModel": 0
+ },
+ "6018460": {
+  "cover": {
+   "src": "/media/portadas/6018460.webp",
+   "width": 1254,
+   "height": 1254
+  },
+  "models": [
+   {
+    "src": "/media/modelos/6018460-01.glb",
+    "label": "front-door-pull-strap-cover.stl",
+    "name": "front-door-pull-strap-cover",
+    "bytes": 100160,
+    "optimized": false
+   }
+  ],
+  "defaultModel": 0,
+  "coverModel": 0
+ },
+ "2870277": {
+  "cover": {
+   "src": "/media/portadas/2870277.webp",
+   "width": 1254,
+   "height": 1254
+  },
+  "models": [
+   {
+    "src": "/media/modelos/2870277-01.glb",
+    "label": "c10_shift_knob.STL",
+    "name": "c10 shift knob",
+    "bytes": 382088,
+    "optimized": false
+   }
+  ],
+  "defaultModel": 0,
+  "coverModel": 0
+ },
+ "2910834": {
+  "cover": {
+   "src": "/media/portadas/2910834.webp",
+   "width": 1254,
+   "height": 1254
+  },
+  "models": [
+   {
+    "src": "/media/modelos/2910834-01.glb",
+    "label": "jeep-latch-side.stl",
+    "name": "jeep-latch-side",
+    "bytes": 1691580,
+    "optimized": false
+   },
+   {
+    "src": "/media/modelos/2910834-02.glb",
+    "label": "jeep_latch_v1.stl",
+    "name": "jeep latch v1",
+    "bytes": 1497204,
+    "optimized": false
+   }
+  ],
+  "defaultModel": 0,
+  "coverModel": 0
+ },
+ "3564521": {
+  "cover": {
+   "src": "/media/portadas/3564521.webp",
+   "width": 1254,
+   "height": 1254
+  },
+  "models": [
+   {
+    "src": "/media/modelos/3564521-01.glb",
+    "label": "01_Jeep_Cherokee_XJ_Switch_Panel.stl",
+    "name": "01 Jeep Cherokee XJ Switch Panel",
+    "bytes": 612408,
+    "optimized": false
+   },
+   {
+    "src": "/media/modelos/3564521-02.glb",
+    "label": "adapter.stl",
+    "name": "adapter",
+    "bytes": 51688,
+    "optimized": false
+   },
+   {
+    "src": "/media/modelos/3564521-03.glb",
+    "label": "finished_model.stl",
+    "name": "finished model",
+    "bytes": 1185080,
+    "optimized": false
+   },
+   {
+    "src": "/media/modelos/3564521-04.glb",
+    "label": "oe.stl",
+    "name": "oe",
+    "bytes": 3960,
+    "optimized": false
+   }
+  ],
+  "defaultModel": 0,
+  "coverModel": 0
+ },
+ "3589762": {
+  "cover": {
+   "src": "/media/portadas/3589762.webp",
+   "width": 1254,
+   "height": 1254
+  },
+  "models": [
+   {
+    "src": "/media/modelos/3589762-01.glb",
+    "label": "cupHolder.stl",
+    "name": "cupHolder",
+    "bytes": 3240220,
+    "optimized": false
+   }
+  ],
+  "defaultModel": 0,
+  "coverModel": 0
+ },
+ "318068": {
+  "cover": {
+   "src": "/media/portadas/318068.webp",
+   "width": 1254,
+   "height": 1254
+  },
+  "models": [
+   {
+    "src": "/media/modelos/318068-01.glb",
+    "label": "Cherokee_Stereo_Mount.stl",
+    "name": "Cherokee Stereo Mount",
+    "bytes": 129888,
+    "optimized": false
+   }
+  ],
+  "defaultModel": 0,
+  "coverModel": 0
+ },
+ "5607959": {
+  "cover": {
+   "src": "/media/portadas/5607959.webp",
+   "width": 1254,
+   "height": 1254
+  },
+  "models": [
+   {
+    "src": "/media/modelos/5607959-01.glb",
+    "label": "SwitchHolder_5hole_v3.stl",
+    "name": "SwitchHolder 5hole v3",
+    "bytes": 181944,
+    "optimized": false
+   },
+   {
+    "src": "/media/modelos/5607959-02.glb",
+    "label": "SwitchHolder_blank_v3.stl",
+    "name": "SwitchHolder blank v3",
+    "bytes": 190180,
+    "optimized": false
+   },
+   {
+    "src": "/media/modelos/5607959-03.glb",
+    "label": "SwitchHolder_blank_v3_w_logo.stl",
+    "name": "SwitchHolder blank v3 w logo",
+    "bytes": 502388,
+    "optimized": false
+   }
+  ],
+  "defaultModel": 0,
+  "coverModel": 0
+ },
+ "3123751": {
+  "cover": {
+   "src": "/media/portadas/3123751.webp",
+   "width": 1254,
+   "height": 1254
+  },
+  "models": [
+   {
+    "src": "/media/modelos/3123751-01.glb",
+    "label": "Jeep_Cherokee_XJ_Cup_Holders.stl",
+    "name": "Jeep Cherokee XJ Cup Holders",
+    "bytes": 17284,
+    "optimized": false
+   }
+  ],
+  "defaultModel": 0,
+  "coverModel": 0
+ },
+ "4054815": {
+  "cover": {
+   "src": "/media/portadas/4054815.webp",
+   "width": 1254,
+   "height": 1254
+  },
+  "models": [
+   {
+    "src": "/media/modelos/4054815-01.glb",
+    "label": "Jeep_Ski_Rack_Button.stl",
+    "name": "Jeep Ski Rack Button",
+    "bytes": 653176,
+    "optimized": false
+   }
+  ],
+  "defaultModel": 0,
+  "coverModel": 0
+ },
+ "4792760": {
+  "cover": {
+   "src": "/media/portadas/4792760.webp",
+   "width": 1254,
+   "height": 1254
+  },
+  "models": [
+   {
+    "src": "/media/modelos/4792760-01.glb",
+    "label": "Defender_Handle.stl",
+    "name": "Defender Handle",
+    "bytes": 628452,
+    "optimized": false
+   }
+  ],
+  "defaultModel": 0,
+  "coverModel": 0
+ },
+ "2124207": {
+  "cover": {
+   "src": "/media/portadas/2124207.webp",
+   "width": 1254,
+   "height": 1254
+  },
+  "models": [
+   {
+    "src": "/media/modelos/2124207-01.glb",
+    "label": "MX5_Miata_Roadster_Soft_Top_Latch_Button.stl",
+    "name": "MX5 Miata Roadster Soft Top Latch Button",
+    "bytes": 164256,
+    "optimized": false
+   }
+  ],
+  "defaultModel": 0,
+  "coverModel": 0
+ },
+ "4302279": {
+  "cover": {
+   "src": "/media/portadas/4302279.webp",
+   "width": 1254,
+   "height": 1254
+  },
+  "models": [
+   {
+    "src": "/media/modelos/4302279-01.glb",
+    "label": "Miata_Antenna_Plug.stl",
+    "name": "Miata Antenna Plug",
+    "bytes": 790664,
+    "optimized": false
+   }
+  ],
+  "defaultModel": 0,
+  "coverModel": 0
+ },
+ "1383907": {
+  "cover": {
+   "src": "/media/portadas/1383907.webp",
+   "width": 1254,
+   "height": 1254
+  },
+  "models": [
+   {
+    "src": "/media/modelos/1383907-01.glb",
+    "label": "Gauge_Panel_V3_w_20mm_button.stl",
+    "name": "Gauge Panel V3 w 20mm button",
+    "bytes": 110124,
+    "optimized": false
+   },
+   {
+    "src": "/media/modelos/1383907-02.glb",
+    "label": "basic_gauge_panel_done_V3.stl",
+    "name": "basic gauge panel done V3",
+    "bytes": 94280,
+    "optimized": false
+   }
+  ],
+  "defaultModel": 0,
+  "coverModel": 0
+ },
+ "2882167": {
+  "cover": {
+   "src": "/media/portadas/2882167.webp",
+   "width": 1254,
+   "height": 1254
+  },
+  "models": [
+   {
+    "src": "/media/modelos/2882167-01.glb",
+    "label": "MiataNCCubby_Dividers.STL",
+    "name": "MiataNCCubby Dividers",
+    "bytes": 1612688,
+    "optimized": false
+   },
+   {
+    "src": "/media/modelos/2882167-02.glb",
+    "label": "MiataNCCubby_Empty.STL",
+    "name": "MiataNCCubby Empty",
+    "bytes": 7400,
+    "optimized": false
+   }
+  ],
+  "defaultModel": 1,
+  "coverModel": 1
+ },
+ "604957": {
+  "cover": {
+   "src": "/media/portadas/604957.webp",
+   "width": 1254,
+   "height": 1254
+  },
+  "models": [
+   {
+    "src": "/media/modelos/604957-01.glb",
+    "label": "regular_shifter_subtract.STL",
+    "name": "regular shifter subtract",
+    "bytes": 1065268,
+    "optimized": false
+   }
+  ],
+  "defaultModel": 0,
+  "coverModel": 0
+ },
+ "2201805": {
+  "cover": {
+   "src": "/media/portadas/2201805.webp",
+   "width": 1254,
+   "height": 1254
+  },
+  "models": [
+   {
+    "src": "/media/modelos/2201805-01.glb",
+    "label": "Miata_Window_Switch.STL",
+    "name": "Miata Window Switch",
+    "bytes": 718740,
+    "optimized": false
+   }
+  ],
+  "defaultModel": 0,
+  "coverModel": 0
+ },
+ "4373689": {
+  "cover": {
+   "src": "/media/portadas/4373689.webp",
+   "width": 1254,
+   "height": 1254
+  },
+  "models": [
+   {
+    "src": "/media/modelos/4373689-01.glb",
+    "label": "Mercedes_w123_seat_handle.stl",
+    "name": "Mercedes w123 seat handle",
+    "bytes": 2160016,
+    "optimized": false
+   }
+  ],
+  "defaultModel": 0,
+  "coverModel": 0
+ },
+ "3902176": {
+  "cover": {
+   "src": "/media/portadas/3902176.webp",
+   "width": 1254,
+   "height": 1254
+  },
+  "models": [
+   {
+    "src": "/media/modelos/3902176-01.glb",
+    "label": "Mercedes_Cargo_Cover_Clip.stl",
+    "name": "Mercedes Cargo Cover Clip",
+    "bytes": 402564,
+    "optimized": false
+   }
+  ],
+  "defaultModel": 0,
+  "coverModel": 0
+ },
+ "6615184": {
+  "cover": {
+   "src": "/media/portadas/6615184.webp",
+   "width": 1254,
+   "height": 1254
+  },
+  "models": [
+   {
+    "src": "/media/modelos/6615184-01.glb",
+    "label": "cupholder.stl",
+    "name": "cupholder",
+    "bytes": 323556,
+    "optimized": false
+   }
+  ],
+  "defaultModel": 0,
+  "coverModel": 0
+ },
+ "2504271": {
+  "cover": {
+   "src": "/media/portadas/2504271.webp",
+   "width": 1254,
+   "height": 1254
+  },
+  "models": [
+   {
+    "src": "/media/modelos/2504271-01.glb",
+    "label": "MERC_123_hood_latch_puller.stl",
+    "name": "MERC 123 hood latch puller",
+    "bytes": 30560,
+    "optimized": false
+   }
+  ],
+  "defaultModel": 0,
+  "coverModel": 0
+ },
+ "4788556": {
+  "cover": {
+   "src": "/media/portadas/4788556.webp",
+   "width": 1254,
+   "height": 1254
+  },
+  "models": [
+   {
+    "src": "/media/modelos/4788556-01.glb",
+    "label": "w123_waschwasser.stl",
+    "name": "w123 waschwasser",
+    "bytes": 464264,
+    "optimized": false
+   }
+  ],
+  "defaultModel": 0,
+  "coverModel": 0
+ },
+ "3232504": {
+  "cover": {
+   "src": "/media/portadas/3232504.webp",
+   "width": 1254,
+   "height": 1254
+  },
+  "models": [
+   {
+    "src": "/media/modelos/3232504-01.glb",
+    "label": "handle.stl",
+    "name": "handle",
+    "bytes": 6287912,
+    "optimized": true
+   },
+   {
+    "src": "/media/modelos/3232504-02.glb",
+    "label": "lock.stl",
+    "name": "lock",
+    "bytes": 423724,
+    "optimized": false
+   }
+  ],
+  "defaultModel": 0,
+  "coverModel": 0
+ },
+ "3242739": {
+  "cover": {
+   "src": "/media/portadas/3242739.webp",
+   "width": 1254,
+   "height": 1254
+  },
+  "models": [
+   {
+    "src": "/media/modelos/3242739-01.glb",
+    "label": "mercedes_switch_cover.stl",
+    "name": "mercedes switch cover",
+    "bytes": 62744,
+    "optimized": false
+   }
+  ],
+  "defaultModel": 0,
+  "coverModel": 0
+ },
+ "4894342": {
+  "cover": {
+   "src": "/media/portadas/4894342.webp",
+   "width": 1254,
+   "height": 1254
+  },
+  "models": [
+   {
+    "src": "/media/modelos/4894342-01.glb",
+    "label": "headlinerGrommet_version_2.stl",
+    "name": "headlinerGrommet version 2",
+    "bytes": 107332,
+    "optimized": false
+   }
+  ],
+  "defaultModel": 0,
+  "coverModel": 0
+ },
+ "2840880": {
+  "cover": {
+   "src": "/media/portadas/2840880.webp",
+   "width": 1254,
+   "height": 1254
+  },
+  "models": [
+   {
+    "src": "/media/modelos/2840880-01.glb",
+    "label": "ShifterBushing-split.STL",
+    "name": "ShifterBushing-split",
+    "bytes": 522348,
+    "optimized": false
+   }
+  ],
+  "defaultModel": 0,
+  "coverModel": 0
+ },
+ "6808654": {
+  "cover": null,
+  "models": [
+   {
+    "src": "/media/modelos/6808654-01.glb",
+    "label": "Schraube_Fussraum_V3.STL",
+    "name": "Schraube Fussraum V3",
+    "bytes": 2123200,
+    "optimized": false
+   }
+  ],
+  "defaultModel": 0,
+  "coverModel": 0
+ },
+ "4883603": {
+  "cover": {
+   "src": "/media/portadas/4883603.webp",
+   "width": 1254,
+   "height": 1254
+  },
+  "models": [
+   {
+    "src": "/media/modelos/4883603-01.glb",
+    "label": "W123_Kennzeichen_Beleuchtung.stl",
+    "name": "W123 Kennzeichen Beleuchtung",
+    "bytes": 25700,
+    "optimized": false
+   }
+  ],
+  "defaultModel": 0,
+  "coverModel": 0
+ },
+ "2762097": {
+  "cover": {
+   "src": "/media/portadas/2762097.webp",
+   "width": 1254,
+   "height": 1254
+  },
+  "models": [
+   {
+    "src": "/media/modelos/2762097-01.glb",
+    "label": "CupholderV2.STL",
+    "name": "CupholderV2",
+    "bytes": 540628,
+    "optimized": false
+   }
+  ],
+  "defaultModel": 0,
+  "coverModel": 0
+ },
+ "6843390": {
+  "cover": {
+   "src": "/media/portadas/6843390.webp",
+   "width": 1254,
+   "height": 1254
+  },
+  "models": [
+   {
+    "src": "/media/modelos/6843390-01.glb",
+    "label": "saab_steering_bushing.STL",
+    "name": "saab steering bushing",
+    "bytes": 6215880,
+    "optimized": true
+   },
+   {
+    "src": "/media/modelos/6843390-02.glb",
+    "label": "saab_steering_bushing_ID+.5mm.STL",
+    "name": "saab steering bushing ID+.5mm",
+    "bytes": 6218020,
+    "optimized": true
+   },
+   {
+    "src": "/media/modelos/6843390-03.glb",
+    "label": "saab_steering_bushing_ID+1mm.STL",
+    "name": "saab steering bushing ID+1mm",
+    "bytes": 6220040,
+    "optimized": true
+   }
+  ],
+  "defaultModel": 0,
+  "coverModel": 0
+ },
+ "5298585": {
+  "cover": {
+   "src": "/media/portadas/5298585.webp",
+   "width": 1254,
+   "height": 1254
+  },
+  "models": [
+   {
+    "src": "/media/modelos/5298585-01.glb",
+    "label": "Gauge_holder.stl",
+    "name": "Gauge holder",
+    "bytes": 241412,
+    "optimized": false
+   },
+   {
+    "src": "/media/modelos/5298585-02.glb",
+    "label": "Gauge_holder_no_wire_cover.stl",
+    "name": "Gauge holder no wire cover",
+    "bytes": 172788,
+    "optimized": false
+   }
+  ],
+  "defaultModel": 0,
+  "coverModel": 0
+ },
+ "4303824": {
+  "cover": {
+   "src": "/media/portadas/4303824.webp",
+   "width": 1254,
+   "height": 1254
+  },
+  "models": [
+   {
+    "src": "/media/modelos/4303824-01.glb",
+    "label": "Saab_900_gear_lever_bushing_1.stl",
+    "name": "Saab 900 gear lever bushing 1",
+    "bytes": 2051520,
+    "optimized": false
+   },
+   {
+    "src": "/media/modelos/4303824-02.glb",
+    "label": "Saab_900_gear_lever_bushing_2.stl",
+    "name": "Saab 900 gear lever bushing 2",
+    "bytes": 2344252,
+    "optimized": false
+   }
+  ],
+  "defaultModel": 0,
+  "coverModel": 0
+ },
+ "672935": {
+  "cover": {
+   "src": "/media/portadas/672935.webp",
+   "width": 1254,
+   "height": 1254
+  },
+  "models": [
+   {
+    "src": "/media/modelos/672935-01.glb",
+    "label": "IncaPt1.stl",
+    "name": "IncaPt1",
+    "bytes": 1096732,
+    "optimized": false
+   },
+   {
+    "src": "/media/modelos/672935-02.glb",
+    "label": "IncaPt2.stl",
+    "name": "IncaPt2",
+    "bytes": 607224,
+    "optimized": false
+   },
+   {
+    "src": "/media/modelos/672935-03.glb",
+    "label": "Inca_cap_logo.stl",
+    "name": "Inca cap logo",
+    "bytes": 692436,
+    "optimized": false
+   }
+  ],
+  "defaultModel": 0,
+  "coverModel": 0
+ },
+ "2949271": {
+  "cover": {
+   "src": "/media/portadas/2949271.webp",
+   "width": 1254,
+   "height": 1254
+  },
+  "models": [
+   {
+    "src": "/media/modelos/2949271-01.glb",
+    "label": "handle.stl",
+    "name": "handle",
+    "bytes": 63996,
+    "optimized": false
+   }
+  ],
+  "defaultModel": 0,
+  "coverModel": 0
+ },
+ "4887078": {
+  "cover": {
+   "src": "/media/portadas/4887078.webp",
+   "width": 1254,
+   "height": 1254
+  },
+  "models": [
+   {
+    "src": "/media/modelos/4887078-01.glb",
+    "label": "VW_Beetle_Cup_Holder.stl",
+    "name": "VW Beetle Cup Holder",
+    "bytes": 2944192,
+    "optimized": false
+   }
+  ],
+  "defaultModel": 0,
+  "coverModel": 0
+ },
+ "5241528": {
+  "cover": {
+   "src": "/media/portadas/5241528.webp",
+   "width": 1254,
+   "height": 1254
+  },
+  "models": [
+   {
+    "src": "/media/modelos/5241528-01.glb",
+    "label": "Speedometer_Bezel_v1.stl",
+    "name": "Speedometer Bezel v1",
+    "bytes": 105068,
+    "optimized": false
+   }
+  ],
+  "defaultModel": 0,
+  "coverModel": 0
+ },
+ "2690942": {
+  "cover": {
+   "src": "/media/portadas/2690942.webp",
+   "width": 1254,
+   "height": 1254
+  },
+  "models": [
+   {
+    "src": "/media/modelos/2690942-01.glb",
+    "label": "T1_Clutch_tool_-1600.stl",
+    "name": "T1 Clutch tool -1600",
+    "bytes": 330820,
+    "optimized": false
+   }
+  ],
+  "defaultModel": 0,
+  "coverModel": 0
+ },
+ "2301465": {
+  "cover": {
+   "src": "/media/portadas/2301465.webp",
+   "width": 1254,
+   "height": 1254
+  },
+  "models": [
+   {
+    "src": "/media/modelos/2301465-01.glb",
+    "label": "guage1.stl",
+    "name": "guage1",
+    "bytes": 1200812,
+    "optimized": false
+   },
+   {
+    "src": "/media/modelos/2301465-02.glb",
+    "label": "guage1_mirror.stl",
+    "name": "guage1 mirror",
+    "bytes": 1201424,
+    "optimized": false
+   },
+   {
+    "src": "/media/modelos/2301465-03.glb",
+    "label": "guage2.stl",
+    "name": "guage2",
+    "bytes": 4901812,
+    "optimized": true
+   },
+   {
+    "src": "/media/modelos/2301465-04.glb",
+    "label": "guage2_mirror.stl",
+    "name": "guage2 mirror",
+    "bytes": 4922040,
+    "optimized": true
+   }
+  ],
+  "defaultModel": 0,
+  "coverModel": 0
+ },
+ "2266129": {
+  "cover": {
+   "src": "/media/portadas/2266129.webp",
+   "width": 1254,
+   "height": 1254
+  },
+  "models": [
+   {
+    "src": "/media/modelos/2266129-01.glb",
+    "label": "beetlebasket.stl",
+    "name": "beetlebasket",
+    "bytes": 341716,
+    "optimized": false
+   },
+   {
+    "src": "/media/modelos/2266129-02.glb",
+    "label": "beetlebasketleg.stl",
+    "name": "beetlebasketleg",
+    "bytes": 39092,
+    "optimized": false
+   },
+   {
+    "src": "/media/modelos/2266129-03.glb",
+    "label": "klipsikori.stl",
+    "name": "klipsikori",
+    "bytes": 24780,
+    "optimized": false
+   },
+   {
+    "src": "/media/modelos/2266129-04.glb",
+    "label": "klipsikoriohut.stl",
+    "name": "klipsikoriohut",
+    "bytes": 22192,
+    "optimized": false
+   }
+  ],
+  "defaultModel": 0,
+  "coverModel": 0
+ },
+ "2223484": {
+  "cover": {
+   "src": "/media/portadas/2223484.webp",
+   "width": 1254,
+   "height": 1254
+  },
+  "models": [
+   {
+    "src": "/media/modelos/2223484-01.glb",
+    "label": "Baywindow_Temperature_dash_cutout.stl",
+    "name": "Baywindow Temperature dash cutout",
+    "bytes": 45352,
+    "optimized": false
+   },
+   {
+    "src": "/media/modelos/2223484-02.glb",
+    "label": "NextionHolder.stl",
+    "name": "NextionHolder",
+    "bytes": 88796,
+    "optimized": false
+   },
+   {
+    "src": "/media/modelos/2223484-03.glb",
+    "label": "baywindow_Dash_Blank.stl",
+    "name": "baywindow Dash Blank",
+    "bytes": 40204,
+    "optimized": false
+   }
+  ],
+  "defaultModel": 0,
+  "coverModel": 0
+ },
+ "5240355": {
+  "cover": {
+   "src": "/media/portadas/5240355.webp",
+   "width": 1254,
+   "height": 1254
+  },
+  "models": [
+   {
+    "src": "/media/modelos/5240355-01.glb",
+    "label": "VW_Bus_Heater_Lever.stl",
+    "name": "VW Bus Heater Lever",
+    "bytes": 206372,
+    "optimized": false
+   }
+  ],
+  "defaultModel": 0,
+  "coverModel": 0
+ },
+ "4841398": {
+  "cover": {
+   "src": "/media/portadas/4841398.webp",
+   "width": 1254,
+   "height": 1254
+  },
+  "models": [
+   {
+    "src": "/media/modelos/4841398-01.glb",
+    "label": "t2shortshifterball.stl",
+    "name": "t2shortshifterball",
+    "bytes": 31636,
+    "optimized": false
+   },
+   {
+    "src": "/media/modelos/4841398-02.glb",
+    "label": "t2shortshifterspacer.stl",
+    "name": "t2shortshifterspacer",
+    "bytes": 22616,
+    "optimized": false
+   }
+  ],
+  "defaultModel": 0,
+  "coverModel": 0
+ },
+ "2657120": {
+  "cover": {
+   "src": "/media/portadas/2657120.webp",
+   "width": 1254,
+   "height": 1254
+  },
+  "models": [
+   {
+    "src": "/media/modelos/2657120-01.glb",
+    "label": "cup_holder___vw_t2_ashtray.stl",
+    "name": "cup holder   vw t2 ashtray",
+    "bytes": 99080,
+    "optimized": false
+   }
+  ],
+  "defaultModel": 0,
+  "coverModel": 0
+ },
+ "3610531": {
+  "cover": {
+   "src": "/media/portadas/3610531.webp",
+   "width": 1254,
+   "height": 1254
+  },
+  "models": [
+   {
+    "src": "/media/modelos/3610531-01.glb",
+    "label": "Ashtray.VW.Golf.MK4.stl",
+    "name": "Ashtray.VW.Golf.MK4",
+    "bytes": 58872,
+    "optimized": false
+   }
+  ],
+  "defaultModel": 0,
+  "coverModel": 0
+ },
+ "417050": {
+  "cover": {
+   "src": "/media/portadas/417050.webp",
+   "width": 1254,
+   "height": 1254
+  },
+  "models": [
+   {
+    "src": "/media/modelos/417050-01.glb",
+    "label": "Front_Wiper_Arm_Cap_-_VW_GOLF.STL",
+    "name": "Front Wiper Arm Cap - VW GOLF",
+    "bytes": 171536,
+    "optimized": false
+   }
+  ],
+  "defaultModel": 0,
+  "coverModel": 0
+ },
+ "2424109": {
+  "cover": {
+   "src": "/media/portadas/2424109.webp",
+   "width": 1254,
+   "height": 1254
+  },
+  "models": [
+   {
+    "src": "/media/modelos/2424109-01.glb",
+    "label": "Blank.stl",
+    "name": "Blank",
+    "bytes": 9720,
+    "optimized": false
+   }
+  ],
+  "defaultModel": 0,
+  "coverModel": 0
+ },
+ "741548": {
+  "cover": {
+   "src": "/media/portadas/741548.webp",
+   "width": 1254,
+   "height": 1254
+  },
+  "models": [
+   {
+    "src": "/media/modelos/741548-01.glb",
+    "label": "Clip_MK1_Scheinw.stl",
+    "name": "Clip MK1 Scheinw",
+    "bytes": 216460,
+    "optimized": false
+   }
+  ],
+  "defaultModel": 0,
+  "coverModel": 0
+ },
+ "761945": {
+  "cover": {
+   "src": "/media/portadas/761945.webp",
+   "width": 1254,
+   "height": 1254
+  },
+  "models": [
+   {
+    "src": "/media/modelos/761945-01.glb",
+    "label": "VW_MK1_pivot_bearing.stl",
+    "name": "VW MK1 pivot bearing",
+    "bytes": 69104,
+    "optimized": false
+   }
+  ],
+  "defaultModel": 0,
+  "coverModel": 0
+ },
+ "761947": {
+  "cover": {
+   "src": "/media/portadas/761947.webp",
+   "width": 1254,
+   "height": 1254
+  },
+  "models": [
+   {
+    "src": "/media/modelos/761947-01.glb",
+    "label": "MK1_pivot_bearing_2-1.stl",
+    "name": "MK1 pivot bearing 2-1",
+    "bytes": 28428,
+    "optimized": false
+   },
+   {
+    "src": "/media/modelos/761947-02.glb",
+    "label": "MK1_pivot_bearing_2-2.stl",
+    "name": "MK1 pivot bearing 2-2",
+    "bytes": 18612,
+    "optimized": false
+   }
+  ],
+  "defaultModel": 0,
+  "coverModel": 0
+ },
+ "7249631": {
+  "cover": {
+   "src": "/media/portadas/7249631.webp",
+   "width": 1254,
+   "height": 1254
+  },
+  "models": [
+   {
+    "src": "/media/modelos/7249631-01.glb",
+    "label": "VW_Golf_mk2_Heater_Fan_Knob_Polygon.stl",
+    "name": "VW Golf mk2 Heater Fan Knob Polygon",
+    "bytes": 91836,
+    "optimized": false
+   },
+   {
+    "src": "/media/modelos/7249631-02.glb",
+    "label": "VW_Golf_mk2_Heater_Fan_Knob_Round.stl",
+    "name": "VW Golf mk2 Heater Fan Knob Round",
+    "bytes": 156832,
+    "optimized": false
+   }
+  ],
+  "defaultModel": 1,
+  "coverModel": 1
+ },
+ "6833286": {
+  "cover": {
+   "src": "/media/portadas/6833286.webp",
+   "width": 1254,
+   "height": 1254
+  },
+  "models": [
+   {
+    "src": "/media/modelos/6833286-01.glb",
+    "label": "Mk3_cupholderV2.stl",
+    "name": "Mk3 cupholderV2",
+    "bytes": 1454552,
+    "optimized": false
+   },
+   {
+    "src": "/media/modelos/6833286-02.glb",
+    "label": "Mk3_cupholderV3_tight_fit_cans.stl",
+    "name": "Mk3 cupholderV3 tight fit cans",
+    "bytes": 2077008,
+    "optimized": false
+   },
+   {
+    "src": "/media/modelos/6833286-03.glb",
+    "label": "Mk3_cupholderV4_moved_to_passenger_side_tight_fit_cans.stl",
+    "name": "Mk3 cupholderV4 moved to passenger side tight fit cans",
+    "bytes": 2818060,
+    "optimized": false
+   }
+  ],
+  "defaultModel": 0,
+  "coverModel": 0
+ },
+ "5735746": {
+  "cover": {
+   "src": "/media/portadas/5735746.webp",
+   "width": 1254,
+   "height": 1254
+  },
+  "models": [
+   {
+    "src": "/media/modelos/5735746-01.glb",
+    "label": "clip_door_card.STL",
+    "name": "clip door card",
+    "bytes": 5945992,
+    "optimized": true
+   },
+   {
+    "src": "/media/modelos/5735746-02.glb",
+    "label": "clip_door_card2.STL",
+    "name": "clip door card2",
+    "bytes": 3107372,
+    "optimized": false
+   }
+  ],
+  "defaultModel": 0,
+  "coverModel": 0
+ },
+ "559671": {
+  "cover": {
+   "src": "/media/portadas/559671.webp",
+   "width": 1254,
+   "height": 1254
+  },
+  "models": [
+   {
+    "src": "/media/modelos/559671-01.glb",
+    "label": "Bezel_4mm.STL",
+    "name": "Bezel 4mm",
+    "bytes": 217264,
+    "optimized": false
+   }
+  ],
+  "defaultModel": 0,
+  "coverModel": 0
+ },
+ "1959160": {
+  "cover": {
+   "src": "/media/portadas/1959160.webp",
+   "width": 1254,
+   "height": 1254
+  },
+  "models": [
+   {
+    "src": "/media/modelos/1959160-01.glb",
+    "label": "VolvoHandle_01.stl",
+    "name": "VolvoHandle 01",
+    "bytes": 827596,
+    "optimized": false
+   }
+  ],
+  "defaultModel": 0,
+  "coverModel": 0
+ },
+ "2530760": {
+  "cover": {
+   "src": "/media/portadas/2530760.webp",
+   "width": 1254,
+   "height": 1254
+  },
+  "models": [
+   {
+    "src": "/media/modelos/2530760-01.glb",
+    "label": "Unsaved.stl",
+    "name": "Unsaved",
+    "bytes": 207696,
+    "optimized": false
+   }
+  ],
+  "defaultModel": 0,
+  "coverModel": 0
+ }
+}

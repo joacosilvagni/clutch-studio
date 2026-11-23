@@ -6,8 +6,7 @@ Leelo antes de empezar y actualizalo al terminar (ver `AGENTS.md`).
 
 | Agente | Tarea | Rama | Desde |
 | --- | --- | --- | --- |
-| Claude (diseño) | Rediseño visual, imágenes de producto y mensaje de descarga instantánea | claude/site-redesign | 2026-11-23 |
-| Claude (diseño) | Prototipo del sitio Astro (`site/`), PR #1 abierto para revisión | claude/site-prototype | 2026-11-22 |
+| Claude (diseño) | Portadas, visor 3D y vitrina de los 73 productos | claude/media-3d | 2026-11-23 |
 
 ## Bloqueos
 
@@ -24,6 +23,13 @@ Leelo antes de empezar y actualizalo al terminar (ver `AGENTS.md`).
 - Contrato frontend ↔ Worker: el carrito manda `{items:[{slug}]}` a `/api/orders`; `onApprove` manda `{orderID}` a `/api/capture` y muestra `downloads[]` (o el `message` si es `null`).
 
 ## Log de sesiones (lo más nuevo arriba)
+
+### 2026-11-23 · Claude (diseño) — Portadas y 3D
+- Hecho (rama `claude/media-3d`): 72 portadas y 111 GLB de `media_tienda` emparejados por id de Thingiverse (73/73, sin huérfanos);
+  pestaña "View in 3D" con `<model-viewer>` (carga diferida, variantes, pausa, reset, reduced motion, error y sin WebGL);
+  author/author_url completados desde `creditos/<id>/README.txt`; reemplazan las 18 imágenes asignadas a ojo (borradas).
+  Estado `preview`: 70 productos visibles como "Coming soon"; 3 quedan en draft por logos (VW, "miata", Ronal).
+- Pendiente: precios, archivos en R2 y verificación de licencia para pasar a `approved`; portada de 6808654 (generación bloqueada).
 
 ### 2026-11-23 · Claude (diseño) — Rediseño
 - Hecho (rama `claude/site-redesign`): rediseño visual del sitio centrado en las imágenes; 18 imágenes de Joaquín

@@ -12,7 +12,7 @@ const cat = getCategory(p.category);
   <div class:list={['media', size]}>
     <img
       src={size === 'card' ? thumbSrc(img.src) : img.src}
-      srcset={size === 'hero' ? `${thumbSrc(img.src)} 600w, ${img.src} 1200w` : undefined}
+      srcset={size === 'hero' ? `${thumbSrc(img.src)} 600w, ${img.src} 1254w` : undefined}
       sizes={size === 'hero' ? '(min-width: 900px) 600px, 100vw' : undefined}
       alt={img.alt}
       width={size === 'card' ? 600 : 1200}
@@ -28,7 +28,7 @@ const cat = getCategory(p.category);
 )}
 <style>
   .media { position: relative; aspect-ratio: 1; border-radius: calc(var(--radius) - 4px); overflow: hidden; background: #1b1b1d; }
-  .media img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s cubic-bezier(.2, .7, .2, 1); }
+  .media img { width: 100%; height: 100%; object-fit: contain; transition: transform .5s cubic-bezier(.2, .7, .2, 1); }
   .media.empty :global(.art) { aspect-ratio: 1; height: 100%; border-radius: 0; }
   :global(a:hover) > .media img, :global(a:hover) .media img { transform: scale(1.04); }
 </style>

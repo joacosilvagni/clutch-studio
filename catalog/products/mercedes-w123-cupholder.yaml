@@ -1,5 +1,5 @@
 slug: mercedes-w123-cupholder
-status: draft
+status: preview
 kind: file
 title: Cupholder for Mercedes-Benz W123
 summary: null
@@ -34,8 +34,8 @@ sources:
     thing_id: 6615184
     thing_url: https://www.thingiverse.com/thing:6615184
     title_original: Cupholder
-    author: null
-    author_url: null
+    author: "mafriedel"
+    author_url: "https://www.thingiverse.com/mafriedel"
     license: CC-BY-SA
     license_raw: CC BY-SA
     verified_at: null
@@ -44,8 +44,8 @@ sources:
     image_urls: []
 files: []
 images:
-  - src: /images/products/mercedes-w123-cupholder.webp
-    alt: "Cupholder for Mercedes-Benz W123, illustrative render"
+  - src: /media/portadas/6615184.webp
+    alt: "Cupholder for Mercedes-Benz W123, illustrative render of a possible matte black print"
     kind: render
 review:
   state: pendiente de revisión manual
@@ -55,4 +55,4 @@ review:
     - Verificar licencia, autor y archivos con la API (import-seed con THINGIVERSE_TOKEN).
     - "CC BY-SA: el archivo adaptado que se vende debe publicarse bajo CC BY-SA."
 created_at: 2026-11-22
-updated_at: 2026-11-22
+updated_at: 2026-11-23

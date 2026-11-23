@@ -8,6 +8,7 @@ const rules = await loadRules();
 const entries = await readProducts(PRODUCTS_DIR);
 const errors = validateCatalog(entries, { allowedLicenses: rules.licenses.allowed });
 const approved = entries.filter((e) => e.product?.status === 'approved').length;
-console.log(`${entries.length} productos (${approved} aprobados, ${entries.length - approved} borradores)`);
+const preview = entries.filter((e) => e.product?.status === 'preview').length;
+console.log(`${entries.length} productos (${approved} aprobados, ${preview} en vitrina, ${entries.length - approved - preview} borradores)`);
 for (const e of errors) console.error(`✗ ${e}`);
 process.exitCode = errors.length ? 1 : 0;

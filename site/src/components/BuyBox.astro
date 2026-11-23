@@ -32,7 +32,10 @@ const buyable = isBuyable(p);
   ) : p.priceUsd === 0 ? (
     <div class="actions"><button type="button" class="btn btn--ghost btn--lg btn--block" disabled>Free download coming soon</button></div>
   ) : digital ? (
-    <div class="actions"><button type="button" class="btn btn--ghost btn--lg btn--block" disabled>Coming soon</button></div>
+    <div class="actions">
+      <a class="btn btn--ghost btn--lg btn--block" href="/support/#request">Coming soon · ask us about it</a>
+      <p class="soon">This file isn't on sale yet. Once it is, it downloads instantly after payment.</p>
+    </div>
   ) : (
     <div class="actions"><a class="btn btn--ghost btn--lg btn--block" href="/support/#request">Notify me when it launches</a></div>
   )}
@@ -61,6 +64,7 @@ const buyable = isBuyable(p);
   .instant-box { padding: 14px 16px; border-radius: var(--radius-sm); background: rgba(94, 226, 160, .07); border: 1px solid rgba(94, 226, 160, .25); }
   .instant-box p { margin: 6px 0 0; font-size: .88rem; color: var(--ink-2); }
   .actions { display: grid; gap: 10px; }
+  .soon { margin: 0; font-size: .85rem; color: var(--ink-3); }
   .msg { margin: 0; min-height: 1.2em; font-size: .88rem; color: var(--instant); }
   .msg:empty { display: none; }
   .assure { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; font-size: .88rem; color: var(--ink-2); }

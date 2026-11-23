@@ -1,5 +1,5 @@
 slug: mazda-miata-nc-center-cubby-tray
-status: draft
+status: preview
 kind: file
 title: Center Cubby Tray
 summary: null
@@ -29,8 +29,8 @@ sources:
     thing_id: 2882167
     thing_url: https://www.thingiverse.com/thing:2882167
     title_original: Center Cubby Tray
-    author: null
-    author_url: null
+    author: "arskemp"
+    author_url: "https://www.thingiverse.com/arskemp"
     license: CC-BY
     license_raw: CC BY
     verified_at: null
@@ -38,7 +38,10 @@ sources:
     file_names: []
     image_urls: []
 files: []
-images: []
+images:
+  - src: /media/portadas/2882167.webp
+    alt: "Center Cubby Tray, illustrative render of a possible matte black print"
+    kind: render
 review:
   state: pendiente de revisión manual
   flags:
@@ -48,4 +51,4 @@ review:
     - Escribir title, summary y description originales en inglés (no copiar al autor).
     - Verificar licencia, autor y archivos con la API (import-seed con THINGIVERSE_TOKEN).
 created_at: 2026-11-22
-updated_at: 2026-11-22
+updated_at: 2026-11-23

@@ -1,5 +1,5 @@
 slug: mazda-miata-gauge-panel-v3-v4
-status: draft
+status: preview
 kind: file
 title: Gauge Panel V3+V4 for Mazda MX-5 Miata (NA/NB)
 summary: null
@@ -34,8 +34,8 @@ sources:
     thing_id: 1383907
     thing_url: https://www.thingiverse.com/thing:1383907
     title_original: Gauge Panel V3+V4
-    author: null
-    author_url: null
+    author: "Daversity"
+    author_url: "https://www.thingiverse.com/Daversity"
     license: CC-BY
     license_raw: CC BY
     verified_at: null
@@ -43,7 +43,10 @@ sources:
     file_names: []
     image_urls: []
 files: []
-images: []
+images:
+  - src: /media/portadas/1383907.webp
+    alt: "Gauge Panel V3+V4 for Mazda MX-5 Miata (NA/NB), illustrative render of a possible matte black print"
+    kind: render
 review:
   state: pendiente de revisión manual
   flags: []
@@ -51,4 +54,4 @@ review:
     - Escribir title, summary y description originales en inglés (no copiar al autor).
     - Verificar licencia, autor y archivos con la API (import-seed con THINGIVERSE_TOKEN).
 created_at: 2026-11-22
-updated_at: 2026-11-22
+updated_at: 2026-11-23

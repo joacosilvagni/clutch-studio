@@ -1,5 +1,10 @@
 import { getCollection } from 'astro:content';
-import { models, categories, getCategory, type Product } from './catalog';
+import { models, categories, getCategory, type Product, type PreviewModel } from './catalog';
+import mediaJson from './media.json';
+
+// Covers and GLB previews from media_tienda/productos_media.json, keyed by Thingiverse id.
+type MediaEntry = { cover: { src: string; width: number; height: number } | null; models: PreviewModel[]; defaultModel: number };
+const media = mediaJson as Record<string, MediaEntry>;
 
 // Production lists ONLY approved products. Drafts show in `astro dev`, or in a preview build
 // with PUBLIC_SHOW_DRAFTS=true. Never set that flag for the production deploy.
@@ -53,9 +58,15 @@ export async function getProducts(): Promise<Product[]> {
       free: d.free,
       reviewFlags: d.review?.flags ?? [],
       images: d.images.map((i) => ({ src: i.src, alt: i.alt ?? d.title, kind: i.kind ?? 'photo' })),
+      thingId: d.sources[0]?.thing_id != null ? String(d.sources[0].thing_id) : null,
+      preview3d: null,
     }))
+    .map((p) => {
+      const m = p.thingId ? media[p.thingId] : undefined;
+      return m?.models.length ? { ...p, preview3d: { models: m.models, defaultModel: m.defaultModel } } : p;
+    })
     .map((p) => ({ ...p, department: getCategory(p.category).department }))
-    .filter((p) => (p.test ? SANDBOX || SHOW_DRAFTS : p.status === 'approved' || SHOW_DRAFTS))
+    .filter((p) => (p.test ? SANDBOX || SHOW_DRAFTS : p.status === 'approved' || p.status === 'preview' || SHOW_DRAFTS))
     .sort((a, b) => a.slug.localeCompare(b.slug));
   return cache;
 }
@@ -73,7 +84,8 @@ export const fitSummaryKind = (p: Product): 'specific' | 'universal' | 'unconfir
   p.models.length ? 'specific' : p.kind === 'physical' ? 'universal' : 'unconfirmed';
 
 // Small variant generated next to each product image (<name>-sm.webp).
-export const thumbSrc = (src: string) => (src.startsWith('/images/products/') ? src.replace(/\.webp$/, '-sm.webp') : src);
+export const thumbSrc = (src: string) =>
+  src.startsWith('/images/products/') || src.startsWith('/media/portadas/') ? src.replace(/\.webp$/, '-sm.webp') : src;
 export const hasImage = (p: Product) => p.images.length > 0;
 // Digital products can be bought now; physical ones wait for the dropshipping phase.
 export const isDigital = (p: Product) => p.department === '3d-files';

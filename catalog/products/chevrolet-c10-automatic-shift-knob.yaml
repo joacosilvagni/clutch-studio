@@ -1,5 +1,5 @@
 slug: chevrolet-c10-automatic-shift-knob
-status: draft
+status: preview
 kind: file
 title: Automatic shift knob for Chevrolet C10 / C/K pickup
 summary: null
@@ -34,8 +34,8 @@ sources:
     thing_id: 2870277
     thing_url: https://www.thingiverse.com/thing:2870277
     title_original: Automatic shift knob
-    author: null
-    author_url: null
+    author: "KCP"
+    author_url: "https://www.thingiverse.com/KCP"
     license: CC-BY
     license_raw: CC BY
     verified_at: null
@@ -43,7 +43,10 @@ sources:
     file_names: []
     image_urls: []
 files: []
-images: []
+images:
+  - src: /media/portadas/2870277.webp
+    alt: "Automatic shift knob for Chevrolet C10 / C/K pickup, illustrative render of a possible matte black print"
+    kind: render
 review:
   state: pendiente de revisión manual
   flags: []
@@ -51,4 +54,4 @@ review:
     - Escribir title, summary y description originales en inglés (no copiar al autor).
     - Verificar licencia, autor y archivos con la API (import-seed con THINGIVERSE_TOKEN).
 created_at: 2026-11-22
-updated_at: 2026-11-22
+updated_at: 2026-11-23

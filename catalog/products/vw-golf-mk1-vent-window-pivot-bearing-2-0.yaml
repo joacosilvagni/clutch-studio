@@ -1,5 +1,5 @@
 slug: vw-golf-mk1-vent-window-pivot-bearing-2-0
-status: draft
+status: preview
 kind: file
 title: Vent window pivot bearing 2.0 for Volkswagen Golf / Rabbit Mk1
 summary: null
@@ -34,8 +34,8 @@ sources:
     thing_id: 761947
     thing_url: https://www.thingiverse.com/thing:761947
     title_original: Vent window pivot bearing 2.0
-    author: null
-    author_url: null
+    author: "papagaio"
+    author_url: "https://www.thingiverse.com/papagaio"
     license: CC-BY-SA
     license_raw: CC BY-SA
     verified_at: null
@@ -43,7 +43,10 @@ sources:
     file_names: []
     image_urls: []
 files: []
-images: []
+images:
+  - src: /media/portadas/761947.webp
+    alt: "Vent window pivot bearing 2.0 for Volkswagen Golf / Rabbit Mk1, illustrative render of a possible matte black print"
+    kind: render
 review:
   state: pendiente de revisión manual
   flags: []
@@ -52,4 +55,4 @@ review:
     - Verificar licencia, autor y archivos con la API (import-seed con THINGIVERSE_TOKEN).
     - "CC BY-SA: el archivo adaptado que se vende debe publicarse bajo CC BY-SA."
 created_at: 2026-11-22
-updated_at: 2026-11-22
+updated_at: 2026-11-23

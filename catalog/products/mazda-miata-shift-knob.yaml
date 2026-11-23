@@ -34,8 +34,8 @@ sources:
     thing_id: 604957
     thing_url: https://www.thingiverse.com/thing:604957
     title_original: Shift Knob
-    author: null
-    author_url: null
+    author: "texastboneking"
+    author_url: "https://www.thingiverse.com/texastboneking"
     license: CC-BY-SA
     license_raw: CC BY-SA
     verified_at: null
@@ -43,7 +43,10 @@ sources:
     file_names: []
     image_urls: []
 files: []
-images: []
+images:
+  - src: /media/portadas/604957.webp
+    alt: "Shift Knob for Mazda MX-5 Miata (NA/NB), illustrative render of a possible matte black print"
+    kind: render
 review:
   state: pendiente de revisión manual
   flags: []
@@ -52,4 +55,4 @@ review:
     - Verificar licencia, autor y archivos con la API (import-seed con THINGIVERSE_TOKEN).
     - "CC BY-SA: el archivo adaptado que se vende debe publicarse bajo CC BY-SA."
 created_at: 2026-11-22
-updated_at: 2026-11-22
+updated_at: 2026-11-23

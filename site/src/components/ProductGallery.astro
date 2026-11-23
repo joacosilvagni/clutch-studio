@@ -1,0 +1,214 @@
+---
+// Product gallery: cover image first, with a "View in 3D" tab when the product has GLB previews.
+// The 3D library and the GLB only load when the visitor opens the 3D tab.
+import ProductMedia from './ProductMedia.astro';
+import type { Product } from '../data/catalog';
+interface Props { product: Product }
+const { product: p } = Astro.props;
+const prev = p.preview3d;
+const def = prev ? prev.models[prev.defaultModel] ?? prev.models[0] : null;
+const isRender = p.images[0]?.kind === 'render';
+const mb = (b: number) => (b / 1e6).toFixed(1);
+---
+<div class="gallery" data-gallery>
+  {prev && (
+    <div class="tabs" role="tablist" aria-label="Product views">
+      <button type="button" role="tab" id="tab-photo" aria-controls="panel-photo" aria-selected="true" data-tab="photo">Photo</button>
+      <button type="button" role="tab" id="tab-3d" aria-controls="panel-3d" aria-selected="false" data-tab="3d">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m12 2 9 5v10l-9 5-9-5V7l9-5Z"/><path d="m3 7 9 5 9-5M12 12v10"/></svg>
+        View in 3D
+      </button>
+    </div>
+  )}
+
+  <div id="panel-photo" role={prev ? 'tabpanel' : undefined} aria-labelledby={prev ? 'tab-photo' : undefined} data-panel="photo">
+    <ProductMedia product={p} size="hero" eager />
+    {isRender && <p class="cap">Illustrative render of a possible matte black print, not a photo of a tested part. Your print will show layer lines and the colour of your filament.</p>}
+    {!p.images.length && <p class="cap">Photo coming soon.{prev && ' Open the 3D view to see the part.'}</p>}
+  </div>
+
+  {prev && def && (
+    <div id="panel-3d" role="tabpanel" aria-labelledby="tab-3d" data-panel="3d" hidden>
+      <div class="stage" data-stage data-src={def.src} data-alt={`3D preview of ${p.title}`}>
+        <div class="state" data-state>
+          <span class="spinner" aria-hidden="true"></span>
+          <span data-state-text>Loading 3D preview…</span>
+        </div>
+      </div>
+      <div class="controls">
+        {prev.models.length > 1 && (
+          <label class="variant">
+            <span class="visually-hidden">Part</span>
+            <select data-variant>
+              {prev.models.map((m, i) => (
+                <option value={m.src} selected={i === prev.defaultModel}>{m.name}</option>
+              ))}
+            </select>
+          </label>
+        )}
+        <button type="button" class="ctl" data-pause aria-pressed="false">
+          <span data-pause-label>Pause</span>
+        </button>
+        <button type="button" class="ctl" data-reset>Reset view</button>
+      </div>
+      <p class="cap">
+        Drag to turn, scroll or pinch to zoom. Preview made from the original design's mesh{prev.models.length > 1 ? `; this design has ${prev.models.length} separate files, shown one at a time` : ''}.
+        Not to scale.
+      </p>
+      <ul class="files visually-hidden">
+        {prev.models.map((m) => <li>{m.name} ({mb(m.bytes)} MB{m.optimized ? ', simplified for the web preview' : ''})</li>)}
+      </ul>
+    </div>
+  )}
+</div>
+
+<script>
+  const VIEWER_JS = '/media/model-viewer.min.js';
+  let libLoading: Promise<void> | null = null;
+  const loadLib = () =>
+    (libLoading ??= new Promise<void>((resolve, reject) => {
+      if (customElements.get('model-viewer')) return resolve();
+      const s = document.createElement('script');
+      s.type = 'module';
+      s.src = VIEWER_JS;
+      s.onload = () => customElements.whenDefined('model-viewer').then(() => resolve());
+      s.onerror = () => reject(new Error('viewer script failed'));
+      document.head.append(s);
+    }));
+
+  const hasWebGL = () => {
+    try {
+      const c = document.createElement('canvas');
+      return !!(c.getContext('webgl2') || c.getContext('webgl'));
+    } catch {
+      return false;
+    }
+  };
+
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  for (const g of document.querySelectorAll<HTMLElement>('[data-gallery]')) {
+    const tabs = [...g.querySelectorAll<HTMLButtonElement>('[data-tab]')];
+    if (!tabs.length) continue;
+    const panels = Object.fromEntries([...g.querySelectorAll<HTMLElement>('[data-panel]')].map((el) => [el.dataset.panel!, el]));
+    const stage = g.querySelector<HTMLElement>('[data-stage]')!;
+    const state = g.querySelector<HTMLElement>('[data-state]')!;
+    const stateText = g.querySelector<HTMLElement>('[data-state-text]')!;
+    const pauseBtn = g.querySelector<HTMLButtonElement>('[data-pause]')!;
+    const pauseLabel = g.querySelector<HTMLElement>('[data-pause-label]')!;
+    const resetBtn = g.querySelector<HTMLButtonElement>('[data-reset]')!;
+    const variant = g.querySelector<HTMLSelectElement>('[data-variant]');
+    let viewer: (HTMLElement & { resetTurntableRotation?: () => void; cameraOrbit?: string; jumpCameraToGoal?: () => void }) | null = null;
+    let spinning = !reduceMotion;
+
+    const showState = (text: string | null, error = false) => {
+      state.hidden = text == null;
+      state.classList.toggle('error', error);
+      if (text) stateText.textContent = text;
+    };
+    const setSpin = (on: boolean) => {
+      spinning = on;
+      if (viewer) on ? viewer.setAttribute('auto-rotate', '') : viewer.removeAttribute('auto-rotate');
+      pauseBtn.setAttribute('aria-pressed', String(!on));
+      pauseLabel.textContent = on ? 'Pause' : 'Rotate';
+    };
+    setSpin(spinning);
+
+    const fail = (msg: string) => {
+      showState(msg, true);
+      pauseBtn.disabled = true;
+      resetBtn.disabled = true;
+    };
+
+    const open3d = async () => {
+      if (viewer) return;
+      if (!hasWebGL()) return fail('3D preview needs WebGL, which this browser has turned off. The photo is still available.');
+      showState('Loading 3D preview…');
+      try {
+        await loadLib();
+      } catch {
+        return fail('The 3D preview could not load. Check your connection and try again.');
+      }
+      const mv = document.createElement('model-viewer') as NonNullable<typeof viewer>;
+      const attrs: Record<string, string> = {
+        src: stage.dataset.src!,
+        alt: stage.dataset.alt!,
+        'camera-controls': '',
+        'touch-action': 'pan-y',
+        'rotation-per-second': '18deg',
+        'auto-rotate-delay': '1200',
+        'environment-image': 'neutral',
+        exposure: '1.1',
+        'shadow-intensity': '0.6',
+        'camera-orbit': '35deg 60deg 115%',
+        'interaction-prompt': 'none',
+      };
+      for (const [k, v] of Object.entries(attrs)) mv.setAttribute(k, v);
+      if (spinning) mv.setAttribute('auto-rotate', '');
+      mv.addEventListener('progress', (e) => {
+        const p = (e as CustomEvent<{ totalProgress: number }>).detail.totalProgress;
+        if (p < 1) showState(`Loading 3D preview… ${Math.round(p * 100)}%`);
+      });
+      mv.addEventListener('load', () => showState(null));
+      mv.addEventListener('error', () => fail('This 3D preview could not be shown. The photo is still available.'));
+      viewer = mv;
+      stage.prepend(mv);
+    };
+
+    const select = (name: string) => {
+      for (const t of tabs) {
+        const on = t.dataset.tab === name;
+        t.setAttribute('aria-selected', String(on));
+        t.tabIndex = on ? 0 : -1;
+        panels[t.dataset.tab!].hidden = !on;
+      }
+      if (name === '3d') open3d();
+    };
+    tabs.forEach((t, i) => {
+      t.addEventListener('click', () => select(t.dataset.tab!));
+      t.addEventListener('keydown', (e) => {
+        if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return;
+        const next = tabs[(i + (e.key === 'ArrowRight' ? 1 : tabs.length - 1)) % tabs.length];
+        next.focus();
+        select(next.dataset.tab!);
+      });
+    });
+    tabs[1].tabIndex = -1;
+
+    pauseBtn.addEventListener('click', () => setSpin(!spinning));
+    resetBtn.addEventListener('click', () => {
+      if (!viewer) return;
+      viewer.cameraOrbit = '35deg 60deg 115%';
+      viewer.resetTurntableRotation?.();
+      viewer.jumpCameraToGoal?.();
+    });
+    variant?.addEventListener('change', () => {
+      if (!viewer) return;
+      showState('Loading 3D preview…');
+      viewer.setAttribute('src', variant.value);
+    });
+  }
+</script>
+
+<style>
+  .gallery { align-self: start; }
+  .tabs { display: inline-flex; gap: 4px; padding: 4px; margin-bottom: 12px; border-radius: 999px; background: var(--card); border: 1px solid var(--line); }
+  .tabs button { display: inline-flex; align-items: center; gap: 7px; min-height: 40px; padding: 0 16px; border: 0; border-radius: 999px; background: transparent; color: var(--ink-2); font: 600 .9rem/1 var(--body); cursor: pointer; }
+  .tabs button[aria-selected='true'] { background: var(--ink); color: #111; }
+  .tabs button:not([aria-selected='true']):hover { color: var(--ink); background: rgba(255, 255, 255, .06); }
+  .stage { position: relative; aspect-ratio: 1; border-radius: calc(var(--radius) - 4px); overflow: hidden; background: #151b20; }
+  .stage :global(model-viewer) { width: 100%; height: 100%; background: #151b20; --poster-color: transparent; }
+  .state { position: absolute; inset: 0; display: grid; place-content: center; justify-items: center; gap: 12px; padding: 24px; text-align: center; color: var(--ink-2); font-size: .92rem; pointer-events: none; }
+  .state[hidden] { display: none; }
+  .state.error .spinner { display: none; }
+  .state.error { color: var(--accent-ink); }
+  .spinner { width: 28px; height: 28px; border-radius: 50%; border: 3px solid rgba(255, 255, 255, .15); border-top-color: var(--instant); animation: spin .9s linear infinite; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .controls { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+  .variant { flex: 1 1 200px; }
+  .variant select { width: 100%; min-height: 44px; padding: 0 14px; border-radius: 999px; border: 1px solid var(--rule); background: var(--card); color: var(--ink); font: 500 .9rem/1 var(--body); }
+  .ctl { min-height: 44px; padding: 0 18px; border-radius: 999px; border: 1px solid var(--rule); background: transparent; color: var(--ink); font: 600 .9rem/1 var(--body); cursor: pointer; }
+  .ctl:hover { background: rgba(255, 255, 255, .06); }
+  .ctl:disabled { opacity: .45; cursor: not-allowed; }
+  .cap { font-size: .78rem; color: var(--ink-3); margin-top: 10px; }
+</style>

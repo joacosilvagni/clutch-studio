@@ -1,5 +1,5 @@
 slug: bmw-e30-pod-filter-adaptor
-status: draft
+status: preview
 kind: file
 title: Pod filter adaptor for BMW E30
 summary: null
@@ -39,8 +39,8 @@ sources:
     thing_id: 6457996
     thing_url: https://www.thingiverse.com/thing:6457996
     title_original: Pod filter adaptor
-    author: null
-    author_url: null
+    author: "zakary50"
+    author_url: "https://www.thingiverse.com/zakary50"
     license: CC-BY-SA
     license_raw: CC BY-SA
     verified_at: null
@@ -49,8 +49,8 @@ sources:
     image_urls: []
 files: []
 images:
-  - src: /images/products/bmw-e30-pod-filter-adaptor.webp
-    alt: "Pod filter adaptor for BMW E30, illustrative render"
+  - src: /media/portadas/6457996.webp
+    alt: "Pod filter adaptor for BMW E30, illustrative render of a possible matte black print"
     kind: render
 review:
   state: pendiente de revisión manual
@@ -60,4 +60,4 @@ review:
     - Verificar licencia, autor y archivos con la API (import-seed con THINGIVERSE_TOKEN).
     - "CC BY-SA: el archivo adaptado que se vende debe publicarse bajo CC BY-SA."
 created_at: 2026-11-22
-updated_at: 2026-11-22
+updated_at: 2026-11-23

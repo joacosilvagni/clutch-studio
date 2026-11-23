@@ -1,5 +1,5 @@
 slug: land-rover-defender-internal-door-handle
-status: draft
+status: preview
 kind: file
 title: Internal Door Handle for Land Rover Defender
 summary: null
@@ -34,8 +34,8 @@ sources:
     thing_id: 4792760
     thing_url: https://www.thingiverse.com/thing:4792760
     title_original: Internal Door Handle
-    author: null
-    author_url: null
+    author: "Merg1234"
+    author_url: "https://www.thingiverse.com/Merg1234"
     license: CC-BY
     license_raw: CC BY
     verified_at: null
@@ -43,7 +43,10 @@ sources:
     file_names: []
     image_urls: []
 files: []
-images: []
+images:
+  - src: /media/portadas/4792760.webp
+    alt: "Internal Door Handle for Land Rover Defender, illustrative render of a possible matte black print"
+    kind: render
 review:
   state: pendiente de revisión manual
   flags: []
@@ -51,4 +54,4 @@ review:
     - Escribir title, summary y description originales en inglés (no copiar al autor).
     - Verificar licencia, autor y archivos con la API (import-seed con THINGIVERSE_TOKEN).
 created_at: 2026-11-22
-updated_at: 2026-11-22
+updated_at: 2026-11-23

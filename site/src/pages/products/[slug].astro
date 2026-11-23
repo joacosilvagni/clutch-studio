@@ -2,7 +2,7 @@
 import { brand } from '../../data/brand';
 import Base from '../../layouts/Base.astro';
 import Breadcrumbs from '../../components/Breadcrumbs.astro';
-import ProductMedia from '../../components/ProductMedia.astro';
+import ProductGallery from '../../components/ProductGallery.astro';
 import BuyBox from '../../components/BuyBox.astro';
 import Reviews from '../../components/Reviews.astro';
 import ProductCard from '../../components/ProductCard.astro';
@@ -29,7 +29,6 @@ const title = fits.length && !titleMentionsCar ? `${p.title}, fits ${productFits
 const lede = p.summary ?? p.description;
 const dash = (v: unknown) => (v == null || v === '' ? '—' : String(v));
 const isShareAlike = p.sources.some((s) => s.license === 'CC-BY-SA');
-const isRender = p.images[0]?.kind === 'render';
 // No aggregateRating/review in JSON-LD until real verified reviews exist.
 const ld = {
   '@context': 'https://schema.org', '@type': 'Product', name: title, description: lede ?? title,
@@ -45,14 +44,14 @@ const ld = {
       <Breadcrumbs items={[['Home', '/'], [dept.name, `/${dept.slug}/`], [cat.name, categoryUrl(cat)], [p.title]]} />
       <div class="layout">
         <div class="gallery">
-          <ProductMedia product={p} size="hero" eager />
-          {isRender && <p class="cap">Illustrative render. Your print will show layer lines and the colour of your filament.</p>}
-          {!p.images.length && <p class="cap">Photos coming soon.</p>}
+          <ProductGallery product={p} />
         </div>
 
         <div class="info">
           <div class="tags">
             {p.status === 'draft' && <span class="tag">Draft listing</span>}
+            {p.status === 'preview' && <span class="tag">Coming soon</span>}
+            {p.preview3d && <span class="tag tag--blue">3D preview</span>}
             <a href={categoryUrl(cat)} class="tag">{cat.name}</a>
             {p.kind === 'pack' && <span class="tag tag--accent">Pack · {included.length} parts</span>}
           </div>
@@ -118,7 +117,7 @@ const ld = {
             <p>
               <strong>{s.licenseLabel}</strong>. Original design by{' '}
               {s.author ? (s.authorUrl ? <a href={s.authorUrl} rel="nofollow noopener" target="_blank">{s.author}</a> : <span>{s.author}</span>) : <span class="muted">author pending verification</span>},{' '}
-              <a href={s.url} rel="nofollow noopener" target="_blank">source</a>. We tested, documented and packaged it.
+              <a href={s.url} rel="nofollow noopener" target="_blank">source</a>. Used under the license above.
             </p>
           ))}
           {isShareAlike && <p class="small">ShareAlike: your files are shared under the same CC BY-SA license.</p>}
@@ -151,7 +150,6 @@ const ld = {
 <style>
   .layout { display: grid; gap: 28px; }
   .gallery { align-self: start; }
-  .cap { font-size: .78rem; color: var(--ink-3); margin-top: 10px; }
   .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 14px; }
   .ptitle { font-size: clamp(2.2rem, 5vw, 3.6rem); }
   .fit p { margin: 0 0 14px; font-size: .98rem; }

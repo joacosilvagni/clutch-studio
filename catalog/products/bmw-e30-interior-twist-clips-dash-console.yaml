@@ -1,5 +1,5 @@
 slug: bmw-e30-interior-twist-clips-dash-console
-status: draft
+status: preview
 kind: file
 title: Interior Twist Clips dash/console for BMW E30
 summary: null
@@ -35,8 +35,8 @@ sources:
     thing_id: 5486248
     thing_url: https://www.thingiverse.com/thing:5486248
     title_original: Interior Twist Clips dash/console OEM 51161932255
-    author: null
-    author_url: null
+    author: "Drclawscat"
+    author_url: "https://www.thingiverse.com/Drclawscat"
     license: CC-BY
     license_raw: CC BY
     verified_at: null
@@ -45,8 +45,8 @@ sources:
     image_urls: []
 files: []
 images:
-  - src: /images/products/bmw-e30-interior-twist-clips-dash-console.webp
-    alt: "Interior Twist Clips dash/console for BMW E30, illustrative render"
+  - src: /media/portadas/5486248.webp
+    alt: "Interior Twist Clips dash/console for BMW E30, illustrative render of a possible matte black print"
     kind: render
 review:
   state: pendiente de revisión manual
@@ -55,4 +55,4 @@ review:
     - Escribir title, summary y description originales en inglés (no copiar al autor).
     - Verificar licencia, autor y archivos con la API (import-seed con THINGIVERSE_TOKEN).
 created_at: 2026-11-22
-updated_at: 2026-11-22
+updated_at: 2026-11-23
