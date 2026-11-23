@@ -1,0 +1,55 @@
+slug: saab-900-rear-louvre-mount
+status: draft
+kind: file
+title: Rear Louvre Mount for Saab 900 (classic)
+summary: null
+description: null
+category: exterior-lighting
+part_type: rear louvre mount
+fits:
+  - make: Saab
+    model_slug: saab-900
+    years:
+      from: 1978
+      to: 1993
+price_usd: null
+oem_part_numbers: []
+material:
+  recommended:
+    - PETG
+    - ASA
+  avoid:
+    - PLA
+  note: A parked car interior gets hot enough to warp PLA. Use PETG, or ASA for parts in direct sun.
+print_settings:
+  layer_height_mm: null
+  infill_percent: null
+  walls: null
+  supports: null
+  orientation: null
+  notes: null
+install_notes: null
+sources:
+  - platform: thingiverse
+    thing_id: 4084095
+    thing_url: https://www.thingiverse.com/thing:4084095
+    title_original: Saab 900 Jalusi/Louvre mount
+    author: Peuxy
+    author_url: https://www.thingiverse.com/Peuxy
+    license: CC-BY
+    license_raw: Creative Commons - Attribution
+    verified_at: 2026-11-23
+    images_allowed: true
+    file_names: []
+    image_urls: []
+files: []
+images: []
+review:
+  state: pendiente de revisión manual
+  flags: []
+  notes:
+    - Escribir title, summary y description originales en inglés (no copiar al autor).
+    - Licencia y autor leídos en la página pública de Thingiverse el 2026-11-23 (la API devolvía 403); falta traer archivos e imágenes con la API.
+    - "Revisar las fotos del autor: sin logos ni emblemas de la marca en la pieza. Confirmar años de compatibilidad."
+created_at: 2026-11-23
+updated_at: 2026-11-23

@@ -1,0 +1,55 @@
+slug: vw-golf-mk2-gauge-vent-52-mm
+status: draft
+kind: file
+title: Gauge Vent (52 mm) for Volkswagen Golf Mk2
+summary: null
+description: null
+category: gauge-pods-bezels
+part_type: gauge vent (52 mm)
+fits:
+  - make: Volkswagen
+    model_slug: vw-golf-mk2
+    years:
+      from: 1983
+      to: 1992
+price_usd: null
+oem_part_numbers: []
+material:
+  recommended:
+    - PETG
+    - ASA
+  avoid:
+    - PLA
+  note: A parked car interior gets hot enough to warp PLA. Use PETG, or ASA for parts in direct sun.
+print_settings:
+  layer_height_mm: null
+  infill_percent: null
+  walls: null
+  supports: null
+  orientation: null
+  notes: null
+install_notes: null
+sources:
+  - platform: thingiverse
+    thing_id: 4470198
+    thing_url: https://www.thingiverse.com/thing:4470198
+    title_original: Golf MK2 Turbo Gauge Vent
+    author: istimat
+    author_url: https://www.thingiverse.com/istimat
+    license: CC-BY
+    license_raw: Creative Commons - Attribution
+    verified_at: 2026-11-23
+    images_allowed: true
+    file_names: []
+    image_urls: []
+files: []
+images: []
+review:
+  state: pendiente de revisión manual
+  flags: []
+  notes:
+    - Escribir title, summary y description originales en inglés (no copiar al autor).
+    - Licencia y autor leídos en la página pública de Thingiverse el 2026-11-23 (la API devolvía 403); falta traer archivos e imágenes con la API.
+    - "Revisar las fotos del autor: sin logos ni emblemas de la marca en la pieza. Confirmar años de compatibilidad."
+created_at: 2026-11-23
+updated_at: 2026-11-23
