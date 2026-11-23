@@ -1,0 +1,59 @@
+---
+import Base from '../layouts/Base.astro';
+---
+<Base title="Get your download links again" description="Lost your download email? Get fresh links sent to the email you paid with." noindex>
+  <section class="section">
+    <div class="wrap dl">
+      <div class="panel dl__box">
+        <h1>Lost your download links?</h1>
+        <p class="dl__lede">Enter the email address of your PayPal account. If it has orders from the last 30 days, we'll email you fresh links right away. Old links stop working.</p>
+        <form data-resend novalidate>
+          <label for="dl-email">PayPal email</label>
+          <div class="dl__row">
+            <input id="dl-email" name="email" type="email" autocomplete="email" required maxlength="320" placeholder="you@example.com" />
+            <button class="btn btn--accent btn--lg" type="submit">Send my links</button>
+          </div>
+          <p class="dl__status" data-resend-status role="status" aria-live="polite"></p>
+        </form>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<script>
+  const form = document.querySelector<HTMLFormElement>('[data-resend]')!;
+  const status = form.querySelector<HTMLElement>('[data-resend-status]')!;
+  const btn = form.querySelector<HTMLButtonElement>('button')!;
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const email = String(new FormData(form).get('email') ?? '').trim();
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) {
+      status.textContent = 'Please enter a valid email address.';
+      return;
+    }
+    btn.disabled = true;
+    status.textContent = 'Sending…';
+    try {
+      const res = await fetch('/api/resend', { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ email }) });
+      const data = await res.json().catch(() => ({}));
+      status.textContent =
+        res.status === 429 ? 'Too many requests. Please try again in an hour.' : res.ok ? data.message ?? 'Check your inbox.' : 'Something went wrong. Please try again.';
+    } catch {
+      status.textContent = 'Network error. Please try again.';
+    } finally {
+      btn.disabled = false;
+    }
+  });
+</script>
+
+<style>
+  .dl { max-width: 680px; }
+  .dl__box { padding: 32px; display: grid; gap: 14px; }
+  .dl__box h1 { margin: 0; }
+  .dl__lede { margin: 0; color: var(--ink-2); }
+  .dl__row { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 6px; }
+  .dl__row input { flex: 1 1 260px; min-height: 56px; padding: 0 16px; border-radius: var(--radius-sm); border: 1px solid var(--line); background: var(--deep); color: var(--ink); font: inherit; }
+  label { font-weight: 600; font-size: .9rem; }
+  .dl__status { margin: 0; min-height: 1.2em; color: var(--instant); font-size: .9rem; }
+  .dl__status:empty { display: none; }
+</style>

@@ -45,12 +45,13 @@ jobs:
           PAYPAL_CLIENT_SECRET: ${{ secrets.PAYPAL_CLIENT_SECRET }}
           PAYPAL_WEBHOOK_ID: ${{ secrets.PAYPAL_WEBHOOK_ID }}
           RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+          MAIL_SANDBOX_TO: ${{ secrets.MAIL_SANDBOX_TO }}
         run: |
           ../.github/scripts/set-d1-id.sh
           npx wrangler d1 migrations apply clutch-studio --remote
           npx wrangler deploy
           # Push only the secrets that exist in GitHub; values never touch the repo or the logs.
-          jq -n 'env | {PAYPAL_CLIENT_SECRET, PAYPAL_WEBHOOK_ID, RESEND_API_KEY} | with_entries(select(.value != null and .value != ""))' > /tmp/secrets.json
+          jq -n 'env | {PAYPAL_CLIENT_SECRET, PAYPAL_WEBHOOK_ID, RESEND_API_KEY, MAIL_SANDBOX_TO} | with_entries(select(.value != null and .value != ""))' > /tmp/secrets.json
           if [ "$(jq 'length' /tmp/secrets.json)" -gt 0 ]; then npx wrangler secret bulk /tmp/secrets.json; fi
           rm -f /tmp/secrets.json
       - name: Upload sandbox test files to the private bucket
