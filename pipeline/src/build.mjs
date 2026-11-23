@@ -5,7 +5,8 @@ import { priceToCents } from './schema.mjs';
  * its members; the buyer gets one download link per file.
  */
 export function buildWorkerCatalog(products) {
-  const approved = products.filter((p) => p.status === 'approved' && p.kind !== 'physical');
+  // Free Library items are never sold, so the Worker does not know them.
+  const approved = products.filter((p) => p.status === 'approved' && p.kind !== 'physical' && p.free !== true);
   const bySlug = new Map(approved.map((p) => [p.slug, p]));
   const out = {};
   for (const p of approved) {

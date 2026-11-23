@@ -1,0 +1,4 @@
+# Copy to .dev.vars for `wrangler dev` (never commit .dev.vars). Use PayPal SANDBOX credentials.
+PAYPAL_CLIENT_SECRET=
+PAYPAL_WEBHOOK_ID=
+RESEND_API_KEY=

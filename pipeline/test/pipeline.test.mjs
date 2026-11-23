@@ -125,7 +125,8 @@ describe('schema', () => {
     expect(errs({ files: [] }).join()).toMatch(/files/);
     expect(errs({ review: { flags: ['logo?'] } }).join()).toMatch(/flag/);
     expect(errs({ files: [{ r2_key: '../secrets' }] }).join()).toMatch(/r2_key/);
-    expect(errs({ kind: 'physical' }).join()).toMatch(/dropshipping/);
+    expect(validateProduct(approvedProduct({ kind: 'physical', fits: [], category: 'phone-tech', files: [], sources: [] }), { allowedLicenses: ALLOWED })).toEqual([]);
+    expect(errs({ fits: [] }).join()).toMatch(/sin fits/);
   });
   it('checks packs and duplicate slugs across the catalog', () => {
     const a = approvedProduct();
@@ -133,6 +134,12 @@ describe('schema', () => {
     const errors = validateCatalog([{ file: 'bmw-e30-dash-clip.yaml', product: a }, { file: 'e30-pack.yaml', product: pack }, { file: 'dup.yaml', product: { ...a } }], { allowedLicenses: ALLOWED });
     expect(errors.join('\n')).toMatch(/"missing" no existe/);
     expect(errors.join('\n')).toMatch(/slug duplicado/);
+  });
+  it('allows free Free Library products at 0.00 only when flagged', () => {
+    expect(validateProduct(approvedProduct({ free: true, price_usd: '0.00' }), { allowedLicenses: ALLOWED })).toEqual([]);
+    expect(validateProduct(approvedProduct({ price_usd: '0.00' }), { allowedLicenses: ALLOWED }).join()).toMatch(/price_usd/);
+    expect(validateProduct(approvedProduct({ free: true, price_usd: '3.00' }), { allowedLicenses: ALLOWED }).join()).toMatch(/0\.00/);
+    expect(buildWorkerCatalog([approvedProduct({ free: true, price_usd: '0.00' })]).products).toEqual({});
   });
   it('converts prices without floats', () => {
     expect(priceToCents('19.99')).toBe(1999);

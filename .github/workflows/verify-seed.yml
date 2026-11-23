@@ -1,0 +1,39 @@
+name: Verify seed drafts
+# Run from the Actions tab: re-imports the seed CSV checking every row against the Thingiverse API
+# (license, author, files, images) and opens a PR with the updated drafts. Approved products are never touched.
+on:
+  workflow_dispatch:
+permissions:
+  contents: write
+  pull-requests: write
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Re-import seed with API verification
+        env:
+          THINGIVERSE_TOKEN: ${{ secrets.THINGIVERSE_TOKEN }}
+        run: node pipeline/src/cli/import-seed.mjs --overwrite | tee import.log
+      - name: Validate catalog
+        run: npm run catalog:validate
+      - name: Open PR
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          branch="bot/verify-seed-$(date -u +%Y%m%d-%H%M)"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898099+github-actions[bot]@users.noreply.github.com"
+          git checkout -b "$branch"
+          git add catalog/products
+          if git diff --cached --quiet; then echo "No changes"; exit 0; fi
+          git commit -m "chore(catalog): verify seed drafts against the Thingiverse API"
+          git push -u origin "$branch"
+          gh pr create --title "Catalog: seed drafts verified against Thingiverse" \
+            --body "Automated run of \`import-seed --overwrite\` with API verification. Review the flags in each draft before approving anything." \
+            --base main --head "$branch" || echo "Could not open the PR automatically (enable 'Allow GitHub Actions to create pull requests' in Settings → Actions). Branch pushed: $branch"

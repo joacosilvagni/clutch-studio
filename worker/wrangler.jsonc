@@ -1,0 +1,42 @@
+// Cloudflare Worker: serves the Astro site (static assets) and the shop API on one domain.
+// No secrets here. Set them with:
+//   wrangler secret put PAYPAL_CLIENT_SECRET
+//   wrangler secret put PAYPAL_WEBHOOK_ID
+//   wrangler secret put RESEND_API_KEY
+// For local dev put them in worker/.dev.vars (git-ignored).
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "clutch-studio",
+  "main": "src/index.ts",
+  "compatibility_date": "2026-11-01",
+  "observability": { "enabled": true },
+  "assets": {
+    "directory": "../site/dist",
+    "binding": "ASSETS",
+    "not_found_handling": "404-page",
+    // Only these paths run the Worker; everything else is served as static files for free.
+    "run_worker_first": ["/api/*", "/d/*"]
+  },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "clutch-studio",
+      // Fill in after `wrangler d1 create clutch-studio` (an id is not a secret).
+      "database_id": "00000000-0000-0000-0000-000000000000",
+      "migrations_dir": "migrations"
+    }
+  ],
+  "r2_buckets": [
+    // Private bucket: no public domain, no r2.dev. Files are only reachable through /d/<token>.
+    { "binding": "FILES", "bucket_name": "clutch-studio-files" }
+  ],
+  "vars": {
+    "PAYPAL_ENV": "sandbox",
+    "PAYPAL_CLIENT_ID": "BAABNklSErIZ4x9p3JdeXtMVe4ySKeYfC2PspuKGXJ7rjbcQ6zGRfRuPj52tf1OU1IJfQSoHD0mjTCWISk",
+    "PAYPAL_MERCHANT_ID": "",
+    "SITE_URL": "https://example.com",
+    "MAIL_FROM": "Clutch Studio <orders@example.com>",
+    "DOWNLOAD_TTL_HOURS": "72",
+    "DOWNLOAD_MAX": "5"
+  }
+}

@@ -6,13 +6,12 @@ Leelo antes de empezar y actualizalo al terminar (ver `AGENTS.md`).
 
 | Agente | Tarea | Rama | Desde |
 | --- | --- | --- | --- |
-| Claude (backend) | Worker de pagos y entrega (`worker/`) | claude/worker-checkout | 2026-11-22 |
 | Claude (diseño) | Prototipo del sitio Astro (`site/`), PR #1 abierto para revisión | claude/site-prototype | 2026-11-22 |
 
 ## Bloqueos
 
 - Retiro de USD: PayPal exige una cuenta bancaria de EE.UU. a nombre del titular de la cuenta PayPal. Joaquín lo verifica antes de salir a producción.
-- Falta `THINGIVERSE_TOKEN` para verificar licencias/autores de los 73 borradores (Joaquín crea la app en Thingiverse).
+- R2: falta activar la suscripción gratuita de R2 en Cloudflare (Joaquín, pantalla de pago); después se re-corre "Bootstrap Cloudflare". D1 ya está creada.
 
 ## Preguntas abiertas
 
@@ -20,6 +19,8 @@ Leelo antes de empezar y actualizalo al terminar (ver `AGENTS.md`).
 - ¿Dominio definitivo? (necesario para Resend, PayPal y Cloudflare). Hoy `site/astro.config.mjs` usa example.com.
 - ¿Política de devoluciones y plazos de envío de accesorios? Depende del proveedor de dropshipping; el sitio no promete nada hasta tenerla.
 - ¿Qué precio tienen los accesorios y cómo se muestra el envío (incluido o calculado en el checkout)?
+- Free Library (`free: true`): ¿descarga directa pública desde R2/estáticos, o pedir el mail y mandar un link? El Worker hoy no entrega gratuitos.
+- Contrato frontend ↔ Worker: el carrito manda `{items:[{slug}]}` a `/api/orders`; `onApprove` manda `{orderID}` a `/api/capture` y muestra `downloads[]` (o el `message` si es `null`).
 
 ## Log de sesiones (lo más nuevo arriba)
 
@@ -35,6 +36,15 @@ Leelo antes de empezar y actualizalo al terminar (ver `AGENTS.md`).
 - Para el schema (`pipeline/`, área backend): agregar las categorías de accesorios (`interior-comfort`, `phone-tech`,
   `lighting-electrical`, `detailing-care`, `garage-tools`, `exterior-protection`), permitir `fits: []` en físicos
   (= universal) y `free: true` para la Free Library. Las URLs de producto ahora son `/products/<slug>/`.
+
+### 2026-11-22 · Claude (backend) — Worker
+- Hecho (rama `claude/worker-checkout`): Worker con `/api/orders`, `/api/capture`, `/api/resend`, webhook de PayPal
+  (verificación propia con allowlist del certificado + postback de respaldo, dedupe de eventos, relectura de la captura),
+  descargas `/d/<token>` (GET página, POST consume, atómico, log de entrega), mail con Resend, rate limit en D1,
+  migración D1, `wrangler.jsonc` sin secretos, `free: true` en el schema, workflows de CI, deploy y reverificación,
+  README. 42 tests pasando, `tsc` y `wrangler deploy --dry-run` OK.
+- Pendiente: recursos reales en Cloudflare y credenciales sandbox de PayPal para probar punta a punta; integración del carrito en `site/`.
+- Decisiones: GET de descarga no consume (escáneres de mail); un token por archivo; packs entregan los archivos de sus piezas.
 
 ### 2026-11-22 · Claude (backend)
 - Hecho: Fase 0 (informe de viabilidad), schema de producto, pipeline de catálogo (`import-seed`, `search`,
