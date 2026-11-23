@@ -24,6 +24,16 @@ Leelo antes de empezar y actualizalo al terminar (ver `AGENTS.md`).
 
 ## Log de sesiones (lo más nuevo arriba)
 
+### 2026-11-22 · Claude (backend) — Infra
+- Hecho: PR #2 mergeado. App sandbox de PayPal "Clutch Studio" (Client ID público en `worker/wrangler.jsonc`), app de Thingiverse
+  "Clutch Studio catalog", token de Cloudflare "clutch-studio GitHub Actions" (solo la cuenta: Workers, D1, R2; sin zona).
+  Secrets de GitHub: `CLOUDFLARE_ACCOUNT_ID`, `CLOUDFLARE_API_TOKEN`, `PAYPAL_CLIENT_SECRET`, `THINGIVERSE_TOKEN`.
+  R2 activado (plan gratis). "Bootstrap Cloudflare" OK: D1 `clutch-studio`, bucket privado `clutch-studio-files`, migraciones aplicadas.
+- Pendiente: "Verify seed drafts" corrió pero la API de Thingiverse devolvió 403 (la app nueva parece estar en cola de aprobación);
+  re-correrlo cuando la aprueben. La rama `bot/verify-seed-20261123-0018` no sirve (solo flags de error), se puede borrar.
+  Faltan `PAYPAL_WEBHOOK_ID` y `RESEND_API_KEY` (necesitan dominio) y `vars.DEPLOY_ENABLED=true` para el deploy.
+- Nota: los agentes no cargan secretos en formularios; los pega Joaquín.
+
 ### 2026-11-22 · Claude (diseño)
 - Hecho: prototipo del sitio en `site/` (PR #1). Marca provisoria Clutch Studio (`site/src/data/brand.ts`), paleta oscura,
   navegación por categorías con dos departamentos (Accesorios físicos como protagonista y Archivos 3D), el auto como

@@ -22,7 +22,8 @@ Marcá `[x]` al terminar y poné tu agente entre paréntesis si la tomaste. Recl
 - [x] Worker: `POST /api/orders`, `POST /api/capture`, webhook PayPal con verificación de firma (Claude)
 - [x] Worker: descargas con token (72 h, 5 descargas), mail con Resend, reenvío de links, rate limiting (Claude)
 - [x] Migraciones D1 y wrangler config (sin secretos) (Claude)
-- [ ] Crear D1, R2 y secrets en Cloudflare; completar `database_id`, `PAYPAL_CLIENT_ID`, `SITE_URL`, `MAIL_FROM`
+- [x] Crear D1, R2 y secrets; `PAYPAL_CLIENT_ID` sandbox (Claude)
+- [ ] Completar `SITE_URL`, `MAIL_FROM`, `PAYPAL_WEBHOOK_ID`, `RESEND_API_KEY` (necesitan dominio)
 - [x] Sitio: prototipo de home, departamentos, categorías, filtros, página por modelo, producto con atribución (Claude, PR #1)
 - [ ] Sitio: conectar carrito y botones de PayPal a `/api/orders` y `/api/capture`; página `/downloads/` que llame a `/api/resend`
 - [ ] Definir cómo se entregan los productos `free: true` de la Free Library
