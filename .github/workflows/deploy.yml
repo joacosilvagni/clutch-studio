@@ -26,8 +26,16 @@ jobs:
       - run: npm ci
       - run: npm run catalog:build
       - run: npm test
+      # Sandbox preview (repo variable SANDBOX=true): the Worker also sells test: true products and
+      # the site lists them, so checkout and delivery can be tested end to end with PayPal sandbox.
+      - name: Build Worker catalog for this deploy
+        env:
+          CATALOG_INCLUDE_TEST: ${{ vars.SANDBOX == 'true' }}
+        run: npm run catalog:build
       - name: Build site
         working-directory: site
+        env:
+          PUBLIC_SANDBOX: ${{ vars.SANDBOX == 'true' }}
         run: npm ci && npm run build
       - name: Configure, migrate, deploy and sync secrets
         working-directory: worker
@@ -45,3 +53,13 @@ jobs:
           jq -n 'env | {PAYPAL_CLIENT_SECRET, PAYPAL_WEBHOOK_ID, RESEND_API_KEY} | with_entries(select(.value != null and .value != ""))' > /tmp/secrets.json
           if [ "$(jq 'length' /tmp/secrets.json)" -gt 0 ]; then npx wrangler secret bulk /tmp/secrets.json; fi
           rm -f /tmp/secrets.json
+      - name: Upload sandbox test files to the private bucket
+        if: vars.SANDBOX == 'true'
+        working-directory: worker
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: |
+          (cd ../fixtures/r2 && find products -type f) | while read -r key; do
+            npx wrangler r2 object put "clutch-studio-files/$key" --file "../fixtures/r2/$key" --remote
+          done

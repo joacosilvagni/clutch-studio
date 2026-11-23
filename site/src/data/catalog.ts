@@ -48,6 +48,8 @@ export type Product = {
   install: string[];
   sources: { url: string; author: string | null; authorUrl: string | null; license: string; licenseLabel: string; verified: boolean }[];
   status: 'draft' | 'approved';
+  test: boolean; // sandbox-only checkout test product
+  free: boolean; // Free Library
   reviewFlags: string[];
   images: { src: string; alt: string; kind: 'photo' | 'render' }[];
 };

@@ -161,6 +161,24 @@ describe('worker catalog build', () => {
   });
 });
 
+describe('sandbox test products', () => {
+  const testProduct = (o = {}) => approvedProduct({ slug: 'sandbox-test', status: 'draft', test: true, price_usd: '1.00', files: [{ r2_key: 'products/sandbox-test/t.zip' }], ...o });
+  it('can never be approved and must be a priced file', () => {
+    const errs = (o) => validateProduct(testProduct(o), { allowedLicenses: ALLOWED }).join();
+    expect(errs()).toBe('');
+    expect(errs({ status: 'approved' })).toMatch(/no puede estar aprobado/);
+    expect(errs({ kind: 'pack' })).toMatch(/solo aplica a kind: file/);
+    expect(errs({ price_usd: null })).toMatch(/requiere price_usd/);
+    expect(errs({ files: [] })).toMatch(/requiere files/);
+  });
+  it('reaches the Worker catalog only when includeTest is set', () => {
+    expect(buildWorkerCatalog([testProduct()]).products).toEqual({});
+    expect(buildWorkerCatalog([testProduct(), approvedProduct({ slug: 'some-draft', status: 'draft' })], { includeTest: true }).products).toEqual({
+      'sandbox-test': { slug: 'sandbox-test', title: expect.any(String), price_cents: 100, files: [{ r2_key: 'products/sandbox-test/t.zip', name: 't.zip' }] },
+    });
+  });
+});
+
 describe('thingiverse client', () => {
   it('sends the bearer token, spaces calls and retries 429', async () => {
     const calls = [];
