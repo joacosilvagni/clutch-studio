@@ -3,6 +3,7 @@ import { brand } from '../data/brand';
 import '../styles/global.css';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import { SHOW_DRAFTS } from '../data/products';
 
 interface Props {
   title: string;
@@ -27,31 +28,34 @@ const fullTitle = title === brand.name ? title : `${title} | ${brand.name}`;
     <meta property="og:title" content={fullTitle} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
-    <meta name="theme-color" content="#131417" />
+    <meta name="theme-color" content="#0f1012" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Barlow:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
       rel="stylesheet"
     />
     {jsonLd && <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />}
   </head>
   <body>
-    <div class="proto-bar">Prototype preview: listings are drafts and checkout is not live yet.</div>
+    {SHOW_DRAFTS && <div class="proto-bar">Draft preview: unapproved listings are visible. Production shows approved products only.</div>}
     <Header />
     <main id="main"><slot /></main>
     <Footer />
+    <script>
+      import { bindCartButtons } from '../scripts/cart';
+      bindCartButtons();
+    </script>
   </body>
 </html>
 
 <style>
   .proto-bar {
-    background: var(--accent);
-    color: #fff;
+    background: #2a1a10;
+    color: var(--accent-ink);
     text-align: center;
-    font: 600 0.75rem/1.3 var(--mono);
-    letter-spacing: 0.04em;
-    padding: 7px 16px;
+    font: 500 0.72rem/1.3 var(--mono);
+    padding: 6px 16px;
   }
 </style>

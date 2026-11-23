@@ -1,0 +1,21 @@
+# Sandbox-only product used to test checkout and instant delivery end to end.
+# test: true keeps it out of production: the Worker sells it only when CATALOG_INCLUDE_TEST=true
+# and the site lists it only when PUBLIC_SANDBOX=true. It can never be approved.
+slug: sandbox-test-token
+status: draft
+test: true
+kind: file
+title: Sandbox test file (not a real product)
+summary: A plain test plate used to try the checkout with PayPal sandbox. Not a car part.
+description: >-
+  This listing exists only on the sandbox preview so the full purchase can be tested: pay with a
+  PayPal sandbox account, get the download link instantly on the confirmation page and by email,
+  and download a small ZIP with a 30 x 30 x 3 mm plate.
+category: workshop-tools
+fits: []
+price_usd: "1.00"
+files:
+  - r2_key: products/sandbox-test-token/clutch-studio-test-token.zip
+    name: clutch-studio-test-token.zip
+sources: []
+includes: []

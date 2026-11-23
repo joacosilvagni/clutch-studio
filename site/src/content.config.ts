@@ -12,6 +12,8 @@ const products = defineCollection({
   schema: z.object({
     slug: z.string(),
     status: z.enum(['draft', 'approved']),
+    test: z.boolean().default(false),
+    free: z.boolean().default(false),
     kind: z.enum(['file', 'pack', 'physical']),
     title: z.string(),
     summary: str,
@@ -45,7 +47,9 @@ const products = defineCollection({
       )
       .default([]),
     // `files` (R2 keys) is intentionally NOT read: the site never exposes download locations.
-    images: z.array(z.any()).default([]),
+    images: z
+      .array(z.object({ src: z.string(), alt: z.string().nullish(), kind: z.enum(['photo', 'render']).nullish() }))
+      .default([]),
     review: z
       .object({ state: str, flags: z.array(z.string()).default([]), notes: z.array(z.string()).default([]) })
       .nullish(),

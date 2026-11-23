@@ -43,7 +43,10 @@ sources:
     file_names: []
     image_urls: []
 files: []
-images: []
+images:
+  - src: /images/products/volvo-240-door-cards-clips.webp
+    alt: "Door cards clips for Volvo 240, illustrative render"
+    kind: render
 review:
   state: pendiente de revisión manual
   flags: []

@@ -24,7 +24,7 @@ const avg = reviews.length ? reviews.reduce((a, r) => a + r.rating, 0) / reviews
           Printed the {productTitle}? Every buyer gets a review link in their download email.
           Tell other owners how it fit, what printer and filament you used, and post a photo of it installed.
         </p>
-        <p class="mono muted">Only verified buyers can review. We never edit or remove honest reviews.</p>
+        <p class="muted small">Only verified buyers can review. We never edit or remove honest reviews.</p>
       </div>
     </div>
   ) : (
@@ -33,7 +33,7 @@ const avg = reviews.length ? reviews.reduce((a, r) => a + r.rating, 0) / reviews
         <li>
           <p class="mono">{'★'.repeat(r.rating)}{'☆'.repeat(5 - r.rating)} · {r.author}, {r.country} · {r.date}</p>
           <p>{r.body}</p>
-          {r.printer && <p class="mono muted">Printed on {r.printer}</p>}
+          {r.printer && <p class="muted small">Printed on {r.printer}</p>}
           <span class="tag tag--green">Verified buyer</span>
         </li>
       ))}
@@ -42,7 +42,7 @@ const avg = reviews.length ? reviews.reduce((a, r) => a + r.rating, 0) / reviews
 </section>
 <style>
   .head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 8px; }
-  .empty { display: grid; gap: 18px; padding: 22px; border: 1.5px dashed var(--rule); border-radius: var(--radius); background: var(--card); }
+  .empty { display: grid; gap: 18px; padding: 22px; border: 1px dashed var(--rule); border-radius: var(--radius); background: var(--card); }
   .stars { width: 120px; color: var(--ink-3); }
   .empty h3 { margin-bottom: 8px; }
   .empty p { color: var(--ink-2); margin-bottom: 8px; }

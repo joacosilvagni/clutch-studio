@@ -1,41 +1,50 @@
 ---
-import PartArt from './PartArt.astro';
-import { type Product, getCategory, getModel, productFitsLabel, priceLabel } from '../data/catalog';
-import { productUrl, fitSummaryKind } from '../data/products';
-interface Props { product: Product }
-const { product: p } = Astro.props;
-const cat = getCategory(p.category);
+import ProductMedia from './ProductMedia.astro';
+import InstantBadge from './InstantBadge.astro';
+import { type Product, getModel, productFitsLabel, priceLabel } from '../data/catalog';
+import { productUrl, fitSummaryKind, isDigital } from '../data/products';
+interface Props { product: Product; eager?: boolean }
+const { product: p, eager = false } = Astro.props;
 const fits = p.models.map((s) => getModel(s));
 const fk = fitSummaryKind(p);
 const fitLine =
   fk === 'universal' ? 'Universal fit' :
   fk === 'unconfirmed' ? 'Check fitment' :
   fits.length > 2 ? `Fits ${fits.length} models` : `Fits ${fits.map((m) => productFitsLabel(p, m)).join(' · ')}`;
+const digital = isDigital(p);
 ---
 <article class="card" data-product data-cat={p.category} data-dept={p.department} data-models={p.models.join(' ')} data-universal={fk === 'universal' ? '1' : '0'}>
   <a href={productUrl(p)} class="link">
-    <PartArt glyph={cat.glyph} label={p.oem[0] ? `OEM ${p.oem[0]}` : cat.short} />
-    <div class="body">
-      <div class="meta">
-        {p.status === 'draft' && <span class="tag tag--accent">Draft</span>}
-        <span class:list={['tag', p.department === 'accessories' ? 'tag--green' : 'tag--blue']}>{p.department === 'accessories' ? 'Ships to you' : '3D file'}</span>
+    <div class="pic">
+      <ProductMedia product={p} eager={eager} />
+      <div class="flags">
         {p.kind === 'pack' && <span class="tag tag--accent">Pack</span>}
         {p.priceUsd === 0 && <span class="tag tag--green">Free</span>}
+        {p.status === 'draft' && <span class="tag draft">Draft</span>}
       </div>
+    </div>
+    <div class="body">
       <h3>{p.title}</h3>
       <p class="fits">{fitLine}</p>
-      <p class="price">{priceLabel(p)}{p.department === '3d-files' && <span class="muted"> · STL + 3MF</span>}</p>
+      <div class="foot">
+        <span class="price">{priceLabel(p)}</span>
+        {digital ? <InstantBadge /> : <span class="ship">Ships to you</span>}
+      </div>
     </div>
   </a>
 </article>
 <style>
-  .card { background: var(--card); border: 1px solid var(--rule); border-radius: var(--radius); box-shadow: var(--shadow); transition: transform .15s ease, border-color .15s ease; height: 100%; }
-  .card:hover { transform: translateY(-2px); border-color: var(--ink-3); }
-  .link { display: block; text-decoration: none; color: inherit; padding: 8px; height: 100%; }
-  .link:hover { color: inherit; }
-  .body { padding: 12px 6px 6px; }
-  .meta { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 10px; }
-  h3 { margin-bottom: 4px; }
-  .fits { font-size: .9rem; color: var(--ink-2); margin-bottom: 10px; }
-  .price { font: 600 1rem/1 var(--mono); margin: 0; }
+  .card { height: 100%; }
+  .link { display: flex; flex-direction: column; height: 100%; text-decoration: none; color: inherit; padding: 10px; border-radius: var(--radius); background: var(--card); border: 1px solid var(--line); transition: border-color .2s, background .2s, transform .2s; }
+  .link:hover { color: inherit; border-color: rgba(255, 255, 255, .18); background: var(--card-2); transform: translateY(-3px); }
+  .pic { position: relative; }
+  .flags { position: absolute; top: 10px; left: 10px; display: flex; gap: 6px; }
+  .flags .tag { backdrop-filter: blur(6px); background: rgba(10, 10, 12, .55); }
+  .draft { color: var(--ink-3); }
+  .body { display: flex; flex-direction: column; flex: 1; padding: 14px 6px 4px; }
+  h3 { font: 600 1.02rem/1.3 var(--body); letter-spacing: 0; margin: 0 0 4px; text-transform: none; }
+  .fits { font-size: .84rem; color: var(--ink-3); margin: 0 0 14px; }
+  .foot { margin-top: auto; display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+  .price { font: 700 1.15rem/1 var(--body); }
+  .ship { font-size: .78rem; color: var(--ink-2); }
 </style>

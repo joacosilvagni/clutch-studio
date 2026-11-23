@@ -43,7 +43,10 @@ sources:
     file_names: []
     image_urls: []
 files: []
-images: []
+images:
+  - src: /images/products/mercedes-w123-screw-for-foot-cover-interior.webp
+    alt: "Screw for foot cover interior for Mercedes-Benz W123, illustrative render"
+    kind: render
 review:
   state: pendiente de revisión manual
   flags: []

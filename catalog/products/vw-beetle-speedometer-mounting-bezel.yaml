@@ -43,7 +43,10 @@ sources:
     file_names: []
     image_urls: []
 files: []
-images: []
+images:
+  - src: /images/products/vw-beetle-speedometer-mounting-bezel.webp
+    alt: "Speedometer Mounting Bezel for Volkswagen Beetle (Type 1), illustrative render"
+    kind: render
 review:
   state: pendiente de revisión manual
   flags: []

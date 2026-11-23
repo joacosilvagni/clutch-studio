@@ -48,7 +48,10 @@ export type Product = {
   install: string[];
   sources: { url: string; author: string | null; authorUrl: string | null; license: string; licenseLabel: string; verified: boolean }[];
   status: 'draft' | 'approved';
+  test: boolean; // sandbox-only checkout test product
+  free: boolean; // Free Library
   reviewFlags: string[];
+  images: { src: string; alt: string; kind: 'photo' | 'render' }[];
 };
 
 export const makes: Make[] = [
@@ -81,7 +84,7 @@ export const models: Model[] = [
 
 export const departments: Department[] = [
   { slug: 'accessories', name: 'Car Accessories', short: 'Accessories', pitch: 'Universal-fit gear for older cars: interior, tech, lighting, detailing and garage.' },
-  { slug: '3d-files', name: '3D Print Files', short: '3D Files', pitch: 'Print-ready STL + 3MF for the small parts nobody makes anymore.' },
+  { slug: '3d-files', name: '3D Print Files', short: '3D Files', pitch: 'Print-ready STL files for the small parts nobody makes anymore.' },
 ];
 
 export const categories: Category[] = [

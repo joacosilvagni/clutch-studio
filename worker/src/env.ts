@@ -13,6 +13,8 @@ export interface Env {
   /** secret */
   RESEND_API_KEY: string;
   MAIL_FROM: string;
+  /** Sandbox only: deliver every email here instead of the PayPal sandbox buyer's fake address. Ignored in live. */
+  MAIL_SANDBOX_TO?: string;
   SITE_URL: string;
   DOWNLOAD_TTL_HOURS?: string;
   DOWNLOAD_MAX?: string;
