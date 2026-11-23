@@ -16,6 +16,13 @@ export const CATEGORIES = [
   'exterior-lighting',
   'engine-bay',
   'workshop-tools',
+  // Physical accessories (dropshipping)
+  'interior-comfort',
+  'phone-tech',
+  'lighting-electrical',
+  'detailing-care',
+  'garage-tools',
+  'exterior-protection',
 ];
 export const MODEL_SLUGS = [
   'bmw-e30',
@@ -77,6 +84,7 @@ export function validateProduct(p, { allowedLicenses, fileSlug } = {}) {
     });
 
   if (p.price_usd != null && priceToCents(p.price_usd) == null) e.push('price_usd debe ser un texto como "9.00"');
+  if (p.free != null && typeof p.free !== 'boolean') e.push('free debe ser true o false');
   if (p.includes != null && (!Array.isArray(p.includes) || !p.includes.every((s) => SLUG_RE.test(s))))
     e.push('includes debe ser una lista de slugs');
   if (p.kind !== 'pack' && Array.isArray(p.includes) && p.includes.length) e.push('includes solo aplica a kind: pack');
@@ -103,10 +111,12 @@ export function validateProduct(p, { allowedLicenses, fileSlug } = {}) {
     if (!nonEmpty(p.title)) e.push('aprobado sin title');
     if (!nonEmpty(p.description)) e.push('aprobado sin description original');
     if (!p.category) e.push('aprobado sin category');
-    if (!Array.isArray(p.fits) || p.fits.length === 0) e.push('aprobado sin fits');
+    // fits: [] on a physical product means universal fit.
+    if (p.kind !== 'physical' && (!Array.isArray(p.fits) || p.fits.length === 0)) e.push('aprobado sin fits');
     const cents = priceToCents(p.price_usd);
-    if (cents == null || cents < MIN_PRICE_CENTS) e.push(`aprobado sin price_usd >= ${(MIN_PRICE_CENTS / 100).toFixed(2)}`);
-    if (p.kind === 'physical') e.push('kind: physical está reservado para la fase de dropshipping');
+    if (p.free === true) {
+      if (cents !== 0) e.push('free: true requiere price_usd "0.00"');
+    } else if (cents == null || cents < MIN_PRICE_CENTS) e.push(`aprobado sin price_usd >= ${(MIN_PRICE_CENTS / 100).toFixed(2)}`);
     if (p.kind === 'file') {
       if (!Array.isArray(p.files) || p.files.length === 0) e.push('aprobado sin files en R2');
       if (!Array.isArray(p.sources) || p.sources.length === 0) e.push('aprobado sin sources (atribución)');
