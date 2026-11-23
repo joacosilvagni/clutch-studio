@@ -48,7 +48,7 @@ supplier:
       method: Printful Standard
   quoted_at: '2026-11-23'
 review:
-  state: aprobado por Joaquín en el chat (2026-11-23); falta completar lo de las notas para pasar a approved
+  state: rechazado por Joaquín (2026-11-23, no le gustaron las fotos); no publicar
   flags: []
   notes:
   - 'Ganancia neta estimada USD 17.86 por póster (envío más caro, AU, y PayPal 5,4% + 0,30). En la UE Printful puede sumar
