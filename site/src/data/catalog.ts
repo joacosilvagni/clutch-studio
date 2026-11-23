@@ -47,12 +47,17 @@ export type Product = {
   includes: string[];
   install: string[];
   sources: { url: string; author: string | null; authorUrl: string | null; license: string; licenseLabel: string; verified: boolean }[];
-  status: 'draft' | 'approved';
+  status: 'draft' | 'preview' | 'approved'; // preview = listed with cover and 3D view, not for sale yet
   test: boolean; // sandbox-only checkout test product
   free: boolean; // Free Library
   reviewFlags: string[];
   images: { src: string; alt: string; kind: 'photo' | 'render' }[];
+  thingId: string | null; // Thingiverse id of the first source, used to look up media
+  preview3d: Preview3d | null; // GLB previews for the "View in 3D" tab
 };
+
+export type PreviewModel = { src: string; label: string; name: string; bytes: number; optimized: boolean };
+export type Preview3d = { models: PreviewModel[]; defaultModel: number };
 
 export const makes: Make[] = [
   { slug: 'bmw', name: 'BMW' },
@@ -124,4 +129,4 @@ export const productFitsLabel = (p: Product, m: Model) => {
   return `${getMake(m.make).name} ${m.name} (${y[0]}–${y[1]})`;
 };
 export const priceLabel = (p: Product) =>
-  p.priceUsd == null ? 'Price TBD' : p.priceUsd === 0 ? 'Free' : `$${p.priceUsd.toFixed(2)}`;
+  p.priceUsd == null ? (p.status === 'preview' ? 'Coming soon' : 'Price TBD') : p.priceUsd === 0 ? 'Free' : `$${p.priceUsd.toFixed(2)}`;

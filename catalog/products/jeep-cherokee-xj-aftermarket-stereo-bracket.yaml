@@ -1,5 +1,5 @@
 slug: jeep-cherokee-xj-aftermarket-stereo-bracket
-status: draft
+status: preview
 kind: file
 title: Aftermarket Stereo Bracket for Jeep Cherokee XJ
 summary: null
@@ -34,8 +34,8 @@ sources:
     thing_id: 318068
     thing_url: https://www.thingiverse.com/thing:318068
     title_original: Aftermarket Stereo Bracket
-    author: null
-    author_url: null
+    author: "RileZ33"
+    author_url: "https://www.thingiverse.com/RileZ33"
     license: CC-BY-SA
     license_raw: CC BY-SA
     verified_at: null
@@ -44,8 +44,8 @@ sources:
     image_urls: []
 files: []
 images:
-  - src: /images/products/jeep-cherokee-xj-aftermarket-stereo-bracket.webp
-    alt: "Aftermarket Stereo Bracket for Jeep Cherokee XJ, illustrative render"
+  - src: /media/portadas/318068.webp
+    alt: "Aftermarket Stereo Bracket for Jeep Cherokee XJ, illustrative render of a possible matte black print"
     kind: render
 review:
   state: pendiente de revisión manual
@@ -55,4 +55,4 @@ review:
     - Verificar licencia, autor y archivos con la API (import-seed con THINGIVERSE_TOKEN).
     - "CC BY-SA: el archivo adaptado que se vende debe publicarse bajo CC BY-SA."
 created_at: 2026-11-22
-updated_at: 2026-11-22
+updated_at: 2026-11-23

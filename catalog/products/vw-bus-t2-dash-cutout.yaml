@@ -1,5 +1,5 @@
 slug: vw-bus-t2-dash-cutout
-status: draft
+status: preview
 kind: file
 title: Dash Cutout for Volkswagen Bus T1/T2 (Type 2)
 summary: null
@@ -34,8 +34,8 @@ sources:
     thing_id: 2223484
     thing_url: https://www.thingiverse.com/thing:2223484
     title_original: Dash Cutout
-    author: null
-    author_url: null
+    author: "heathly"
+    author_url: "https://www.thingiverse.com/heathly"
     license: CC-BY
     license_raw: CC BY
     verified_at: null
@@ -43,7 +43,10 @@ sources:
     file_names: []
     image_urls: []
 files: []
-images: []
+images:
+  - src: /media/portadas/2223484.webp
+    alt: "Dash Cutout for Volkswagen Bus T1/T2 (Type 2), illustrative render of a possible matte black print"
+    kind: render
 review:
   state: pendiente de revisión manual
   flags: []
@@ -51,4 +54,4 @@ review:
     - Escribir title, summary y description originales en inglés (no copiar al autor).
     - Verificar licencia, autor y archivos con la API (import-seed con THINGIVERSE_TOKEN).
 created_at: 2026-11-22
-updated_at: 2026-11-22
+updated_at: 2026-11-23

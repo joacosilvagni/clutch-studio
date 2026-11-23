@@ -2,6 +2,13 @@
 
 Formato: fecha · decisión · por qué. Las más nuevas arriba. No re-discutir sin un dato nuevo.
 
+- **2026-11-23 · Nuevo estado `preview` (vitrina).** Joaquín pidió mostrar todos los productos con sus fotos. `approved`
+  exige precio, archivos en R2 y licencia verificada, y es lo único que el Worker vende; `preview` se lista en el sitio con
+  portada y visor 3D pero nunca se vende ("Coming soon"). Exige title, category, licencia permitida y author.
+  Quedan en `draft` los que muestran marcas del fabricante (VW, "miata", Ronal/Saab).
+- **2026-11-23 · Portadas y visor 3D desde `media_tienda`.** Portadas WebP en `site/public/media/portadas/<thing_id>.webp`
+  (+ `-sm`), GLB en `site/public/media/modelos/`, mapa en `site/src/data/media.json` (por id de Thingiverse).
+  `<model-viewer>` 4.1.0 local, se carga solo al abrir "View in 3D".
 - **2026-11-22 · Sitio organizado por categorías, no por auto.** Pocas veces vamos a tener la pieza para el auto exacto
   del comprador, así que la navegación principal es por departamento y categoría. Dos departamentos: Accesorios
   (físicos, dropshipping, protagonista) y Archivos 3D. El auto queda como filtro secundario y en `/fits/<modelo>/` para SEO.

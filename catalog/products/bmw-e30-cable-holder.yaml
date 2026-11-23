@@ -1,5 +1,5 @@
 slug: bmw-e30-cable-holder
-status: draft
+status: preview
 kind: file
 title: Cable Holder for BMW E30
 summary: null
@@ -40,8 +40,8 @@ sources:
     thing_id: 4784522
     thing_url: https://www.thingiverse.com/thing:4784522
     title_original: Cable Holder OEM 61131267476
-    author: null
-    author_url: null
+    author: "jdance24"
+    author_url: "https://www.thingiverse.com/jdance24"
     license: CC-BY
     license_raw: CC BY
     verified_at: null
@@ -50,8 +50,8 @@ sources:
     image_urls: []
 files: []
 images:
-  - src: /images/products/bmw-e30-cable-holder.webp
-    alt: "Cable Holder for BMW E30, illustrative render"
+  - src: /media/portadas/4784522.webp
+    alt: "Cable Holder for BMW E30, illustrative render of a possible matte black print"
     kind: render
 review:
   state: pendiente de revisión manual
@@ -60,4 +60,4 @@ review:
     - Escribir title, summary y description originales en inglés (no copiar al autor).
     - Verificar licencia, autor y archivos con la API (import-seed con THINGIVERSE_TOKEN).
 created_at: 2026-11-22
-updated_at: 2026-11-22
+updated_at: 2026-11-23

@@ -161,6 +161,20 @@ describe('worker catalog build', () => {
   });
 });
 
+describe('preview products', () => {
+  const preview = (o = {}) =>
+    approvedProduct({ status: 'preview', price_usd: null, files: [], description: null, sources: [{ ...approvedProduct().sources[0], verified_at: null }], ...o });
+  it('need title, category, an allowed license and an author, but no price or files', () => {
+    const errs = (o) => validateProduct(preview(o), { allowedLicenses: ALLOWED }).join();
+    expect(errs()).toBe('');
+    expect(errs({ sources: [{ ...approvedProduct().sources[0], author: null }] })).toMatch(/sin author/);
+    expect(errs({ sources: [{ ...approvedProduct().sources[0], license: 'CC-BY-NC' }] })).toMatch(/no permitida/);
+  });
+  it('are never sold by the Worker', () => {
+    expect(buildWorkerCatalog([preview({ price_usd: '9.00', files: [{ r2_key: 'products/x/x.zip' }] })]).products).toEqual({});
+  });
+});
+
 describe('sandbox test products', () => {
   const testProduct = (o = {}) => approvedProduct({ slug: 'sandbox-test', status: 'draft', test: true, price_usd: '1.00', files: [{ r2_key: 'products/sandbox-test/t.zip' }], ...o });
   it('can never be approved and must be a priced file', () => {

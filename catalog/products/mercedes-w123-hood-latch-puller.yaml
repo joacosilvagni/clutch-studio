@@ -1,5 +1,5 @@
 slug: mercedes-w123-hood-latch-puller
-status: draft
+status: preview
 kind: file
 title: Hood latch puller for Mercedes-Benz W123
 summary: null
@@ -34,8 +34,8 @@ sources:
     thing_id: 2504271
     thing_url: https://www.thingiverse.com/thing:2504271
     title_original: Hood latch puller
-    author: null
-    author_url: null
+    author: "moonants"
+    author_url: "https://www.thingiverse.com/moonants"
     license: CC-BY
     license_raw: CC BY
     verified_at: null
@@ -44,8 +44,8 @@ sources:
     image_urls: []
 files: []
 images:
-  - src: /images/products/mercedes-w123-hood-latch-puller.webp
-    alt: "Hood latch puller for Mercedes-Benz W123, illustrative render"
+  - src: /media/portadas/2504271.webp
+    alt: "Hood latch puller for Mercedes-Benz W123, illustrative render of a possible matte black print"
     kind: render
 review:
   state: pendiente de revisión manual
@@ -54,4 +54,4 @@ review:
     - Escribir title, summary y description originales en inglés (no copiar al autor).
     - Verificar licencia, autor y archivos con la API (import-seed con THINGIVERSE_TOKEN).
 created_at: 2026-11-22
-updated_at: 2026-11-22
+updated_at: 2026-11-23

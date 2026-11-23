@@ -1,5 +1,5 @@
 slug: vw-golf-mk4-front-wiper-arm-cap
-status: draft
+status: preview
 kind: file
 title: Front Wiper Arm Cap
 summary: null
@@ -29,8 +29,8 @@ sources:
     thing_id: 417050
     thing_url: https://www.thingiverse.com/thing:417050
     title_original: Front Wiper Arm Cap
-    author: null
-    author_url: null
+    author: "Lucho87"
+    author_url: "https://www.thingiverse.com/Lucho87"
     license: CC-BY-SA
     license_raw: CC BY-SA
     verified_at: null
@@ -38,7 +38,10 @@ sources:
     file_names: []
     image_urls: []
 files: []
-images: []
+images:
+  - src: /media/portadas/417050.webp
+    alt: "Front Wiper Arm Cap, illustrative render of a possible matte black print"
+    kind: render
 review:
   state: pendiente de revisión manual
   flags:
@@ -48,4 +51,4 @@ review:
     - Verificar licencia, autor y archivos con la API (import-seed con THINGIVERSE_TOKEN).
     - "CC BY-SA: el archivo adaptado que se vende debe publicarse bajo CC BY-SA."
 created_at: 2026-11-22
-updated_at: 2026-11-22
+updated_at: 2026-11-23

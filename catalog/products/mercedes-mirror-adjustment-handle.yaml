@@ -1,5 +1,5 @@
 slug: mercedes-mirror-adjustment-handle
-status: draft
+status: preview
 kind: file
 title: Mirror adjustment handle
 summary: null
@@ -29,8 +29,8 @@ sources:
     thing_id: 3232504
     thing_url: https://www.thingiverse.com/thing:3232504
     title_original: Mirror adjustment handle
-    author: null
-    author_url: null
+    author: "WvdbID"
+    author_url: "https://www.thingiverse.com/WvdbID"
     license: CC-BY
     license_raw: CC BY
     verified_at: null
@@ -38,7 +38,10 @@ sources:
     file_names: []
     image_urls: []
 files: []
-images: []
+images:
+  - src: /media/portadas/3232504.webp
+    alt: "Mirror adjustment handle, illustrative render of a possible matte black print"
+    kind: render
 review:
   state: pendiente de revisión manual
   flags:
@@ -47,4 +50,4 @@ review:
     - Escribir title, summary y description originales en inglés (no copiar al autor).
     - Verificar licencia, autor y archivos con la API (import-seed con THINGIVERSE_TOKEN).
 created_at: 2026-11-22
-updated_at: 2026-11-22
+updated_at: 2026-11-23

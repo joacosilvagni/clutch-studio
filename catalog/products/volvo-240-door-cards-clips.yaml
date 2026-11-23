@@ -1,5 +1,5 @@
 slug: volvo-240-door-cards-clips
-status: draft
+status: preview
 kind: file
 title: Door cards clips for Volvo 240
 summary: null
@@ -34,8 +34,8 @@ sources:
     thing_id: 5735746
     thing_url: https://www.thingiverse.com/thing:5735746
     title_original: Door cards clips
-    author: null
-    author_url: null
+    author: "Nicolasbschl"
+    author_url: "https://www.thingiverse.com/Nicolasbschl"
     license: CC-BY
     license_raw: CC BY
     verified_at: null
@@ -44,8 +44,8 @@ sources:
     image_urls: []
 files: []
 images:
-  - src: /images/products/volvo-240-door-cards-clips.webp
-    alt: "Door cards clips for Volvo 240, illustrative render"
+  - src: /media/portadas/5735746.webp
+    alt: "Door cards clips for Volvo 240, illustrative render of a possible matte black print"
     kind: render
 review:
   state: pendiente de revisión manual
@@ -54,4 +54,4 @@ review:
     - Escribir title, summary y description originales en inglés (no copiar al autor).
     - Verificar licencia, autor y archivos con la API (import-seed con THINGIVERSE_TOKEN).
 created_at: 2026-11-22
-updated_at: 2026-11-22
+updated_at: 2026-11-23

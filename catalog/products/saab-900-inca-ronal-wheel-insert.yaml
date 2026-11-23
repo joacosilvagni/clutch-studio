@@ -34,8 +34,8 @@ sources:
     thing_id: 672935
     thing_url: https://www.thingiverse.com/thing:672935
     title_original: Inca Ronal Wheel Insert
-    author: null
-    author_url: null
+    author: "digimatic"
+    author_url: "https://www.thingiverse.com/digimatic"
     license: CC-BY-SA
     license_raw: CC BY-SA
     verified_at: null
@@ -43,7 +43,10 @@ sources:
     file_names: []
     image_urls: []
 files: []
-images: []
+images:
+  - src: /media/portadas/672935.webp
+    alt: "Inca Ronal Wheel Insert for Saab 900 (classic), illustrative render of a possible matte black print"
+    kind: render
 review:
   state: pendiente de revisión manual
   flags:
@@ -53,4 +56,4 @@ review:
     - Verificar licencia, autor y archivos con la API (import-seed con THINGIVERSE_TOKEN).
     - "CC BY-SA: el archivo adaptado que se vende debe publicarse bajo CC BY-SA."
 created_at: 2026-11-22
-updated_at: 2026-11-22
+updated_at: 2026-11-23

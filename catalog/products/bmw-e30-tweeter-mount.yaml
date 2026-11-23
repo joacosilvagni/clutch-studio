@@ -1,5 +1,5 @@
 slug: bmw-e30-tweeter-mount
-status: draft
+status: preview
 kind: file
 title: Tweeter mount for BMW E30
 summary: null
@@ -34,8 +34,8 @@ sources:
     thing_id: 4793457
     thing_url: https://www.thingiverse.com/thing:4793457
     title_original: Tweeter mount
-    author: null
-    author_url: null
+    author: "Suzakun"
+    author_url: "https://www.thingiverse.com/Suzakun"
     license: CC0
     license_raw: CC0
     verified_at: null
@@ -44,8 +44,8 @@ sources:
     image_urls: []
 files: []
 images:
-  - src: /images/products/bmw-e30-tweeter-mount.webp
-    alt: "Tweeter mount for BMW E30, illustrative render"
+  - src: /media/portadas/4793457.webp
+    alt: "Tweeter mount for BMW E30, illustrative render of a possible matte black print"
     kind: render
 review:
   state: pendiente de revisión manual
@@ -54,4 +54,4 @@ review:
     - Escribir title, summary y description originales en inglés (no copiar al autor).
     - Verificar licencia, autor y archivos con la API (import-seed con THINGIVERSE_TOKEN).
 created_at: 2026-11-22
-updated_at: 2026-11-22
+updated_at: 2026-11-23

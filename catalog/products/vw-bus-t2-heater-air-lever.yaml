@@ -1,5 +1,5 @@
 slug: vw-bus-t2-heater-air-lever
-status: draft
+status: preview
 kind: file
 title: Heater / Air Lever for Volkswagen Bus T1/T2 (Type 2)
 summary: null
@@ -34,8 +34,8 @@ sources:
     thing_id: 5240355
     thing_url: https://www.thingiverse.com/thing:5240355
     title_original: Heater / Air Lever
-    author: null
-    author_url: null
+    author: "Elmeristic"
+    author_url: "https://www.thingiverse.com/Elmeristic"
     license: CC-BY
     license_raw: CC BY
     verified_at: null
@@ -44,8 +44,8 @@ sources:
     image_urls: []
 files: []
 images:
-  - src: /images/products/vw-bus-t2-heater-air-lever.webp
-    alt: "Heater / Air Lever for Volkswagen Bus T1/T2 (Type 2), illustrative render"
+  - src: /media/portadas/5240355.webp
+    alt: "Heater / Air Lever for Volkswagen Bus T1/T2 (Type 2), illustrative render of a possible matte black print"
     kind: render
 review:
   state: pendiente de revisión manual
@@ -54,4 +54,4 @@ review:
     - Escribir title, summary y description originales en inglés (no copiar al autor).
     - Verificar licencia, autor y archivos con la API (import-seed con THINGIVERSE_TOKEN).
 created_at: 2026-11-22
-updated_at: 2026-11-22
+updated_at: 2026-11-23
