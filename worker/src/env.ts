@@ -18,6 +18,10 @@ export interface Env {
   SITE_URL: string;
   DOWNLOAD_TTL_HOURS?: string;
   DOWNLOAD_MAX?: string;
+  /** secret (private address): where new physical orders are sent to be bought from the supplier. */
+  ORDER_NOTIFY_TO?: string;
+  /** secret: bearer token for /api/admin/* (fulfillment list, supplier order, tracking). Unset = admin API off. */
+  ADMIN_TOKEN?: string;
 }
 
 export interface CatalogFile {
@@ -25,11 +29,29 @@ export interface CatalogFile {
   name: string;
 }
 
+export type ShipDestination = 'US' | 'EU' | 'AU';
+
+/** How a physical product is bought from the supplier. Compiled from `supplier` in the YAML; never sent to browsers. */
+export interface CatalogSupplier {
+  platform: string | null;
+  product_url: string;
+  pid: string | null;
+  variant: string | null;
+  cost_usd: string;
+  shipping: Partial<Record<ShipDestination, { method: string | null; cost_usd: string }>>;
+}
+
 export interface CatalogProduct {
   slug: string;
   title: string;
   price_cents: number;
   files: CatalogFile[];
+  /** absent = digital (file or pack) */
+  kind?: 'physical';
+  /** physical only: zones this product can ship to */
+  ship_to?: ShipDestination[];
+  /** physical only; null for sandbox test products */
+  supplier?: CatalogSupplier | null;
 }
 
 export interface Catalog {

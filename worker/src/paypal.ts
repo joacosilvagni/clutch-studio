@@ -7,6 +7,14 @@ export interface PayPalLineItem {
   slug: string;
   title: string;
   price_cents: number;
+  physical?: boolean;
+}
+
+export interface TrackerInput {
+  captureId: string;
+  trackingNumber: string;
+  carrier: string;
+  carrierNameOther?: string | null;
 }
 
 export interface Capture {
@@ -70,6 +78,7 @@ export function createPayPal(env: Env, fetchImpl: typeof fetch, now: () => numbe
   return {
     async createOrder(orderId: string, items: PayPalLineItem[], totalCents: number): Promise<string> {
       const value = centsToUsd(totalCents);
+      const physical = items.some((i) => i.physical);
       const { status, data } = await call(
         'POST',
         '/v2/checkout/orders',
@@ -80,25 +89,44 @@ export function createPayPal(env: Env, fetchImpl: typeof fetch, now: () => numbe
               reference_id: 'default',
               custom_id: orderId,
               invoice_id: orderId,
-              description: 'Clutch Studio digital files',
+              description: physical ? 'Clutch Studio order' : 'Clutch Studio digital files',
+              // Shipping is included in each physical item's price, so there is no shipping line.
               amount: { currency_code: 'USD', value, breakdown: { item_total: { currency_code: 'USD', value } } },
               items: items.map((i) => ({
                 name: i.title.slice(0, 127),
                 sku: i.slug.slice(0, 127),
                 quantity: '1',
-                category: 'DIGITAL_GOODS',
+                category: i.physical ? 'PHYSICAL_GOODS' : 'DIGITAL_GOODS',
                 unit_amount: { currency_code: 'USD', value: centsToUsd(i.price_cents) },
               })),
             },
           ],
-          // Digital goods: no shipping address. (application_context is deprecated but still
-          // honored, and unlike payment_source.paypal it keeps the card button working.)
-          application_context: { shipping_preference: 'NO_SHIPPING', user_action: 'PAY_NOW', brand_name: 'Clutch Studio' },
+          // Digital-only: no shipping address. With physical items PayPal asks for the buyer's address
+          // (GET_FROM_FILE); /api/capture checks the country before capturing. (application_context is
+          // deprecated but still honored, and unlike payment_source.paypal it keeps the card button working.)
+          application_context: { shipping_preference: physical ? 'GET_FROM_FILE' : 'NO_SHIPPING', user_action: 'PAY_NOW', brand_name: 'Clutch Studio' },
         },
         `create-${orderId}`,
       );
       if (status !== 200 && status !== 201) throw new HttpError(502, 'paypal_create_failed');
       return data.id as string;
+    },
+
+    /** Adds tracking to the PayPal transaction; PayPal emails the buyer (notify_buyer). */
+    async addTracker(t: TrackerInput): Promise<{ ok: boolean; detail?: string }> {
+      const tracker: Record<string, unknown> = {
+        transaction_id: t.captureId,
+        tracking_number: t.trackingNumber,
+        status: 'SHIPPED',
+        carrier: t.carrier,
+        notify_buyer: true,
+      };
+      if (t.carrier === 'OTHER') tracker.carrier_name_other = t.carrierNameOther;
+      const { status, data } = await call('POST', '/v1/shipping/trackers-batch', { trackers: [tracker] });
+      const errors = Array.isArray(data?.errors) ? data.errors : [];
+      if ((status === 200 || status === 201) && errors.length === 0) return { ok: true };
+      const detail = errors[0]?.message ?? data?.message ?? `http_${status}`;
+      return { ok: false, detail: String(detail).slice(0, 300) };
     },
 
     /** Captures, and on any failure re-reads the order so an already-captured order still resolves. */

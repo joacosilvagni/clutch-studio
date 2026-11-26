@@ -1,7 +1,7 @@
 // Test doubles: a D1 binding over node:sqlite (real SQL, real migrations), an in-memory R2,
 // and a scripted fetch for PayPal / Resend.
 import { DatabaseSync } from 'node:sqlite';
-import { readFileSync } from 'node:fs';
+import { readFileSync, readdirSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import type { Catalog, Deps, Env } from '../src/env';
 
@@ -29,7 +29,9 @@ class Stmt {
 
 export function fakeD1() {
   const db = new DatabaseSync(':memory:');
-  db.exec(readFileSync(fileURLToPath(new URL('../migrations/0001_init.sql', import.meta.url)), 'utf8'));
+  // Every migration, in order, like `wrangler d1 migrations apply`.
+  const dir = fileURLToPath(new URL('../migrations/', import.meta.url));
+  for (const f of readdirSync(dir).filter((f) => f.endsWith('.sql')).sort()) db.exec(readFileSync(dir + f, 'utf8'));
   const binding = {
     prepare: (sql: string) => new Stmt(db, sql),
     batch: async (stmts: Stmt[]) => {
