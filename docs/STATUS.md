@@ -6,12 +6,19 @@ Leelo antes de empezar y actualizalo al terminar (ver `AGENTS.md`).
 
 | Agente | Tarea | Rama | Desde |
 | --- | --- | --- | --- |
-| Claude (diseño) | Portadas, visor 3D y vitrina de los 73 productos | claude/media-3d | 2026-11-23 |
+| Claude (backend) | Checkout de productos físicos (envío, dirección, fulfillment manual en CJ, tracking) | claude/project-thread-hvdo7j | 2026-11-26 |
 
 ## Bloqueos
 
 - Retiro de USD: PayPal exige una cuenta bancaria de EE.UU. a nombre del titular de la cuenta PayPal. Joaquín lo verifica antes de salir a producción.
-- R2: falta activar la suscripción gratuita de R2 en Cloudflare (Joaquín, pantalla de pago); después se re-corre "Bootstrap Cloudflare". D1 ya está creada.
+- Dominio definitivo: hace falta para Resend (SPF/DKIM/DMARC) y para producción. Hoy `site/astro.config.mjs` usa example.com.
+- Thingiverse API devuelve 403 (app en cola de aprobación): la licencia se verifica a mano en la página de cada thing.
+
+## Esperando revisión de Joaquín
+
+- PR #7 (`claude/project-thread-w0cows`): 10 accesorios físicos de CJ en `draft` con bloque `supplier`; 7 aprobados en el chat. Pendiente: envío del OBD2 a Australia, recotizar multipacks.
+- PR #8 (`claude/project-thread-3f4aeg`): 42 piezas 3D nuevas en `draft` (faltan `file_names`, imágenes, portadas y textos).
+- Compra de prueba sandbox de punta a punta: falta pagar en el popup de PayPal sandbox (Joaquín) y registrar el resultado.
 
 ## Preguntas abiertas
 
