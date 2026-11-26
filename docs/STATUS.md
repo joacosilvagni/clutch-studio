@@ -6,7 +6,6 @@ Leelo antes de empezar y actualizalo al terminar (ver `AGENTS.md`).
 
 | Agente | Tarea | Rama | Desde |
 | --- | --- | --- | --- |
-| Claude (backend) | Checkout de productos físicos (envío, dirección, fulfillment manual en CJ, tracking) | claude/project-thread-hvdo7j | 2026-11-26 |
 
 ## Bloqueos
 
@@ -19,17 +18,31 @@ Leelo antes de empezar y actualizalo al terminar (ver `AGENTS.md`).
 - PR #7 (`claude/project-thread-w0cows`): 10 accesorios físicos de CJ en `draft` con bloque `supplier`; 7 aprobados en el chat. Pendiente: envío del OBD2 a Australia, recotizar multipacks.
 - PR #8 (`claude/project-thread-3f4aeg`): 42 piezas 3D nuevas en `draft` (faltan `file_names`, imágenes, portadas y textos).
 - Compra de prueba sandbox de punta a punta: falta pagar en el popup de PayPal sandbox (Joaquín) y registrar el resultado.
+- PR #9 (`claude/project-thread-hvdo7j`): checkout de físicos. Antes de mergear, cargar los secrets `ORDER_NOTIFY_TO` y `ADMIN_TOKEN` en GitHub.
 
 ## Preguntas abiertas
+
+- ¿CJ exige teléfono del destinatario? PayPal no lo comparte; si hace falta, se pide en el carrito antes de pagar.
 
 - ¿Precio base por pieza y por pack? (propuesta: mínimo USD 8 por la comisión de PayPal).
 - ¿Dominio definitivo? (necesario para Resend, PayPal y Cloudflare). Hoy `site/astro.config.mjs` usa example.com.
 - ¿Política de devoluciones y plazos de envío de accesorios? Depende del proveedor de dropshipping; el sitio no promete nada hasta tenerla.
-- ¿Qué precio tienen los accesorios y cómo se muestra el envío (incluido o calculado en el checkout)?
 - Free Library (`free: true`): ¿descarga directa pública desde R2/estáticos, o pedir el mail y mandar un link? El Worker hoy no entrega gratuitos.
 - Contrato frontend ↔ Worker: el carrito manda `{items:[{slug}]}` a `/api/orders`; `onApprove` manda `{orderID}` a `/api/capture` y muestra `downloads[]` (o el `message` si es `null`).
 
 ## Log de sesiones (lo más nuevo arriba)
+
+### 2026-11-26 · Claude (backend) — Checkout de físicos
+- Hecho (rama `claude/project-thread-hvdo7j`, PR #9): STATUS al día; físicos aprobados entran al catálogo del Worker con
+  zonas y datos de `supplier` (compatible con #7); PayPal con dirección (`GET_FROM_FILE`, envío incluido); país validado
+  antes de capturar (US/UE-27/AU + rutas del producto) y en el popup (`onShippingAddressChange`); migración D1
+  `0002_fulfillment.sql`; mail a Joaquín con lo que hay que comprar en CJ y confirmación al comprador sin plazos;
+  carrito mixto; `/api/admin/*` + `npm run fulfillment` para cargar pedido CJ y tracking (PayPal `trackers-batch`);
+  reembolso cancela o alerta. Producto `sandbox-test-physical` (USD 1, solo sandbox). 19 tests nuevos (66 en total).
+- Pendiente: secrets `ORDER_NOTIFY_TO` y `ADMIN_TOKEN` (Joaquín, en GitHub Actions); prueba sandbox física y digital;
+  cantidades > 1; teléfono del comprador si CJ lo exige (PayPal no lo pasa).
+- Decisiones: ver `docs/DECISIONS.md` (2026-11-26).
+- Preguntas para Joaquín: ¿alcanza con que CJ use el mail del comprador, o pedimos teléfono en el sitio antes de pagar?
 
 ### 2026-11-23 · Claude (diseño) — Portadas y 3D
 - Hecho (rama `claude/media-3d`): 72 portadas y 111 GLB de `media_tienda` emparejados por id de Thingiverse (73/73, sin huérfanos);
