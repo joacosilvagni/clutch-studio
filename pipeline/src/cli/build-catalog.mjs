@@ -18,7 +18,14 @@ if (errors.length) {
 }
 // CATALOG_INCLUDE_TEST=true only for sandbox deploys: adds test: true products so checkout can be tested.
 const includeTest = process.env.CATALOG_INCLUDE_TEST === 'true';
-const catalog = buildWorkerCatalog(entries.map((e) => e.product), { includeTest });
+let catalog;
+try {
+  catalog = buildWorkerCatalog(entries.map((e) => e.product), { includeTest });
+} catch (err) {
+  console.error(`✗ ${err.message}`);
+  console.error('Un producto físico aprobado no se puede vender así: no se genera catalog.json');
+  process.exit(1);
+}
 const out = path.join(REPO_DIR, 'worker', 'src', 'generated', 'catalog.json');
 await mkdir(path.dirname(out), { recursive: true });
 await writeFile(out, JSON.stringify(catalog, null, 2) + '\n', 'utf8');
