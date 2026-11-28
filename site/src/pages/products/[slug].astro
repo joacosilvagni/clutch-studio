@@ -6,7 +6,7 @@ import ProductGallery from '../../components/ProductGallery.astro';
 import BuyBox from '../../components/BuyBox.astro';
 import Reviews from '../../components/Reviews.astro';
 import ProductCard from '../../components/ProductCard.astro';
-import { getModel, getCategory, getDepartment, categoryUrl, modelUrl, productFitsLabel, type Product } from '../../data/catalog';
+import { getModel, getCategory, getDepartment, categoryUrl, modelUrl, productFitsLabel, fitEntryLabel, confirmedFits, possibleFits, type Product } from '../../data/catalog';
 import { getProducts, fitSummaryKind, isDigital, isBuyable, showcaseOrder, SHOW_DRAFTS } from '../../data/products';
 
 export async function getStaticPaths() {
@@ -18,14 +18,17 @@ const cat = getCategory(p.category);
 const dept = getDepartment(p.department);
 const digital = isDigital(p);
 const fits = p.models.map(getModel);
+const sure = confirmedFits(p);
+const maybe = possibleFits(p);
 const fk = fitSummaryKind(p);
 const included = p.includes.map((s) => all.find((x) => x.slug === s)).filter((x): x is Product => !!x);
 const related = [
   ...all.filter((x) => x.slug !== p.slug && x.models.some((m) => p.models.includes(m))).sort(showcaseOrder),
   ...all.filter((x) => x.slug !== p.slug && x.category === p.category && !x.models.some((m) => p.models.includes(m))).sort(showcaseOrder),
 ].slice(0, 4);
-const titleMentionsCar = fits.some((m) => p.title.toLowerCase().includes(m.name.toLowerCase().split(' ')[0]));
-const title = fits.length && !titleMentionsCar ? `${p.title}, fits ${productFitsLabel(p, fits[0])}` : p.title;
+const firstFit = fits[0] ? productFitsLabel(p, fits[0]) : sure[0] ? fitEntryLabel(sure[0]) : null;
+const titleMentionsCar = fits.some((m) => p.title.toLowerCase().includes(m.name.toLowerCase().split(' ')[0])) || (!fits.length && sure.some((f) => p.title.toLowerCase().includes(f.label.toLowerCase().split(' ').pop()!)));
+const title = firstFit && !titleMentionsCar ? `${p.title}, fits ${firstFit}` : p.title;
 const lede = p.summary ?? p.description;
 const dash = (v: unknown) => (v == null || v === '' ? '—' : String(v));
 const isShareAlike = p.sources.some((s) => s.license === 'CC-BY-SA');
@@ -60,7 +63,20 @@ const ld = {
           <div class:list={['fit', fk]}>
             {fk === 'universal' && <p><strong>Universal fit.</strong> Check the dimensions against your car.</p>}
             {fk === 'unconfirmed' && <p><strong>Check fitment.</strong> We're confirming which models this fits. <a href="/support/">Ask us</a> before you buy.</p>}
-            {fk === 'specific' && <p><span class="muted">Fits</span> {fits.map((m, i) => <>{i > 0 && ', '}<a href={modelUrl(m)}>{productFitsLabel(p, m)}</a></>)}</p>}
+            {fk === 'specific' && (
+              <>
+                <p class="fit-head"><span class="muted">{sure.length > 1 ? `Fits ${sure.length} models` : 'Fits'}</span></p>
+                <ul class="fit-list">
+                  {sure.map((f) => (
+                    <li>{f.model ? <a href={modelUrl(getModel(f.model))}>{fitEntryLabel(f)}</a> : <strong>{fitEntryLabel(f)}</strong>}{f.note && <span class="muted"> · {f.note}</span>}</li>
+                  ))}
+                </ul>
+              </>
+            )}
+            {maybe.length > 0 && (
+              <p class="fit-maybe"><span class="muted">May also fit (not confirmed by the designer, check before you print):</span> {maybe.map((f, i) => <>{i > 0 && ', '}{fitEntryLabel(f)}{f.note && ` (${f.note})`}</>)}</p>
+            )}
+            {p.fitmentNote && <p class="fit-note">{p.fitmentNote}</p>}
           </div>
 
           {lede && <p class="lede">{lede}</p>}
@@ -154,6 +170,10 @@ const ld = {
   .ptitle { font-size: clamp(2.2rem, 5vw, 3.6rem); }
   .fit p { margin: 0 0 14px; font-size: .98rem; }
   .fit a { font-weight: 600; }
+  .fit .fit-head { margin-bottom: 6px; }
+  .fit-list { list-style: none; margin: 0 0 14px; padding: 0; display: grid; gap: 4px; font-size: .95rem; }
+  .fit-list strong { font-weight: 600; }
+  .fit .fit-maybe, .fit .fit-note { font-size: .88rem; color: var(--ink-2); }
   .fit.unconfirmed p { color: var(--accent-ink); }
   .lede { font-size: 1.05rem; }
   .specs { margin-top: 18px; padding: 4px 18px 10px; border-radius: var(--radius); border: 1px solid var(--line); background: var(--paper-2); }
