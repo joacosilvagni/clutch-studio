@@ -1,9 +1,9 @@
 slug: jeep-cherokee-xj-switch-panel
-status: preview
+status: approved
 kind: file
 title: Switch Panel for Jeep Cherokee XJ
-summary: null
-description: null
+summary: Switch panel for the Jeep Cherokee XJ (1997–2001). Print-ready STL files, instant download.
+description: 3D-printable switch panel for the Jeep Cherokee XJ (1997–2001). Print it yourself or take the file to a local print shop. The download is a ZIP with 4 STL files (01_Jeep_Cherokee_XJ_Switch_Panel.stl, adapter.stl, finished_model.stl, oe.stl) exactly as the designer published them, plus the license and attribution. Designed by Titansfalundrme and shared under CC BY 4.0. Compare the part with your original before installing, since cars of the same model can differ by year and market.
 category: knobs-handles-bushings
 part_type: switch panel
 fits:
@@ -12,7 +12,7 @@ fits:
     years:
       from: 1997
       to: 2001
-price_usd: null
+price_usd: "9.00"
 oem_part_numbers: []
 material:
   recommended:
@@ -34,25 +34,31 @@ sources:
     thing_id: 3564521
     thing_url: https://www.thingiverse.com/thing:3564521
     title_original: Switch Panel
-    author: "Titansfalundrme"
-    author_url: "https://www.thingiverse.com/Titansfalundrme"
+    author: Titansfalundrme
+    author_url: https://www.thingiverse.com/Titansfalundrme
     license: CC-BY
     license_raw: CC BY
-    verified_at: null
+    verified_at: 2026-11-28
     images_allowed: false
-    file_names: []
+    file_names:
+      - 01_Jeep_Cherokee_XJ_Switch_Panel.stl
+      - adapter.stl
+      - finished_model.stl
+      - oe.stl
     image_urls: []
-files: []
+files:
+  - r2_key: products/jeep-cherokee-xj-switch-panel/jeep-cherokee-xj-switch-panel.zip
+    name: jeep-cherokee-xj-switch-panel.zip
 images:
   - src: /media/portadas/3564521.webp
-    alt: "Switch Panel for Jeep Cherokee XJ, illustrative render of a possible matte black print"
+    alt: Switch Panel for Jeep Cherokee XJ, illustrative render of a possible matte black print
     kind: render
 review:
   state: pendiente de revisión manual
-  flags:
-    - 'años tomados del texto "Jeep Cherokee XJ 97-01": confirmar'
+  flags: []
   notes:
-    - Escribir title, summary y description originales en inglés (no copiar al autor).
-    - Verificar licencia, autor y archivos con la API (import-seed con THINGIVERSE_TOKEN).
+    - Licencia y autor verificados con el LICENSE.txt del paquete original descargado de Thingiverse (2026-11-28).
+    - Descripción generada desde la ficha (pieza, compatibilidad, archivos); revisar si se quiere más detalle.
+    - 'Resuelto 2026-11-28: años tomados del texto "Jeep Cherokee XJ 97-01": confirmar (fits explícitos de la fuente, PR #11).'
 created_at: 2026-11-22
-updated_at: 2026-11-23
+updated_at: 2026-11-28

@@ -3,6 +3,14 @@ name: Deploy
 # Disabled until the repo variable DEPLOY_ENABLED is "true" and these secrets exist:
 #   CLOUDFLARE_API_TOKEN (scoped: Workers Scripts edit, D1 edit, R2 edit on this account only)
 #   CLOUDFLARE_ACCOUNT_ID
+#
+# PayPal mode: repo variable PAYPAL_MODE=live switches to real payments. It needs the live REST app's
+#   PAYPAL_LIVE_CLIENT_ID     (variable or secret; the client ID is public)
+#   PAYPAL_LIVE_CLIENT_SECRET (secret)
+#   PAYPAL_LIVE_WEBHOOK_ID    (secret: id of the webhook created in the live app)
+# and optionally variables PAYPAL_LIVE_MERCHANT_ID and MAIL_FROM. In live, test: true products are never
+# built or sold, whatever SANDBOX says. Without PAYPAL_MODE=live everything stays sandbox (the sandbox
+# secrets PAYPAL_CLIENT_SECRET / PAYPAL_WEBHOOK_ID are kept for switching back).
 on:
   push:
     branches: [main]
@@ -17,12 +25,30 @@ jobs:
     if: vars.DEPLOY_ENABLED == 'true'
     runs-on: ubuntu-latest
     environment: production
+    env:
+      LIVE: ${{ vars.PAYPAL_MODE == 'live' }}
+      # Test products only on a sandbox deploy, never in live.
+      TEST_MODE: ${{ vars.PAYPAL_MODE != 'live' && vars.SANDBOX == 'true' }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
           node-version: 22
           cache: npm
+      - name: Check PayPal live configuration
+        if: env.LIVE == 'true'
+        env:
+          LIVE_ID: ${{ vars.PAYPAL_LIVE_CLIENT_ID || secrets.PAYPAL_LIVE_CLIENT_ID }}
+          LIVE_SECRET: ${{ secrets.PAYPAL_LIVE_CLIENT_SECRET }}
+          LIVE_WEBHOOK: ${{ secrets.PAYPAL_LIVE_WEBHOOK_ID }}
+          MAIL_FROM: ${{ vars.MAIL_FROM }}
+        run: |
+          missing=""
+          [ -n "$LIVE_ID" ] || missing="$missing PAYPAL_LIVE_CLIENT_ID"
+          [ -n "$LIVE_SECRET" ] || missing="$missing PAYPAL_LIVE_CLIENT_SECRET"
+          [ -n "$LIVE_WEBHOOK" ] || missing="$missing PAYPAL_LIVE_WEBHOOK_ID"
+          if [ -n "$missing" ]; then echo "::error::PAYPAL_MODE=live but missing:$missing. Nothing was deployed."; exit 1; fi
+          case "$MAIL_FROM" in ""|*resend.dev*) echo "::warning::MAIL_FROM is still Resend's test sender: buyer emails will not be delivered until a domain is verified in Resend and the MAIL_FROM variable points to it.";; esac
       - run: npm ci
       - run: npm run catalog:build
       - run: npm test
@@ -30,20 +56,24 @@ jobs:
       # the site lists them, so checkout and delivery can be tested end to end with PayPal sandbox.
       - name: Build Worker catalog for this deploy
         env:
-          CATALOG_INCLUDE_TEST: ${{ vars.SANDBOX == 'true' }}
+          CATALOG_INCLUDE_TEST: ${{ env.TEST_MODE }}
         run: npm run catalog:build
       - name: Build site
         working-directory: site
         env:
-          PUBLIC_SANDBOX: ${{ vars.SANDBOX == 'true' }}
+          PUBLIC_SANDBOX: ${{ env.TEST_MODE }}
+          PUBLIC_PAYPAL_CLIENT_ID: ${{ vars.PAYPAL_MODE == 'live' && (vars.PAYPAL_LIVE_CLIENT_ID || secrets.PAYPAL_LIVE_CLIENT_ID) || '' }}
         run: npm ci && npm run build
       - name: Configure, migrate, deploy and sync secrets
         working-directory: worker
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          PAYPAL_CLIENT_SECRET: ${{ secrets.PAYPAL_CLIENT_SECRET }}
-          PAYPAL_WEBHOOK_ID: ${{ secrets.PAYPAL_WEBHOOK_ID }}
+          PAYPAL_CLIENT_SECRET: ${{ vars.PAYPAL_MODE == 'live' && secrets.PAYPAL_LIVE_CLIENT_SECRET || secrets.PAYPAL_CLIENT_SECRET }}
+          PAYPAL_WEBHOOK_ID: ${{ vars.PAYPAL_MODE == 'live' && secrets.PAYPAL_LIVE_WEBHOOK_ID || secrets.PAYPAL_WEBHOOK_ID }}
+          LIVE_ID: ${{ vars.PAYPAL_LIVE_CLIENT_ID || secrets.PAYPAL_LIVE_CLIENT_ID }}
+          LIVE_MERCHANT: ${{ vars.PAYPAL_LIVE_MERCHANT_ID }}
+          MAIL_FROM_VAR: ${{ vars.MAIL_FROM }}
           RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
           MAIL_SANDBOX_TO: ${{ secrets.MAIL_SANDBOX_TO }}
           ORDER_NOTIFY_TO: ${{ secrets.ORDER_NOTIFY_TO }}
@@ -51,13 +81,20 @@ jobs:
         run: |
           ../.github/scripts/set-d1-id.sh
           npx wrangler d1 migrations apply clutch-studio --remote
-          npx wrangler deploy
+          # Live overrides the sandbox values in wrangler.jsonc; sandbox deploys use the file as is.
+          args=()
+          if [ "$LIVE" = "true" ]; then
+            args+=(--var "PAYPAL_ENV:live" --var "PAYPAL_CLIENT_ID:$LIVE_ID")
+            if [ -n "$LIVE_MERCHANT" ]; then args+=(--var "PAYPAL_MERCHANT_ID:$LIVE_MERCHANT"); fi
+          fi
+          if [ -n "$MAIL_FROM_VAR" ]; then args+=(--var "MAIL_FROM:$MAIL_FROM_VAR"); fi
+          npx wrangler deploy "${args[@]}"
           # Push only the secrets that exist in GitHub; values never touch the repo or the logs.
           jq -n 'env | {PAYPAL_CLIENT_SECRET, PAYPAL_WEBHOOK_ID, RESEND_API_KEY, MAIL_SANDBOX_TO, ORDER_NOTIFY_TO, ADMIN_TOKEN} | with_entries(select(.value != null and .value != ""))' > /tmp/secrets.json
           if [ "$(jq 'length' /tmp/secrets.json)" -gt 0 ]; then npx wrangler secret bulk /tmp/secrets.json; fi
           rm -f /tmp/secrets.json
       - name: Upload sandbox test files to the private bucket
-        if: vars.SANDBOX == 'true'
+        if: env.TEST_MODE == 'true'
         working-directory: worker
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}

@@ -1,9 +1,9 @@
 slug: vw-beetle-gauge-panels
-status: preview
+status: approved
 kind: file
 title: Gauge panels for Volkswagen Beetle (Type 1)
-summary: null
-description: null
+summary: Gauge panels for the Volkswagen Beetle (Type 1) (1938–2003). Print-ready STL files, instant download.
+description: 3D-printable gauge panels for the Volkswagen Beetle (Type 1) (1938–2003). Print it yourself or take the file to a local print shop. Files for both right-hand and left-hand drive. The download is a ZIP with 4 STL files (guage1.stl, guage1_mirror.stl, guage2.stl, guage2_mirror.stl) exactly as the designer published them, plus the license and attribution. Designed by FaanP and shared under CC BY 4.0. Compare the part with your original before installing, since cars of the same model can differ by year and market.
 category: gauge-pods-bezels
 part_type: gauge panels
 fits:
@@ -13,7 +13,7 @@ fits:
       from: 1938
       to: 2003
 fitment_note: Files for both right-hand and left-hand drive.
-price_usd: null
+price_usd: "9.00"
 oem_part_numbers: []
 material:
   recommended:
@@ -35,24 +35,30 @@ sources:
     thing_id: 2301465
     thing_url: https://www.thingiverse.com/thing:2301465
     title_original: Gauge panels
-    author: "FaanP"
-    author_url: "https://www.thingiverse.com/FaanP"
+    author: FaanP
+    author_url: https://www.thingiverse.com/FaanP
     license: CC-BY
     license_raw: CC BY
-    verified_at: null
+    verified_at: 2026-11-28
     images_allowed: false
-    file_names: []
+    file_names:
+      - guage1.stl
+      - guage1_mirror.stl
+      - guage2.stl
+      - guage2_mirror.stl
     image_urls: []
-files: []
+files:
+  - r2_key: products/vw-beetle-gauge-panels/vw-beetle-gauge-panels.zip
+    name: vw-beetle-gauge-panels.zip
 images:
   - src: /media/portadas/2301465.webp
-    alt: "Gauge panels for Volkswagen Beetle (Type 1), illustrative render of a possible matte black print"
+    alt: Gauge panels for Volkswagen Beetle (Type 1), illustrative render of a possible matte black print
     kind: render
 review:
   state: pendiente de revisión manual
   flags: []
   notes:
-    - Escribir title, summary y description originales en inglés (no copiar al autor).
-    - Verificar licencia, autor y archivos con la API (import-seed con THINGIVERSE_TOKEN).
+    - Licencia y autor verificados con el LICENSE.txt del paquete original descargado de Thingiverse (2026-11-28).
+    - Descripción generada desde la ficha (pieza, compatibilidad, archivos); revisar si se quiere más detalle.
 created_at: 2026-11-22
 updated_at: 2026-11-28

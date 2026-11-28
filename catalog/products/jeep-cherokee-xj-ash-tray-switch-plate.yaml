@@ -1,9 +1,9 @@
 slug: jeep-cherokee-xj-ash-tray-switch-plate
-status: preview
+status: approved
 kind: file
 title: Ash Tray Switch Plate for Jeep Cherokee XJ
-summary: null
-description: null
+summary: Ash tray switch plate for the Jeep Cherokee XJ (1997–2001). Print-ready STL files, instant download.
+description: 3D-printable ash tray switch plate for the Jeep Cherokee XJ (1997–2001). Print it yourself or take the file to a local print shop. Made on a 2000 XJ, for the 1997–2001 dash. The download is a ZIP with 3 STL files (SwitchHolder_5hole_v3.stl, SwitchHolder_blank_v3.stl, SwitchHolder_blank_v3_w_logo.stl) exactly as the designer published them, plus the license and attribution. Designed by sixty7ss and shared under CC BY 4.0. Compare the part with your original before installing, since cars of the same model can differ by year and market.
 category: storage-cupholders
 part_type: ash tray switch plate
 fits:
@@ -12,8 +12,8 @@ fits:
     years:
       from: 1997
       to: 2001
-fitment_note: "Made on a 2000 XJ, for the 1997–2001 dash."
-price_usd: null
+fitment_note: Made on a 2000 XJ, for the 1997–2001 dash.
+price_usd: "9.00"
 oem_part_numbers: []
 material:
   recommended:
@@ -35,24 +35,29 @@ sources:
     thing_id: 5607959
     thing_url: https://www.thingiverse.com/thing:5607959
     title_original: Ash Tray Switch Plate
-    author: "sixty7ss"
-    author_url: "https://www.thingiverse.com/sixty7ss"
+    author: sixty7ss
+    author_url: https://www.thingiverse.com/sixty7ss
     license: CC-BY
     license_raw: CC BY
-    verified_at: null
+    verified_at: 2026-11-28
     images_allowed: false
-    file_names: []
+    file_names:
+      - SwitchHolder_5hole_v3.stl
+      - SwitchHolder_blank_v3.stl
+      - SwitchHolder_blank_v3_w_logo.stl
     image_urls: []
-files: []
+files:
+  - r2_key: products/jeep-cherokee-xj-ash-tray-switch-plate/jeep-cherokee-xj-ash-tray-switch-plate.zip
+    name: jeep-cherokee-xj-ash-tray-switch-plate.zip
 images:
   - src: /media/portadas/5607959.webp
-    alt: "Ash Tray Switch Plate for Jeep Cherokee XJ, illustrative render of a possible matte black print"
+    alt: Ash Tray Switch Plate for Jeep Cherokee XJ, illustrative render of a possible matte black print
     kind: render
 review:
   state: pendiente de revisión manual
   flags: []
   notes:
-    - Escribir title, summary y description originales en inglés (no copiar al autor).
-    - Verificar licencia, autor y archivos con la API (import-seed con THINGIVERSE_TOKEN).
+    - Licencia y autor verificados con el LICENSE.txt del paquete original descargado de Thingiverse (2026-11-28).
+    - Descripción generada desde la ficha (pieza, compatibilidad, archivos); revisar si se quiere más detalle.
 created_at: 2026-11-22
 updated_at: 2026-11-28

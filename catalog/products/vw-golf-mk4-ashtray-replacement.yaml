@@ -1,9 +1,9 @@
 slug: vw-golf-mk4-ashtray-replacement
-status: preview
+status: approved
 kind: file
 title: Ashtray replacement
-summary: null
-description: null
+summary: Ashtray for the Volkswagen Golf Mk4 (1997–2006). Print-ready STL, instant download.
+description: 3D-printable ashtray for the Volkswagen Golf Mk4 (1997–2006). Print it yourself or take the file to a local print shop. The download is a ZIP with one STL file (Ashtray.VW.Golf.MK4.stl) exactly as the designer published them, plus the license and attribution. Designed by dotstars and shared under CC BY 4.0. Compare the part with your original before installing, since cars of the same model can differ by year and market.
 category: storage-cupholders
 part_type: ashtray replacement
 fits:
@@ -20,7 +20,7 @@ fits:
       from: 1999
       to: 2005
     unconfirmed: true
-price_usd: null
+price_usd: "9.00"
 oem_part_numbers: []
 material:
   recommended:
@@ -42,25 +42,28 @@ sources:
     thing_id: 3610531
     thing_url: https://www.thingiverse.com/thing:3610531
     title_original: Ashtray replacement
-    author: "dotstars"
-    author_url: "https://www.thingiverse.com/dotstars"
+    author: dotstars
+    author_url: https://www.thingiverse.com/dotstars
     license: CC-BY
     license_raw: CC BY
-    verified_at: null
+    verified_at: 2026-11-28
     images_allowed: false
-    file_names: []
+    file_names:
+      - Ashtray.VW.Golf.MK4.stl
     image_urls: []
-files: []
+files:
+  - r2_key: products/vw-golf-mk4-ashtray-replacement/vw-golf-mk4-ashtray-replacement.zip
+    name: vw-golf-mk4-ashtray-replacement.zip
 images:
   - src: /media/portadas/3610531.webp
-    alt: "Ashtray replacement, illustrative render of a possible matte black print"
+    alt: Ashtray replacement, illustrative render of a possible matte black print
     kind: render
 review:
   state: pendiente de revisión manual
-  flags:
-    - '"VW Golf MK4" no coincide con ningún modelo de config/models.yaml'
+  flags: []
   notes:
-    - Escribir title, summary y description originales en inglés (no copiar al autor).
-    - Verificar licencia, autor y archivos con la API (import-seed con THINGIVERSE_TOKEN).
+    - Licencia y autor verificados con el LICENSE.txt del paquete original descargado de Thingiverse (2026-11-28).
+    - Descripción generada desde la ficha (pieza, compatibilidad, archivos); revisar si se quiere más detalle.
+    - 'Resuelto 2026-11-28: "VW Golf MK4" no coincide con ningún modelo de config/models.yaml (fits explícitos de la fuente, PR #11).'
 created_at: 2026-11-22
 updated_at: 2026-11-28

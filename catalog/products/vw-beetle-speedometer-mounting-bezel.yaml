@@ -1,9 +1,9 @@
 slug: vw-beetle-speedometer-mounting-bezel
-status: preview
+status: approved
 kind: file
 title: Speedometer Mounting Bezel for Volkswagen Beetle (Type 1)
-summary: null
-description: null
+summary: Speedometer mounting bezel for the Volkswagen Beetle (Type 1) (1938–2003) and Volkswagen Super Beetle (flat windshield) (1971–1972). Print-ready STL, instant download.
+description: 3D-printable speedometer mounting bezel for the Volkswagen Beetle (Type 1) (1938–2003) and Volkswagen Super Beetle (flat windshield) (1971–1972). Print it yourself or take the file to a local print shop. Mounts a universal digital motorcycle speedometer. Not for the curved-dash 1973 and later Super Beetle. The download is a ZIP with one STL file (Speedometer_Bezel_v1.stl) exactly as the designer published them, plus the license and attribution. Designed by cjmck422 and shared under CC BY 4.0. Compare the part with your original before installing, since cars of the same model can differ by year and market.
 category: gauge-pods-bezels
 part_type: speedometer mounting bezel
 fits:
@@ -20,7 +20,7 @@ fits:
       from: 1971
       to: 1972
 fitment_note: Mounts a universal digital motorcycle speedometer. Not for the curved-dash 1973 and later Super Beetle.
-price_usd: null
+price_usd: "9.00"
 oem_part_numbers: []
 material:
   recommended:
@@ -42,24 +42,27 @@ sources:
     thing_id: 5241528
     thing_url: https://www.thingiverse.com/thing:5241528
     title_original: Speedometer Mounting Bezel
-    author: "cjmck422"
-    author_url: "https://www.thingiverse.com/cjmck422"
+    author: cjmck422
+    author_url: https://www.thingiverse.com/cjmck422
     license: CC-BY
     license_raw: CC BY
-    verified_at: null
+    verified_at: 2026-11-28
     images_allowed: false
-    file_names: []
+    file_names:
+      - Speedometer_Bezel_v1.stl
     image_urls: []
-files: []
+files:
+  - r2_key: products/vw-beetle-speedometer-mounting-bezel/vw-beetle-speedometer-mounting-bezel.zip
+    name: vw-beetle-speedometer-mounting-bezel.zip
 images:
   - src: /media/portadas/5241528.webp
-    alt: "Speedometer Mounting Bezel for Volkswagen Beetle (Type 1), illustrative render of a possible matte black print"
+    alt: Speedometer Mounting Bezel for Volkswagen Beetle (Type 1), illustrative render of a possible matte black print
     kind: render
 review:
   state: pendiente de revisión manual
   flags: []
   notes:
-    - Escribir title, summary y description originales en inglés (no copiar al autor).
-    - Verificar licencia, autor y archivos con la API (import-seed con THINGIVERSE_TOKEN).
+    - Licencia y autor verificados con el LICENSE.txt del paquete original descargado de Thingiverse (2026-11-28).
+    - Descripción generada desde la ficha (pieza, compatibilidad, archivos); revisar si se quiere más detalle.
 created_at: 2026-11-22
 updated_at: 2026-11-28

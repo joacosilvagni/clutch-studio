@@ -1,9 +1,9 @@
 slug: jeep-cherokee-xj-aftermarket-stereo-bracket
-status: preview
+status: approved
 kind: file
 title: Aftermarket Stereo Bracket for Jeep Cherokee XJ
-summary: null
-description: null
+summary: Aftermarket stereo bracket for the Jeep Cherokee XJ (1997–2001). Print-ready STL, instant download.
+description: 3D-printable aftermarket stereo bracket for the Jeep Cherokee XJ (1997–2001). Print it yourself or take the file to a local print shop. The download is a ZIP with one STL file (Cherokee_Stereo_Mount.stl) exactly as the designer published them, plus the license and attribution. Designed by RileZ33 and shared under CC BY-SA 4.0. Compare the part with your original before installing, since cars of the same model can differ by year and market.
 category: interior-trim
 part_type: aftermarket stereo bracket
 fits:
@@ -12,7 +12,7 @@ fits:
     years:
       from: 1997
       to: 2001
-price_usd: null
+price_usd: "9.00"
 oem_part_numbers: []
 material:
   recommended:
@@ -34,25 +34,27 @@ sources:
     thing_id: 318068
     thing_url: https://www.thingiverse.com/thing:318068
     title_original: Aftermarket Stereo Bracket
-    author: "RileZ33"
-    author_url: "https://www.thingiverse.com/RileZ33"
+    author: RileZ33
+    author_url: https://www.thingiverse.com/RileZ33
     license: CC-BY-SA
     license_raw: CC BY-SA
-    verified_at: null
+    verified_at: 2026-11-28
     images_allowed: false
-    file_names: []
+    file_names:
+      - Cherokee_Stereo_Mount.stl
     image_urls: []
-files: []
+files:
+  - r2_key: products/jeep-cherokee-xj-aftermarket-stereo-bracket/jeep-cherokee-xj-aftermarket-stereo-bracket.zip
+    name: jeep-cherokee-xj-aftermarket-stereo-bracket.zip
 images:
   - src: /media/portadas/318068.webp
-    alt: "Aftermarket Stereo Bracket for Jeep Cherokee XJ, illustrative render of a possible matte black print"
+    alt: Aftermarket Stereo Bracket for Jeep Cherokee XJ, illustrative render of a possible matte black print
     kind: render
 review:
   state: pendiente de revisión manual
   flags: []
   notes:
-    - Escribir title, summary y description originales en inglés (no copiar al autor).
-    - Verificar licencia, autor y archivos con la API (import-seed con THINGIVERSE_TOKEN).
-    - "CC BY-SA: el archivo adaptado que se vende debe publicarse bajo CC BY-SA."
+    - Licencia y autor verificados con el LICENSE.txt del paquete original descargado de Thingiverse (2026-11-28).
+    - Descripción generada desde la ficha (pieza, compatibilidad, archivos); revisar si se quiere más detalle.
 created_at: 2026-11-22
 updated_at: 2026-11-28

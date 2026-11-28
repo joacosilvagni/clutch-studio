@@ -148,6 +148,19 @@ El deploy resuelve el `database_id` real en CI (no se commitea) y sincroniza los
 `CLOUDFLARE_ACCOUNT_ID`. `ci.yml` corre tests, validación del catálogo, typecheck y build del sitio en cada PR.
 `verify-licenses.yml` reverifica licencias cada lunes (secret `THINGIVERSE_TOKEN`) y abre un issue si algo cambió.
 
+### Pasar PayPal a live
+
+El código no cambia: lo decide la variable de repo `PAYPAL_MODE`.
+1. En developer.paypal.com, con la cuenta Business verificada, cambiar a **Live** → Apps & Credentials → crear una app REST.
+2. En esa app, agregar el webhook `https://<sitio>/api/paypal/webhook` con `PAYMENT.CAPTURE.COMPLETED`, `REFUNDED`, `REVERSED` y `DENIED`.
+3. En GitHub → Settings → Secrets and variables → Actions: secrets `PAYPAL_LIVE_CLIENT_ID`, `PAYPAL_LIVE_CLIENT_SECRET`,
+   `PAYPAL_LIVE_WEBHOOK_ID`; variable `PAYPAL_MODE` = `live` (opcional: `PAYPAL_LIVE_MERCHANT_ID`, `MAIL_FROM`).
+4. Correr el workflow Deploy (o hacer push a `main`). Si falta algún dato, el deploy falla sin publicar nada.
+
+En live los productos `test: true` no se compilan ni se listan, y `MAIL_SANDBOX_TO` se ignora. Para volver a sandbox, borrar
+`PAYPAL_MODE` y redeployar. Los mails a compradores necesitan un dominio verificado en Resend (`MAIL_FROM`): con
+`onboarding@resend.dev` solo le llegan al dueño de la cuenta de Resend.
+
 ## Seguridad (resumen)
 
 Sin secretos en el repo · precio y entrega decididos en el servidor · firma de webhooks verificada (con allowlist

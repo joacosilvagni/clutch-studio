@@ -1,9 +1,9 @@
 slug: vw-golf-mk3-cupholder
-status: preview
+status: approved
 kind: file
 title: Cupholder
-summary: null
-description: null
+summary: Cupholder for the Volkswagen Golf Mk3 (1991–1999). Print-ready STL files, instant download.
+description: 3D-printable cupholder for the Volkswagen Golf Mk3 (1991–1999). Print it yourself or take the file to a local print shop. Hangs from the front of the ashtray. It partly covers the switch row above it (the V4 file covers it fully). The download is a ZIP with 3 STL files (Mk3_cupholderV2.stl, Mk3_cupholderV3_tight_fit_cans.stl, Mk3_cupholderV4_moved_to_passenger_side_tight_fit_cans.stl) exactly as the designer published them, plus the license and attribution. Designed by lauritz221 and shared under CC BY-SA 4.0. Compare the part with your original before installing, since cars of the same model can differ by year and market.
 category: storage-cupholders
 part_type: cupholder
 fits:
@@ -21,7 +21,7 @@ fits:
       to: 1999
     unconfirmed: true
 fitment_note: Hangs from the front of the ashtray. It partly covers the switch row above it (the V4 file covers it fully).
-price_usd: null
+price_usd: "9.00"
 oem_part_numbers: []
 material:
   recommended:
@@ -43,26 +43,30 @@ sources:
     thing_id: 6833286
     thing_url: https://www.thingiverse.com/thing:6833286
     title_original: Cupholder
-    author: "lauritz221"
-    author_url: "https://www.thingiverse.com/lauritz221"
+    author: lauritz221
+    author_url: https://www.thingiverse.com/lauritz221
     license: CC-BY-SA
     license_raw: CC BY-SA
-    verified_at: null
+    verified_at: 2026-11-28
     images_allowed: false
-    file_names: []
+    file_names:
+      - Mk3_cupholderV2.stl
+      - Mk3_cupholderV3_tight_fit_cans.stl
+      - Mk3_cupholderV4_moved_to_passenger_side_tight_fit_cans.stl
     image_urls: []
-files: []
+files:
+  - r2_key: products/vw-golf-mk3-cupholder/vw-golf-mk3-cupholder.zip
+    name: vw-golf-mk3-cupholder.zip
 images:
   - src: /media/portadas/6833286.webp
-    alt: "Cupholder, illustrative render of a possible matte black print"
+    alt: Cupholder, illustrative render of a possible matte black print
     kind: render
 review:
   state: pendiente de revisión manual
-  flags:
-    - '"VW Golf MK3" no coincide con ningún modelo de config/models.yaml'
+  flags: []
   notes:
-    - Escribir title, summary y description originales en inglés (no copiar al autor).
-    - Verificar licencia, autor y archivos con la API (import-seed con THINGIVERSE_TOKEN).
-    - "CC BY-SA: el archivo adaptado que se vende debe publicarse bajo CC BY-SA."
+    - Licencia y autor verificados con el LICENSE.txt del paquete original descargado de Thingiverse (2026-11-28).
+    - Descripción generada desde la ficha (pieza, compatibilidad, archivos); revisar si se quiere más detalle.
+    - 'Resuelto 2026-11-28: "VW Golf MK3" no coincide con ningún modelo de config/models.yaml (fits explícitos de la fuente, PR #11).'
 created_at: 2026-11-22
 updated_at: 2026-11-28

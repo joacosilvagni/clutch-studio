@@ -1,9 +1,9 @@
 slug: bmw-e36-center-vent-gauge
-status: preview
+status: approved
 kind: file
 title: Center Vent Gauge for BMW E36
-summary: null
-description: null
+summary: Center vent gauge for the BMW E36 (1990–2000). Print-ready STL files, instant download.
+description: 3D-printable center vent gauge for the BMW E36 (1990–2000). Print it yourself or take the file to a local print shop. The download is a ZIP with 7 STL files (e36-centerVent-blank-v2.stl, e36-centerVent-double-52mm-v2.stl, e36-centerVent-double-60mm.stl, e36-centerVent-single-52mm-v2.stl, e36-centerVent-single-60mm-v2.stl, e36-centerVent-triple-52mm-v2.stl, e36-centerVent-ventOnly-v2.stl) exactly as the designer published them, plus the license and attribution. Designed by RichardFranks and shared under CC BY 4.0. Compare the part with your original before installing, since cars of the same model can differ by year and market.
 category: gauge-pods-bezels
 part_type: center vent gauge
 fits:
@@ -12,7 +12,7 @@ fits:
     years:
       from: 1990
       to: 2000
-price_usd: null
+price_usd: "9.00"
 oem_part_numbers: []
 material:
   recommended:
@@ -34,24 +34,33 @@ sources:
     thing_id: 5984137
     thing_url: https://www.thingiverse.com/thing:5984137
     title_original: Center Vent Gauge
-    author: "RichardFranks"
-    author_url: "https://www.thingiverse.com/RichardFranks"
+    author: RichardFranks
+    author_url: https://www.thingiverse.com/RichardFranks
     license: CC-BY
     license_raw: CC BY
-    verified_at: null
+    verified_at: 2026-11-28
     images_allowed: false
-    file_names: []
+    file_names:
+      - e36-centerVent-blank-v2.stl
+      - e36-centerVent-double-52mm-v2.stl
+      - e36-centerVent-double-60mm.stl
+      - e36-centerVent-single-52mm-v2.stl
+      - e36-centerVent-single-60mm-v2.stl
+      - e36-centerVent-triple-52mm-v2.stl
+      - e36-centerVent-ventOnly-v2.stl
     image_urls: []
-files: []
+files:
+  - r2_key: products/bmw-e36-center-vent-gauge/bmw-e36-center-vent-gauge.zip
+    name: bmw-e36-center-vent-gauge.zip
 images:
   - src: /media/portadas/5984137.webp
-    alt: "Center Vent Gauge for BMW E36, illustrative render of a possible matte black print"
+    alt: Center Vent Gauge for BMW E36, illustrative render of a possible matte black print
     kind: render
 review:
   state: pendiente de revisión manual
   flags: []
   notes:
-    - Escribir title, summary y description originales en inglés (no copiar al autor).
-    - Verificar licencia, autor y archivos con la API (import-seed con THINGIVERSE_TOKEN).
+    - Licencia y autor verificados con el LICENSE.txt del paquete original descargado de Thingiverse (2026-11-28).
+    - Descripción generada desde la ficha (pieza, compatibilidad, archivos); revisar si se quiere más detalle.
 created_at: 2026-11-22
-updated_at: 2026-11-23
+updated_at: 2026-11-28

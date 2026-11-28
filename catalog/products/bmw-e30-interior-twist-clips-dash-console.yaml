@@ -1,9 +1,9 @@
 slug: bmw-e30-interior-twist-clips-dash-console
-status: preview
+status: approved
 kind: file
 title: Interior Twist Clips dash/console for BMW E30
-summary: null
-description: null
+summary: Interior twist clips dash/console for the BMW E30 (1982–1994). Print-ready STL files, instant download.
+description: 3D-printable interior twist clips dash/console for the BMW E30 (1982–1994). Print it yourself or take the file to a local print shop. The download is a ZIP with 2 STL files (E30_-_51161932255_-_Interior_Twist_Clip_v2.STL, E30_-_KickPanel_-_Twist_Clip.STL) exactly as the designer published them, plus the license and attribution. Designed by Drclawscat and shared under CC BY 4.0. Compare the part with your original before installing, since cars of the same model can differ by year and market.
 category: clips-fasteners
 part_type: interior twist clips dash/console
 fits:
@@ -12,7 +12,7 @@ fits:
     years:
       from: 1982
       to: 1994
-price_usd: null
+price_usd: "9.00"
 oem_part_numbers:
   - "51161932255"
 material:
@@ -35,24 +35,28 @@ sources:
     thing_id: 5486248
     thing_url: https://www.thingiverse.com/thing:5486248
     title_original: Interior Twist Clips dash/console OEM 51161932255
-    author: "Drclawscat"
-    author_url: "https://www.thingiverse.com/Drclawscat"
+    author: Drclawscat
+    author_url: https://www.thingiverse.com/Drclawscat
     license: CC-BY
     license_raw: CC BY
-    verified_at: null
+    verified_at: 2026-11-28
     images_allowed: false
-    file_names: []
+    file_names:
+      - E30_-_51161932255_-_Interior_Twist_Clip_v2.STL
+      - E30_-_KickPanel_-_Twist_Clip.STL
     image_urls: []
-files: []
+files:
+  - r2_key: products/bmw-e30-interior-twist-clips-dash-console/bmw-e30-interior-twist-clips-dash-console.zip
+    name: bmw-e30-interior-twist-clips-dash-console.zip
 images:
   - src: /media/portadas/5486248.webp
-    alt: "Interior Twist Clips dash/console for BMW E30, illustrative render of a possible matte black print"
+    alt: Interior Twist Clips dash/console for BMW E30, illustrative render of a possible matte black print
     kind: render
 review:
   state: pendiente de revisión manual
   flags: []
   notes:
-    - Escribir title, summary y description originales en inglés (no copiar al autor).
-    - Verificar licencia, autor y archivos con la API (import-seed con THINGIVERSE_TOKEN).
+    - Licencia y autor verificados con el LICENSE.txt del paquete original descargado de Thingiverse (2026-11-28).
+    - Descripción generada desde la ficha (pieza, compatibilidad, archivos); revisar si se quiere más detalle.
 created_at: 2026-11-22
-updated_at: 2026-11-23
+updated_at: 2026-11-28

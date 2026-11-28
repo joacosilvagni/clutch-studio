@@ -1,9 +1,9 @@
 slug: saab-900-cup-holder
-status: preview
+status: approved
 kind: file
 title: Cup Holder for Saab 900 (classic)
-summary: null
-description: null
+summary: Cup holder for the Saab 900 (classic) (1978–1993). Print-ready STL, instant download.
+description: 3D-printable cup holder for the Saab 900 (classic) (1978–1993). Print it yourself or take the file to a local print shop. The download is a ZIP with one STL file (CupholderV2.STL) exactly as the designer published them, plus the license and attribution. Designed by AndrewN94 and shared under CC BY 4.0. Compare the part with your original before installing, since cars of the same model can differ by year and market.
 category: storage-cupholders
 part_type: cup holder
 fits:
@@ -12,7 +12,7 @@ fits:
     years:
       from: 1978
       to: 1993
-price_usd: null
+price_usd: "9.00"
 oem_part_numbers: []
 material:
   recommended:
@@ -34,24 +34,27 @@ sources:
     thing_id: 2762097
     thing_url: https://www.thingiverse.com/thing:2762097
     title_original: Cup Holder
-    author: "AndrewN94"
-    author_url: "https://www.thingiverse.com/AndrewN94"
+    author: AndrewN94
+    author_url: https://www.thingiverse.com/AndrewN94
     license: CC-BY
     license_raw: CC BY
-    verified_at: null
+    verified_at: 2026-11-28
     images_allowed: false
-    file_names: []
+    file_names:
+      - CupholderV2.STL
     image_urls: []
-files: []
+files:
+  - r2_key: products/saab-900-cup-holder/saab-900-cup-holder.zip
+    name: saab-900-cup-holder.zip
 images:
   - src: /media/portadas/2762097.webp
-    alt: "Cup Holder for Saab 900 (classic), illustrative render of a possible matte black print"
+    alt: Cup Holder for Saab 900 (classic), illustrative render of a possible matte black print
     kind: render
 review:
   state: pendiente de revisión manual
   flags: []
   notes:
-    - Escribir title, summary y description originales en inglés (no copiar al autor).
-    - Verificar licencia, autor y archivos con la API (import-seed con THINGIVERSE_TOKEN).
+    - Licencia y autor verificados con el LICENSE.txt del paquete original descargado de Thingiverse (2026-11-28).
+    - Descripción generada desde la ficha (pieza, compatibilidad, archivos); revisar si se quiere más detalle.
 created_at: 2026-11-22
-updated_at: 2026-11-23
+updated_at: 2026-11-28
