@@ -6,6 +6,7 @@ Leelo antes de empezar y actualizalo al terminar (ver `AGENTS.md`).
 
 | Agente | Tarea | Rama | Desde |
 | --- | --- | --- | --- |
+| Claude | Compatibilidad multi-modelo por pieza (`fits` con modelos fuera de la lista, notas, "may also fit") | `claude/project-thread-gvep9u` | 2026-11-28 |
 
 ## Bloqueos
 
