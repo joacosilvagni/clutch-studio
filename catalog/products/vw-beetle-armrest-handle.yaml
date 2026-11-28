@@ -1,17 +1,18 @@
 slug: vw-beetle-armrest-handle
 status: preview
 kind: file
-title: Armrest Handle for Volkswagen Beetle (Type 1)
+title: Armrest Handle for Volkswagen New Beetle
 summary: null
 description: null
 category: knobs-handles-bushings
 part_type: armrest handle
 fits:
   - make: Volkswagen
-    model_slug: vw-beetle
+    model_slug: vw-new-beetle
+    model: New Beetle
     years:
-      from: 1938
-      to: 2003
+      from: 1997
+      to: 2011
 price_usd: null
 oem_part_numbers: []
 material:
@@ -45,7 +46,7 @@ sources:
 files: []
 images:
   - src: /media/portadas/2949271.webp
-    alt: "Armrest Handle for Volkswagen Beetle (Type 1), illustrative render of a possible matte black print"
+    alt: "Armrest Handle for Volkswagen New Beetle, illustrative render of a possible matte black print"
     kind: render
 review:
   state: pendiente de revisión manual
@@ -54,4 +55,4 @@ review:
     - Escribir title, summary y description originales en inglés (no copiar al autor).
     - Verificar licencia, autor y archivos con la API (import-seed con THINGIVERSE_TOKEN).
 created_at: 2026-11-22
-updated_at: 2026-11-23
+updated_at: 2026-11-28

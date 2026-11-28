@@ -6,7 +6,31 @@ summary: null
 description: null
 category: knobs-handles-bushings
 part_type: switch blank
-fits: []
+fits:
+  - make: Volkswagen
+    model_slug: vw-golf-mk1
+    years:
+      from: 1974
+      to: 1983
+  - make: Volkswagen
+    model_slug: vw-jetta-mk1
+    model: Jetta Mk1
+    years:
+      from: 1979
+      to: 1984
+  - make: Volkswagen
+    model_slug: vw-passat-b1
+    model: Passat B1 / Dasher
+    years:
+      from: 1973
+      to: 1980
+  - make: Volkswagen
+    model_slug: vw-lt-mk1
+    model: LT Mk1
+    years:
+      from: 1975
+      to: 1996
+fitment_note: "Later flat version, VW 861957087. The earlier domed blank (321957087) has the same dimensions."
 price_usd: null
 oem_part_numbers:
   - "861957087"
@@ -52,4 +76,4 @@ review:
     - Verificar licencia, autor y archivos con la API (import-seed con THINGIVERSE_TOKEN).
     - "CC BY-SA: el archivo adaptado que se vende debe publicarse bajo CC BY-SA."
 created_at: 2026-11-22
-updated_at: 2026-11-23
+updated_at: 2026-11-28
