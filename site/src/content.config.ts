@@ -57,6 +57,17 @@ const products = defineCollection({
         }),
       )
       .default([]),
+    artwork: z
+      .object({
+        source_url: z.string(),
+        title: str,
+        author: z.string(),
+        author_url: str,
+        license: z.string(),
+        license_label: str,
+        verified_at: z.coerce.string().nullish(),
+      })
+      .nullish(),
     // `files` (R2 keys) is intentionally NOT read: the site never exposes download locations.
     images: z
       .array(z.object({ src: z.string(), alt: z.string().nullish(), kind: z.enum(['photo', 'render']).nullish() }))

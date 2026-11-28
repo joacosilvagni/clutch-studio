@@ -24,6 +24,7 @@ export const CATEGORIES = [
   'detailing-care',
   'garage-tools',
   'exterior-protection',
+  'wall-art-decor',
 ];
 export const MODEL_SLUGS = [
   'bmw-e30',
@@ -47,6 +48,12 @@ export const DATE_RE = /^\d{4}-\d{2}-\d{2}$/;
 // R2 keys we generate: products/<slug>/<file>.zip. No "..", no leading slash.
 export const R2_KEY_RE = /^products\/[a-z0-9-]+\/[A-Za-z0-9._-]+$/;
 export const MIN_PRICE_CENTS = 100;
+// Physical products ship to these destinations only (UK excluded at launch: VAT registration from the first sale).
+export const SHIP_TO = ['US', 'EU', 'AU'];
+export const SUPPLIERS = ['cj', 'printful'];
+// Photos printed on physical products (posters) come from Wikimedia Commons with a free license.
+const ARTWORK_URL_RE = /^https:\/\/commons\.wikimedia\.org\/wiki\/File:.+/;
+const COST_RE = /^\d{1,4}\.\d{2}$/;
 
 const isObj = (v) => v !== null && typeof v === 'object' && !Array.isArray(v);
 const nonEmpty = (v) => typeof v === 'string' && v.trim().length > 0;
@@ -126,6 +133,41 @@ export function validateProduct(p, { allowedLicenses, fileSlug } = {}) {
       });
   }
 
+  // supplier: where a physical product comes from. Internal only, never shown on the site.
+  if (p.supplier != null) {
+    const sp = p.supplier;
+    if (p.kind !== 'physical') e.push('supplier solo aplica a kind: physical');
+    if (!isObj(sp)) e.push('supplier inválido');
+    else {
+      if (!SUPPLIERS.includes(sp.platform)) e.push(`supplier.platform debe ser ${SUPPLIERS.join('|')}`);
+      if (!nonEmpty(sp.product_url) || !/^https:\/\//.test(sp.product_url)) e.push('supplier.product_url inválido');
+      if (sp.cost_usd != null && !COST_RE.test(String(sp.cost_usd))) e.push('supplier.cost_usd debe ser un texto como "3.20"');
+      if (sp.shipping != null) {
+        if (!isObj(sp.shipping)) e.push('supplier.shipping inválido');
+        else
+          for (const [dest, s] of Object.entries(sp.shipping)) {
+            if (!SHIP_TO.includes(dest)) e.push(`supplier.shipping.${dest}: destino no habilitado (${SHIP_TO.join('|')})`);
+            if (!isObj(s)) { e.push(`supplier.shipping.${dest} inválido`); continue; }
+            if (s.cost_usd != null && !COST_RE.test(String(s.cost_usd))) e.push(`supplier.shipping.${dest}.cost_usd inválido`);
+            if (s.days != null && !/^\d{1,2}-\d{1,2}$/.test(String(s.days))) e.push(`supplier.shipping.${dest}.days debe ser "7-12"`);
+          }
+      }
+    }
+  }
+
+  // artwork: the photo printed on a physical product (poster). Credit is shown on the site.
+  if (p.artwork != null) {
+    const a = p.artwork;
+    if (p.kind !== 'physical') e.push('artwork solo aplica a kind: physical');
+    if (!isObj(a)) e.push('artwork inválido');
+    else {
+      if (!nonEmpty(a.source_url) || !ARTWORK_URL_RE.test(a.source_url)) e.push('artwork.source_url debe ser https://commons.wikimedia.org/wiki/File:...');
+      if (!allowedLicenses?.includes(a.license)) e.push(`artwork.license ${a.license} no permitida`);
+      if (!nonEmpty(a.author)) e.push('artwork sin author (atribución obligatoria)');
+      if (a.verified_at != null && !DATE_RE.test(String(a.verified_at))) e.push('artwork.verified_at debe ser YYYY-MM-DD');
+    }
+  }
+
   if (p.status === 'preview') {
     if (!nonEmpty(p.title)) e.push('preview sin title');
     if (!p.category) e.push('preview sin category');
@@ -150,6 +192,18 @@ export function validateProduct(p, { allowedLicenses, fileSlug } = {}) {
     if (p.kind === 'file') {
       if (!Array.isArray(p.files) || p.files.length === 0) e.push('aprobado sin files en R2');
       if (!Array.isArray(p.sources) || p.sources.length === 0) e.push('aprobado sin sources (atribución)');
+    }
+    if (p.kind === 'physical') {
+      const sp = p.supplier;
+      if (!isObj(sp)) e.push('físico aprobado sin supplier');
+      else {
+        if (sp.cost_usd == null) e.push('físico aprobado sin supplier.cost_usd');
+        for (const dest of SHIP_TO)
+          if (!isObj(sp.shipping?.[dest]) || sp.shipping[dest].cost_usd == null || sp.shipping[dest].days == null)
+            e.push(`físico aprobado sin envío verificado a ${dest} (cost_usd y days)`);
+      }
+      if (!Array.isArray(p.images) || p.images.length === 0) e.push('físico aprobado sin images');
+      if (isObj(p.artwork) && !p.artwork.verified_at) e.push('artwork sin verified_at: verificar la licencia de la foto antes de aprobar');
     }
     if (p.kind === 'pack' && (!Array.isArray(p.includes) || p.includes.length < 2)) e.push('un pack aprobado necesita al menos 2 includes');
     for (const [i, s] of (p.sources ?? []).entries()) {

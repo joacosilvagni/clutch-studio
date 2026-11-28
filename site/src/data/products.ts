@@ -65,6 +65,16 @@ export async function getProducts(): Promise<Product[]> {
         licenseLabel: s.license_raw ?? LICENSE_LABEL[s.license] ?? s.license,
         verified: !!s.verified_at,
       })),
+      artwork: d.artwork
+        ? {
+            url: d.artwork.source_url,
+            title: d.artwork.title ?? null,
+            author: d.artwork.author,
+            authorUrl: d.artwork.author_url ?? null,
+            license: d.artwork.license,
+            licenseLabel: d.artwork.license_label ?? LICENSE_LABEL[d.artwork.license] ?? d.artwork.license,
+          }
+        : null,
       status: d.status,
       test: d.test,
       free: d.free,

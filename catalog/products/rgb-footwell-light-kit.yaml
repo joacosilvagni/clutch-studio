@@ -1,0 +1,57 @@
+slug: rgb-footwell-light-kit
+status: approved
+kind: physical
+title: RGB Footwell Light Kit with Remote
+summary: Four LED bars for under the dash and seats. Pick any colour, or let them pulse to the music.
+description: Four slim LED bars stick under the dashboard and the front seats and light the footwells in any colour you choose.
+  Change colour and brightness from the remote, or switch on music mode and the lights follow the stereo. Runs from a USB
+  port, so nothing gets spliced into the original wiring.
+category: lighting-electrical
+part_type: null
+fits: []
+price_usd: '39.95'
+oem_part_numbers: []
+install_notes: null
+sources: []
+files: []
+images:
+- src: /media/products/rgb-footwell-light-kit/1.webp
+  alt: RGB Footwell Light Kit with Remote
+  kind: photo
+- src: /media/products/rgb-footwell-light-kit/2.webp
+  alt: RGB Footwell Light Kit with Remote
+  kind: photo
+- src: /media/products/rgb-footwell-light-kit/3.webp
+  alt: RGB Footwell Light Kit with Remote
+  kind: photo
+supplier:
+  platform: cj
+  product_url: https://cjdropshipping.com/product/-p-1472114081958858752.html
+  pid: '1472114081958858752'
+  variant: 1 Style-USB
+  cost_usd: '9.26'
+  weight_g: 322
+  shipping:
+    US:
+      cost_usd: '8.67'
+      days: 7-13
+      method: CJPacket SP Sensitive
+    EU:
+      cost_usd: '10.59'
+      days: 12-20
+      method: CJPacket Euro Sensitive (duties included)
+    AU:
+      cost_usd: '9.49'
+      days: 5-14
+      method: CJPacket Liquid Line
+  quoted_at: '2026-11-23'
+review:
+  state: aprobado por Joaquín en el chat (2026-11-23); activado a su pedido el 2026-11-28
+  flags: []
+  notes:
+  - 'Demanda: Es el tipo de luz RGB regulable que pidió Joaquín (ejemplo de AliExpress: 4,5★, 143 vendidos). CJ: 247 tiendas
+    lo listan.'
+  - Precio con envío incluido. Margen calculado contra el envío más caro y comisión PayPal 5,4% + USD 0,30.
+  - 'Revisar las variantes: hay "Style 1-4" y una versión recargable; confirmar cuál trae app y control remoto.'
+created_at: '2026-11-23'
+updated_at: '2026-11-28'

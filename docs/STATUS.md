@@ -45,6 +45,43 @@ Leelo antes de empezar y actualizalo al terminar (ver `AGENTS.md`).
   de la cuenta bancaria). Los 3 borradores por logos (VW knob, Miata knob, Ronal) y las 42 piezas de PR #8 siguen sin vender.
 - Decisión: los ZIP se generan con `Downloads\modelos-autos-3d\_clutch_r2\build.py` (en la PC de Joaquín), no se guardan en el repo.
 
+### 2026-11-28 · Claude (dropshipping) — 9 accesorios activados
+- Hecho: a pedido de Joaquín (los había aprobado en el chat el 23/11 y el 28/11 pidió que se vean), 9 accesorios
+  pasan a `approved`. El escáner OBD2 queda en borrador hasta que CJ confirme el envío a Australia. Envío del set de
+  cepillos a US/UE estimado para 171 g; sacada la foto del cargador que dice "Apple".
+- Pendiente: muestra de la aspiradora (batería de litio), CE/FCC del cargador, colores de la tira LED.
+
+### 2026-11-23 · Claude (dropshipping) — Accesorios listos para activar
+- Hecho: pósters borrados (Joaquín los descartó). Workflow `fetch-images.yml` + `pipeline/src/cli/fetch-images.mjs`:
+  en cada push a `claude/**`/`codex/**` que toque `catalog/products/`, baja las fotos de CJ a
+  `site/public/media/products/<slug>/` (webp 1200 px) y reescribe el YAML. Envío a Australia recotizado por
+  CJPacket Liquid Line (con seguimiento) para 6 productos; todos dejan USD 14+ netos.
+- Pendiente: Joaquín pasa a `approved` los que quiera; confirmar con CJ el envío del escáner OBD2 a Australia.
+
+### 2026-11-23 · Claude (dropshipping) — Pósters de autos reales y piso de ganancia
+- Hecho: 7 pósters de autos reales en borrador (Printful, fotos de Wikimedia Commons con licencia libre, USD 39,95,
+  unos USD 17-18 de ganancia neta). Campo `artwork` en el schema (fuente, autor, licencia; `verified_at` obligatorio para
+  aprobar), crédito de la foto en la página del producto y en atribuciones, `printful` como proveedor. Subidos los precios
+  de 5 accesorios para que dejen al menos USD 10 netos.
+- Pendiente: cuenta de Printful, plazos reales de envío, retocar emblemas y patentes, descargar imágenes a `site/public`,
+  aprobación de Joaquín.
+
+### 2026-11-23 · Claude (dropshipping) — 10 accesorios físicos de CJ
+- Hecho (rama `claude/project-thread-w0cows`): 10 productos `kind: physical` en `draft` (luces LED, tecnología, interior,
+  detailing y un cartel de chapa), elegidos por demanda (ventas y puntaje en AliExpress, tiendas que lo listan y pedidos en CJ)
+  y sin logos. Cada YAML trae `supplier` (CJ: pid, variante, costo, peso y envío cotizado a US/EU/AU con días y línea).
+  Schema: `supplier` validado (solo físicos; destinos US/EU/AU, UK excluido), un físico aprobado exige costo, envío a los
+  3 destinos e imágenes. Nueva categoría `wall-art-decor` (sitio y schema).
+- Decisiones (Joaquín): sin saldo previo en CJ, cada pedido se paga con tarjeta al entrar la venta; destinos EE.UU., UE y
+  Australia; Reino Unido afuera al lanzar (VAT desde la primera venta).
+- Revisión de Joaquín (23/11): aprobó tira LED, cargador, soporte, aspiradora, organizador entre asientos, limpiador de
+  parabrisas y cepillos (quedan en draft con la aprobación anotada, falta lo de las notas). Descartó posavasos, organizador
+  de respaldo y cartel. Sumé kit LED RGB para pies, escáner OBD2 KONNWEI KW310 (sin envío a Australia en CJ) y luz de
+  estrellas USB. Pidió cuadros: propuesta de impresión bajo demanda con diseños propios sin marcas.
+  Pidió logos de marcas de autos: no se hace (falsificación, PayPal lo prohíbe).
+- Pendiente: re-cotizar envío de las variantes multipack (notas en cada YAML); bajar las
+  imágenes del CDN de CJ a `site/public`; elegir líneas con tracking (PayPal lo exige); política de devoluciones y plazos.
+
 ### 2026-11-28 · Claude — Compatibilidad multi-modelo
 - Hecho (rama `claude/project-thread-gvep9u`): cada entrada de `fits` acepta `model` (nombre visible, obligatorio si el
   `model_slug` no está en la lista de modelos), `note` y `unconfirmed: true` ("may also fit", se muestra aparte y no cuenta
