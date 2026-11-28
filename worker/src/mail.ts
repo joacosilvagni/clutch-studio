@@ -1,5 +1,6 @@
 import type { Env } from './env';
 import { escapeHtml } from './http';
+import { smtpSend } from './smtp';
 
 export interface DownloadLink {
   title: string;
@@ -35,12 +36,44 @@ export async function sendDownloadEmail(
   return sendMail(env, fetchImpl, { to, subject: 'Your Clutch Studio downloads', html, text, idempotencyKey: args.idempotencyKey });
 }
 
-/** Low-level send through Resend. `to` is used as given (callers apply the sandbox redirect). */
+/**
+ * Low-level send. Gmail (SMTP + app password) when GMAIL_USER and GMAIL_APP_PASSWORD are set, with
+ * Resend as the fallback; Resend alone otherwise. `to` is used as given (callers apply the sandbox redirect).
+ */
 export async function sendMail(
   env: Env,
   fetchImpl: typeof fetch,
   m: { to: string; subject: string; html: string; text: string; idempotencyKey: string },
 ): Promise<boolean> {
+  if (env.GMAIL_USER && env.GMAIL_APP_PASSWORD) {
+    try {
+      await smtpSend(
+        { host: 'smtp.gmail.com', port: 465, user: env.GMAIL_USER, password: env.GMAIL_APP_PASSWORD.replace(/\s+/g, '') },
+        { from: env.GMAIL_USER, fromName: displayName(env.MAIL_FROM), to: m.to, subject: m.subject, html: m.html, text: m.text },
+      );
+      return true;
+    } catch (err) {
+      console.error('gmail_failed', err instanceof Error ? err.message : err);
+      if (!env.RESEND_API_KEY) return false;
+    }
+  }
+  return sendResend(env, fetchImpl, m);
+}
+
+/** "Clutch Studio <x@y>" -> "Clutch Studio" */
+function displayName(from: string): string {
+  return from.match(/^\s*"?([^"<]+?)"?\s*</)?.[1] ?? 'Clutch Studio';
+}
+
+async function sendResend(
+  env: Env,
+  fetchImpl: typeof fetch,
+  m: { to: string; subject: string; html: string; text: string; idempotencyKey: string },
+): Promise<boolean> {
+  if (!env.RESEND_API_KEY) {
+    console.error('mail_unconfigured');
+    return false;
+  }
   try {
     const res = await fetchImpl('https://api.resend.com/emails', {
       method: 'POST',

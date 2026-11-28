@@ -42,13 +42,14 @@ jobs:
           LIVE_SECRET: ${{ secrets.PAYPAL_LIVE_CLIENT_SECRET }}
           LIVE_WEBHOOK: ${{ secrets.PAYPAL_LIVE_WEBHOOK_ID }}
           MAIL_FROM: ${{ vars.MAIL_FROM }}
+          GMAIL_USER: ${{ secrets.GMAIL_USER }}
         run: |
           missing=""
           [ -n "$LIVE_ID" ] || missing="$missing PAYPAL_LIVE_CLIENT_ID"
           [ -n "$LIVE_SECRET" ] || missing="$missing PAYPAL_LIVE_CLIENT_SECRET"
           [ -n "$LIVE_WEBHOOK" ] || missing="$missing PAYPAL_LIVE_WEBHOOK_ID"
           if [ -n "$missing" ]; then echo "::error::PAYPAL_MODE=live but missing:$missing. Nothing was deployed."; exit 1; fi
-          case "$MAIL_FROM" in ""|*resend.dev*) echo "::warning::MAIL_FROM is still Resend's test sender: buyer emails will not be delivered until a domain is verified in Resend and the MAIL_FROM variable points to it.";; esac
+          if [ -z "$GMAIL_USER" ]; then case "$MAIL_FROM" in ""|*resend.dev*) echo "::warning::MAIL_FROM is still Resend's test sender: buyer emails will not be delivered until a domain is verified in Resend and the MAIL_FROM variable points to it (or set GMAIL_USER and GMAIL_APP_PASSWORD).";; esac; fi
       - run: npm ci
       - run: npm run catalog:build
       - run: npm test
@@ -78,6 +79,8 @@ jobs:
           MAIL_SANDBOX_TO: ${{ secrets.MAIL_SANDBOX_TO }}
           ORDER_NOTIFY_TO: ${{ secrets.ORDER_NOTIFY_TO }}
           ADMIN_TOKEN: ${{ secrets.ADMIN_TOKEN }}
+          GMAIL_USER: ${{ secrets.GMAIL_USER }}
+          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
         run: |
           ../.github/scripts/set-d1-id.sh
           npx wrangler d1 migrations apply clutch-studio --remote
@@ -90,7 +93,7 @@ jobs:
           if [ -n "$MAIL_FROM_VAR" ]; then args+=(--var "MAIL_FROM:$MAIL_FROM_VAR"); fi
           npx wrangler deploy "${args[@]}"
           # Push only the secrets that exist in GitHub; values never touch the repo or the logs.
-          jq -n 'env | {PAYPAL_CLIENT_SECRET, PAYPAL_WEBHOOK_ID, RESEND_API_KEY, MAIL_SANDBOX_TO, ORDER_NOTIFY_TO, ADMIN_TOKEN} | with_entries(select(.value != null and .value != ""))' > /tmp/secrets.json
+          jq -n 'env | {PAYPAL_CLIENT_SECRET, PAYPAL_WEBHOOK_ID, RESEND_API_KEY, MAIL_SANDBOX_TO, ORDER_NOTIFY_TO, ADMIN_TOKEN, GMAIL_USER, GMAIL_APP_PASSWORD} | with_entries(select(.value != null and .value != ""))' > /tmp/secrets.json
           if [ "$(jq 'length' /tmp/secrets.json)" -gt 0 ]; then npx wrangler secret bulk /tmp/secrets.json; fi
           rm -f /tmp/secrets.json
       - name: Upload sandbox test files to the private bucket

@@ -41,6 +41,11 @@ Leelo antes de empezar y actualizalo al terminar (ver `AGENTS.md`).
 - Pendiente: AliExpress pone captcha a la navegación automatizada, así que falta costo y envío a US/EU/AU.
   Alternativa propuesta: diseños propios de clásicos al mismo estilo, sin marcas, por impresión bajo demanda.
 
+### 2026-11-28 · Claude (backend) — Mail por Gmail
+- Hecho: los mails salen por Gmail (SMTP con contraseña de aplicación) cuando existen los secrets `GMAIL_USER` y
+  `GMAIL_APP_PASSWORD`; si Gmail falla se usa Resend. El deploy los sincroniza. 6 tests nuevos.
+- Pendiente (Joaquín): verificación en 2 pasos, contraseña de aplicación y los dos secrets en GitHub.
+
 ### 2026-11-28 · Claude — Archivos 3D a la venta
 - Causa del "Coming soon": los 70 archivos estaban en `preview` (sin precio, sin archivo en R2, sin descripción ni
   `verified_at`). Los STL originales están en la PC de Joaquín: `Downloads\modelos-autos-3d\<Marca>\<título> - <id>\files\`
