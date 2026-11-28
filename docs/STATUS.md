@@ -15,6 +15,7 @@ Leelo antes de empezar y actualizalo al terminar (ver `AGENTS.md`).
 
 ## Esperando revisión de Joaquín
 
+- Cuadros AliExpress (`claude/project-thread-vaky01`): 8 pósters Porsche en draft, bloqueados por marcas.
 - PR #7 (`claude/project-thread-w0cows`): 10 accesorios físicos de CJ en `draft` con bloque `supplier`; 7 aprobados en el chat. Pendiente: envío del OBD2 a Australia, recotizar multipacks.
 - PR #8 (`claude/project-thread-3f4aeg`): 42 piezas 3D nuevas en `draft` (faltan `file_names`, imágenes, portadas y textos).
 - Compra de prueba sandbox de punta a punta: falta pagar en el popup de PayPal sandbox (Joaquín) y registrar el resultado.
@@ -31,6 +32,14 @@ Leelo antes de empezar y actualizalo al terminar (ver `AGENTS.md`).
 - Contrato frontend ↔ Worker: el carrito manda `{items:[{slug}]}` a `/api/orders`; `onApprove` manda `{orderID}` a `/api/capture` y muestra `downloads[]` (o el `message` si es `null`).
 
 ## Log de sesiones (lo más nuevo arriba)
+
+### 2026-11-28 · Claude (dropshipping) — Cuadros de AliExpress en borrador (bloqueados)
+- Hecho (rama `claude/project-thread-vaky01`): Joaquín pidió los cuadros de AliExpress 1005011534471426. Son 8 pósters
+  Porsche modernos (911 GT3 RS 992 y 718 GT4 RS, nombre de modelo gigante y lettering PORSCHE). A pedido suyo quedan
+  como 8 borradores `minimal-spec-poster-sy2223..2230` en `wall-art-decor`, con flags de marca y de arte copiado que
+  impiden aprobarlos. Nuevo proveedor `aliexpress` en el schema. Fotos del proveedor NO descargadas al repo.
+- Pendiente: AliExpress pone captcha a la navegación automatizada, así que falta costo y envío a US/EU/AU.
+  Alternativa propuesta: diseños propios de clásicos al mismo estilo, sin marcas, por impresión bajo demanda.
 
 ### 2026-11-28 · Claude (backend) — Mail por Gmail
 - Hecho: los mails salen por Gmail (SMTP con contraseña de aplicación) cuando existen los secrets `GMAIL_USER` y

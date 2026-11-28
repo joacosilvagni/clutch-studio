@@ -50,7 +50,7 @@ export const R2_KEY_RE = /^products\/[a-z0-9-]+\/[A-Za-z0-9._-]+$/;
 export const MIN_PRICE_CENTS = 100;
 // Physical products ship to these destinations only (UK excluded at launch: VAT registration from the first sale).
 export const SHIP_TO = ['US', 'EU', 'AU'];
-export const SUPPLIERS = ['cj', 'printful'];
+export const SUPPLIERS = ['cj', 'printful', 'aliexpress'];
 // Photos printed on physical products (posters) come from Wikimedia Commons with a free license.
 const ARTWORK_URL_RE = /^https:\/\/commons\.wikimedia\.org\/wiki\/File:.+/;
 const COST_RE = /^\d{1,4}\.\d{2}$/;
