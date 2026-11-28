@@ -79,11 +79,19 @@ export function validateProduct(p, { allowedLicenses, fileSlug } = {}) {
       if (!isObj(f)) return e.push(`fits[${i}] inválido`);
       if (!nonEmpty(f.make)) e.push(`fits[${i}].make vacío`);
       if (!nonEmpty(f.model_slug) || !SLUG_RE.test(f.model_slug)) e.push(`fits[${i}].model_slug inválido`);
+      // Cars outside MODEL_SLUGS (no /fits/ page) need a display name: "W124 (E-Class)".
+      if (f.model != null && !nonEmpty(f.model)) e.push(`fits[${i}].model vacío`);
+      if (!MODEL_SLUGS.includes(f.model_slug) && !nonEmpty(f.model))
+        e.push(`fits[${i}].model es obligatorio para modelos fuera de la lista (${f.model_slug})`);
+      if (f.note != null && !nonEmpty(f.note)) e.push(`fits[${i}].note vacío`);
+      // unconfirmed: true = "may also fit": plausible but not confirmed by the designer. Shown apart, never counted as a fit.
+      if (f.unconfirmed != null && typeof f.unconfirmed !== 'boolean') e.push(`fits[${i}].unconfirmed debe ser true o false`);
       const y = f.years;
       if (!isObj(y) || !Number.isInteger(y.from) || !Number.isInteger(y.to) || y.from > y.to)
         e.push(`fits[${i}].years debe ser {from, to} con from <= to`);
     });
 
+  if (p.fitment_note != null && !nonEmpty(p.fitment_note)) e.push('fitment_note vacío');
   if (p.price_usd != null && priceToCents(p.price_usd) == null) e.push('price_usd debe ser un texto como "9.00"');
   if (p.free != null && typeof p.free !== 'boolean') e.push('free debe ser true o false');
   // test: true = sandbox-only product to exercise checkout end to end. Never approved, never listed in production.
@@ -133,7 +141,8 @@ export function validateProduct(p, { allowedLicenses, fileSlug } = {}) {
     if (!nonEmpty(p.description)) e.push('aprobado sin description original');
     if (!p.category) e.push('aprobado sin category');
     // fits: [] on a physical product means universal fit.
-    if (p.kind !== 'physical' && (!Array.isArray(p.fits) || p.fits.length === 0)) e.push('aprobado sin fits');
+    if (p.kind !== 'physical' && (!Array.isArray(p.fits) || !p.fits.some((f) => f && f.unconfirmed !== true)))
+      e.push('aprobado sin fits confirmados');
     const cents = priceToCents(p.price_usd);
     if (p.free === true) {
       if (cents !== 0) e.push('free: true requiere price_usd "0.00"');

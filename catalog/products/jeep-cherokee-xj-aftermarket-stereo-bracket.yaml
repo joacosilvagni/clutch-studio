@@ -10,7 +10,7 @@ fits:
   - make: Jeep
     model_slug: jeep-cherokee-xj
     years:
-      from: 1984
+      from: 1997
       to: 2001
 price_usd: null
 oem_part_numbers: []
@@ -55,4 +55,4 @@ review:
     - Verificar licencia, autor y archivos con la API (import-seed con THINGIVERSE_TOKEN).
     - "CC BY-SA: el archivo adaptado que se vende debe publicarse bajo CC BY-SA."
 created_at: 2026-11-22
-updated_at: 2026-11-23
+updated_at: 2026-11-28

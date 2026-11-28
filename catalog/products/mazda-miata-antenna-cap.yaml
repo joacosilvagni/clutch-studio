@@ -1,17 +1,19 @@
 slug: mazda-miata-antenna-cap
 status: preview
 kind: file
-title: Antenna Cap for Mazda MX-5 Miata (NA/NB)
+title: Antenna Cap for Mazda MX-5 Miata (NC)
 summary: null
 description: null
 category: interior-trim
 part_type: antenna cap
 fits:
   - make: Mazda
-    model_slug: mazda-miata
+    model_slug: mazda-mx5-nc
+    model: MX-5 Miata (NC)
     years:
-      from: 1989
-      to: 2005
+      from: 2006
+      to: 2015
+fitment_note: "Plugs the hole left when the factory antenna is removed. Designed on an NC; it will likely fit other Mazdas with the same antenna base, but that is not confirmed."
 price_usd: null
 oem_part_numbers: []
 material:
@@ -45,7 +47,7 @@ sources:
 files: []
 images:
   - src: /media/portadas/4302279.webp
-    alt: "Antenna Cap for Mazda MX-5 Miata (NA/NB), illustrative render of a possible matte black print"
+    alt: "Antenna Cap for Mazda MX-5 Miata (NC), illustrative render of a possible matte black print"
     kind: render
 review:
   state: pendiente de revisión manual
@@ -54,4 +56,4 @@ review:
     - Escribir title, summary y description originales en inglés (no copiar al autor).
     - Verificar licencia, autor y archivos con la API (import-seed con THINGIVERSE_TOKEN).
 created_at: 2026-11-22
-updated_at: 2026-11-23
+updated_at: 2026-11-28

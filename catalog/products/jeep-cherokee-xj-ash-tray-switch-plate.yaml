@@ -10,8 +10,9 @@ fits:
   - make: Jeep
     model_slug: jeep-cherokee-xj
     years:
-      from: 1984
+      from: 1997
       to: 2001
+fitment_note: "Made on a 2000 XJ, for the 1997–2001 dash."
 price_usd: null
 oem_part_numbers: []
 material:
@@ -54,4 +55,4 @@ review:
     - Escribir title, summary y description originales en inglés (no copiar al autor).
     - Verificar licencia, autor y archivos con la API (import-seed con THINGIVERSE_TOKEN).
 created_at: 2026-11-22
-updated_at: 2026-11-23
+updated_at: 2026-11-28

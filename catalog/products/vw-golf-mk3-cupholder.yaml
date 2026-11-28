@@ -6,7 +6,21 @@ summary: null
 description: null
 category: storage-cupholders
 part_type: cupholder
-fits: []
+fits:
+  - make: Volkswagen
+    model_slug: vw-golf-mk3
+    model: Golf Mk3
+    years:
+      from: 1991
+      to: 1999
+  - make: Volkswagen
+    model_slug: vw-jetta-mk3
+    model: Jetta / Vento Mk3
+    years:
+      from: 1992
+      to: 1999
+    unconfirmed: true
+fitment_note: Hangs from the front of the ashtray. It partly covers the switch row above it (the V4 file covers it fully).
 price_usd: null
 oem_part_numbers: []
 material:
@@ -51,4 +65,4 @@ review:
     - Verificar licencia, autor y archivos con la API (import-seed con THINGIVERSE_TOKEN).
     - "CC BY-SA: el archivo adaptado que se vende debe publicarse bajo CC BY-SA."
 created_at: 2026-11-22
-updated_at: 2026-11-23
+updated_at: 2026-11-28

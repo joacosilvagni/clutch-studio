@@ -10,8 +10,22 @@ fits:
   - make: Chevrolet
     model_slug: chevrolet-c10
     years:
-      from: 1960
+      from: 1981
       to: 1987
+    note: C/K pickups
+  - make: Chevrolet
+    model_slug: chevrolet-rv-square-body
+    model: R/V pickups (Square Body)
+    years:
+      from: 1987
+      to: 1991
+  - make: GMC
+    model_slug: gmc-square-body
+    model: C/K and R/V pickups (Square Body)
+    years:
+      from: 1981
+      to: 1991
+fitment_note: "Replaces LMC part 38-2087 (Chevrolet and GMC trucks, 1981–1991)."
 price_usd: null
 oem_part_numbers: []
 material:
@@ -54,4 +68,4 @@ review:
     - Escribir title, summary y description originales en inglés (no copiar al autor).
     - Verificar licencia, autor y archivos con la API (import-seed con THINGIVERSE_TOKEN).
 created_at: 2026-11-22
-updated_at: 2026-11-23
+updated_at: 2026-11-28

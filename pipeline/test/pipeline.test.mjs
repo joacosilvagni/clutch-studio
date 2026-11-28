@@ -128,6 +128,16 @@ describe('schema', () => {
     expect(validateProduct(approvedProduct({ kind: 'physical', fits: [], category: 'phone-tech', files: [], sources: [] }), { allowedLicenses: ALLOWED })).toEqual([]);
     expect(errs({ fits: [] }).join()).toMatch(/sin fits/);
   });
+  it('accepts cars outside the model list with a display name, and unconfirmed fits apart', () => {
+    const errs = (o) => validateProduct(approvedProduct(o), { allowedLicenses: ALLOWED });
+    const e30 = { make: 'BMW', model_slug: 'bmw-e30', years: { from: 1982, to: 1994 } };
+    const w124 = { make: 'Mercedes-Benz', model_slug: 'mercedes-w124', model: 'W124 (E-Class)', years: { from: 1984, to: 1997 } };
+    expect(errs({ fits: [e30, w124], fitment_note: 'Driver-side mirror.' })).toEqual([]);
+    expect(errs({ fits: [e30, { ...w124, model: undefined }] }).join()).toMatch(/model es obligatorio/);
+    expect(errs({ fits: [e30, { ...w124, unconfirmed: 'yes' }] }).join()).toMatch(/unconfirmed/);
+    expect(errs({ fits: [{ ...w124, unconfirmed: true }] }).join()).toMatch(/sin fits confirmados/);
+    expect(errs({ fitment_note: ' ' }).join()).toMatch(/fitment_note/);
+  });
   it('checks packs and duplicate slugs across the catalog', () => {
     const a = approvedProduct();
     const pack = approvedProduct({ slug: 'e30-pack', kind: 'pack', includes: ['bmw-e30-dash-clip', 'missing'], files: [], sources: [] });

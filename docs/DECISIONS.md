@@ -38,3 +38,8 @@ Formato: fecha · decisión · por qué. Las más nuevas arriba. No re-discutir 
   El Worker solo conoce productos aprobados (compilados a `worker/src/generated/catalog.json`).
 - **2026-11-22 · Licencias aceptadas: CC BY, CC BY-SA, CC0.** NC y ND excluidas. BY-SA obliga a publicar
   el archivo adaptado bajo BY-SA.
+
+## 2026-11-28 — Compatibilidad con varios autos
+- Un auto se lista como compatible solo si lo dice la publicación original o es un cruce verificable; lo plausible va con
+  `unconfirmed: true` y se muestra como "May also fit (not confirmed by the designer)". Nunca se inventa compatibilidad.
+- Autos fuera de la lista de modelos se cargan igual en `fits` con `model` (texto); no generan página `/fits/`.
