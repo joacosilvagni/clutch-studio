@@ -2,6 +2,7 @@ import type { Deps } from '../env';
 import { HttpError, json, readJson, assertSameOrigin, clientIp } from '../http';
 import { rateLimit } from '../ratelimit';
 import { createPayPal } from '../paypal';
+import { createFulfillment, isPhysical } from '../shipments';
 
 const SLUG_RE = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
 const MAX_ITEMS = 20;
@@ -15,7 +16,7 @@ export function parseCart(body: unknown): string[] {
   for (const it of raw) {
     const slug = typeof it === 'string' ? it : (it as any)?.slug;
     if (typeof slug !== 'string' || slug.length > 100 || !SLUG_RE.test(slug)) throw new HttpError(400, 'invalid_cart');
-    slugs.add(slug); // digital files: quantity is always 1, duplicates collapse
+    slugs.add(slug); // one of each for now (files and physical items alike); duplicates collapse
   }
   return [...slugs];
 }
@@ -27,7 +28,7 @@ export async function createOrder(req: Request, deps: Deps): Promise<Response> {
   const items = slugs.map((slug) => {
     const p = deps.catalog.products[slug];
     if (!p || p.price_cents <= 0) throw new HttpError(400, 'unknown_product', `Unknown product: ${slug}`);
-    return { slug: p.slug, title: p.title, price_cents: p.price_cents };
+    return { slug: p.slug, title: p.title, price_cents: p.price_cents, ...(isPhysical(p) ? { physical: true } : {}) };
   });
   const total = items.reduce((s, i) => s + i.price_cents, 0);
   const id = crypto.randomUUID();
@@ -37,6 +38,8 @@ export async function createOrder(req: Request, deps: Deps): Promise<Response> {
   )
     .bind(id, total, JSON.stringify(items), now)
     .run();
+  const physical = items.filter((i) => i.physical).map((i) => ({ slug: i.slug, title: i.title, qty: 1 }));
+  if (physical.length) await createFulfillment(deps, id, physical);
   const paypalOrderId = await createPayPal(deps.env, deps.fetch, deps.now).createOrder(id, items, total);
   await deps.env.DB.prepare(`UPDATE orders SET paypal_order_id = ?1, updated_at = ?2 WHERE id = ?3`).bind(paypalOrderId, now, id).run();
   return json({ id: paypalOrderId });

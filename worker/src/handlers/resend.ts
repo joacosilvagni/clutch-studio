@@ -30,7 +30,8 @@ export async function resendLinks(req: Request, deps: Deps): Promise<Response> {
       await deps.env.DB.prepare(`UPDATE download_tokens SET revoked = 1 WHERE order_id = ?1`).bind(order.id).run();
       links.push(...(await issueTokens(deps, order)));
     }
-    deps.waitUntil(deliverEmail(deps, results[0]!.id, email, links, `resend-${results[0]!.id}-${deps.now()}`));
+    // Physical-only orders have nothing to download.
+    if (links.length) deps.waitUntil(deliverEmail(deps, results[0]!.id, email, links, `resend-${results[0]!.id}-${deps.now()}`));
   }
   return json({ ok: true, message: 'If we find recent orders for that email, fresh links are on their way.' }, 202);
 }

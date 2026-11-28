@@ -2,6 +2,14 @@
 
 Formato: fecha · decisión · por qué. Las más nuevas arriba. No re-discutir sin un dato nuevo.
 
+- **2026-11-26 · Checkout de físicos: envío incluido en el precio y fulfillment manual.** PayPal pide la dirección
+  (`GET_FROM_FILE`) solo si hay físicos; sin línea de envío. El país se valida en el servidor **antes** de capturar
+  (US, UE-27, AU y las rutas de `supplier.shipping` de cada producto); si igual entra un pago a un destino inválido,
+  el envío queda `BLOCKED` para reembolsar. Sin API de pedidos de CJ ni saldo prefondeado (decisión del 23/11): mail a
+  Joaquín con los datos y API admin (`ADMIN_TOKEN`) para cargar pedido CJ y tracking (PayPal `trackers-batch`,
+  `notify_buyer`). Tabla `fulfillments` en D1 (migración 0002). El build falla si un físico aprobado no tiene rutas,
+  costos, o deja menos de USD 10 netos en la ruta más cara (comisión 5,4% + 0,30).
+
 - **2026-11-23 · Nuevo estado `preview` (vitrina).** Joaquín pidió mostrar todos los productos con sus fotos. `approved`
   exige precio, archivos en R2 y licencia verificada, y es lo único que el Worker vende; `preview` se lista en el sitio con
   portada y visor 3D pero nunca se vende ("Coming soon"). Exige title, category, licencia permitida y author.

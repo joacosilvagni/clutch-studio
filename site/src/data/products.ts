@@ -1,5 +1,5 @@
 import { getCollection } from 'astro:content';
-import { models, categories, getCategory, type Product, type PreviewModel } from './catalog';
+import { models, categories, getCategory, type Product, type PreviewModel, type ShipZone } from './catalog';
 import mediaJson from './media.json';
 
 // Covers and GLB previews from media_tienda/productos_media.json, keyed by Thingiverse id.
@@ -14,6 +14,7 @@ export const SANDBOX = import.meta.env.PUBLIC_SANDBOX === 'true';
 
 const knownModels = new Set(models.map((m) => m.slug));
 const knownCats = new Set(categories.map((c) => c.slug));
+const SHIP_ZONES: ShipZone[] = ['US', 'EU', 'AU']; // UK excluded at launch
 const LICENSE_LABEL: Record<string, string> = { 'CC-BY': 'CC BY', 'CC-BY-SA': 'CC BY-SA', CC0: 'CC0' };
 
 let cache: Product[] | null = null;
@@ -66,6 +67,7 @@ export async function getProducts(): Promise<Product[]> {
       status: d.status,
       test: d.test,
       free: d.free,
+      shipTo: d.kind !== 'physical' ? [] : d.test ? SHIP_ZONES : SHIP_ZONES.filter((z) => d.supplier?.shipping?.[z] != null),
       reviewFlags: d.review?.flags ?? [],
       images: d.images.map((i) => ({ src: i.src, alt: i.alt ?? d.title, kind: i.kind ?? 'photo' })),
       thingId: d.sources[0]?.thing_id != null ? String(d.sources[0].thing_id) : null,
@@ -99,7 +101,11 @@ export const thumbSrc = (src: string) =>
 export const hasImage = (p: Product) => p.images.length > 0;
 // Digital products can be bought now; physical ones wait for the dropshipping phase.
 export const isDigital = (p: Product) => p.department === '3d-files';
-export const isBuyable = (p: Product) => isDigital(p) && !p.free && p.priceUsd != null && p.priceUsd > 0;
+export const isPhysical = (p: Product) => p.kind === 'physical';
+// Physical items are sold only once approved (or as sandbox test products) and when they ship somewhere.
+export const isBuyable = (p: Product) =>
+  !p.free && p.priceUsd != null && p.priceUsd > 0 &&
+  (isDigital(p) || (isPhysical(p) && (p.status === 'approved' || p.test) && p.shipTo.length > 0));
 /** Products with images first, then priced, then the rest. */
 export const showcaseOrder = (a: Product, b: Product) =>
   Number(hasImage(b)) - Number(hasImage(a)) || Number(b.priceUsd != null) - Number(a.priceUsd != null) || a.title.localeCompare(b.title);

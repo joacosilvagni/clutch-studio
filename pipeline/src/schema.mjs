@@ -97,10 +97,11 @@ export function validateProduct(p, { allowedLicenses, fileSlug } = {}) {
   if (p.test != null && typeof p.test !== 'boolean') e.push('test debe ser true o false');
   if (p.test === true) {
     if (p.status !== 'draft') e.push('un producto test: true no puede estar aprobado ni en vitrina (solo draft)');
-    if (p.kind !== 'file') e.push('test: true solo aplica a kind: file');
+    // physical test products exercise the shipping checkout; nothing is ever bought for them.
+    if (p.kind !== 'file' && p.kind !== 'physical') e.push('test: true solo aplica a kind: file o physical');
     const tc = priceToCents(p.price_usd);
     if (tc == null || tc < MIN_PRICE_CENTS) e.push(`test: true requiere price_usd >= ${(MIN_PRICE_CENTS / 100).toFixed(2)}`);
-    if (!Array.isArray(p.files) || p.files.length === 0) e.push('test: true requiere files');
+    if (p.kind === 'file' && (!Array.isArray(p.files) || p.files.length === 0)) e.push('test: true requiere files');
   }
   if (p.includes != null && (!Array.isArray(p.includes) || !p.includes.every((s) => SLUG_RE.test(s))))
     e.push('includes debe ser una lista de slugs');

@@ -42,9 +42,14 @@ Marcá `[x]` al terminar y poné tu agente entre paréntesis si la tomaste. Recl
 ## Fase 4 — Dropshipping
 - [x] Investigar proveedores con API: elegido CJ Dropshipping (plan del 2026-11-23)
 - [x] Primeros 10 accesorios en draft con costo y envío cotizado (US/EU/AU)
-- [ ] Aprobar productos, bajar imágenes a site/public, re-cotizar multipacks, elegir líneas con tracking
+- [x] Bajar imágenes a site/public (workflow fetch-images) y elegir líneas con tracking a AU
+- [ ] Joaquín pasa a `approved` los accesorios; confirmar con CJ el envío del OBD2 a Australia
 - [ ] Productos `kind: physical` sin logos, margen configurable, envío automático del pedido
 - [x] Schema: categorías de accesorios, `fits: []` = universal, `supplier` y `wall-art-decor`
+- [x] Checkout de físicos: dirección, zonas US/UE/AU validadas antes de cobrar, D1 `fulfillments`, mails, tracking a PayPal (Claude, PR #9)
+- [ ] Probar en sandbox la compra física con `sandbox-test-physical` (dirección US/UE ok, UK rechazada)
+- [ ] Cargar secrets `ORDER_NOTIFY_TO` y `ADMIN_TOKEN` (GitHub Actions → los sincroniza el deploy) (Joaquín)
+- [ ] Cantidades > 1 para físicos (hoy 1 de cada producto por pedido)
 
 ## Antes de producción
 - [ ] Cuenta bancaria de EE.UU. a nombre del titular de PayPal

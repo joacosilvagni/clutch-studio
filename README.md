@@ -82,6 +82,8 @@ npx wrangler r2 bucket create clutch-studio-files   # NO habilitar dominio públ
 npx wrangler secret put PAYPAL_CLIENT_SECRET
 npx wrangler secret put PAYPAL_WEBHOOK_ID
 npx wrangler secret put RESEND_API_KEY
+npx wrangler secret put ORDER_NOTIFY_TO      # tu mail: recibe los pedidos físicos para comprar en CJ
+npx wrangler secret put ADMIN_TOKEN          # 32+ caracteres al azar (openssl rand -hex 32); habilita /api/admin/*
 npm run db:migrate:remote
 ```
 
@@ -108,9 +110,27 @@ npx wrangler r2 object put clutch-studio-files/products/<slug>/<slug>.zip --file
 | `POST /api/resend` `{email}` | Reenvía links nuevos al mail que pagó (respuesta genérica) |
 | `POST /api/paypal/webhook` | Webhooks de PayPal con firma verificada |
 | `GET /d/<token>` / `POST /d/<token>` | Página de descarga / descarga (consume 1) |
+| `GET /api/admin/fulfillments?status=` | Pedidos físicos (Bearer `ADMIN_TOKEN`) |
+| `POST /api/admin/fulfillment` | `{order_id, action:'ordered', supplier_order_ref}` o `{order_id, action:'shipped', carrier, tracking_number}` |
+
+### Pedidos físicos (dropshipping manual)
+
+1. Si el carrito tiene físicos, PayPal pide la dirección. `/api/capture` relee la orden y **antes de cobrar** rechaza
+   destinos fuera de EE.UU., UE-27 y Australia (o fuera de las rutas del producto). El envío está incluido en el precio.
+2. Tras la captura verificada llega un mail a `ORDER_NOTIFY_TO` con el link de CJ, variante, ruta sugerida y dirección;
+   el comprador recibe una confirmación sin plazos. Los digitales del mismo carrito se entregan al instante.
+3. Comprás en CJ con tarjeta y registrás todo desde la terminal (con `ADMIN_TOKEN` en el entorno, nunca en el repo):
+
+```bash
+ADMIN_TOKEN=... npm run fulfillment -- list PENDING
+ADMIN_TOKEN=... npm run fulfillment -- ordered <orden> <nro de pedido CJ>
+ADMIN_TOKEN=... npm run fulfillment -- shipped <orden> <CARRIER> <tracking>   # carga el tracking en PayPal (notify_buyer) y avisa al comprador
+```
+
+Un reembolso o reversión cancela el envío si no se compró; si ya estaba comprado en CJ, llega una alerta.
 
 Los `POST /api/*` exigen `Origin` igual a `SITE_URL` y `Content-Type: application/json`. Hay rate limit por IP
-(órdenes y capturas 10/min, descargas 30/min, reenvíos 3/h).
+(órdenes y capturas 10/min, descargas 30/min, reenvíos 3/h, admin 30/min).
 
 ## Deploy
 

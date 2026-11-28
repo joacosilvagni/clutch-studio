@@ -6,24 +6,33 @@ Leelo antes de empezar y actualizalo al terminar (ver `AGENTS.md`).
 
 | Agente | Tarea | Rama | Desde |
 | --- | --- | --- | --- |
-| Claude (diseño) | Portadas, visor 3D y vitrina de los 73 productos | claude/media-3d | 2026-11-23 |
 
 ## Bloqueos
 
 - Retiro de USD: PayPal exige una cuenta bancaria de EE.UU. a nombre del titular de la cuenta PayPal. Joaquín lo verifica antes de salir a producción.
-- R2: falta activar la suscripción gratuita de R2 en Cloudflare (Joaquín, pantalla de pago); después se re-corre "Bootstrap Cloudflare". D1 ya está creada.
+- Dominio definitivo: hace falta para Resend (SPF/DKIM/DMARC) y para producción. Hoy `site/astro.config.mjs` usa example.com.
+- Thingiverse API devuelve 403 (app en cola de aprobación): la licencia se verifica a mano en la página de cada thing.
+
+## Esperando revisión de Joaquín
+
+- PR #7 (`claude/project-thread-w0cows`): 10 accesorios físicos de CJ en `draft` con bloque `supplier`; 7 aprobados en el chat. Pendiente: envío del OBD2 a Australia, recotizar multipacks.
+- PR #8 (`claude/project-thread-3f4aeg`): 42 piezas 3D nuevas en `draft` (faltan `file_names`, imágenes, portadas y textos).
+- Compra de prueba sandbox de punta a punta: falta pagar en el popup de PayPal sandbox (Joaquín) y registrar el resultado.
+- PR #9 (`claude/project-thread-hvdo7j`): checkout de físicos. Antes de mergear, cargar los secrets `ORDER_NOTIFY_TO` y `ADMIN_TOKEN` en GitHub.
 
 ## Preguntas abiertas
+
+- ¿CJ exige teléfono del destinatario? PayPal no lo comparte; si hace falta, se pide en el carrito antes de pagar.
 
 - ¿Precio base por pieza y por pack? (propuesta: mínimo USD 8 por la comisión de PayPal).
 - ¿Dominio definitivo? (necesario para Resend, PayPal y Cloudflare). Hoy `site/astro.config.mjs` usa example.com.
 - ¿Política de devoluciones y plazos de envío de accesorios? Depende del proveedor de dropshipping; el sitio no promete nada hasta tenerla.
-- ¿Qué precio tienen los accesorios y cómo se muestra el envío (incluido o calculado en el checkout)?
 - Free Library (`free: true`): ¿descarga directa pública desde R2/estáticos, o pedir el mail y mandar un link? El Worker hoy no entrega gratuitos.
 - Contrato frontend ↔ Worker: el carrito manda `{items:[{slug}]}` a `/api/orders`; `onApprove` manda `{orderID}` a `/api/capture` y muestra `downloads[]` (o el `message` si es `null`).
 
 ## Log de sesiones (lo más nuevo arriba)
 
+<<<<<<< HEAD
 ### 2026-11-23 · Claude (dropshipping) — Accesorios listos para activar
 - Hecho: pósters borrados (Joaquín los descartó). Workflow `fetch-images.yml` + `pipeline/src/cli/fetch-images.mjs`:
   en cada push a `claude/**`/`codex/**` que toque `catalog/products/`, baja las fotos de CJ a
@@ -54,6 +63,19 @@ Leelo antes de empezar y actualizalo al terminar (ver `AGENTS.md`).
   Pidió logos de marcas de autos: no se hace (falsificación, PayPal lo prohíbe).
 - Pendiente: re-cotizar envío de las variantes multipack (notas en cada YAML); bajar las
   imágenes del CDN de CJ a `site/public`; elegir líneas con tracking (PayPal lo exige); política de devoluciones y plazos.
+=======
+### 2026-11-26 · Claude (backend) — Checkout de físicos
+- Hecho (rama `claude/project-thread-hvdo7j`, PR #9): STATUS al día; físicos aprobados entran al catálogo del Worker con
+  zonas y datos de `supplier` (compatible con #7); PayPal con dirección (`GET_FROM_FILE`, envío incluido); país validado
+  antes de capturar (US/UE-27/AU + rutas del producto) y en el popup (`onShippingAddressChange`); migración D1
+  `0002_fulfillment.sql`; mail a Joaquín con lo que hay que comprar en CJ y confirmación al comprador sin plazos;
+  carrito mixto; `/api/admin/*` + `npm run fulfillment` para cargar pedido CJ y tracking (PayPal `trackers-batch`);
+  reembolso cancela o alerta. Producto `sandbox-test-physical` (USD 1, solo sandbox). 19 tests nuevos (66 en total).
+- Pendiente: secrets `ORDER_NOTIFY_TO` y `ADMIN_TOKEN` (Joaquín, en GitHub Actions); prueba sandbox física y digital;
+  cantidades > 1; teléfono del comprador si CJ lo exige (PayPal no lo pasa).
+- Decisiones: ver `docs/DECISIONS.md` (2026-11-26).
+- Preguntas para Joaquín: ¿alcanza con que CJ use el mail del comprador, o pedimos teléfono en el sitio antes de pagar?
+>>>>>>> origin/main
 
 ### 2026-11-23 · Claude (diseño) — Portadas y 3D
 - Hecho (rama `claude/media-3d`): 72 portadas y 111 GLB de `media_tienda` emparejados por id de Thingiverse (73/73, sin huérfanos);

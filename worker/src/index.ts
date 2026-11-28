@@ -5,6 +5,7 @@ import { captureOrder } from './handlers/capture';
 import { paypalWebhook } from './handlers/webhook';
 import { downloadFile, downloadPage } from './handlers/download';
 import { resendLinks } from './handlers/resend';
+import { listFulfillments, updateFulfillment } from './handlers/admin';
 import catalogJson from './generated/catalog.json';
 
 const catalog = catalogJson as Catalog;
@@ -17,6 +18,8 @@ export async function route(req: Request, deps: Deps): Promise<Response | null> 
     if (pathname === '/api/capture' && m === 'POST') return await captureOrder(req, deps);
     if (pathname === '/api/paypal/webhook' && m === 'POST') return await paypalWebhook(req, deps);
     if (pathname === '/api/resend' && m === 'POST') return await resendLinks(req, deps);
+    if (pathname === '/api/admin/fulfillments' && m === 'GET') return await listFulfillments(req, deps);
+    if (pathname === '/api/admin/fulfillment' && m === 'POST') return await updateFulfillment(req, deps);
     const d = pathname.match(/^\/d\/([^/]+)\/?$/);
     if (d) {
       if (m === 'GET' || m === 'HEAD') return await downloadPage(d[1]!, deps);

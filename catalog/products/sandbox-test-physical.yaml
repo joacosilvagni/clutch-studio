@@ -1,0 +1,20 @@
+# Sandbox-only product used to test the physical checkout (address, shipping zones, order emails).
+# test: true keeps it out of production: the Worker sells it only when CATALOG_INCLUDE_TEST=true
+# and the site lists it only when PUBLIC_SANDBOX=true. It can never be approved, and nothing is
+# ever bought or shipped for it (the order email says so).
+slug: sandbox-test-physical
+status: draft
+test: true
+kind: physical
+title: Sandbox test parcel (not a real product)
+summary: A pretend parcel used to try the shipping checkout with PayPal sandbox. Nothing ships.
+description: >-
+  This listing exists only on the sandbox preview so the physical checkout can be tested: pay with
+  a PayPal sandbox account using a US, EU or Australian address and get the order confirmation by
+  email. Addresses in other countries (including the UK) are refused before any payment.
+category: garage-tools
+fits: []
+price_usd: "1.00"
+files: []
+sources: []
+includes: []
