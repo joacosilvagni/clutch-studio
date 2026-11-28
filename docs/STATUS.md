@@ -6,6 +6,7 @@ Leelo antes de empezar y actualizalo al terminar (ver `AGENTS.md`).
 
 | Agente | Tarea | Rama | Desde |
 | --- | --- | --- | --- |
+| Claude | Poner a la venta los 70 archivos 3D (ZIP en R2, fichas completas) | `claude/project-thread-skk6lm` | 2026-11-28 |
 
 ## Bloqueos
 
