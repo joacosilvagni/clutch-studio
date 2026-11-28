@@ -32,6 +32,13 @@ Leelo antes de empezar y actualizalo al terminar (ver `AGENTS.md`).
 
 ## Log de sesiones (lo más nuevo arriba)
 
+### 2026-11-28 · Claude (backend) — PayPal live por configuración
+- Hecho: PR #9 y #10 mergeados y desplegados; compra física de prueba en sandbox OK (Joaquín). `deploy.yml` pasa a live con la
+  variable `PAYPAL_MODE=live` y los secrets `PAYPAL_LIVE_CLIENT_ID`, `PAYPAL_LIVE_CLIENT_SECRET`, `PAYPAL_LIVE_WEBHOOK_ID`
+  (falla sin publicar si falta alguno); en live no se venden ni listan productos `test: true`. Pasos en README.
+- Pendiente (Joaquín): app REST live + webhook live, secrets y variable; dominio verificado en Resend para `MAIL_FROM`;
+  confirmar que el titular de PayPal coincide con el de la cuenta bancaria de EE.UU. antes de cobrar en serio.
+
 ### 2026-11-28 · Claude (dropshipping) — 9 accesorios activados
 - Hecho: a pedido de Joaquín (los había aprobado en el chat el 23/11 y el 28/11 pidió que se vean), 9 accesorios
   pasan a `approved`. El escáner OBD2 queda en borrador hasta que CJ confirme el envío a Australia. Envío del set de
