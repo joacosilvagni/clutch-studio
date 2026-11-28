@@ -6,7 +6,6 @@ Leelo antes de empezar y actualizalo al terminar (ver `AGENTS.md`).
 
 | Agente | Tarea | Rama | Desde |
 | --- | --- | --- | --- |
-| Claude | Poner a la venta los 70 archivos 3D (ZIP en R2, fichas completas) | `claude/project-thread-skk6lm` | 2026-11-28 |
 
 ## Bloqueos
 
@@ -32,6 +31,19 @@ Leelo antes de empezar y actualizalo al terminar (ver `AGENTS.md`).
 - Contrato frontend ↔ Worker: el carrito manda `{items:[{slug}]}` a `/api/orders`; `onApprove` manda `{orderID}` a `/api/capture` y muestra `downloads[]` (o el `message` si es `null`).
 
 ## Log de sesiones (lo más nuevo arriba)
+
+### 2026-11-28 · Claude — Archivos 3D a la venta
+- Causa del "Coming soon": los 70 archivos estaban en `preview` (sin precio, sin archivo en R2, sin descripción ni
+  `verified_at`). Los STL originales están en la PC de Joaquín: `Downloads\modelos-autos-3d\<Marca>\<título> - <id>\files\`
+  (`media_tienda\modelos` solo tiene GLB de vista previa).
+- Hecho (rama `claude/project-thread-skk6lm`): un ZIP por pieza (STL originales + LICENSE.txt + ATTRIBUTION.txt) subido al
+  bucket privado como `products/<slug>/<slug>.zip` con el workflow nuevo `upload-product-files.yml` (los ZIP se commitean
+  un rato en una rama de trabajo y se sacan antes del PR; CI rechaza `r2-upload/`). Licencia y autor verificados contra el
+  LICENSE.txt de cada paquete (52 CC BY, 17 CC BY-SA, 1 CC0, todos coinciden); descripción en inglés generada desde la
+  ficha; flags de revisión ya resueltos por #11 limpiados. Precio USD 9.00 (Joaquín). Las 70 pasan a `approved` con OK de Joaquín en el chat.
+- Pendiente: PayPal sigue en sandbox (`PAYPAL_ENV` y `vars.SANDBOX`): para cobrar de verdad hay que pasar a live (bloqueo
+  de la cuenta bancaria). Los 3 borradores por logos (VW knob, Miata knob, Ronal) y las 42 piezas de PR #8 siguen sin vender.
+- Decisión: los ZIP se generan con `Downloads\modelos-autos-3d\_clutch_r2\build.py` (en la PC de Joaquín), no se guardan en el repo.
 
 ### 2026-11-28 · Claude — Compatibilidad multi-modelo
 - Hecho (rama `claude/project-thread-gvep9u`): cada entrada de `fits` acepta `model` (nombre visible, obligatorio si el
