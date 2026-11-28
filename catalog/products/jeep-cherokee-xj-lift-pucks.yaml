@@ -1,0 +1,56 @@
+slug: jeep-cherokee-xj-lift-pucks
+status: draft
+kind: file
+title: Lift Pucks for Jeep Cherokee XJ
+summary: null
+description: null
+category: workshop-tools
+part_type: lift pucks
+fits:
+  - make: Jeep
+    model_slug: jeep-cherokee-xj
+    years:
+      from: 1984
+      to: 2001
+price_usd: null
+oem_part_numbers: []
+material:
+  recommended:
+    - PETG
+    - ASA
+  avoid:
+    - PLA
+  note: A parked car interior gets hot enough to warp PLA. Use PETG, or ASA for parts in direct sun.
+print_settings:
+  layer_height_mm: null
+  infill_percent: null
+  walls: null
+  supports: null
+  orientation: null
+  notes: null
+install_notes: null
+sources:
+  - platform: thingiverse
+    thing_id: 309665
+    thing_url: https://www.thingiverse.com/thing:309665
+    title_original: Jeep Wrangler TJ and Cherokee Lift pucks
+    author: team140
+    author_url: https://www.thingiverse.com/team140
+    license: CC-BY-SA
+    license_raw: Creative Commons - Attribution - Share Alike
+    verified_at: 2026-11-23
+    images_allowed: true
+    file_names: []
+    image_urls: []
+files: []
+images: []
+review:
+  state: pendiente de revisión manual
+  flags: []
+  notes:
+    - Escribir title, summary y description originales en inglés (no copiar al autor).
+    - "CC BY-SA: el archivo adaptado que se vende debe publicarse bajo CC BY-SA."
+    - Licencia y autor leídos en la página pública de Thingiverse el 2026-11-23 (la API devolvía 403); falta traer archivos e imágenes con la API.
+    - "Revisar las fotos del autor: sin logos ni emblemas de la marca en la pieza. Confirmar años de compatibilidad."
+created_at: 2026-11-23
+updated_at: 2026-11-23

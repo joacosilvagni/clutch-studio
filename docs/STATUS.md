@@ -44,6 +44,14 @@ Leelo antes de empezar y actualizalo al terminar (ver `AGENTS.md`).
 - Decisiones: ver `docs/DECISIONS.md` (2026-11-26).
 - Preguntas para Joaquín: ¿alcanza con que CJ use el mail del comprador, o pedimos teléfono en el sitio antes de pagar?
 
+### 2026-11-23 · Claude (catálogo) — Más piezas 3D
+- Hecho (rama `claude/project-thread-3f4aeg`): 42 piezas nuevas en `status: draft` (catálogo: 116). Revisé ~95 candidatas de
+  Thingiverse para los 13 modelos de `models.yaml`; ~55% descartadas por licencia NC/ND/BSD. Sin llaveros, logos, RC ni escala.
+  Licencia y autor se leyeron en la página pública de cada thing (la API seguía en 403; Printables bloquea con verificación anti-bot).
+- Pendiente: traer `file_names`/imágenes con la API ("Verify seed drafts" no cubre estas, hace falta correr `search`/una verificación por thing_id),
+  portadas, textos originales, confirmar años (varias Miata son solo NA) y revisar fotos por logos antes de pasar a `preview`.
+- Faltan modelos con buen material fuera de la lista (Porsche 944, Land Cruiser, Mercedes W124/W201): sumar a `models.yaml` si Joaquín quiere.
+
 ### 2026-11-23 · Claude (diseño) — Portadas y 3D
 - Hecho (rama `claude/media-3d`): 72 portadas y 111 GLB de `media_tienda` emparejados por id de Thingiverse (73/73, sin huérfanos);
   pestaña "View in 3D" con `<model-viewer>` (carga diferida, variantes, pausa, reset, reduced motion, error y sin WebGL);

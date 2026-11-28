@@ -1,0 +1,56 @@
+slug: chevrolet-c10-door-bumper
+status: draft
+kind: file
+title: Door Bumper for Chevrolet C10 / C/K pickup
+summary: null
+description: null
+category: interior-trim
+part_type: door bumper
+fits:
+  - make: Chevrolet
+    model_slug: chevrolet-c10
+    years:
+      from: 1960
+      to: 1987
+price_usd: null
+oem_part_numbers: []
+material:
+  recommended:
+    - PETG
+    - ASA
+  avoid:
+    - PLA
+  note: A parked car interior gets hot enough to warp PLA. Use PETG, or ASA for parts in direct sun.
+print_settings:
+  layer_height_mm: null
+  infill_percent: null
+  walls: null
+  supports: null
+  orientation: null
+  notes: null
+install_notes: null
+sources:
+  - platform: thingiverse
+    thing_id: 3706319
+    thing_url: https://www.thingiverse.com/thing:3706319
+    title_original: square body chevy truck door bumper mac1
+    author: Macddesign
+    author_url: https://www.thingiverse.com/Macddesign
+    license: CC-BY-SA
+    license_raw: Creative Commons - Attribution - Share Alike
+    verified_at: 2026-11-23
+    images_allowed: true
+    file_names: []
+    image_urls: []
+files: []
+images: []
+review:
+  state: pendiente de revisión manual
+  flags: []
+  notes:
+    - Escribir title, summary y description originales en inglés (no copiar al autor).
+    - "CC BY-SA: el archivo adaptado que se vende debe publicarse bajo CC BY-SA."
+    - Licencia y autor leídos en la página pública de Thingiverse el 2026-11-23 (la API devolvía 403); falta traer archivos e imágenes con la API.
+    - "Revisar las fotos del autor: sin logos ni emblemas de la marca en la pieza. Confirmar años de compatibilidad."
+created_at: 2026-11-23
+updated_at: 2026-11-23
