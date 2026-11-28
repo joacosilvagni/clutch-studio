@@ -3,8 +3,8 @@
 // that breaks the FTC rule on fake reviews (16 CFR 465), UK DMCC Act and EU UCPD, and PayPal's AUP.
 // When the review backend exists (Worker + D1), pass real `reviews` in; until then the empty state renders.
 interface Review { author: string; country: string; rating: number; date: string; body: string; printer?: string }
-interface Props { productTitle: string; reviews?: Review[] }
-const { productTitle, reviews = [] } = Astro.props;
+interface Props { productTitle: string; physical?: boolean; reviews?: Review[] }
+const { productTitle, physical = false, reviews = [] } = Astro.props;
 const avg = reviews.length ? reviews.reduce((a, r) => a + r.rating, 0) / reviews.length : 0;
 ---
 <section class="reviews" aria-labelledby="reviews-h">
@@ -20,10 +20,16 @@ const avg = reviews.length ? reviews.reduce((a, r) => a + r.rating, 0) / reviews
       </svg>
       <div>
         <h3>No reviews yet. Be the first.</h3>
-        <p>
-          Printed the {productTitle}? Every buyer gets a review link in their download email.
-          Tell other owners how it fit, what printer and filament you used, and post a photo of it installed.
-        </p>
+        {physical ? (
+          <p>
+            Bought the {productTitle}? Tell other owners how it works in your car and post a photo of it installed.
+          </p>
+        ) : (
+          <p>
+            Printed the {productTitle}? Every buyer gets a review link in their download email.
+            Tell other owners how it fit, what printer and filament you used, and post a photo of it installed.
+          </p>
+        )}
         <p class="muted small">Only verified buyers can review. We never edit or remove honest reviews.</p>
       </div>
     </div>
