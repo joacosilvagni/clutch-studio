@@ -82,6 +82,8 @@ npx wrangler r2 bucket create clutch-studio-files   # NO habilitar dominio públ
 npx wrangler secret put PAYPAL_CLIENT_SECRET
 npx wrangler secret put PAYPAL_WEBHOOK_ID
 npx wrangler secret put RESEND_API_KEY
+npx wrangler secret put GMAIL_USER           # mail transaccional por Gmail (SMTP), sin dominio propio
+npx wrangler secret put GMAIL_APP_PASSWORD   # contraseña de aplicación de Google (necesita verificación en 2 pasos)
 npx wrangler secret put ORDER_NOTIFY_TO      # tu mail: recibe los pedidos físicos para comprar en CJ
 npx wrangler secret put ADMIN_TOKEN          # 32+ caracteres al azar (openssl rand -hex 32); habilita /api/admin/*
 npm run db:migrate:remote
@@ -158,8 +160,9 @@ El código no cambia: lo decide la variable de repo `PAYPAL_MODE`.
 4. Correr el workflow Deploy (o hacer push a `main`). Si falta algún dato, el deploy falla sin publicar nada.
 
 En live los productos `test: true` no se compilan ni se listan, y `MAIL_SANDBOX_TO` se ignora. Para volver a sandbox, borrar
-`PAYPAL_MODE` y redeployar. Los mails a compradores necesitan un dominio verificado en Resend (`MAIL_FROM`): con
-`onboarding@resend.dev` solo le llegan al dueño de la cuenta de Resend.
+`PAYPAL_MODE` y redeployar. Los mails salen por Gmail si existen `GMAIL_USER` y `GMAIL_APP_PASSWORD` (límite de Gmail: ~500 por día),
+con Resend como respaldo. Sin Gmail, Resend necesita un dominio verificado (`MAIL_FROM`): con `onboarding@resend.dev`
+solo le llegan al dueño de la cuenta de Resend.
 
 ## Seguridad (resumen)
 
