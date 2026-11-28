@@ -3,7 +3,7 @@ import Base from '../layouts/Base.astro';
 import InstantBadge from '../components/InstantBadge.astro';
 import { shop } from '../data/shop';
 ---
-<Base title="Your downloads" description="Your order is confirmed. Download your files." noindex>
+<Base title="Your order" description="Your order is confirmed." noindex>
   <section class="section">
     <div class="wrap order" data-order>
       <div class="panel order__box" data-order-ok hidden>
@@ -11,6 +11,7 @@ import { shop } from '../data/shop';
         <h1>Your files are ready</h1>
         <p class="order__lede">Download them now. We also sent these links to your PayPal email address.</p>
         <ul class="order__files" data-order-files></ul>
+        <p class="order__ship" data-order-ship hidden></p>
         <p class="order__fine">
           Each link works for {shop.downloadHours} hours and {shop.downloadsPerFile} downloads. Lost the email or the links expired?
           <a href="/downloads/">Get fresh links</a> sent to your PayPal email.
@@ -24,7 +25,7 @@ import { shop } from '../data/shop';
 
       <div class="panel order__box" data-order-none hidden>
         <h1>No recent order here</h1>
-        <p class="order__lede">We couldn't find a recent purchase in this browser. If you paid, your download links are in your email.</p>
+        <p class="order__lede">We couldn't find a recent purchase in this browser. If you paid, the details are in your email.</p>
         <a class="btn btn--accent btn--lg" href="/3d-files/">Browse 3D files</a>
       </div>
     </div>
@@ -35,7 +36,7 @@ import { shop } from '../data/shop';
   type Link = { title: string; file_name: string; url: string };
   const root = document.querySelector<HTMLElement>('[data-order]')!;
   const show = (sel: string) => (root.querySelector<HTMLElement>(sel)!.hidden = false);
-  let last: { downloads?: Link[] | null; message?: string } | null = null;
+  let last: { downloads?: Link[] | null; message?: string; shipping?: { status: string; items: string[] } | null } | null = null;
   try {
     last = JSON.parse(sessionStorage.getItem('cs.lastOrder') ?? 'null');
   } catch {
@@ -71,6 +72,12 @@ import { shop } from '../data/shop';
       li.append(info, a);
       ul.append(li);
     }
+    // Mixed cart: the files are here, the accessories ship later.
+    if (last?.shipping && last.message) {
+      const ship = root.querySelector<HTMLElement>('[data-order-ship]')!;
+      ship.textContent = `${last.shipping.items.join(', ')}: ${last.message}`;
+      ship.hidden = false;
+    }
     show('[data-order-ok]');
   } else if (last?.message) {
     root.querySelector('[data-order-message]')!.textContent = last.message;
@@ -90,6 +97,7 @@ import { shop } from '../data/shop';
   .order__files :global(li > div) { display: grid; gap: 4px; }
   .order__files :global(li span) { color: var(--ink-3); font-size: .85rem; }
   .order__files :global(.order__dl) { background: var(--instant); color: #08130d; border-color: var(--instant); font-weight: 700; min-width: 160px; }
+  .order__ship { margin: 0; padding: 14px 16px; width: 100%; box-sizing: border-box; border-radius: var(--radius-sm); background: var(--deep); border: 1px solid var(--line); color: var(--ink-2); }
   .order__fine { margin: 0; font-size: .85rem; color: var(--ink-3); }
   [hidden] { display: none !important; }
 </style>

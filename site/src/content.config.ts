@@ -51,6 +51,8 @@ const products = defineCollection({
     images: z
       .array(z.object({ src: z.string(), alt: z.string().nullish(), kind: z.enum(['photo', 'render']).nullish() }))
       .default([]),
+    // Only the destination keys are read (where it ships). Supplier costs never reach the site.
+    supplier: z.object({ shipping: z.record(z.string(), z.unknown()).nullish() }).nullish(),
     review: z
       .object({ state: str, flags: z.array(z.string()).default([]), notes: z.array(z.string()).default([]) })
       .nullish(),

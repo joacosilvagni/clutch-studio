@@ -23,6 +23,9 @@ export type Glyph = 'clip' | 'gauge' | 'cup' | 'knob' | 'lamp' | 'engine' | 'too
 export type ProductKind = 'file' | 'pack' | 'physical';
 
 // View model used by the pages. Built from the catalog YAML in src/data/products.ts.
+export type ShipZone = 'US' | 'EU' | 'AU';
+export const SHIP_ZONE_LABEL: Record<ShipZone, string> = { US: 'the US', EU: 'the EU', AU: 'Australia' };
+
 export type Product = {
   slug: string;
   title: string;
@@ -50,6 +53,7 @@ export type Product = {
   status: 'draft' | 'preview' | 'approved'; // preview = listed with cover and 3D view, not for sale yet
   test: boolean; // sandbox-only checkout test product
   free: boolean; // Free Library
+  shipTo: ShipZone[]; // physical only: zones it ships to (shipping is included in the price)
   reviewFlags: string[];
   images: { src: string; alt: string; kind: 'photo' | 'render' }[];
   thingId: string | null; // Thingiverse id of the first source, used to look up media

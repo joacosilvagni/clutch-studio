@@ -42,6 +42,10 @@ Marcá `[x]` al terminar y poné tu agente entre paréntesis si la tomaste. Recl
 ## Fase 4 — Dropshipping
 - [ ] Investigar proveedores con API (CJ Dropshipping, AliExpress vía DSers): envíos a EE.UU./UE, calidad, integración con PayPal
 - [ ] Productos `kind: physical` sin logos, margen configurable, envío automático del pedido
+- [x] Checkout de físicos: dirección, zonas US/UE/AU validadas antes de cobrar, D1 `fulfillments`, mails, tracking a PayPal (Claude, PR #9)
+- [ ] Probar en sandbox la compra física con `sandbox-test-physical` (dirección US/UE ok, UK rechazada)
+- [ ] Cargar secrets `ORDER_NOTIFY_TO` y `ADMIN_TOKEN` (GitHub Actions → los sincroniza el deploy) (Joaquín)
+- [ ] Cantidades > 1 para físicos (hoy 1 de cada producto por pedido)
 - [ ] Schema: categorías de accesorios y `fits: []` = universal para físicos (el sitio ya las soporta)
 
 ## Antes de producción

@@ -3,6 +3,8 @@ import { json, readText, HttpError } from '../http';
 import { verifyWebhookSelf } from '../webhook-verify';
 import { createPayPal, captureMatchesOrder } from '../paypal';
 import { fulfillOnce, orderBy, revokeOrder } from '../fulfill';
+import { cancelFulfillment } from '../shipments';
+import { extractShipping, type ShippingAddress } from '../shipping';
 
 function captureIdFromRefund(resource: any): string | null {
   const up = (resource?.links ?? []).find((l: any) => l?.rel === 'up' && typeof l.href === 'string');
@@ -59,10 +61,15 @@ async function handleEvent(event: any, deps: Deps, paypal: ReturnType<typeof cre
         console.error('webhook_capture_mismatch', order.id);
         return;
       }
-      // The capture has no payer email; the order does.
+      // The capture has no payer email or shipping address; the order does.
       let payerEmail: string | null = null;
-      if (order.paypal_order_id) payerEmail = (await paypal.getOrder(order.paypal_order_id))?.payer?.email_address ?? null;
-      await fulfillOnce(deps, order, capture.id, payerEmail);
+      let address: ShippingAddress | null = null;
+      if (order.paypal_order_id) {
+        const ppOrder = await paypal.getOrder(order.paypal_order_id);
+        payerEmail = ppOrder?.payer?.email_address ?? null;
+        address = extractShipping(ppOrder);
+      }
+      await fulfillOnce(deps, order, capture.id, payerEmail, address);
       return;
     }
     case 'PAYMENT.CAPTURE.REFUNDED':
@@ -76,9 +83,12 @@ async function handleEvent(event: any, deps: Deps, paypal: ReturnType<typeof cre
     case 'PAYMENT.CAPTURE.DENIED': {
       const customId = resource.custom_id;
       if (typeof customId === 'string') {
-        await deps.env.DB.prepare(`UPDATE orders SET status = 'DENIED', updated_at = ?1 WHERE id = ?2 AND status IN ('CREATED', 'PENDING')`)
+        const denied = await deps.env.DB.prepare(
+          `UPDATE orders SET status = 'DENIED', updated_at = ?1 WHERE id = ?2 AND status IN ('CREATED', 'PENDING') RETURNING id`,
+        )
           .bind(deps.now(), customId)
-          .run();
+          .first();
+        if (denied) await cancelFulfillment(deps, customId, 'denegada');
       }
       return;
     }
