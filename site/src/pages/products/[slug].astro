@@ -108,7 +108,7 @@ const ld = {
             {p.print.notes && <p>{p.print.notes}</p>}
           </>
         )}
-        <Reviews productTitle={p.title} />
+        <Reviews productTitle={p.title} physical={p.kind === 'physical'} />
       </div>
       {p.artwork && (
         <aside class="license">
