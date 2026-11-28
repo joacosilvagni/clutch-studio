@@ -41,9 +41,15 @@ Leelo antes de empezar y actualizalo al terminar (ver `AGENTS.md`).
   un rato en una rama de trabajo y se sacan antes del PR; CI rechaza `r2-upload/`). Licencia y autor verificados contra el
   LICENSE.txt de cada paquete (52 CC BY, 17 CC BY-SA, 1 CC0, todos coinciden); descripción en inglés generada desde la
   ficha; flags de revisión ya resueltos por #11 limpiados. Precio USD 9.00 (Joaquín). Las 70 pasan a `approved` con OK de Joaquín en el chat.
-- Pendiente: PayPal sigue en sandbox (`PAYPAL_ENV` y `vars.SANDBOX`): para cobrar de verdad hay que pasar a live (bloqueo
-  de la cuenta bancaria). Los 3 borradores por logos (VW knob, Miata knob, Ronal) y las 42 piezas de PR #8 siguen sin vender.
+- Pendiente: cobros reales cuando PayPal pase a live (ver entrada "PayPal live por configuración"). Los 3 borradores por logos (VW knob, Miata knob, Ronal) y las 42 piezas de PR #8 siguen sin vender.
 - Decisión: los ZIP se generan con `Downloads\modelos-autos-3d\_clutch_r2\build.py` (en la PC de Joaquín), no se guardan en el repo.
+
+### 2026-11-28 · Claude (backend) — PayPal live por configuración
+- Hecho: PR #9 y #10 mergeados y desplegados; compra física de prueba en sandbox OK (Joaquín). `deploy.yml` pasa a live con la
+  variable `PAYPAL_MODE=live` y los secrets `PAYPAL_LIVE_CLIENT_ID`, `PAYPAL_LIVE_CLIENT_SECRET`, `PAYPAL_LIVE_WEBHOOK_ID`
+  (falla sin publicar si falta alguno); en live no se venden ni listan productos `test: true`. Pasos en README.
+- Pendiente (Joaquín): app REST live + webhook live, secrets y variable; dominio verificado en Resend para `MAIL_FROM`;
+  confirmar que el titular de PayPal coincide con el de la cuenta bancaria de EE.UU. antes de cobrar en serio.
 
 ### 2026-11-28 · Claude (dropshipping) — 9 accesorios activados
 - Hecho: a pedido de Joaquín (los había aprobado en el chat el 23/11 y el 28/11 pidió que se vean), 9 accesorios
