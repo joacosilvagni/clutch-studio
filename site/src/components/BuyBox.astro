@@ -3,12 +3,14 @@
 // data attributes: [data-add-to-cart] adds the slug, [data-buy-now] adds it and opens /cart/.
 // Only slugs ever leave the browser; prices come from the server catalog.
 import InstantBadge from './InstantBadge.astro';
-import { priceLabel, type Product } from '../data/catalog';
+import { priceLabel, SHIP_ZONE_LABEL, type Product } from '../data/catalog';
 import { isBuyable, isDigital } from '../data/products';
 interface Props { product: Product }
 const { product: p } = Astro.props;
 const digital = isDigital(p);
 const buyable = isBuyable(p);
+const zones = p.shipTo.map((z) => SHIP_ZONE_LABEL[z]);
+const zoneText = zones.length > 1 ? `${zones.slice(0, -1).join(', ')} and ${zones.at(-1)}` : zones[0] ?? '';
 ---
 <div class="buybox" id="buy" data-buy-box data-slug={p.slug}>
   <div class="price-row">
@@ -49,7 +51,8 @@ const buyable = isBuyable(p);
       </>
     ) : (
       <>
-        <li>Ships to your door; shipping shown at checkout</li>
+        {zoneText ? <li>Shipping included to {zoneText}</li> : <li>Ships to your door</li>}
+        <li>Tracking number by email when it ships</li>
         <li>Pay with PayPal or card</li>
       </>
     )}

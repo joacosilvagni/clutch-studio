@@ -6,7 +6,7 @@ import { matchFits, parseYears } from '../src/models.mjs';
 import { parseCSV, toCSV } from '../src/csv.mjs';
 import { cleanPartName, seedRowToDraft, thingToDraft } from '../src/drafts.mjs';
 import { validateProduct, validateCatalog, priceToCents } from '../src/schema.mjs';
-import { buildWorkerCatalog } from '../src/build.mjs';
+import { buildWorkerCatalog, worstNetCents } from '../src/build.mjs';
 import { createThingiverseClient } from '../src/thingiverse.mjs';
 
 const rules = await loadRules();
@@ -190,6 +190,41 @@ describe('sandbox test products', () => {
     expect(buildWorkerCatalog([testProduct(), approvedProduct({ slug: 'some-draft', status: 'draft' })], { includeTest: true }).products).toEqual({
       'sandbox-test': { slug: 'sandbox-test', title: expect.any(String), price_cents: 100, files: [{ r2_key: 'products/sandbox-test/t.zip', name: 't.zip' }] },
     });
+  });
+});
+
+describe('physical products in the worker catalog', () => {
+  const supplier = (o = {}) => ({
+    platform: 'cj', product_url: 'https://cjdropshipping.com/product/-p-1.html', pid: '1', variant: 'Black', cost_usd: '10.74',
+    shipping: { US: { cost_usd: '6.86', days: '5-11', method: 'LuWei' }, EU: { cost_usd: '6.80', method: 'CJPacket' }, AU: { cost_usd: '7.73', method: 'Liquid' } },
+    quoted_at: '2026-11-23', ...o,
+  });
+  const physical = (o = {}) => approvedProduct({ slug: 'obd2-scanner', kind: 'physical', fits: [], category: 'garage-tools', files: [], sources: [], price_usd: '34.95', supplier: supplier(), ...o });
+
+  it('sells approved physical products with their zones and supplier data', () => {
+    const out = buildWorkerCatalog([physical(), physical({ slug: 'draft-thing', status: 'draft' })]).products;
+    expect(Object.keys(out)).toEqual(['obd2-scanner']);
+    expect(out['obd2-scanner']).toMatchObject({ kind: 'physical', price_cents: 3495, files: [], ship_to: ['US', 'EU', 'AU'] });
+    expect(out['obd2-scanner'].supplier).toMatchObject({ pid: '1', variant: 'Black', shipping: { EU: { method: 'CJPacket', cost_usd: '6.80' } } });
+    expect(out['obd2-scanner'].supplier).not.toHaveProperty('quoted_at');
+  });
+  it('ships only where the supplier has a route, and never to the UK', () => {
+    const p = physical({ supplier: supplier({ shipping: { US: { cost_usd: '6.86' }, UK: { cost_usd: '5.00' } } }) });
+    expect(buildWorkerCatalog([p]).products['obd2-scanner'].ship_to).toEqual(['US']);
+  });
+  it('enforces the USD 10 net floor on the most expensive route', () => {
+    // 34.95 - fee (1.89 + 0.30) - 10.74 - 7.73 = 14.29
+    expect(worstNetCents(physical())).toBe(1429);
+    expect(() => buildWorkerCatalog([physical({ price_usd: '25.00' })])).toThrow(/ruta más cara/);
+    expect(() => buildWorkerCatalog([physical({ supplier: supplier({ cost_usd: null }) })])).toThrow(/faltan costos/);
+    expect(() => buildWorkerCatalog([physical({ supplier: null })])).toThrow(/sin supplier.shipping/);
+  });
+  it('a physical sandbox test product ships everywhere, has no supplier and is never approvable', () => {
+    const t = physical({ slug: 'sandbox-test-physical', status: 'draft', test: true, price_usd: '1.00', supplier: undefined });
+    expect(validateProduct(t, { allowedLicenses: ALLOWED })).toEqual([]);
+    expect(validateProduct({ ...t, status: 'approved' }, { allowedLicenses: ALLOWED }).join()).toMatch(/no puede estar aprobado/);
+    expect(buildWorkerCatalog([t]).products).toEqual({});
+    expect(buildWorkerCatalog([t], { includeTest: true }).products['sandbox-test-physical']).toMatchObject({ kind: 'physical', ship_to: ['US', 'EU', 'AU'], supplier: null });
   });
 });
 

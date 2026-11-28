@@ -1,6 +1,8 @@
 import type { Deps } from './env';
 import { newToken, sha256Hex } from './crypto';
 import { sendDownloadEmail, type DownloadLink } from './mail';
+import { cancelFulfillment, recordPaidShipment, type PhysicalItem } from './shipments';
+import type { ShippingAddress } from './shipping';
 
 export interface OrderRow {
   id: string;
@@ -44,11 +46,25 @@ export async function issueTokens(deps: Deps, order: OrderRow): Promise<Download
   return links;
 }
 
+export interface FulfillResult {
+  /** download links for the digital items (empty when the order is physical only) */
+  links: DownloadLink[];
+  /** physical items and whether they can ship (null when the order has none) */
+  shipment: { status: 'PENDING' | 'BLOCKED'; items: PhysicalItem[] } | null;
+}
+
 /**
- * Marks the order PAID exactly once and delivers. Called from the browser capture path and from
- * the webhook; whichever arrives second gets `null` and does nothing.
+ * Marks the order PAID exactly once and delivers: digital files now, physical items recorded for
+ * shipping. Called from the browser capture path and from the webhook; whichever arrives second
+ * gets `null` and does nothing.
  */
-export async function fulfillOnce(deps: Deps, order: OrderRow, captureId: string, payerEmail: string | null): Promise<DownloadLink[] | null> {
+export async function fulfillOnce(
+  deps: Deps,
+  order: OrderRow,
+  captureId: string,
+  payerEmail: string | null,
+  address: ShippingAddress | null = null,
+): Promise<FulfillResult | null> {
   const now = deps.now();
   const won = await deps.env.DB.prepare(
     `UPDATE orders SET status = 'PAID', capture_id = ?1, payer_email = COALESCE(?2, payer_email), paid_at = ?3, updated_at = ?3
@@ -59,8 +75,9 @@ export async function fulfillOnce(deps: Deps, order: OrderRow, captureId: string
   if (!won) return null;
   const links = await issueTokens(deps, order);
   const email = payerEmail ?? order.payer_email;
-  if (email) deps.waitUntil(deliverEmail(deps, order.id, email, links, `order-${order.id}`));
-  return links;
+  if (email && links.length) deps.waitUntil(deliverEmail(deps, order.id, email, links, `order-${order.id}`));
+  const shipment = await recordPaidShipment(deps, order, captureId, payerEmail, address);
+  return { links, shipment };
 }
 
 export async function deliverEmail(deps: Deps, orderId: string, to: string, links: DownloadLink[], idempotencyKey: string): Promise<void> {
@@ -77,6 +94,7 @@ export async function revokeOrder(deps: Deps, orderId: string, status: 'REFUNDED
     deps.env.DB.prepare(`UPDATE orders SET status = ?1, updated_at = ?2 WHERE id = ?3`).bind(status, now, orderId),
     deps.env.DB.prepare(`UPDATE download_tokens SET revoked = 1 WHERE order_id = ?1`).bind(orderId),
   ]);
+  await cancelFulfillment(deps, orderId, status === 'REFUNDED' ? 'reembolsada' : 'revertida');
 }
 
 export async function orderBy(deps: Deps, column: 'id' | 'paypal_order_id' | 'capture_id', value: string): Promise<OrderRow | null> {
