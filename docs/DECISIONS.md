@@ -2,6 +2,11 @@
 
 Formato: fecha · decisión · por qué. Las más nuevas arriba. No re-discutir sin un dato nuevo.
 
+- **2026-11-28 · Mail transaccional por Gmail (SMTP + contraseña de aplicación), Resend como respaldo.** Joaquín no quiere
+  comprar dominio todavía, y Resend sin dominio solo entrega al dueño de la cuenta. El Worker habla SMTP con
+  `smtp.gmail.com:465` por sockets TCP de Cloudflare (`worker/src/smtp.ts`). Límite ~500 mails/día. Secrets `GMAIL_USER`
+  y `GMAIL_APP_PASSWORD`.
+
 - **2026-11-26 · Checkout de físicos: envío incluido en el precio y fulfillment manual.** PayPal pide la dirección
   (`GET_FROM_FILE`) solo si hay físicos; sin línea de envío. El país se valida en el servidor **antes** de capturar
   (US, UE-27, AU y las rutas de `supplier.shipping` de cada producto); si igual entra un pago a un destino inválido,

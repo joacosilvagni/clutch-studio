@@ -10,8 +10,12 @@ export interface Env {
   PAYPAL_WEBHOOK_ID: string;
   /** optional: if set, captures paid to any other merchant are rejected */
   PAYPAL_MERCHANT_ID?: string;
-  /** secret */
-  RESEND_API_KEY: string;
+  /** secret; optional once Gmail is configured (then it is only the fallback) */
+  RESEND_API_KEY?: string;
+  /** secret: Gmail address that sends transactional mail (SMTP with an app password) */
+  GMAIL_USER?: string;
+  /** secret: 16-character Google app password for GMAIL_USER */
+  GMAIL_APP_PASSWORD?: string;
   MAIL_FROM: string;
   /** Sandbox only: deliver every email here instead of the PayPal sandbox buyer's fake address. Ignored in live. */
   MAIL_SANDBOX_TO?: string;
