@@ -2,8 +2,8 @@ slug: mazda-miata-antenna-cap
 status: preview
 kind: file
 title: Antenna Cap for Mazda MX-5 Miata (NC)
-summary: null
-description: null
+summary: Antenna cap for the Mazda MX-5 Miata (NC) (2006–2015). Print-ready STL, instant download.
+description: 3D-printable antenna cap for the Mazda MX-5 Miata (NC) (2006–2015). Print it yourself or take the file to a local print shop. Plugs the hole left when the factory antenna is removed. Designed on an NC; it will likely fit other Mazdas with the same antenna base, but that is not confirmed. The download is a ZIP with one STL file (Miata_Antenna_Plug.stl) exactly as the designer published them, plus the license and attribution. Designed by BradK91 and shared under CC BY 4.0. Compare the part with your original before installing, since cars of the same model can differ by year and market.
 category: interior-trim
 part_type: antenna cap
 fits:
@@ -13,7 +13,7 @@ fits:
     years:
       from: 2006
       to: 2015
-fitment_note: "Plugs the hole left when the factory antenna is removed. Designed on an NC; it will likely fit other Mazdas with the same antenna base, but that is not confirmed."
+fitment_note: Plugs the hole left when the factory antenna is removed. Designed on an NC; it will likely fit other Mazdas with the same antenna base, but that is not confirmed.
 price_usd: null
 oem_part_numbers: []
 material:
@@ -36,24 +36,27 @@ sources:
     thing_id: 4302279
     thing_url: https://www.thingiverse.com/thing:4302279
     title_original: Antenna Cap
-    author: "BradK91"
-    author_url: "https://www.thingiverse.com/BradK91"
+    author: BradK91
+    author_url: https://www.thingiverse.com/BradK91
     license: CC-BY
     license_raw: CC BY
-    verified_at: null
+    verified_at: 2026-11-28
     images_allowed: false
-    file_names: []
+    file_names:
+      - Miata_Antenna_Plug.stl
     image_urls: []
-files: []
+files:
+  - r2_key: products/mazda-miata-antenna-cap/mazda-miata-antenna-cap.zip
+    name: mazda-miata-antenna-cap.zip
 images:
   - src: /media/portadas/4302279.webp
-    alt: "Antenna Cap for Mazda MX-5 Miata (NC), illustrative render of a possible matte black print"
+    alt: Antenna Cap for Mazda MX-5 Miata (NC), illustrative render of a possible matte black print
     kind: render
 review:
   state: pendiente de revisión manual
   flags: []
   notes:
-    - Escribir title, summary y description originales en inglés (no copiar al autor).
-    - Verificar licencia, autor y archivos con la API (import-seed con THINGIVERSE_TOKEN).
+    - Licencia y autor verificados con el LICENSE.txt del paquete original descargado de Thingiverse (2026-11-28).
+    - Descripción generada desde la ficha (pieza, compatibilidad, archivos); revisar si se quiere más detalle.
 created_at: 2026-11-22
 updated_at: 2026-11-28

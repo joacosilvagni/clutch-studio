@@ -2,8 +2,8 @@ slug: chevrolet-c10-automatic-shift-knob
 status: preview
 kind: file
 title: Automatic shift knob for Chevrolet C10 / C/K pickup
-summary: null
-description: null
+summary: Automatic shift knob for the Chevrolet C10 / C/K pickup (1978). Print-ready STL, instant download.
+description: 3D-printable automatic shift knob for the Chevrolet C10 / C/K pickup (1978). Print it yourself or take the file to a local print shop. Designed on a 1978 C10 with an automatic. It may fit other years, but the designer has not tested them. The download is a ZIP with one STL file (c10_shift_knob.STL) exactly as the designer published them, plus the license and attribution. Designed by KCP and shared under CC BY 4.0. The designer notes the part had not been test-fitted when it was published, so compare it with your original before installing.
 category: knobs-handles-bushings
 part_type: automatic shift knob
 fits:
@@ -12,7 +12,7 @@ fits:
     years:
       from: 1978
       to: 1978
-fitment_note: "Designed on a 1978 C10 with an automatic. It may fit other years, but the designer has not tested them."
+fitment_note: Designed on a 1978 C10 with an automatic. It may fit other years, but the designer has not tested them.
 price_usd: null
 oem_part_numbers: []
 material:
@@ -35,24 +35,27 @@ sources:
     thing_id: 2870277
     thing_url: https://www.thingiverse.com/thing:2870277
     title_original: Automatic shift knob
-    author: "KCP"
-    author_url: "https://www.thingiverse.com/KCP"
+    author: KCP
+    author_url: https://www.thingiverse.com/KCP
     license: CC-BY
     license_raw: CC BY
-    verified_at: null
+    verified_at: 2026-11-28
     images_allowed: false
-    file_names: []
+    file_names:
+      - c10_shift_knob.STL
     image_urls: []
-files: []
+files:
+  - r2_key: products/chevrolet-c10-automatic-shift-knob/chevrolet-c10-automatic-shift-knob.zip
+    name: chevrolet-c10-automatic-shift-knob.zip
 images:
   - src: /media/portadas/2870277.webp
-    alt: "Automatic shift knob for Chevrolet C10 / C/K pickup, illustrative render of a possible matte black print"
+    alt: Automatic shift knob for Chevrolet C10 / C/K pickup, illustrative render of a possible matte black print
     kind: render
 review:
   state: pendiente de revisión manual
   flags: []
   notes:
-    - Escribir title, summary y description originales en inglés (no copiar al autor).
-    - Verificar licencia, autor y archivos con la API (import-seed con THINGIVERSE_TOKEN).
+    - Licencia y autor verificados con el LICENSE.txt del paquete original descargado de Thingiverse (2026-11-28).
+    - Descripción generada desde la ficha (pieza, compatibilidad, archivos); revisar si se quiere más detalle.
 created_at: 2026-11-22
 updated_at: 2026-11-28

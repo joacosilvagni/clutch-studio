@@ -2,8 +2,8 @@ slug: chevrolet-c10-front-door-pull-strap-cover
 status: preview
 kind: file
 title: Front door pull strap cover for Chevrolet C10 / C/K pickup
-summary: null
-description: null
+summary: Front door pull strap cover for the Chevrolet C10 / C/K pickup (1981–1987), Chevrolet R/V pickups (Square Body) (1987–1991) and 1 more. Print-ready STL, instant download.
+description: 3D-printable front door pull strap cover for the Chevrolet C10 / C/K pickup (1981–1987), Chevrolet R/V pickups (Square Body) (1987–1991) and GMC C/K and R/V pickups (Square Body) (1981–1991). Print it yourself or take the file to a local print shop. Replaces LMC part 38-2087 (Chevrolet and GMC trucks, 1981–1991). The download is a ZIP with one STL file (front-door-pull-strap-cover.stl) exactly as the designer published them, plus the license and attribution. Designed by DESPERAD0 and shared under CC BY 4.0. Compare the part with your original before installing, since cars of the same model can differ by year and market.
 category: knobs-handles-bushings
 part_type: front door pull strap cover
 fits:
@@ -25,7 +25,7 @@ fits:
     years:
       from: 1981
       to: 1991
-fitment_note: "Replaces LMC part 38-2087 (Chevrolet and GMC trucks, 1981–1991)."
+fitment_note: Replaces LMC part 38-2087 (Chevrolet and GMC trucks, 1981–1991).
 price_usd: null
 oem_part_numbers: []
 material:
@@ -48,24 +48,27 @@ sources:
     thing_id: 6018460
     thing_url: https://www.thingiverse.com/thing:6018460
     title_original: Front door pull strap cover
-    author: "DESPERAD0"
-    author_url: "https://www.thingiverse.com/DESPERAD0"
+    author: DESPERAD0
+    author_url: https://www.thingiverse.com/DESPERAD0
     license: CC-BY
     license_raw: CC BY
-    verified_at: null
+    verified_at: 2026-11-28
     images_allowed: false
-    file_names: []
+    file_names:
+      - front-door-pull-strap-cover.stl
     image_urls: []
-files: []
+files:
+  - r2_key: products/chevrolet-c10-front-door-pull-strap-cover/chevrolet-c10-front-door-pull-strap-cover.zip
+    name: chevrolet-c10-front-door-pull-strap-cover.zip
 images:
   - src: /media/portadas/6018460.webp
-    alt: "Front door pull strap cover for Chevrolet C10 / C/K pickup, illustrative render of a possible matte black print"
+    alt: Front door pull strap cover for Chevrolet C10 / C/K pickup, illustrative render of a possible matte black print
     kind: render
 review:
   state: pendiente de revisión manual
   flags: []
   notes:
-    - Escribir title, summary y description originales en inglés (no copiar al autor).
-    - Verificar licencia, autor y archivos con la API (import-seed con THINGIVERSE_TOKEN).
+    - Licencia y autor verificados con el LICENSE.txt del paquete original descargado de Thingiverse (2026-11-28).
+    - Descripción generada desde la ficha (pieza, compatibilidad, archivos); revisar si se quiere más detalle.
 created_at: 2026-11-22
 updated_at: 2026-11-28

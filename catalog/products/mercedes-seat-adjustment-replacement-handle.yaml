@@ -2,8 +2,8 @@ slug: mercedes-seat-adjustment-replacement-handle
 status: preview
 kind: file
 title: Seat Adjustment Replacement Handle
-summary: null
-description: null
+summary: Seat adjustment handle for the Mercedes-Benz W123 (1976–1986) and Mercedes-Benz W116 (S-Class) (1972–1980). Print-ready STL, instant download.
+description: 3D-printable seat adjustment handle for the Mercedes-Benz W123 (1976–1986) and Mercedes-Benz W116 (S-Class) (1972–1980). Print it yourself or take the file to a local print shop. Works for all four seat adjuster handles. The side height adjusters take one screw, the front ones take two. The download is a ZIP with one STL file (Mercedes_w123_seat_handle.stl) exactly as the designer published them, plus the license and attribution. Designed by TrustDavid and shared under CC BY 4.0. Compare the part with your original before installing, since cars of the same model can differ by year and market.
 category: knobs-handles-bushings
 part_type: seat adjustment replacement handle
 fits:
@@ -18,7 +18,7 @@ fits:
     years:
       from: 1972
       to: 1980
-fitment_note: "Works for all four seat adjuster handles. The side height adjusters take one screw, the front ones take two."
+fitment_note: Works for all four seat adjuster handles. The side height adjusters take one screw, the front ones take two.
 price_usd: null
 oem_part_numbers: []
 material:
@@ -41,25 +41,28 @@ sources:
     thing_id: 4373689
     thing_url: https://www.thingiverse.com/thing:4373689
     title_original: Seat Adjustment Replacement Handle
-    author: "TrustDavid"
-    author_url: "https://www.thingiverse.com/TrustDavid"
+    author: TrustDavid
+    author_url: https://www.thingiverse.com/TrustDavid
     license: CC-BY
     license_raw: CC BY
-    verified_at: null
+    verified_at: 2026-11-28
     images_allowed: false
-    file_names: []
+    file_names:
+      - Mercedes_w123_seat_handle.stl
     image_urls: []
-files: []
+files:
+  - r2_key: products/mercedes-seat-adjustment-replacement-handle/mercedes-seat-adjustment-replacement-handle.zip
+    name: mercedes-seat-adjustment-replacement-handle.zip
 images:
   - src: /media/portadas/4373689.webp
-    alt: "Seat Adjustment Replacement Handle, illustrative render of a possible matte black print"
+    alt: Seat Adjustment Replacement Handle, illustrative render of a possible matte black print
     kind: render
 review:
   state: pendiente de revisión manual
-  flags:
-    - '"Mercedes" no coincide con ningún modelo de config/models.yaml'
+  flags: []
   notes:
-    - Escribir title, summary y description originales en inglés (no copiar al autor).
-    - Verificar licencia, autor y archivos con la API (import-seed con THINGIVERSE_TOKEN).
+    - Licencia y autor verificados con el LICENSE.txt del paquete original descargado de Thingiverse (2026-11-28).
+    - Descripción generada desde la ficha (pieza, compatibilidad, archivos); revisar si se quiere más detalle.
+    - 'Resuelto 2026-11-28: "Mercedes" no coincide con ningún modelo de config/models.yaml (fits explícitos de la fuente, PR #11).'
 created_at: 2026-11-22
 updated_at: 2026-11-28

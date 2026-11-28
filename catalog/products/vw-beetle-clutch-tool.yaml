@@ -2,8 +2,8 @@ slug: vw-beetle-clutch-tool
 status: preview
 kind: file
 title: Clutch tool for Volkswagen Beetle (Type 1)
-summary: null
-description: null
+summary: Clutch tool for the Volkswagen Beetle (Type 1) (1938–2003) and Volkswagen Bus T1/T2 (Type 2) (1950–1979). Print-ready STL, instant download.
+description: 3D-printable clutch tool for the Volkswagen Beetle (Type 1) (1938–2003) and Volkswagen Bus T1/T2 (Type 2) (1950–1979). Print it yourself or take the file to a local print shop. Clutch alignment tool for engines up to 1600 cc. The download is a ZIP with one STL file (T1_Clutch_tool_-1600.stl) exactly as the designer published them, plus the license and attribution. Designed by Tobes49 and shared under CC BY 4.0. Compare the part with your original before installing, since cars of the same model can differ by year and market.
 category: workshop-tools
 part_type: clutch tool
 fits:
@@ -40,24 +40,27 @@ sources:
     thing_id: 2690942
     thing_url: https://www.thingiverse.com/thing:2690942
     title_original: Clutch tool
-    author: "Tobes49"
-    author_url: "https://www.thingiverse.com/Tobes49"
+    author: Tobes49
+    author_url: https://www.thingiverse.com/Tobes49
     license: CC-BY
     license_raw: CC BY
-    verified_at: null
+    verified_at: 2026-11-28
     images_allowed: false
-    file_names: []
+    file_names:
+      - T1_Clutch_tool_-1600.stl
     image_urls: []
-files: []
+files:
+  - r2_key: products/vw-beetle-clutch-tool/vw-beetle-clutch-tool.zip
+    name: vw-beetle-clutch-tool.zip
 images:
   - src: /media/portadas/2690942.webp
-    alt: "Clutch tool for Volkswagen Beetle (Type 1), illustrative render of a possible matte black print"
+    alt: Clutch tool for Volkswagen Beetle (Type 1), illustrative render of a possible matte black print
     kind: render
 review:
   state: pendiente de revisión manual
   flags: []
   notes:
-    - Escribir title, summary y description originales en inglés (no copiar al autor).
-    - Verificar licencia, autor y archivos con la API (import-seed con THINGIVERSE_TOKEN).
+    - Licencia y autor verificados con el LICENSE.txt del paquete original descargado de Thingiverse (2026-11-28).
+    - Descripción generada desde la ficha (pieza, compatibilidad, archivos); revisar si se quiere más detalle.
 created_at: 2026-11-22
 updated_at: 2026-11-28

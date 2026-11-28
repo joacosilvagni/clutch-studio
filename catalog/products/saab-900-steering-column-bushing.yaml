@@ -2,8 +2,8 @@ slug: saab-900-steering-column-bushing
 status: preview
 kind: file
 title: Steering Column Bushing for Saab 900 (classic)
-summary: null
-description: null
+summary: Steering column bushing for the Saab 900 (classic) (1990–1994) and Saab 9000 (1986–1998). Print-ready STL files, instant download.
+description: "3D-printable steering column bushing for the Saab 900 (classic) (1990–1994) and Saab 9000 (1986–1998). Print it yourself or take the file to a local print shop. Three inner diameters included: 20 mm (original), 20.5 mm and 21 mm. The download is a ZIP with 3 STL files (saab_steering_bushing.STL, saab_steering_bushing_ID+.5mm.STL, saab_steering_bushing_ID+1mm.STL) exactly as the designer published them, plus the license and attribution. Designed by bob24r and shared under CC BY-SA 4.0. Compare the part with your original before installing, since cars of the same model can differ by year and market."
 category: knobs-handles-bushings
 part_type: steering column bushing
 fits:
@@ -41,25 +41,29 @@ sources:
     thing_id: 6843390
     thing_url: https://www.thingiverse.com/thing:6843390
     title_original: Steering Column Bushing
-    author: "bob24r"
-    author_url: "https://www.thingiverse.com/bob24r"
+    author: bob24r
+    author_url: https://www.thingiverse.com/bob24r
     license: CC-BY-SA
     license_raw: CC BY-SA
-    verified_at: null
+    verified_at: 2026-11-28
     images_allowed: false
-    file_names: []
+    file_names:
+      - saab_steering_bushing.STL
+      - saab_steering_bushing_ID+.5mm.STL
+      - saab_steering_bushing_ID+1mm.STL
     image_urls: []
-files: []
+files:
+  - r2_key: products/saab-900-steering-column-bushing/saab-900-steering-column-bushing.zip
+    name: saab-900-steering-column-bushing.zip
 images:
   - src: /media/portadas/6843390.webp
-    alt: "Steering Column Bushing for Saab 900 (classic), illustrative render of a possible matte black print"
+    alt: Steering Column Bushing for Saab 900 (classic), illustrative render of a possible matte black print
     kind: render
 review:
   state: pendiente de revisión manual
   flags: []
   notes:
-    - Escribir title, summary y description originales en inglés (no copiar al autor).
-    - Verificar licencia, autor y archivos con la API (import-seed con THINGIVERSE_TOKEN).
-    - "CC BY-SA: el archivo adaptado que se vende debe publicarse bajo CC BY-SA."
+    - Licencia y autor verificados con el LICENSE.txt del paquete original descargado de Thingiverse (2026-11-28).
+    - Descripción generada desde la ficha (pieza, compatibilidad, archivos); revisar si se quiere más detalle.
 created_at: 2026-11-22
 updated_at: 2026-11-28

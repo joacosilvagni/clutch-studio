@@ -2,8 +2,8 @@ slug: bmw-e30-ash-tray
 status: preview
 kind: file
 title: Ash Tray for BMW E30
-summary: null
-description: null
+summary: Ash tray for the BMW E30 (1982–1994). Print-ready STL, instant download.
+description: 3D-printable ash tray for the BMW E30 (1982–1994). Print it yourself or take the file to a local print shop. The download is a ZIP with one STL file (Ash_Tray_Cup_Holder_v5.stl) exactly as the designer published them, plus the license and attribution. Designed by cdl723 and shared under CC BY 4.0. The designer notes the part had not been test-fitted when it was published, so compare it with your original before installing.
 category: storage-cupholders
 part_type: ash tray
 fits:
@@ -34,24 +34,27 @@ sources:
     thing_id: 5164994
     thing_url: https://www.thingiverse.com/thing:5164994
     title_original: Ash Tray (cenicero)
-    author: "cdl723"
-    author_url: "https://www.thingiverse.com/cdl723"
+    author: cdl723
+    author_url: https://www.thingiverse.com/cdl723
     license: CC-BY
     license_raw: CC BY
-    verified_at: null
+    verified_at: 2026-11-28
     images_allowed: false
-    file_names: []
+    file_names:
+      - Ash_Tray_Cup_Holder_v5.stl
     image_urls: []
-files: []
+files:
+  - r2_key: products/bmw-e30-ash-tray/bmw-e30-ash-tray.zip
+    name: bmw-e30-ash-tray.zip
 images:
   - src: /media/portadas/5164994.webp
-    alt: "Ash Tray for BMW E30, illustrative render of a possible matte black print"
+    alt: Ash Tray for BMW E30, illustrative render of a possible matte black print
     kind: render
 review:
   state: pendiente de revisión manual
   flags: []
   notes:
-    - Escribir title, summary y description originales en inglés (no copiar al autor).
-    - Verificar licencia, autor y archivos con la API (import-seed con THINGIVERSE_TOKEN).
+    - Licencia y autor verificados con el LICENSE.txt del paquete original descargado de Thingiverse (2026-11-28).
+    - Descripción generada desde la ficha (pieza, compatibilidad, archivos); revisar si se quiere más detalle.
 created_at: 2026-11-22
-updated_at: 2026-11-23
+updated_at: 2026-11-28

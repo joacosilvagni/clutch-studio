@@ -2,8 +2,8 @@ slug: jeep-cherokee-xj-cup-holders
 status: preview
 kind: file
 title: Cup Holders for Jeep Cherokee XJ
-summary: null
-description: null
+summary: Cup holders for the Jeep Cherokee XJ (1984–1996). Print-ready STL, instant download.
+description: 3D-printable cup holders for the Jeep Cherokee XJ (1984–1996). Print it yourself or take the file to a local print shop. The download is a ZIP with one STL file (Jeep_Cherokee_XJ_Cup_Holders.stl) exactly as the designer published them, plus the license and attribution. Designed by ZephanV and shared under CC BY 4.0. Compare the part with your original before installing, since cars of the same model can differ by year and market.
 category: storage-cupholders
 part_type: cup holders
 fits:
@@ -34,24 +34,27 @@ sources:
     thing_id: 3123751
     thing_url: https://www.thingiverse.com/thing:3123751
     title_original: Cup Holders
-    author: "ZephanV"
-    author_url: "https://www.thingiverse.com/ZephanV"
+    author: ZephanV
+    author_url: https://www.thingiverse.com/ZephanV
     license: CC-BY
     license_raw: CC BY
-    verified_at: null
+    verified_at: 2026-11-28
     images_allowed: false
-    file_names: []
+    file_names:
+      - Jeep_Cherokee_XJ_Cup_Holders.stl
     image_urls: []
-files: []
+files:
+  - r2_key: products/jeep-cherokee-xj-cup-holders/jeep-cherokee-xj-cup-holders.zip
+    name: jeep-cherokee-xj-cup-holders.zip
 images:
   - src: /media/portadas/3123751.webp
-    alt: "Cup Holders for Jeep Cherokee XJ, illustrative render of a possible matte black print"
+    alt: Cup Holders for Jeep Cherokee XJ, illustrative render of a possible matte black print
     kind: render
 review:
   state: pendiente de revisión manual
   flags: []
   notes:
-    - Escribir title, summary y description originales en inglés (no copiar al autor).
-    - Verificar licencia, autor y archivos con la API (import-seed con THINGIVERSE_TOKEN).
+    - Licencia y autor verificados con el LICENSE.txt del paquete original descargado de Thingiverse (2026-11-28).
+    - Descripción generada desde la ficha (pieza, compatibilidad, archivos); revisar si se quiere más detalle.
 created_at: 2026-11-22
 updated_at: 2026-11-28

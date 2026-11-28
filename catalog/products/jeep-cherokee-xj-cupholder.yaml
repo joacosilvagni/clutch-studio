@@ -2,8 +2,8 @@ slug: jeep-cherokee-xj-cupholder
 status: preview
 kind: file
 title: Cupholder for Jeep Cherokee XJ
-summary: null
-description: null
+summary: Cupholder for the Jeep Cherokee XJ (1984–1995). Print-ready STL, instant download.
+description: 3D-printable cupholder for the Jeep Cherokee XJ (1984–1995). Print it yourself or take the file to a local print shop. Made to fit over the handbrake of a 1993 right-hand-drive XJ. The lever position varies between cars, so compare it with the dimensions in the files before printing. The download is a ZIP with one STL file (cupHolder.stl) exactly as the designer published them, plus the license and attribution. Designed by putridp and shared under CC BY-SA 4.0. Compare the part with your original before installing, since cars of the same model can differ by year and market.
 category: storage-cupholders
 part_type: cupholder
 fits:
@@ -12,7 +12,7 @@ fits:
     years:
       from: 1984
       to: 1995
-fitment_note: "Made to fit over the handbrake of a 1993 right-hand-drive XJ. The lever position varies between cars, so compare it with the dimensions in the files before printing."
+fitment_note: Made to fit over the handbrake of a 1993 right-hand-drive XJ. The lever position varies between cars, so compare it with the dimensions in the files before printing.
 price_usd: null
 oem_part_numbers: []
 material:
@@ -35,26 +35,28 @@ sources:
     thing_id: 3589762
     thing_url: https://www.thingiverse.com/thing:3589762
     title_original: Cupholder
-    author: "putridp"
-    author_url: "https://www.thingiverse.com/putridp"
+    author: putridp
+    author_url: https://www.thingiverse.com/putridp
     license: CC-BY-SA
     license_raw: CC BY-SA
-    verified_at: null
+    verified_at: 2026-11-28
     images_allowed: false
-    file_names: []
+    file_names:
+      - cupHolder.stl
     image_urls: []
-files: []
+files:
+  - r2_key: products/jeep-cherokee-xj-cupholder/jeep-cherokee-xj-cupholder.zip
+    name: jeep-cherokee-xj-cupholder.zip
 images:
   - src: /media/portadas/3589762.webp
-    alt: "Cupholder for Jeep Cherokee XJ, illustrative render of a possible matte black print"
+    alt: Cupholder for Jeep Cherokee XJ, illustrative render of a possible matte black print
     kind: render
 review:
   state: pendiente de revisión manual
-  flags:
-    - 'años tomados del texto "Jeep Cherokee XJ pre-96": confirmar'
+  flags: []
   notes:
-    - Escribir title, summary y description originales en inglés (no copiar al autor).
-    - Verificar licencia, autor y archivos con la API (import-seed con THINGIVERSE_TOKEN).
-    - "CC BY-SA: el archivo adaptado que se vende debe publicarse bajo CC BY-SA."
+    - Licencia y autor verificados con el LICENSE.txt del paquete original descargado de Thingiverse (2026-11-28).
+    - Descripción generada desde la ficha (pieza, compatibilidad, archivos); revisar si se quiere más detalle.
+    - 'Resuelto 2026-11-28: años tomados del texto "Jeep Cherokee XJ pre-96": confirmar (fits explícitos de la fuente, PR #11).'
 created_at: 2026-11-22
 updated_at: 2026-11-28

@@ -2,8 +2,8 @@ slug: bmw-e30-tweeter-mount
 status: preview
 kind: file
 title: Tweeter mount for BMW E30
-summary: null
-description: null
+summary: Tweeter mount for the BMW E30 (1982–1994). Print-ready STL, instant download.
+description: 3D-printable tweeter mount for the BMW E30 (1982–1994). Print it yourself or take the file to a local print shop. The download is a ZIP with one STL file (BMW_E30_Tweeter.stl) exactly as the designer published them, plus the license and attribution. Designed by Suzakun and shared under CC0 1.0. Compare the part with your original before installing, since cars of the same model can differ by year and market.
 category: interior-trim
 part_type: tweeter mount
 fits:
@@ -34,24 +34,27 @@ sources:
     thing_id: 4793457
     thing_url: https://www.thingiverse.com/thing:4793457
     title_original: Tweeter mount
-    author: "Suzakun"
-    author_url: "https://www.thingiverse.com/Suzakun"
+    author: Suzakun
+    author_url: https://www.thingiverse.com/Suzakun
     license: CC0
     license_raw: CC0
-    verified_at: null
+    verified_at: 2026-11-28
     images_allowed: false
-    file_names: []
+    file_names:
+      - BMW_E30_Tweeter.stl
     image_urls: []
-files: []
+files:
+  - r2_key: products/bmw-e30-tweeter-mount/bmw-e30-tweeter-mount.zip
+    name: bmw-e30-tweeter-mount.zip
 images:
   - src: /media/portadas/4793457.webp
-    alt: "Tweeter mount for BMW E30, illustrative render of a possible matte black print"
+    alt: Tweeter mount for BMW E30, illustrative render of a possible matte black print
     kind: render
 review:
   state: pendiente de revisión manual
   flags: []
   notes:
-    - Escribir title, summary y description originales en inglés (no copiar al autor).
-    - Verificar licencia, autor y archivos con la API (import-seed con THINGIVERSE_TOKEN).
+    - Licencia y autor verificados con el LICENSE.txt del paquete original descargado de Thingiverse (2026-11-28).
+    - Descripción generada desde la ficha (pieza, compatibilidad, archivos); revisar si se quiere más detalle.
 created_at: 2026-11-22
-updated_at: 2026-11-23
+updated_at: 2026-11-28

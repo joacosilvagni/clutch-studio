@@ -2,8 +2,8 @@ slug: bmw-m50-m52-m54-engine-cover-cap
 status: preview
 kind: file
 title: Engine Cover Cap
-summary: null
-description: null
+summary: Engine cover cap for the BMW 5 Series (E34) (1988–1996), BMW E36 (1990–2000) and 4 more. Print-ready STL, instant download.
+description: 3D-printable engine cover cap for the BMW 5 Series (E34) (1988–1996), BMW E36 (1990–2000), BMW 7 Series (E38) (1994–2001), BMW 5 Series (E39) (1995–2004), BMW 3 Series (E46) (1997–2006) and BMW 5 Series (E60) (2003–2010). Print it yourself or take the file to a local print shop. Only for cars with the M50, M52 or M54 six-cylinder engine (any displacement). Replaces engine cover cap 11121726089. The download is a ZIP with one STL file (M50-M52-M54-Engine-Cover-Cap.stl) exactly as the designer published them, plus the license and attribution. Designed by cerberusenator and shared under CC BY 4.0. Compare the part with your original before installing, since cars of the same model can differ by year and market.
 category: engine-bay
 part_type: engine cover cap
 fits:
@@ -42,7 +42,7 @@ fits:
     years:
       from: 2003
       to: 2010
-fitment_note: "Only for cars with the M50, M52 or M54 six-cylinder engine (any displacement). Replaces engine cover cap 11121726089."
+fitment_note: Only for cars with the M50, M52 or M54 six-cylinder engine (any displacement). Replaces engine cover cap 11121726089.
 price_usd: null
 oem_part_numbers: []
 material:
@@ -65,25 +65,28 @@ sources:
     thing_id: 3487379
     thing_url: https://www.thingiverse.com/thing:3487379
     title_original: Engine Cover Cap
-    author: "cerberusenator"
-    author_url: "https://www.thingiverse.com/cerberusenator"
+    author: cerberusenator
+    author_url: https://www.thingiverse.com/cerberusenator
     license: CC-BY
     license_raw: CC BY
-    verified_at: null
+    verified_at: 2026-11-28
     images_allowed: false
-    file_names: []
+    file_names:
+      - M50-M52-M54-Engine-Cover-Cap.stl
     image_urls: []
-files: []
+files:
+  - r2_key: products/bmw-m50-m52-m54-engine-cover-cap/bmw-m50-m52-m54-engine-cover-cap.zip
+    name: bmw-m50-m52-m54-engine-cover-cap.zip
 images:
   - src: /media/portadas/3487379.webp
-    alt: "Engine Cover Cap, illustrative render of a possible matte black print"
+    alt: Engine Cover Cap, illustrative render of a possible matte black print
     kind: render
 review:
   state: pendiente de revisión manual
-  flags:
-    - '"BMW M50/M52/M54" no coincide con ningún modelo de config/models.yaml'
+  flags: []
   notes:
-    - Escribir title, summary y description originales en inglés (no copiar al autor).
-    - Verificar licencia, autor y archivos con la API (import-seed con THINGIVERSE_TOKEN).
+    - Licencia y autor verificados con el LICENSE.txt del paquete original descargado de Thingiverse (2026-11-28).
+    - Descripción generada desde la ficha (pieza, compatibilidad, archivos); revisar si se quiere más detalle.
+    - 'Resuelto 2026-11-28: "BMW M50/M52/M54" no coincide con ningún modelo de config/models.yaml (fits explícitos de la fuente, PR #11).'
 created_at: 2026-11-22
 updated_at: 2026-11-28

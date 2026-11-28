@@ -2,8 +2,8 @@ slug: vw-bus-t2-cup-holder-for-ashtray
 status: preview
 kind: file
 title: Cup holder for ashtray for Volkswagen Bus T1/T2 (Type 2)
-summary: null
-description: null
+summary: Cup holder for ashtray for the Volkswagen Bus T1/T2 (Type 2) (1950–1979). Print-ready STL, instant download.
+description: 3D-printable cup holder for ashtray for the Volkswagen Bus T1/T2 (Type 2) (1950–1979). Print it yourself or take the file to a local print shop. The download is a ZIP with one STL file (cup_holder___vw_t2_ashtray.stl) exactly as the designer published them, plus the license and attribution. Designed by toxic_ng and shared under CC BY 4.0. Compare the part with your original before installing, since cars of the same model can differ by year and market.
 category: storage-cupholders
 part_type: cup holder for ashtray
 fits:
@@ -34,24 +34,27 @@ sources:
     thing_id: 2657120
     thing_url: https://www.thingiverse.com/thing:2657120
     title_original: Cup holder for ashtray
-    author: "toxic_ng"
-    author_url: "https://www.thingiverse.com/toxic_ng"
+    author: toxic_ng
+    author_url: https://www.thingiverse.com/toxic_ng
     license: CC-BY
     license_raw: CC BY
-    verified_at: null
+    verified_at: 2026-11-28
     images_allowed: false
-    file_names: []
+    file_names:
+      - cup_holder___vw_t2_ashtray.stl
     image_urls: []
-files: []
+files:
+  - r2_key: products/vw-bus-t2-cup-holder-for-ashtray/vw-bus-t2-cup-holder-for-ashtray.zip
+    name: vw-bus-t2-cup-holder-for-ashtray.zip
 images:
   - src: /media/portadas/2657120.webp
-    alt: "Cup holder for ashtray for Volkswagen Bus T1/T2 (Type 2), illustrative render of a possible matte black print"
+    alt: Cup holder for ashtray for Volkswagen Bus T1/T2 (Type 2), illustrative render of a possible matte black print
     kind: render
 review:
   state: pendiente de revisión manual
   flags: []
   notes:
-    - Escribir title, summary y description originales en inglés (no copiar al autor).
-    - Verificar licencia, autor y archivos con la API (import-seed con THINGIVERSE_TOKEN).
+    - Licencia y autor verificados con el LICENSE.txt del paquete original descargado de Thingiverse (2026-11-28).
+    - Descripción generada desde la ficha (pieza, compatibilidad, archivos); revisar si se quiere más detalle.
 created_at: 2026-11-22
-updated_at: 2026-11-23
+updated_at: 2026-11-28

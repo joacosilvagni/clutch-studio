@@ -2,8 +2,8 @@ slug: mercedes-w123-screw-for-foot-cover-interior
 status: preview
 kind: file
 title: Screw for foot cover interior for Mercedes-Benz W123
-summary: null
-description: null
+summary: Screw for foot cover interior for the Mercedes-Benz W123 (1976–1986). Print-ready STL, instant download.
+description: 3D-printable screw for foot cover interior for the Mercedes-Benz W123 (1976–1986). Print it yourself or take the file to a local print shop. The download is a ZIP with one STL file (Schraube_Fussraum_V3.STL) exactly as the designer published them, plus the license and attribution. Designed by mc_gaensli and shared under CC BY-SA 4.0. Compare the part with your original before installing, since cars of the same model can differ by year and market.
 category: clips-fasteners
 part_type: screw for foot cover interior
 fits:
@@ -34,22 +34,24 @@ sources:
     thing_id: 6808654
     thing_url: https://www.thingiverse.com/thing:6808654
     title_original: Screw for foot cover interior
-    author: "mc_gaensli"
-    author_url: "https://www.thingiverse.com/mc_gaensli"
+    author: mc_gaensli
+    author_url: https://www.thingiverse.com/mc_gaensli
     license: CC-BY-SA
     license_raw: CC BY-SA
-    verified_at: null
+    verified_at: 2026-11-28
     images_allowed: false
-    file_names: []
+    file_names:
+      - Schraube_Fussraum_V3.STL
     image_urls: []
-files: []
+files:
+  - r2_key: products/mercedes-w123-screw-for-foot-cover-interior/mercedes-w123-screw-for-foot-cover-interior.zip
+    name: mercedes-w123-screw-for-foot-cover-interior.zip
 images: []
 review:
   state: pendiente de revisión manual
   flags: []
   notes:
-    - Escribir title, summary y description originales en inglés (no copiar al autor).
-    - Verificar licencia, autor y archivos con la API (import-seed con THINGIVERSE_TOKEN).
-    - "CC BY-SA: el archivo adaptado que se vende debe publicarse bajo CC BY-SA."
+    - Licencia y autor verificados con el LICENSE.txt del paquete original descargado de Thingiverse (2026-11-28).
+    - Descripción generada desde la ficha (pieza, compatibilidad, archivos); revisar si se quiere más detalle.
 created_at: 2026-11-22
-updated_at: 2026-11-23
+updated_at: 2026-11-28

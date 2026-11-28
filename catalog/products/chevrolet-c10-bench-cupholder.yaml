@@ -2,8 +2,8 @@ slug: chevrolet-c10-bench-cupholder
 status: preview
 kind: file
 title: Bench Cupholder for Chevrolet C10 / C/K pickup
-summary: null
-description: null
+summary: Bench cupholder for the Chevrolet C10 / C/K pickup (1960–1987). Print-ready STL, instant download.
+description: 3D-printable bench cupholder for the Chevrolet C10 / C/K pickup (1960–1987). Print it yourself or take the file to a local print shop. The download is a ZIP with one STL file (1968_Chevy_C10_Cupholder.stl) exactly as the designer published them, plus the license and attribution. Designed by jheglin13 and shared under CC BY 4.0. Compare the part with your original before installing, since cars of the same model can differ by year and market.
 category: storage-cupholders
 part_type: bench cupholder
 fits:
@@ -34,24 +34,27 @@ sources:
     thing_id: 5351015
     thing_url: https://www.thingiverse.com/thing:5351015
     title_original: Bench Cupholder
-    author: "jheglin13"
-    author_url: "https://www.thingiverse.com/jheglin13"
+    author: jheglin13
+    author_url: https://www.thingiverse.com/jheglin13
     license: CC-BY
     license_raw: CC BY
-    verified_at: null
+    verified_at: 2026-11-28
     images_allowed: false
-    file_names: []
+    file_names:
+      - 1968_Chevy_C10_Cupholder.stl
     image_urls: []
-files: []
+files:
+  - r2_key: products/chevrolet-c10-bench-cupholder/chevrolet-c10-bench-cupholder.zip
+    name: chevrolet-c10-bench-cupholder.zip
 images:
   - src: /media/portadas/5351015.webp
-    alt: "Bench Cupholder for Chevrolet C10 / C/K pickup, illustrative render of a possible matte black print"
+    alt: Bench Cupholder for Chevrolet C10 / C/K pickup, illustrative render of a possible matte black print
     kind: render
 review:
   state: pendiente de revisión manual
   flags: []
   notes:
-    - Escribir title, summary y description originales en inglés (no copiar al autor).
-    - Verificar licencia, autor y archivos con la API (import-seed con THINGIVERSE_TOKEN).
+    - Licencia y autor verificados con el LICENSE.txt del paquete original descargado de Thingiverse (2026-11-28).
+    - Descripción generada desde la ficha (pieza, compatibilidad, archivos); revisar si se quiere más detalle.
 created_at: 2026-11-22
-updated_at: 2026-11-23
+updated_at: 2026-11-28

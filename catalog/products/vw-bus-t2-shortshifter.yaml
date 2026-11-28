@@ -2,8 +2,8 @@ slug: vw-bus-t2-shortshifter
 status: preview
 kind: file
 title: Shortshifter for Volkswagen Bus T1/T2 (Type 2)
-summary: null
-description: null
+summary: Shortshifter for the Volkswagen Bus T1/T2 (Type 2) (1950–1979). Print-ready STL files, instant download.
+description: 3D-printable shortshifter for the Volkswagen Bus T1/T2 (Type 2) (1950–1979). Print it yourself or take the file to a local print shop. The download is a ZIP with 2 STL files (t2shortshifterball.stl, t2shortshifterspacer.stl) exactly as the designer published them, plus the license and attribution. Designed by matthiassoll and shared under CC BY 4.0. Compare the part with your original before installing, since cars of the same model can differ by year and market.
 category: knobs-handles-bushings
 part_type: shortshifter
 fits:
@@ -34,24 +34,28 @@ sources:
     thing_id: 4841398
     thing_url: https://www.thingiverse.com/thing:4841398
     title_original: Shortshifter
-    author: "matthiassoll"
-    author_url: "https://www.thingiverse.com/matthiassoll"
+    author: matthiassoll
+    author_url: https://www.thingiverse.com/matthiassoll
     license: CC-BY
     license_raw: CC BY
-    verified_at: null
+    verified_at: 2026-11-28
     images_allowed: false
-    file_names: []
+    file_names:
+      - t2shortshifterball.stl
+      - t2shortshifterspacer.stl
     image_urls: []
-files: []
+files:
+  - r2_key: products/vw-bus-t2-shortshifter/vw-bus-t2-shortshifter.zip
+    name: vw-bus-t2-shortshifter.zip
 images:
   - src: /media/portadas/4841398.webp
-    alt: "Shortshifter for Volkswagen Bus T1/T2 (Type 2), illustrative render of a possible matte black print"
+    alt: Shortshifter for Volkswagen Bus T1/T2 (Type 2), illustrative render of a possible matte black print
     kind: render
 review:
   state: pendiente de revisión manual
   flags: []
   notes:
-    - Escribir title, summary y description originales en inglés (no copiar al autor).
-    - Verificar licencia, autor y archivos con la API (import-seed con THINGIVERSE_TOKEN).
+    - Licencia y autor verificados con el LICENSE.txt del paquete original descargado de Thingiverse (2026-11-28).
+    - Descripción generada desde la ficha (pieza, compatibilidad, archivos); revisar si se quiere más detalle.
 created_at: 2026-11-22
-updated_at: 2026-11-23
+updated_at: 2026-11-28

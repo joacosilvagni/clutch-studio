@@ -2,8 +2,8 @@ slug: volvo-240-door-cards-clips
 status: preview
 kind: file
 title: Door cards clips for Volvo 240
-summary: null
-description: null
+summary: Door cards clips for the Volvo 240 (1974–1993). Print-ready STL files, instant download.
+description: 3D-printable door cards clips for the Volvo 240 (1974–1993). Print it yourself or take the file to a local print shop. The download is a ZIP with 2 STL files (clip_door_card.STL, clip_door_card2.STL) exactly as the designer published them, plus the license and attribution. Designed by Nicolasbschl and shared under CC BY 4.0. Compare the part with your original before installing, since cars of the same model can differ by year and market.
 category: clips-fasteners
 part_type: door cards clips
 fits:
@@ -34,24 +34,28 @@ sources:
     thing_id: 5735746
     thing_url: https://www.thingiverse.com/thing:5735746
     title_original: Door cards clips
-    author: "Nicolasbschl"
-    author_url: "https://www.thingiverse.com/Nicolasbschl"
+    author: Nicolasbschl
+    author_url: https://www.thingiverse.com/Nicolasbschl
     license: CC-BY
     license_raw: CC BY
-    verified_at: null
+    verified_at: 2026-11-28
     images_allowed: false
-    file_names: []
+    file_names:
+      - clip_door_card.STL
+      - clip_door_card2.STL
     image_urls: []
-files: []
+files:
+  - r2_key: products/volvo-240-door-cards-clips/volvo-240-door-cards-clips.zip
+    name: volvo-240-door-cards-clips.zip
 images:
   - src: /media/portadas/5735746.webp
-    alt: "Door cards clips for Volvo 240, illustrative render of a possible matte black print"
+    alt: Door cards clips for Volvo 240, illustrative render of a possible matte black print
     kind: render
 review:
   state: pendiente de revisión manual
   flags: []
   notes:
-    - Escribir title, summary y description originales en inglés (no copiar al autor).
-    - Verificar licencia, autor y archivos con la API (import-seed con THINGIVERSE_TOKEN).
+    - Licencia y autor verificados con el LICENSE.txt del paquete original descargado de Thingiverse (2026-11-28).
+    - Descripción generada desde la ficha (pieza, compatibilidad, archivos); revisar si se quiere más detalle.
 created_at: 2026-11-22
-updated_at: 2026-11-23
+updated_at: 2026-11-28

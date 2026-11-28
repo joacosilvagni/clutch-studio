@@ -2,8 +2,8 @@ slug: mazda-miata-nc-center-cubby-tray
 status: preview
 kind: file
 title: Center Cubby Tray
-summary: null
-description: null
+summary: Center cubby tray for the Mazda MX-5 Miata (NC) (2006–2015). Print-ready STL files, instant download.
+description: 3D-printable center cubby tray for the Mazda MX-5 Miata (NC) (2006–2015). Print it yourself or take the file to a local print shop. The download is a ZIP with 2 STL files (MiataNCCubby_Dividers.STL, MiataNCCubby_Empty.STL) exactly as the designer published them, plus the license and attribution. Designed by arskemp and shared under CC BY 4.0. Compare the part with your original before installing, since cars of the same model can differ by year and market.
 category: storage-cupholders
 part_type: center cubby tray
 fits:
@@ -35,26 +35,30 @@ sources:
     thing_id: 2882167
     thing_url: https://www.thingiverse.com/thing:2882167
     title_original: Center Cubby Tray
-    author: "arskemp"
-    author_url: "https://www.thingiverse.com/arskemp"
+    author: arskemp
+    author_url: https://www.thingiverse.com/arskemp
     license: CC-BY
     license_raw: CC BY
-    verified_at: null
+    verified_at: 2026-11-28
     images_allowed: false
-    file_names: []
+    file_names:
+      - MiataNCCubby_Dividers.STL
+      - MiataNCCubby_Empty.STL
     image_urls: []
-files: []
+files:
+  - r2_key: products/mazda-miata-nc-center-cubby-tray/mazda-miata-nc-center-cubby-tray.zip
+    name: mazda-miata-nc-center-cubby-tray.zip
 images:
   - src: /media/portadas/2882167.webp
-    alt: "Center Cubby Tray, illustrative render of a possible matte black print"
+    alt: Center Cubby Tray, illustrative render of a possible matte black print
     kind: render
 review:
   state: pendiente de revisión manual
-  flags:
-    - '"Mazda Miata NC" menciona nc: generación fuera de mazda-miata, revisar'
-    - '"Mazda Miata NC" no coincide con ningún modelo de config/models.yaml'
+  flags: []
   notes:
-    - Escribir title, summary y description originales en inglés (no copiar al autor).
-    - Verificar licencia, autor y archivos con la API (import-seed con THINGIVERSE_TOKEN).
+    - Licencia y autor verificados con el LICENSE.txt del paquete original descargado de Thingiverse (2026-11-28).
+    - Descripción generada desde la ficha (pieza, compatibilidad, archivos); revisar si se quiere más detalle.
+    - 'Resuelto 2026-11-28: "Mazda Miata NC" menciona nc: generación fuera de mazda-miata, revisar (fits explícitos de la fuente, PR #11).'
+    - 'Resuelto 2026-11-28: "Mazda Miata NC" no coincide con ningún modelo de config/models.yaml (fits explícitos de la fuente, PR #11).'
 created_at: 2026-11-22
 updated_at: 2026-11-28

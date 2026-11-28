@@ -2,8 +2,8 @@ slug: vw-golf-mk1-vent-window-pivot-bearing-2-0
 status: preview
 kind: file
 title: Vent window pivot bearing 2.0 for Volkswagen Golf / Rabbit Mk1
-summary: null
-description: null
+summary: Vent window pivot bearing 2.0 for the Volkswagen Golf / Rabbit Mk1 (1974–1983). Print-ready STL files, instant download.
+description: 3D-printable vent window pivot bearing 2.0 for the Volkswagen Golf / Rabbit Mk1 (1974–1983). Print it yourself or take the file to a local print shop. The download is a ZIP with 2 STL files (MK1_pivot_bearing_2-1.stl, MK1_pivot_bearing_2-2.stl) exactly as the designer published them, plus the license and attribution. Designed by papagaio and shared under CC BY-SA 4.0. Compare the part with your original before installing, since cars of the same model can differ by year and market.
 category: knobs-handles-bushings
 part_type: vent window pivot bearing 2.0
 fits:
@@ -34,25 +34,28 @@ sources:
     thing_id: 761947
     thing_url: https://www.thingiverse.com/thing:761947
     title_original: Vent window pivot bearing 2.0
-    author: "papagaio"
-    author_url: "https://www.thingiverse.com/papagaio"
+    author: papagaio
+    author_url: https://www.thingiverse.com/papagaio
     license: CC-BY-SA
     license_raw: CC BY-SA
-    verified_at: null
+    verified_at: 2026-11-28
     images_allowed: false
-    file_names: []
+    file_names:
+      - MK1_pivot_bearing_2-1.stl
+      - MK1_pivot_bearing_2-2.stl
     image_urls: []
-files: []
+files:
+  - r2_key: products/vw-golf-mk1-vent-window-pivot-bearing-2-0/vw-golf-mk1-vent-window-pivot-bearing-2-0.zip
+    name: vw-golf-mk1-vent-window-pivot-bearing-2-0.zip
 images:
   - src: /media/portadas/761947.webp
-    alt: "Vent window pivot bearing 2.0 for Volkswagen Golf / Rabbit Mk1, illustrative render of a possible matte black print"
+    alt: Vent window pivot bearing 2.0 for Volkswagen Golf / Rabbit Mk1, illustrative render of a possible matte black print
     kind: render
 review:
   state: pendiente de revisión manual
   flags: []
   notes:
-    - Escribir title, summary y description originales en inglés (no copiar al autor).
-    - Verificar licencia, autor y archivos con la API (import-seed con THINGIVERSE_TOKEN).
-    - "CC BY-SA: el archivo adaptado que se vende debe publicarse bajo CC BY-SA."
+    - Licencia y autor verificados con el LICENSE.txt del paquete original descargado de Thingiverse (2026-11-28).
+    - Descripción generada desde la ficha (pieza, compatibilidad, archivos); revisar si se quiere más detalle.
 created_at: 2026-11-22
-updated_at: 2026-11-23
+updated_at: 2026-11-28

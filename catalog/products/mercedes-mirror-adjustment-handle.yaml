@@ -2,8 +2,8 @@ slug: mercedes-mirror-adjustment-handle
 status: preview
 kind: file
 title: Mirror adjustment handle
-summary: null
-description: null
+summary: Mirror adjustment handle for the Mercedes-Benz W124 (E-Class) (1984–1997), Mercedes-Benz W123 (1976–1986) and 2 more. Print-ready STL files, instant download.
+description: 3D-printable mirror adjustment handle for the Mercedes-Benz W124 (E-Class) (1984–1997), Mercedes-Benz W123 (1976–1986), Mercedes-Benz W201 (190 / 190E) (1982–1993) and Mercedes-Benz W126 (S-Class) (1979–1991). Print it yourself or take the file to a local print shop. Driver-side mirror adjuster. Made for a 5 mm rod. The download is a ZIP with 2 STL files (handle.stl, lock.stl) exactly as the designer published them, plus the license and attribution. Designed by WvdbID and shared under CC BY 4.0. Compare the part with your original before installing, since cars of the same model can differ by year and market.
 category: knobs-handles-bushings
 part_type: mirror adjustment handle
 fits:
@@ -53,25 +53,29 @@ sources:
     thing_id: 3232504
     thing_url: https://www.thingiverse.com/thing:3232504
     title_original: Mirror adjustment handle
-    author: "WvdbID"
-    author_url: "https://www.thingiverse.com/WvdbID"
+    author: WvdbID
+    author_url: https://www.thingiverse.com/WvdbID
     license: CC-BY
     license_raw: CC BY
-    verified_at: null
+    verified_at: 2026-11-28
     images_allowed: false
-    file_names: []
+    file_names:
+      - handle.stl
+      - lock.stl
     image_urls: []
-files: []
+files:
+  - r2_key: products/mercedes-mirror-adjustment-handle/mercedes-mirror-adjustment-handle.zip
+    name: mercedes-mirror-adjustment-handle.zip
 images:
   - src: /media/portadas/3232504.webp
-    alt: "Mirror adjustment handle, illustrative render of a possible matte black print"
+    alt: Mirror adjustment handle, illustrative render of a possible matte black print
     kind: render
 review:
   state: pendiente de revisión manual
-  flags:
-    - '"Mercedes" no coincide con ningún modelo de config/models.yaml'
+  flags: []
   notes:
-    - Escribir title, summary y description originales en inglés (no copiar al autor).
-    - Verificar licencia, autor y archivos con la API (import-seed con THINGIVERSE_TOKEN).
+    - Licencia y autor verificados con el LICENSE.txt del paquete original descargado de Thingiverse (2026-11-28).
+    - Descripción generada desde la ficha (pieza, compatibilidad, archivos); revisar si se quiere más detalle.
+    - 'Resuelto 2026-11-28: "Mercedes" no coincide con ningún modelo de config/models.yaml (fits explícitos de la fuente, PR #11).'
 created_at: 2026-11-22
 updated_at: 2026-11-28

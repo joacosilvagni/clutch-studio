@@ -2,8 +2,8 @@ slug: mercedes-w123-license-plate-light
 status: preview
 kind: file
 title: License plate light for Mercedes-Benz W123
-summary: null
-description: null
+summary: License plate light for the Mercedes-Benz W123 (1976–1986). Print-ready STL, instant download.
+description: 3D-printable license plate light for the Mercedes-Benz W123 (1976–1986). Print it yourself or take the file to a local print shop. The download is a ZIP with one STL file (W123_Kennzeichen_Beleuchtung.stl) exactly as the designer published them, plus the license and attribution. Designed by Bundes-Metal-Minister and shared under CC BY 4.0. Compare the part with your original before installing, since cars of the same model can differ by year and market.
 category: exterior-lighting
 part_type: license plate light
 fits:
@@ -34,24 +34,27 @@ sources:
     thing_id: 4883603
     thing_url: https://www.thingiverse.com/thing:4883603
     title_original: License plate light
-    author: "Bundes-Metal-Minister"
-    author_url: "https://www.thingiverse.com/Bundes-Metal-Minister"
+    author: Bundes-Metal-Minister
+    author_url: https://www.thingiverse.com/Bundes-Metal-Minister
     license: CC-BY
     license_raw: CC BY
-    verified_at: null
+    verified_at: 2026-11-28
     images_allowed: false
-    file_names: []
+    file_names:
+      - W123_Kennzeichen_Beleuchtung.stl
     image_urls: []
-files: []
+files:
+  - r2_key: products/mercedes-w123-license-plate-light/mercedes-w123-license-plate-light.zip
+    name: mercedes-w123-license-plate-light.zip
 images:
   - src: /media/portadas/4883603.webp
-    alt: "License plate light for Mercedes-Benz W123, illustrative render of a possible matte black print"
+    alt: License plate light for Mercedes-Benz W123, illustrative render of a possible matte black print
     kind: render
 review:
   state: pendiente de revisión manual
   flags: []
   notes:
-    - Escribir title, summary y description originales en inglés (no copiar al autor).
-    - Verificar licencia, autor y archivos con la API (import-seed con THINGIVERSE_TOKEN).
+    - Licencia y autor verificados con el LICENSE.txt del paquete original descargado de Thingiverse (2026-11-28).
+    - Descripción generada desde la ficha (pieza, compatibilidad, archivos); revisar si se quiere más detalle.
 created_at: 2026-11-22
-updated_at: 2026-11-23
+updated_at: 2026-11-28
