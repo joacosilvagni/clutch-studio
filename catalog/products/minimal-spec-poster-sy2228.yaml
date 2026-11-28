@@ -1,0 +1,40 @@
+slug: minimal-spec-poster-sy2228
+status: draft
+kind: physical
+title: Minimal Spec Sheet Poster (SY2228)
+summary: Minimalist sports car poster with a spec sheet and blueprint panel, printed on canvas.
+description: A minimalist wall print with a large studio shot of the car, an oversized model name behind it, and a
+  dark spec panel with blueprint views underneath. Printed on canvas with water-resistant ink and shipped rolled,
+  ready for a frame.
+category: wall-art-decor
+part_type: null
+fits: []
+price_usd: null
+oem_part_numbers: []
+install_notes: null
+sources: []
+files: []
+images: []
+supplier:
+  platform: aliexpress
+  product_url: https://www.aliexpress.com/item/1005011534471426.html
+  pid: '1005011534471426'
+  variant: SY2228 / 30x40cm no frame
+  cost_usd: null
+  weight_g: null
+  quoted_at: null
+review:
+  state: borrador a pedido de Joaquín (2026-11-28); BLOQUEADO por marcas, no aprobable así
+  flags:
+  - 'marca: diseño de Porsche (nombre de modelo GT3 RS/GT4 RS gigante y foto con lettering PORSCHE). Porsche registra los nombres de modelo y PayPal prohíbe artículos que infringen marcas.'
+  - 'arte: probablemente copia de un diseñador (estilo "spec sheet" muy difundido); la publicación dice Original: No.'
+  - 'precio: falta costo y envío a US/EU/AU (AliExpress pidió captcha al cotizar).'
+  notes:
+  - 'No abierto uno por uno (AliExpress puso captcha); por el título de la publicación es 911 GT3 RS o 718 GT4 RS.'
+  - 'Foto del proveedor: https://ae-pic-a1.aliexpress-media.com/kf/Sbf1407a401ef42adb4c0ed096a42800br.jpeg (no se descargó al repo por la marca).'
+  - 'Tienda: Visual Decoration Gallery Store (93,8% positivas). Publicación: 4,6★, 133 reseñas, 1.000+ vendidos.'
+  - 'Medidas: 20x30, 30x40, 40x60, 50x70 cm lienzo sin marco; 20x30 y 30x40 con marco. Diseños SY2223 a SY2230.'
+  - 'Referencia: 20x30 sin marco = ARS 18.460 con envío a Argentina (unos USD 12 con impuestos), entrega 12-24/12.'
+  - 'Precio propuesto cuando haya costo: USD 34,95 (30x40 sin marco) para dejar USD 10+ netos tras envío y PayPal 5,4% + 0,30.'
+created_at: '2026-11-28'
+updated_at: '2026-11-28'
