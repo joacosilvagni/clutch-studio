@@ -12,7 +12,9 @@ const files = all.filter((p) => p.department === '3d-files').sort(showcaseOrder)
 const withImg = files.filter((p) => p.images.length);
 const heroPics = withImg.slice(0, 4);
 const featured = files.slice(0, 8);
-const accessories = all.filter((p) => p.department === 'accessories').sort(showcaseOrder).slice(0, 4);
+const accessories = all.filter((p) => p.department === 'accessories').sort(showcaseOrder);
+// Real product photos for the department banner (falls back to icons while there are fewer than 4).
+const accPics = accessories.filter((p) => p.images.length).slice(0, 4);
 const acc = getDepartment('accessories');
 // One representative image per 3D-file category, when we have one.
 const catPic = (slug: string) => withImg.find((p) => p.category === slug)?.images[0];
@@ -66,6 +68,30 @@ const ld = { '@context': 'https://schema.org', '@type': 'OnlineStore', name: bra
     </div>
   </section>
 
+  <section class="section acc-sec" aria-labelledby="acc-h">
+    <div class="wrap">
+      <a href="/accessories/" class="acc">
+        <div class="acc-copy">
+          <span class="eyebrow">Free shipping to the US, EU &amp; Australia</span>
+          <h2 id="acc-h">{acc.name}</h2>
+          <p>{acc.pitch}</p>
+          <div class="chips">{categoriesFor('accessories').map((c) => <span class="tag">{c.short}</span>)}</div>
+          <span class="btn btn--accent">{accessories.length ? `Shop all ${accessories.length} accessories` : 'See what is coming'}</span>
+        </div>
+        <div class="acc-art" aria-hidden="true">
+          {accPics.length >= 4
+            ? accPics.map((p) => <img src={p.images[0].src} alt="" width="600" height="600" loading="lazy" />)
+            : ['seat', 'phone', 'lamp', 'drop'].map((g) => <PartArt glyph={g as any} />)}
+        </div>
+      </a>
+      {accessories.length > 0 && (
+        <div class="acc-row" role="list" aria-label="Car accessories">
+          {accessories.map((p) => <div role="listitem"><ProductCard product={p} /></div>)}
+        </div>
+      )}
+    </div>
+  </section>
+
   <section class="makes" aria-labelledby="makes-h">
     <div class="wrap">
       <div class="makes-head">
@@ -110,23 +136,6 @@ const ld = { '@context': 'https://schema.org', '@type': 'OnlineStore', name: bra
     </div>
   </section>
 
-  <section class="section">
-    <div class="wrap">
-      <a href="/accessories/" class="acc">
-        <div class="acc-copy">
-          <span class="eyebrow">Department 02</span>
-          <h2>{acc.name}</h2>
-          <p>{acc.pitch}</p>
-          <div class="chips">{categoriesFor('accessories').map((c) => <span class="tag">{c.short}</span>)}</div>
-          <span class="btn btn--ghost">{accessories.length ? 'Shop accessories' : 'See what is coming'}</span>
-        </div>
-        <div class="acc-art" aria-hidden="true">
-          {['seat', 'phone', 'lamp', 'drop'].map((g) => <PartArt glyph={g as any} />)}
-        </div>
-      </a>
-      {accessories.length > 0 && <div class="grid grid--2m more">{accessories.map((p) => <ProductCard product={p} />)}</div>}
-    </div>
-  </section>
 
   <section class="section promise">
     <div class="wrap promise-grid">
@@ -235,8 +244,13 @@ const ld = { '@context': 'https://schema.org', '@type': 'OnlineStore', name: bra
   .chips { display: flex; flex-wrap: wrap; gap: 8px; margin: 6px 0 22px; }
   .acc-art { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
   .acc-art :global(.art) { border-radius: 12px; }
+  .acc-art img { display: block; width: 100%; height: auto; aspect-ratio: 1 / 1; object-fit: cover; border-radius: 12px; background: #fff; border: 1px solid var(--line); }
   @media (min-width: 860px) { .acc { grid-template-columns: 1.1fr 1fr; } }
-  .more { margin-top: 18px; }
+  /* Every live accessory: swipeable row on phones, wrapping grid on wide screens. */
+  .acc-row { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(200px, 72%); gap: 14px; margin-top: 18px; overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 8px; overscroll-behavior-x: contain; }
+  .acc-row > div { scroll-snap-align: start; }
+  @media (min-width: 700px) { .acc-row { grid-auto-columns: minmax(220px, 31%); } }
+  @media (min-width: 1100px) { .acc-row { grid-auto-flow: row; grid-template-columns: repeat(5, 1fr); overflow: visible; } }
 
   .promise { background: var(--deep); border-block: 1px solid var(--line); }
   .promise-grid { display: grid; gap: 32px; align-items: center; }
