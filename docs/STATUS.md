@@ -32,6 +32,18 @@ Leelo antes de empezar y actualizalo al terminar (ver `AGENTS.md`).
 
 ## Log de sesiones (lo más nuevo arriba)
 
+### 2026-11-28 · Claude — Archivos 3D a la venta
+- Causa del "Coming soon": los 70 archivos estaban en `preview` (sin precio, sin archivo en R2, sin descripción ni
+  `verified_at`). Los STL originales están en la PC de Joaquín: `Downloads\modelos-autos-3d\<Marca>\<título> - <id>\files\`
+  (`media_tienda\modelos` solo tiene GLB de vista previa).
+- Hecho (rama `claude/project-thread-skk6lm`): un ZIP por pieza (STL originales + LICENSE.txt + ATTRIBUTION.txt) subido al
+  bucket privado como `products/<slug>/<slug>.zip` con el workflow nuevo `upload-product-files.yml` (los ZIP se commitean
+  un rato en una rama de trabajo y se sacan antes del PR; CI rechaza `r2-upload/`). Licencia y autor verificados contra el
+  LICENSE.txt de cada paquete (52 CC BY, 17 CC BY-SA, 1 CC0, todos coinciden); descripción en inglés generada desde la
+  ficha; flags de revisión ya resueltos por #11 limpiados. Precio USD 9.00 (Joaquín). Las 70 pasan a `approved` con OK de Joaquín en el chat.
+- Pendiente: cobros reales cuando PayPal pase a live (ver entrada "PayPal live por configuración"). Los 3 borradores por logos (VW knob, Miata knob, Ronal) y las 42 piezas de PR #8 siguen sin vender.
+- Decisión: los ZIP se generan con `Downloads\modelos-autos-3d\_clutch_r2\build.py` (en la PC de Joaquín), no se guardan en el repo.
+
 ### 2026-11-28 · Claude (backend) — PayPal live por configuración
 - Hecho: PR #9 y #10 mergeados y desplegados; compra física de prueba en sandbox OK (Joaquín). `deploy.yml` pasa a live con la
   variable `PAYPAL_MODE=live` y los secrets `PAYPAL_LIVE_CLIENT_ID`, `PAYPAL_LIVE_CLIENT_SECRET`, `PAYPAL_LIVE_WEBHOOK_ID`

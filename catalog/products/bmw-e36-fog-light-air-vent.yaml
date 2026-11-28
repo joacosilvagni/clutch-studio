@@ -1,9 +1,9 @@
 slug: bmw-e36-fog-light-air-vent
-status: preview
+status: approved
 kind: file
 title: Fog Light Air Vent for BMW E36
-summary: null
-description: null
+summary: Fog light air vent for the BMW E36 (1990–2000). Print-ready STL, instant download.
+description: 3D-printable fog light air vent for the BMW E36 (1990–2000). Print it yourself or take the file to a local print shop. The download is a ZIP with one STL file (dolot_w_hujogenie-Body_Meshed.stl) exactly as the designer published them, plus the license and attribution. Designed by szymon_witalski and shared under CC BY 4.0. Compare the part with your original before installing, since cars of the same model can differ by year and market.
 category: exterior-lighting
 part_type: fog light air vent
 fits:
@@ -12,7 +12,7 @@ fits:
     years:
       from: 1990
       to: 2000
-price_usd: null
+price_usd: "9.00"
 oem_part_numbers: []
 material:
   recommended:
@@ -34,24 +34,27 @@ sources:
     thing_id: 5445684
     thing_url: https://www.thingiverse.com/thing:5445684
     title_original: Fog Light Air Vent
-    author: "szymon_witalski"
-    author_url: "https://www.thingiverse.com/szymon_witalski"
+    author: szymon_witalski
+    author_url: https://www.thingiverse.com/szymon_witalski
     license: CC-BY
     license_raw: CC BY
-    verified_at: null
+    verified_at: 2026-11-28
     images_allowed: false
-    file_names: []
+    file_names:
+      - dolot_w_hujogenie-Body_Meshed.stl
     image_urls: []
-files: []
+files:
+  - r2_key: products/bmw-e36-fog-light-air-vent/bmw-e36-fog-light-air-vent.zip
+    name: bmw-e36-fog-light-air-vent.zip
 images:
   - src: /media/portadas/5445684.webp
-    alt: "Fog Light Air Vent for BMW E36, illustrative render of a possible matte black print"
+    alt: Fog Light Air Vent for BMW E36, illustrative render of a possible matte black print
     kind: render
 review:
   state: pendiente de revisión manual
   flags: []
   notes:
-    - Escribir title, summary y description originales en inglés (no copiar al autor).
-    - Verificar licencia, autor y archivos con la API (import-seed con THINGIVERSE_TOKEN).
+    - Licencia y autor verificados con el LICENSE.txt del paquete original descargado de Thingiverse (2026-11-28).
+    - Descripción generada desde la ficha (pieza, compatibilidad, archivos); revisar si se quiere más detalle.
 created_at: 2026-11-22
-updated_at: 2026-11-23
+updated_at: 2026-11-28

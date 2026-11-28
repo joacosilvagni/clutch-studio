@@ -1,9 +1,9 @@
 slug: land-rover-defender-internal-door-handle
-status: preview
+status: approved
 kind: file
 title: Internal Door Handle for Land Rover Defender
-summary: null
-description: null
+summary: Internal door handle for the Land Rover Defender (1983–2016). Print-ready STL, instant download.
+description: 3D-printable internal door handle for the Land Rover Defender (1983–2016). Print it yourself or take the file to a local print shop. The download is a ZIP with one STL file (Defender_Handle.stl) exactly as the designer published them, plus the license and attribution. Designed by Merg1234 and shared under CC BY 4.0. Compare the part with your original before installing, since cars of the same model can differ by year and market.
 category: knobs-handles-bushings
 part_type: internal door handle
 fits:
@@ -12,7 +12,7 @@ fits:
     years:
       from: 1983
       to: 2016
-price_usd: null
+price_usd: "9.00"
 oem_part_numbers: []
 material:
   recommended:
@@ -34,24 +34,27 @@ sources:
     thing_id: 4792760
     thing_url: https://www.thingiverse.com/thing:4792760
     title_original: Internal Door Handle
-    author: "Merg1234"
-    author_url: "https://www.thingiverse.com/Merg1234"
+    author: Merg1234
+    author_url: https://www.thingiverse.com/Merg1234
     license: CC-BY
     license_raw: CC BY
-    verified_at: null
+    verified_at: 2026-11-28
     images_allowed: false
-    file_names: []
+    file_names:
+      - Defender_Handle.stl
     image_urls: []
-files: []
+files:
+  - r2_key: products/land-rover-defender-internal-door-handle/land-rover-defender-internal-door-handle.zip
+    name: land-rover-defender-internal-door-handle.zip
 images:
   - src: /media/portadas/4792760.webp
-    alt: "Internal Door Handle for Land Rover Defender, illustrative render of a possible matte black print"
+    alt: Internal Door Handle for Land Rover Defender, illustrative render of a possible matte black print
     kind: render
 review:
   state: pendiente de revisión manual
   flags: []
   notes:
-    - Escribir title, summary y description originales en inglés (no copiar al autor).
-    - Verificar licencia, autor y archivos con la API (import-seed con THINGIVERSE_TOKEN).
+    - Licencia y autor verificados con el LICENSE.txt del paquete original descargado de Thingiverse (2026-11-28).
+    - Descripción generada desde la ficha (pieza, compatibilidad, archivos); revisar si se quiere más detalle.
 created_at: 2026-11-22
-updated_at: 2026-11-23
+updated_at: 2026-11-28

@@ -10,6 +10,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - name: No product files in the repo (they live in private R2)
+        run: test ! -e r2-upload
       - uses: actions/setup-node@v4
         with:
           node-version: 22

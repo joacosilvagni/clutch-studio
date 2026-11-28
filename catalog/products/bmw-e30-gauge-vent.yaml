@@ -1,9 +1,9 @@
 slug: bmw-e30-gauge-vent
-status: preview
+status: approved
 kind: file
 title: Gauge Vent for BMW E30
-summary: null
-description: null
+summary: Gauge vent for the BMW E30 (1982–1994). Print-ready STL, instant download.
+description: 3D-printable gauge vent for the BMW E30 (1982–1994). Print it yourself or take the file to a local print shop. The download is a ZIP with one STL file (E30Lueftungsgitter.stl) exactly as the designer published them, plus the license and attribution. Designed by J0Mueller and shared under CC BY 4.0. Compare the part with your original before installing, since cars of the same model can differ by year and market.
 category: gauge-pods-bezels
 part_type: gauge vent
 fits:
@@ -12,7 +12,7 @@ fits:
     years:
       from: 1982
       to: 1994
-price_usd: null
+price_usd: "9.00"
 oem_part_numbers: []
 material:
   recommended:
@@ -34,24 +34,27 @@ sources:
     thing_id: 3473236
     thing_url: https://www.thingiverse.com/thing:3473236
     title_original: Gauge Vent (rejilla con reloj)
-    author: "J0Mueller"
-    author_url: "https://www.thingiverse.com/J0Mueller"
+    author: J0Mueller
+    author_url: https://www.thingiverse.com/J0Mueller
     license: CC-BY
     license_raw: CC BY
-    verified_at: null
+    verified_at: 2026-11-28
     images_allowed: false
-    file_names: []
+    file_names:
+      - E30Lueftungsgitter.stl
     image_urls: []
-files: []
+files:
+  - r2_key: products/bmw-e30-gauge-vent/bmw-e30-gauge-vent.zip
+    name: bmw-e30-gauge-vent.zip
 images:
   - src: /media/portadas/3473236.webp
-    alt: "Gauge Vent for BMW E30, illustrative render of a possible matte black print"
+    alt: Gauge Vent for BMW E30, illustrative render of a possible matte black print
     kind: render
 review:
   state: pendiente de revisión manual
   flags: []
   notes:
-    - Escribir title, summary y description originales en inglés (no copiar al autor).
-    - Verificar licencia, autor y archivos con la API (import-seed con THINGIVERSE_TOKEN).
+    - Licencia y autor verificados con el LICENSE.txt del paquete original descargado de Thingiverse (2026-11-28).
+    - Descripción generada desde la ficha (pieza, compatibilidad, archivos); revisar si se quiere más detalle.
 created_at: 2026-11-22
-updated_at: 2026-11-23
+updated_at: 2026-11-28

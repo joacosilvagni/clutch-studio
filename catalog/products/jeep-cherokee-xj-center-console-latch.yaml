@@ -1,9 +1,9 @@
 slug: jeep-cherokee-xj-center-console-latch
-status: preview
+status: approved
 kind: file
 title: Center Console Latch for Jeep Cherokee XJ
-summary: null
-description: null
+summary: Center console latch for the Jeep Cherokee XJ (1997–2001). Print-ready STL files, instant download.
+description: 3D-printable center console latch for the Jeep Cherokee XJ (1997–2001). Print it yourself or take the file to a local print shop. The download is a ZIP with 2 STL files (jeep-latch-side.stl, jeep_latch_v1.stl) exactly as the designer published them, plus the license and attribution. Designed by andyjimb and shared under CC BY 4.0. Compare the part with your original before installing, since cars of the same model can differ by year and market.
 category: knobs-handles-bushings
 part_type: center console latch
 fits:
@@ -12,7 +12,7 @@ fits:
     years:
       from: 1997
       to: 2001
-price_usd: null
+price_usd: "9.00"
 oem_part_numbers: []
 material:
   recommended:
@@ -34,25 +34,29 @@ sources:
     thing_id: 2910834
     thing_url: https://www.thingiverse.com/thing:2910834
     title_original: Center Console Latch
-    author: "andyjimb"
-    author_url: "https://www.thingiverse.com/andyjimb"
+    author: andyjimb
+    author_url: https://www.thingiverse.com/andyjimb
     license: CC-BY
     license_raw: CC BY
-    verified_at: null
+    verified_at: 2026-11-28
     images_allowed: false
-    file_names: []
+    file_names:
+      - jeep-latch-side.stl
+      - jeep_latch_v1.stl
     image_urls: []
-files: []
+files:
+  - r2_key: products/jeep-cherokee-xj-center-console-latch/jeep-cherokee-xj-center-console-latch.zip
+    name: jeep-cherokee-xj-center-console-latch.zip
 images:
   - src: /media/portadas/2910834.webp
-    alt: "Center Console Latch for Jeep Cherokee XJ, illustrative render of a possible matte black print"
+    alt: Center Console Latch for Jeep Cherokee XJ, illustrative render of a possible matte black print
     kind: render
 review:
   state: pendiente de revisión manual
-  flags:
-    - 'años tomados del texto "Jeep Cherokee XJ 97-01": confirmar'
+  flags: []
   notes:
-    - Escribir title, summary y description originales en inglés (no copiar al autor).
-    - Verificar licencia, autor y archivos con la API (import-seed con THINGIVERSE_TOKEN).
+    - Licencia y autor verificados con el LICENSE.txt del paquete original descargado de Thingiverse (2026-11-28).
+    - Descripción generada desde la ficha (pieza, compatibilidad, archivos); revisar si se quiere más detalle.
+    - 'Resuelto 2026-11-28: años tomados del texto "Jeep Cherokee XJ 97-01": confirmar (fits explícitos de la fuente, PR #11).'
 created_at: 2026-11-22
-updated_at: 2026-11-23
+updated_at: 2026-11-28

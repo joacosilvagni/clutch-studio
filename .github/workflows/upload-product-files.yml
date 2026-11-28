@@ -1,0 +1,35 @@
+name: Upload product files to R2
+# Puts every ZIP under r2-upload/products/<slug>/ into the PRIVATE bucket at products/<slug>/<file>.
+# Flow: commit the ZIPs on a work branch, push (this runs), then drop them from the branch before
+# the PR. CI refuses r2-upload/ so product files never reach main.
+on:
+  push:
+    branches: ['claude/**', 'codex/**']
+    paths: ['r2-upload/**']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  upload:
+    runs-on: ubuntu-latest
+    env:
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Put objects
+        working-directory: worker
+        run: |
+          test -d ../r2-upload/products || { echo "nothing to upload"; exit 0; }
+          n=0
+          while read -r key; do
+            npx wrangler r2 object put "clutch-studio-files/$key" --file "../r2-upload/$key" \
+              --content-type application/zip --remote
+            n=$((n+1))
+          done < <(cd ../r2-upload && find products -type f -name '*.zip' | sort)
+          echo "Uploaded $n files" | tee -a "$GITHUB_STEP_SUMMARY"

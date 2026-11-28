@@ -1,9 +1,9 @@
 slug: mazda-miata-soft-top-latch-button
-status: preview
+status: approved
 kind: file
 title: Soft Top Latch Button for Mazda MX-5 Miata (NA/NB)
-summary: null
-description: null
+summary: Soft top latch button for the Mazda MX-5 Miata (NA/NB) (1989–2005) and Mazda Eunos Roadster (NA) (1989–1997). Print-ready STL, instant download.
+description: 3D-printable soft top latch button for the Mazda MX-5 Miata (NA/NB) (1989–2005) and Mazda Eunos Roadster (NA) (1989–1997). Print it yourself or take the file to a local print shop. The download is a ZIP with one STL file (MX5_Miata_Roadster_Soft_Top_Latch_Button.stl) exactly as the designer published them, plus the license and attribution. Designed by Visser3 and shared under CC BY 4.0. Compare the part with your original before installing, since cars of the same model can differ by year and market.
 category: knobs-handles-bushings
 part_type: soft top latch button
 fits:
@@ -18,7 +18,7 @@ fits:
     years:
       from: 1989
       to: 1997
-price_usd: null
+price_usd: "9.00"
 oem_part_numbers: []
 material:
   recommended:
@@ -40,24 +40,27 @@ sources:
     thing_id: 2124207
     thing_url: https://www.thingiverse.com/thing:2124207
     title_original: Soft Top Latch Button
-    author: "Visser3"
-    author_url: "https://www.thingiverse.com/Visser3"
+    author: Visser3
+    author_url: https://www.thingiverse.com/Visser3
     license: CC-BY
     license_raw: CC BY
-    verified_at: null
+    verified_at: 2026-11-28
     images_allowed: false
-    file_names: []
+    file_names:
+      - MX5_Miata_Roadster_Soft_Top_Latch_Button.stl
     image_urls: []
-files: []
+files:
+  - r2_key: products/mazda-miata-soft-top-latch-button/mazda-miata-soft-top-latch-button.zip
+    name: mazda-miata-soft-top-latch-button.zip
 images:
   - src: /media/portadas/2124207.webp
-    alt: "Soft Top Latch Button for Mazda MX-5 Miata (NA/NB), illustrative render of a possible matte black print"
+    alt: Soft Top Latch Button for Mazda MX-5 Miata (NA/NB), illustrative render of a possible matte black print
     kind: render
 review:
   state: pendiente de revisión manual
   flags: []
   notes:
-    - Escribir title, summary y description originales en inglés (no copiar al autor).
-    - Verificar licencia, autor y archivos con la API (import-seed con THINGIVERSE_TOKEN).
+    - Licencia y autor verificados con el LICENSE.txt del paquete original descargado de Thingiverse (2026-11-28).
+    - Descripción generada desde la ficha (pieza, compatibilidad, archivos); revisar si se quiere más detalle.
 created_at: 2026-11-22
 updated_at: 2026-11-28

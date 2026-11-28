@@ -1,9 +1,9 @@
 slug: vw-golf-mk4-front-wiper-arm-cap
-status: preview
+status: approved
 kind: file
 title: Front Wiper Arm Cap
-summary: null
-description: null
+summary: Front wiper arm cap for the Volkswagen Golf Mk4 (1997–2006). Print-ready STL, instant download.
+description: 3D-printable front wiper arm cap for the Volkswagen Golf Mk4 (1997–2006). Print it yourself or take the file to a local print shop. The download is a ZIP with one STL file (Front_Wiper_Arm_Cap_-_VW_GOLF.STL) exactly as the designer published them, plus the license and attribution. Designed by Lucho87 and shared under CC BY-SA 4.0. Compare the part with your original before installing, since cars of the same model can differ by year and market.
 category: interior-trim
 part_type: front wiper arm cap
 fits:
@@ -13,7 +13,7 @@ fits:
     years:
       from: 1997
       to: 2006
-price_usd: null
+price_usd: "9.00"
 oem_part_numbers: []
 material:
   recommended:
@@ -35,26 +35,28 @@ sources:
     thing_id: 417050
     thing_url: https://www.thingiverse.com/thing:417050
     title_original: Front Wiper Arm Cap
-    author: "Lucho87"
-    author_url: "https://www.thingiverse.com/Lucho87"
+    author: Lucho87
+    author_url: https://www.thingiverse.com/Lucho87
     license: CC-BY-SA
     license_raw: CC BY-SA
-    verified_at: null
+    verified_at: 2026-11-28
     images_allowed: false
-    file_names: []
+    file_names:
+      - Front_Wiper_Arm_Cap_-_VW_GOLF.STL
     image_urls: []
-files: []
+files:
+  - r2_key: products/vw-golf-mk4-front-wiper-arm-cap/vw-golf-mk4-front-wiper-arm-cap.zip
+    name: vw-golf-mk4-front-wiper-arm-cap.zip
 images:
   - src: /media/portadas/417050.webp
-    alt: "Front Wiper Arm Cap, illustrative render of a possible matte black print"
+    alt: Front Wiper Arm Cap, illustrative render of a possible matte black print
     kind: render
 review:
   state: pendiente de revisión manual
-  flags:
-    - '"VW Golf MK4" no coincide con ningún modelo de config/models.yaml'
+  flags: []
   notes:
-    - Escribir title, summary y description originales en inglés (no copiar al autor).
-    - Verificar licencia, autor y archivos con la API (import-seed con THINGIVERSE_TOKEN).
-    - "CC BY-SA: el archivo adaptado que se vende debe publicarse bajo CC BY-SA."
+    - Licencia y autor verificados con el LICENSE.txt del paquete original descargado de Thingiverse (2026-11-28).
+    - Descripción generada desde la ficha (pieza, compatibilidad, archivos); revisar si se quiere más detalle.
+    - 'Resuelto 2026-11-28: "VW Golf MK4" no coincide con ningún modelo de config/models.yaml (fits explícitos de la fuente, PR #11).'
 created_at: 2026-11-22
 updated_at: 2026-11-28

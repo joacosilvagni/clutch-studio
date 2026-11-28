@@ -1,9 +1,9 @@
 slug: saab-900-gear-stick-lever-bushing
-status: preview
+status: approved
 kind: file
 title: Gear stick lever bushing for Saab 900 (classic)
-summary: null
-description: null
+summary: Gear stick lever bushing for the Saab 900 (classic) (1978–1993). Print-ready STL files, instant download.
+description: 3D-printable gear stick lever bushing for the Saab 900 (classic) (1978–1993). Print it yourself or take the file to a local print shop. The download is a ZIP with 2 STL files (Saab_900_gear_lever_bushing_1.stl, Saab_900_gear_lever_bushing_2.stl) exactly as the designer published them, plus the license and attribution. Designed by Peuxy and shared under CC BY 4.0. Compare the part with your original before installing, since cars of the same model can differ by year and market.
 category: knobs-handles-bushings
 part_type: gear stick lever bushing
 fits:
@@ -12,7 +12,7 @@ fits:
     years:
       from: 1978
       to: 1993
-price_usd: null
+price_usd: "9.00"
 oem_part_numbers: []
 material:
   recommended:
@@ -34,24 +34,28 @@ sources:
     thing_id: 4303824
     thing_url: https://www.thingiverse.com/thing:4303824
     title_original: Gear stick lever bushing
-    author: "Peuxy"
-    author_url: "https://www.thingiverse.com/Peuxy"
+    author: Peuxy
+    author_url: https://www.thingiverse.com/Peuxy
     license: CC-BY
     license_raw: CC BY
-    verified_at: null
+    verified_at: 2026-11-28
     images_allowed: false
-    file_names: []
+    file_names:
+      - Saab_900_gear_lever_bushing_1.stl
+      - Saab_900_gear_lever_bushing_2.stl
     image_urls: []
-files: []
+files:
+  - r2_key: products/saab-900-gear-stick-lever-bushing/saab-900-gear-stick-lever-bushing.zip
+    name: saab-900-gear-stick-lever-bushing.zip
 images:
   - src: /media/portadas/4303824.webp
-    alt: "Gear stick lever bushing for Saab 900 (classic), illustrative render of a possible matte black print"
+    alt: Gear stick lever bushing for Saab 900 (classic), illustrative render of a possible matte black print
     kind: render
 review:
   state: pendiente de revisión manual
   flags: []
   notes:
-    - Escribir title, summary y description originales en inglés (no copiar al autor).
-    - Verificar licencia, autor y archivos con la API (import-seed con THINGIVERSE_TOKEN).
+    - Licencia y autor verificados con el LICENSE.txt del paquete original descargado de Thingiverse (2026-11-28).
+    - Descripción generada desde la ficha (pieza, compatibilidad, archivos); revisar si se quiere más detalle.
 created_at: 2026-11-22
-updated_at: 2026-11-23
+updated_at: 2026-11-28

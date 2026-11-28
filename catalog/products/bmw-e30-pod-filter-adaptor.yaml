@@ -1,9 +1,9 @@
 slug: bmw-e30-pod-filter-adaptor
-status: preview
+status: approved
 kind: file
 title: Pod filter adaptor for BMW E30
-summary: null
-description: null
+summary: Pod filter adaptor for the BMW E30 (1982–1994) and BMW E36 (1990–2000). Print-ready STL, instant download.
+description: 3D-printable pod filter adaptor for the BMW E30 (1982–1994) and BMW E36 (1990–2000). Print it yourself or take the file to a local print shop. Only for the M40 or M42 four-cylinder engine. The download is a ZIP with one STL file (Air_filter_bracket_v2.stl) exactly as the designer published them, plus the license and attribution. Designed by zakary50 and shared under CC BY-SA 4.0. Compare the part with your original before installing, since cars of the same model can differ by year and market.
 category: engine-bay
 part_type: pod filter adaptor
 fits:
@@ -20,7 +20,7 @@ fits:
       to: 2000
     note: 318i / 318is
 fitment_note: Only for the M40 or M42 four-cylinder engine.
-price_usd: null
+price_usd: "9.00"
 oem_part_numbers: []
 material:
   recommended:
@@ -42,25 +42,27 @@ sources:
     thing_id: 6457996
     thing_url: https://www.thingiverse.com/thing:6457996
     title_original: Pod filter adaptor
-    author: "zakary50"
-    author_url: "https://www.thingiverse.com/zakary50"
+    author: zakary50
+    author_url: https://www.thingiverse.com/zakary50
     license: CC-BY-SA
     license_raw: CC BY-SA
-    verified_at: null
+    verified_at: 2026-11-28
     images_allowed: false
-    file_names: []
+    file_names:
+      - Air_filter_bracket_v2.stl
     image_urls: []
-files: []
+files:
+  - r2_key: products/bmw-e30-pod-filter-adaptor/bmw-e30-pod-filter-adaptor.zip
+    name: bmw-e30-pod-filter-adaptor.zip
 images:
   - src: /media/portadas/6457996.webp
-    alt: "Pod filter adaptor for BMW E30, illustrative render of a possible matte black print"
+    alt: Pod filter adaptor for BMW E30, illustrative render of a possible matte black print
     kind: render
 review:
   state: pendiente de revisión manual
   flags: []
   notes:
-    - Escribir title, summary y description originales en inglés (no copiar al autor).
-    - Verificar licencia, autor y archivos con la API (import-seed con THINGIVERSE_TOKEN).
-    - "CC BY-SA: el archivo adaptado que se vende debe publicarse bajo CC BY-SA."
+    - Licencia y autor verificados con el LICENSE.txt del paquete original descargado de Thingiverse (2026-11-28).
+    - Descripción generada desde la ficha (pieza, compatibilidad, archivos); revisar si se quiere más detalle.
 created_at: 2026-11-22
 updated_at: 2026-11-28
