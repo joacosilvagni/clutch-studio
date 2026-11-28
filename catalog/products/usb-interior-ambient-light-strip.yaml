@@ -1,5 +1,5 @@
 slug: usb-interior-ambient-light-strip
-status: draft
+status: approved
 kind: physical
 title: USB Interior Ambient Light Strip (3 m)
 summary: Flexible neon-style strip that tucks into dash and door seams. Plugs into USB, no wiring.
@@ -46,12 +46,11 @@ supplier:
       method: CJPacket Liquid Line
   quoted_at: '2026-11-23'
 review:
-  state: aprobado por Joaquín en el chat (2026-11-23); falta completar lo de las notas para pasar a approved
+  state: aprobado por Joaquín en el chat (2026-11-23); activado a su pedido el 2026-11-28
   flags: []
   notes:
   - 'Demanda: AliExpress: tiras EL/neón USB para interior 30K+ vendidas, 4,5★. CJ: 1.158 tiendas lo listan.'
-  - 'Imágenes enlazadas al CDN de CJ: descargarlas a site/public antes de aprobar.'
   - Precio con envío incluido. Margen calculado contra el envío más caro de los 3 destinos y comisión PayPal 5,4% + USD 0,30.
   - Elegir 2 o 3 colores para ofrecer (hay blanco, violeta, rosa, azul, rojo, verde).
 created_at: '2026-11-23'
-updated_at: '2026-11-23'
+updated_at: '2026-11-28'

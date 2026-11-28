@@ -1,5 +1,5 @@
 slug: rgb-footwell-light-kit
-status: draft
+status: approved
 kind: physical
 title: RGB Footwell Light Kit with Remote
 summary: Four LED bars for under the dash and seats. Pick any colour, or let them pulse to the music.
@@ -46,13 +46,12 @@ supplier:
       method: CJPacket Liquid Line
   quoted_at: '2026-11-23'
 review:
-  state: aprobado por Joaquín en el chat (2026-11-23); falta completar lo de las notas para pasar a approved
+  state: aprobado por Joaquín en el chat (2026-11-23); activado a su pedido el 2026-11-28
   flags: []
   notes:
   - 'Demanda: Es el tipo de luz RGB regulable que pidió Joaquín (ejemplo de AliExpress: 4,5★, 143 vendidos). CJ: 247 tiendas
     lo listan.'
-  - 'Imágenes enlazadas al CDN de CJ: descargarlas a site/public antes de aprobar.'
   - Precio con envío incluido. Margen calculado contra el envío más caro y comisión PayPal 5,4% + USD 0,30.
   - 'Revisar las variantes: hay "Style 1-4" y una versión recargable; confirmar cuál trae app y control remoto.'
 created_at: '2026-11-23'
-updated_at: '2026-11-23'
+updated_at: '2026-11-28'

@@ -1,5 +1,5 @@
 slug: seat-gap-organizer-pair
-status: draft
+status: approved
 kind: physical
 title: Seat Gap Organizer (Driver + Passenger)
 summary: Fills the gap between seat and console and adds a pocket for keys, phone and sunglasses.
@@ -45,12 +45,11 @@ supplier:
       method: CJPacket Liquid Line
   quoted_at: '2026-11-23'
 review:
-  state: aprobado por Joaquín en el chat (2026-11-23); falta completar lo de las notas para pasar a approved
+  state: aprobado por Joaquín en el chat (2026-11-23); activado a su pedido el 2026-11-28
   flags: []
   notes:
   - 'Demanda: AliExpress: rellenos de hueco de asiento 50K+ vendidos, 4,4★. CJ: 645 tiendas, 35 pedidos.'
-  - 'Imágenes enlazadas al CDN de CJ: descargarlas a site/public antes de aprobar.'
   - Precio con envío incluido. Margen calculado contra el envío más caro de los 3 destinos y comisión PayPal 5,4% + USD 0,30.
   - Hay versión individual a USD 4,34 si el par sale caro.
 created_at: '2026-11-23'
-updated_at: '2026-11-23'
+updated_at: '2026-11-28'

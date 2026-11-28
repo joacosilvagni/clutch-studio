@@ -1,5 +1,5 @@
 slug: interior-detailing-brush-set
-status: draft
+status: approved
 kind: physical
 title: Interior Detailing Brush Set
 summary: Soft-bristle brushes for vents, switches, gauges and stitching. Safe on old plastics.
@@ -30,11 +30,11 @@ supplier:
   weight_g: 171
   shipping:
     US:
-      cost_usd: '5.70'
+      cost_usd: '7.40'
       days: 5-11
       method: LuWei Ordinary US
     EU:
-      cost_usd: '5.49'
+      cost_usd: '7.20'
       days: 4-11
       method: CJPacket Ordinary I
     AU:
@@ -43,13 +43,12 @@ supplier:
       method: CJPacket Liquid Line
   quoted_at: '2026-11-23'
 review:
-  state: aprobado por Joaquín en el chat (2026-11-23); falta completar lo de las notas para pasar a approved
+  state: aprobado por Joaquín en el chat (2026-11-23); activado a su pedido el 2026-11-28
   flags: []
   notes:
   - 'Demanda: AliExpress: sets de cepillos de detailing 50K+ vendidos, 4,7★. CJ: 99 tiendas, 10 pedidos.'
-  - 'Imágenes enlazadas al CDN de CJ: descargarlas a site/public antes de aprobar.'
   - Precio con envío incluido. Margen calculado contra el envío más caro de los 3 destinos y comisión PayPal 5,4% + USD 0,30.
-  - 'Envío cotizado para 1 cepillo (57 g); el set pesa 171 g: re-cotizar. La primera imagen de CJ muestra un auto con logo:
+  - 'US y UE estimados para 171 g (proporcional a la cotización de AU del 23/11); confirmar en el primer pedido. La primera imagen de CJ muestra un auto con logo:
     no usarla.'
 created_at: '2026-11-23'
-updated_at: '2026-11-23'
+updated_at: '2026-11-28'

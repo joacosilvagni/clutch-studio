@@ -1,5 +1,5 @@
 slug: usb-roof-star-light
-status: draft
+status: approved
 kind: physical
 title: USB Roof Star Light
 summary: Pocket-size projector that fills the headliner with stars. Sound-activated, plugs into USB.
@@ -42,11 +42,10 @@ supplier:
       method: CJPacket Liquid Line
   quoted_at: '2026-11-23'
 review:
-  state: aprobado por Joaquín en el chat (2026-11-23); falta completar lo de las notas para pasar a approved
+  state: aprobado por Joaquín en el chat (2026-11-23); activado a su pedido el 2026-11-28
   flags: []
   notes:
   - 'Demanda: AliExpress: proyectores de estrellas para el techo 20K+ vendidos, 4,4★. CJ: 80 tiendas, 5 pedidos.'
-  - 'Imágenes enlazadas al CDN de CJ: descargarlas a site/public antes de aprobar.'
   - Precio con envío incluido. Margen calculado contra el envío más caro y comisión PayPal 5,4% + USD 0,30.
 created_at: '2026-11-23'
-updated_at: '2026-11-23'
+updated_at: '2026-11-28'

@@ -33,6 +33,12 @@ Leelo antes de empezar y actualizalo al terminar (ver `AGENTS.md`).
 ## Log de sesiones (lo más nuevo arriba)
 
 <<<<<<< HEAD
+### 2026-11-28 · Claude (dropshipping) — 9 accesorios activados
+- Hecho: a pedido de Joaquín (los había aprobado en el chat el 23/11 y el 28/11 pidió que se vean), 9 accesorios
+  pasan a `approved`. El escáner OBD2 queda en borrador hasta que CJ confirme el envío a Australia. Envío del set de
+  cepillos a US/UE estimado para 171 g; sacada la foto del cargador que dice "Apple".
+- Pendiente: muestra de la aspiradora (batería de litio), CE/FCC del cargador, colores de la tira LED.
+
 ### 2026-11-23 · Claude (dropshipping) — Accesorios listos para activar
 - Hecho: pósters borrados (Joaquín los descartó). Workflow `fetch-images.yml` + `pipeline/src/cli/fetch-images.mjs`:
   en cada push a `claude/**`/`codex/**` que toque `catalog/products/`, baja las fotos de CJ a

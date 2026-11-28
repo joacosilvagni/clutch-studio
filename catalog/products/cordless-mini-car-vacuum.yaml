@@ -1,5 +1,5 @@
 slug: cordless-mini-car-vacuum
-status: draft
+status: approved
 kind: physical
 title: Cordless Mini Car Vacuum
 summary: Rechargeable handheld vacuum with crevice nozzle for seats, mats and the gaps in between.
@@ -45,14 +45,13 @@ supplier:
       method: CJPacket Liquid Line
   quoted_at: '2026-11-23'
 review:
-  state: aprobado por Joaquín en el chat (2026-11-23); falta completar lo de las notas para pasar a approved
+  state: aprobado por Joaquín en el chat (2026-11-23); activado a su pedido el 2026-11-28
   flags: []
   notes:
   - 'Demanda: AliExpress: aspiradoras de auto 5K-10K+ vendidas, 4,5-4,7★ (hay modelos con 3,5★: la queja típica es poca succión).
     CJ: 6.520 tiendas, 105 pedidos.'
-  - 'Imágenes enlazadas al CDN de CJ: descargarlas a site/public antes de aprobar.'
   - Precio con envío incluido. Margen calculado contra el envío más caro de los 3 destinos y comisión PayPal 5,4% + USD 0,30.
   - 'Tiene batería de litio: confirmar con CJ que la línea de envío la acepta a los 3 destinos.'
   - Pedir una muestra antes de aprobar (calidad variable en esta categoría).
 created_at: '2026-11-23'
-updated_at: '2026-11-23'
+updated_at: '2026-11-28'

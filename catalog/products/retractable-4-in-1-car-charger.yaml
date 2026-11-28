@@ -1,5 +1,5 @@
 slug: retractable-4-in-1-car-charger
-status: draft
+status: approved
 kind: physical
 title: 4-in-1 Retractable Car Charger
 summary: Socket charger with two pull-out cables and two USB ports, so four phones charge at once.
@@ -16,9 +16,6 @@ sources: []
 files: []
 images:
 - src: /media/products/retractable-4-in-1-car-charger/1.webp
-  alt: 4-in-1 Retractable Car Charger
-  kind: photo
-- src: /media/products/retractable-4-in-1-car-charger/2.webp
   alt: 4-in-1 Retractable Car Charger
   kind: photo
 - src: /media/products/retractable-4-in-1-car-charger/3.webp
@@ -46,13 +43,12 @@ supplier:
       method: CJPacket Liquid Line
   quoted_at: '2026-11-23'
 review:
-  state: aprobado por Joaquín en el chat (2026-11-23); falta completar lo de las notas para pasar a approved
+  state: aprobado por Joaquín en el chat (2026-11-23); activado a su pedido el 2026-11-28
   flags: []
   notes:
   - 'Demanda: Amazon (vía ProductLair): cargadores retráctiles 6K+ ventas/mes, 4,8★. CJ: 1.014 tiendas, 189 pedidos.'
-  - 'Imágenes enlazadas al CDN de CJ: descargarlas a site/public antes de aprobar.'
   - Precio con envío incluido. Margen calculado contra el envío más caro de los 3 destinos y comisión PayPal 5,4% + USD 0,30.
   - 'No usar la palabra "Apple" en el sitio: decir "Lightning" o "iPhone-compatible" solo si se verifica.'
   - 'Electrónico: confirmar certificación CE/FCC con CJ antes de aprobar.'
 created_at: '2026-11-23'
-updated_at: '2026-11-23'
+updated_at: '2026-11-28'

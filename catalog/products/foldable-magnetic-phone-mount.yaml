@@ -1,5 +1,5 @@
 slug: foldable-magnetic-phone-mount
-status: draft
+status: approved
 kind: physical
 title: Foldable Magnetic Phone Mount
 summary: Metal magnetic mount that folds flat and rotates 360°. Sticks to the dash or clips to a vent.
@@ -46,12 +46,11 @@ supplier:
       method: CJPacket Eub Special Line
   quoted_at: '2026-11-23'
 review:
-  state: aprobado por Joaquín en el chat (2026-11-23); falta completar lo de las notas para pasar a approved
+  state: aprobado por Joaquín en el chat (2026-11-23); activado a su pedido el 2026-11-28
   flags: []
   notes:
   - 'Demanda: AliExpress: soportes magnéticos 100K+ vendidos, 4,5★. CJ: 1.657 tiendas, 76 pedidos.'
-  - 'Imágenes enlazadas al CDN de CJ: descargarlas a site/public antes de aprobar.'
   - Precio con envío incluido. Margen calculado contra el envío más caro de los 3 destinos y comisión PayPal 5,4% + USD 0,30.
   - 'Envío cotizado con la variante de 192 g (cota superior). La primera imagen de CJ dice "2023 NEW": no usarla.'
 created_at: '2026-11-23'
-updated_at: '2026-11-23'
+updated_at: '2026-11-28'

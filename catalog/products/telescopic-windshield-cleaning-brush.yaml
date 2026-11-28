@@ -1,5 +1,5 @@
 slug: telescopic-windshield-cleaning-brush
-status: draft
+status: approved
 kind: physical
 title: Telescopic Windshield Cleaning Tool
 summary: Extending handle with a pivoting microfibre head that reaches the base of the windscreen.
@@ -43,14 +43,13 @@ supplier:
       method: CJPacket Liquid Line
   quoted_at: '2026-11-23'
 review:
-  state: aprobado por Joaquín en el chat (2026-11-23); falta completar lo de las notas para pasar a approved
+  state: aprobado por Joaquín en el chat (2026-11-23); activado a su pedido el 2026-11-28
   flags: []
   notes:
   - 'Demanda: AliExpress: kits de cepillo para parabrisas 100K+ vendidos, 4,4★. CJ: 131 tiendas, 36 pedidos (producto nuevo,
     ago-2026).'
-  - 'Imágenes enlazadas al CDN de CJ: descargarlas a site/public antes de aprobar.'
   - Precio con envío incluido. Margen calculado contra el envío más caro de los 3 destinos y comisión PayPal 5,4% + USD 0,30.
   - 'Producto sobredimensionado: el costo real de envío puede subir. Las imágenes de CJ tienen marca de agua ("_water"): pedir
     originales o sacar fotos propias.'
 created_at: '2026-11-23'
-updated_at: '2026-11-23'
+updated_at: '2026-11-28'
