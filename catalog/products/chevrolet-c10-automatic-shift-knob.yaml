@@ -13,7 +13,7 @@ fits:
       from: 1978
       to: 1978
 fitment_note: Designed on a 1978 C10 with an automatic. It may fit other years, but the designer has not tested them.
-price_usd: null
+price_usd: "9.00"
 oem_part_numbers: []
 material:
   recommended:

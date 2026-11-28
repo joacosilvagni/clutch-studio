@@ -26,7 +26,7 @@ fits:
       from: 1981
       to: 1991
 fitment_note: Replaces LMC part 38-2087 (Chevrolet and GMC trucks, 1981–1991).
-price_usd: null
+price_usd: "9.00"
 oem_part_numbers: []
 material:
   recommended:

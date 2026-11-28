@@ -19,7 +19,7 @@ fits:
       from: 1984
       to: 1997
     unconfirmed: true
-price_usd: null
+price_usd: "9.00"
 oem_part_numbers: []
 material:
   recommended:

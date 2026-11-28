@@ -18,7 +18,7 @@ fits:
       from: 1990
       to: 2000
 fitment_note: Replaces BMW clip 61131267476, used on many older and newer BMW models. If your car uses that part number, this fits.
-price_usd: null
+price_usd: "9.00"
 oem_part_numbers:
   - "61131267476"
 material:

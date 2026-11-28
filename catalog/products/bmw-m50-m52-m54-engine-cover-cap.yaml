@@ -43,7 +43,7 @@ fits:
       from: 2003
       to: 2010
 fitment_note: Only for cars with the M50, M52 or M54 six-cylinder engine (any displacement). Replaces engine cover cap 11121726089.
-price_usd: null
+price_usd: "9.00"
 oem_part_numbers: []
 material:
   recommended:

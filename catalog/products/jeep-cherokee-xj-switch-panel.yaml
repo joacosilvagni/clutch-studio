@@ -12,7 +12,7 @@ fits:
     years:
       from: 1997
       to: 2001
-price_usd: null
+price_usd: "9.00"
 oem_part_numbers: []
 material:
   recommended:

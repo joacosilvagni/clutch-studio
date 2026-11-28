@@ -13,7 +13,7 @@ fits:
       from: 1990
       to: 2000
     note: Sedan, Touring and Coupe
-price_usd: null
+price_usd: "9.00"
 oem_part_numbers: []
 material:
   recommended:

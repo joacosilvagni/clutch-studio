@@ -18,7 +18,7 @@ fits:
       from: 1950
       to: 1979
 fitment_note: Clutch alignment tool for engines up to 1600 cc.
-price_usd: null
+price_usd: "9.00"
 oem_part_numbers: []
 material:
   recommended:

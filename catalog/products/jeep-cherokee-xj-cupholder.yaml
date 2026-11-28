@@ -13,7 +13,7 @@ fits:
       from: 1984
       to: 1995
 fitment_note: Made to fit over the handbrake of a 1993 right-hand-drive XJ. The lever position varies between cars, so compare it with the dimensions in the files before printing.
-price_usd: null
+price_usd: "9.00"
 oem_part_numbers: []
 material:
   recommended:

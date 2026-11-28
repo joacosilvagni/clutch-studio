@@ -24,7 +24,7 @@ fits:
     years:
       from: 1982
       to: 1993
-price_usd: null
+price_usd: "9.00"
 oem_part_numbers: []
 material:
   recommended:

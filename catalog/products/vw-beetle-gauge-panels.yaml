@@ -13,7 +13,7 @@ fits:
       from: 1938
       to: 2003
 fitment_note: Files for both right-hand and left-hand drive.
-price_usd: null
+price_usd: "9.00"
 oem_part_numbers: []
 material:
   recommended:

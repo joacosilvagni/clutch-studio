@@ -13,7 +13,7 @@ fits:
       from: 1989
       to: 1997
     note: NA, fills the cubby under the radio
-price_usd: null
+price_usd: "9.00"
 oem_part_numbers: []
 material:
   recommended:

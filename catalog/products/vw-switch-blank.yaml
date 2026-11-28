@@ -31,7 +31,7 @@ fits:
       from: 1975
       to: 1996
 fitment_note: Later flat version, VW 861957087. The earlier domed blank (321957087) has the same dimensions.
-price_usd: null
+price_usd: "9.00"
 oem_part_numbers:
   - "861957087"
 material:

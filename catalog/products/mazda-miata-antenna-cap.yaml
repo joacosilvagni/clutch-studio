@@ -14,7 +14,7 @@ fits:
       from: 2006
       to: 2015
 fitment_note: Plugs the hole left when the factory antenna is removed. Designed on an NC; it will likely fit other Mazdas with the same antenna base, but that is not confirmed.
-price_usd: null
+price_usd: "9.00"
 oem_part_numbers: []
 material:
   recommended:

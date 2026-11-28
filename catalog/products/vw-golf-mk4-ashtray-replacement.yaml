@@ -20,7 +20,7 @@ fits:
       from: 1999
       to: 2005
     unconfirmed: true
-price_usd: null
+price_usd: "9.00"
 oem_part_numbers: []
 material:
   recommended:

@@ -20,7 +20,7 @@ fits:
       to: 2000
     note: 318i / 318is
 fitment_note: Only for the M40 or M42 four-cylinder engine.
-price_usd: null
+price_usd: "9.00"
 oem_part_numbers: []
 material:
   recommended:
