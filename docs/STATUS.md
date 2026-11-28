@@ -35,7 +35,7 @@ Leelo antes de empezar y actualizalo al terminar (ver `AGENTS.md`).
 ### 2026-11-28 · Claude (backend) — Mail por Gmail
 - Hecho: los mails salen por Gmail (SMTP con contraseña de aplicación) cuando existen los secrets `GMAIL_USER` y
   `GMAIL_APP_PASSWORD`; si Gmail falla se usa Resend. El deploy los sincroniza. 6 tests nuevos.
-- Pendiente (Joaquín): verificación en 2 pasos, contraseña de aplicación y los dos secrets en GitHub.
+- Secrets `GMAIL_USER` y `GMAIL_APP_PASSWORD` cargados por Joaquín (2026-11-28); se aplican con el deploy de este cambio.
 
 ### 2026-11-28 · Claude — Archivos 3D a la venta
 - Causa del "Coming soon": los 70 archivos estaban en `preview` (sin precio, sin archivo en R2, sin descripción ni
