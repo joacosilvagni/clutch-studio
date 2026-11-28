@@ -6,10 +6,11 @@ const products = await getProducts();
 <LegalPage title="Licenses & attributions" description="Original designers and licenses for every file we sell.">
   <p>Our files are based on designs shared under licenses that allow commercial use. We credit every original designer here and on each product page.</p>
   <p>Product covers are illustrative renders, and the 3D previews are conversions of each original mesh made for viewing on this site. Some large previews are simplified; they are not the print files.</p>
+  <p>Our photo prints use photographs published on Wikimedia Commons under free licenses. Each print credits its photographer below and on its product page. They are unofficial prints, not affiliated with any vehicle manufacturer.</p>
   <table class="spec">
     <thead><tr><th>Product</th><td><strong>License · author · source</strong></td></tr></thead>
     <tbody>
-      {products.map((p) => <tr><th><a href={productUrl(p)}>{p.title}</a></th><td>{p.sources.map((s) => <span class="src">{s.licenseLabel} · {s.author ? (s.authorUrl ? <a href={s.authorUrl} rel="nofollow noopener">{s.author}</a> : s.author) : "author pending verification"} · <a href={s.url} rel="nofollow noopener">original design</a></span>)}</td></tr>)}
+      {products.filter((p) => p.sources.length || p.artwork).map((p) => <tr><th><a href={productUrl(p)}>{p.title}</a></th><td>{p.sources.map((s) => <span class="src">{s.licenseLabel} · {s.author ? (s.authorUrl ? <a href={s.authorUrl} rel="nofollow noopener">{s.author}</a> : s.author) : "author pending verification"} · <a href={s.url} rel="nofollow noopener">original design</a></span>)}{p.artwork && <span class="src">{p.artwork.licenseLabel} · {p.artwork.authorUrl ? <a href={p.artwork.authorUrl} rel="nofollow noopener">{p.artwork.author}</a> : p.artwork.author} · <a href={p.artwork.url} rel="nofollow noopener">original photo</a></span>}</td></tr>)}
     </tbody>
   </table>
 </LegalPage>

@@ -39,6 +39,20 @@ Formato: fecha · decisión · por qué. Las más nuevas arriba. No re-discutir 
 - **2026-11-22 · Licencias aceptadas: CC BY, CC BY-SA, CC0.** NC y ND excluidas. BY-SA obliga a publicar
   el archivo adaptado bajo BY-SA.
 
+## 2026-11-23 — Dropshipping
+- Proveedor: CJ Dropshipping (API documentada para pedidos, envíos y tracking; IOSS propio para la UE). AliExpress se usa
+  para medir demanda.
+- Sin saldo prefondeado en CJ: cada pedido se paga con tarjeta recién cuando entra la venta (decisión de Joaquín).
+- Destinos de físicos: EE.UU., UE y Australia. Reino Unido excluido al lanzar (registro de VAT desde la primera venta ≤ £135).
+- Precio con envío incluido; margen calculado contra el envío más caro de los 3 destinos más la comisión de PayPal.
+- El costo y el envío del proveedor viven en `supplier` del YAML y nunca se muestran en el sitio.
+- Piso de ganancia: cada producto físico debe dejar al menos USD 10 netos por pedido (después del envío más caro y PayPal).
+  Se subieron precios de los que no llegaban (decisión de Joaquín, 23/11).
+- Pósters: DESCARTADOS por Joaquín (23/11). Queda en el schema el campo `artwork` y `printful` como proveedor por si se retoma.
+  Lo que se había probado: impresión bajo demanda en Printful con fotos de Wikimedia Commons bajo CC0, CC BY o CC BY-SA
+  (Unsplash y Pexels prohíben vender copias sin cambios). La foto se acredita en el campo `artwork` y en la página del
+  producto, con aviso de que no es oficial. Antes de imprimir se borran patentes y se retocan emblemas visibles.
+
 ## 2026-11-28 — Compatibilidad con varios autos
 - Un auto se lista como compatible solo si lo dice la publicación original o es un cruce verificable; lo plausible va con
   `unconfirmed: true` y se muestra como "May also fit (not confirmed by the designer)". Nunca se inventa compatibilidad.

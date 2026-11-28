@@ -126,6 +126,19 @@ const ld = {
         )}
         <Reviews productTitle={p.title} physical={p.kind === 'physical'} />
       </div>
+      {p.artwork && (
+        <aside class="license">
+          <span class="eyebrow">Photo credit</span>
+          <p>
+            Photo by{' '}
+            {p.artwork.authorUrl ? <a href={p.artwork.authorUrl} rel="nofollow noopener" target="_blank">{p.artwork.author}</a> : <span>{p.artwork.author}</span>},{' '}
+            <strong>{p.artwork.licenseLabel}</strong>,{' '}
+            <a href={p.artwork.url} rel="nofollow noopener" target="_blank">source</a>. Cropped for print.
+          </p>
+          <p class="small">Unofficial photo print. Not affiliated with or endorsed by the vehicle's manufacturer.</p>
+          <a href="/legal/attributions/" class="small">All licenses & attributions</a>
+        </aside>
+      )}
       {digital && (
         <aside class="license">
           <span class="eyebrow">License & credit</span>

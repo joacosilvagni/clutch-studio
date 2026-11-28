@@ -1,0 +1,57 @@
+slug: cordless-mini-car-vacuum
+status: approved
+kind: physical
+title: Cordless Mini Car Vacuum
+summary: Rechargeable handheld vacuum with crevice nozzle for seats, mats and the gaps in between.
+description: A small rechargeable vacuum that lives in the glovebox or door pocket. It charges over USB and comes with a narrow
+  nozzle for the gaps around seats and the console. Good for quick clean-ups between proper details.
+category: detailing-care
+part_type: null
+fits: []
+price_usd: '44.95'
+oem_part_numbers: []
+install_notes: null
+sources: []
+files: []
+images:
+- src: /media/products/cordless-mini-car-vacuum/1.webp
+  alt: Cordless Mini Car Vacuum
+  kind: photo
+- src: /media/products/cordless-mini-car-vacuum/2.webp
+  alt: Cordless Mini Car Vacuum
+  kind: photo
+- src: /media/products/cordless-mini-car-vacuum/3.webp
+  alt: Cordless Mini Car Vacuum
+  kind: photo
+supplier:
+  platform: cj
+  product_url: https://cjdropshipping.com/product/-p-C45CC908-5C1D-4104-BEA3-BFC82D3DA44C.html
+  pid: C45CC908-5C1D-4104-BEA3-BFC82D3DA44C
+  variant: 7903 black
+  cost_usd: '7.28'
+  weight_g: 380
+  shipping:
+    US:
+      cost_usd: '9.60'
+      days: 7-13
+      method: CJPacket SP Sensitive
+    EU:
+      cost_usd: '11.49'
+      days: 12-20
+      method: CJPacket Euro Sensitive (duties included)
+    AU:
+      cost_usd: '10.35'
+      days: 5-14
+      method: CJPacket Liquid Line
+  quoted_at: '2026-11-23'
+review:
+  state: aprobado por Joaquín en el chat (2026-11-23); activado a su pedido el 2026-11-28
+  flags: []
+  notes:
+  - 'Demanda: AliExpress: aspiradoras de auto 5K-10K+ vendidas, 4,5-4,7★ (hay modelos con 3,5★: la queja típica es poca succión).
+    CJ: 6.520 tiendas, 105 pedidos.'
+  - Precio con envío incluido. Margen calculado contra el envío más caro de los 3 destinos y comisión PayPal 5,4% + USD 0,30.
+  - 'Tiene batería de litio: confirmar con CJ que la línea de envío la acepta a los 3 destinos.'
+  - Pedir una muestra antes de aprobar (calidad variable en esta categoría).
+created_at: '2026-11-23'
+updated_at: '2026-11-28'

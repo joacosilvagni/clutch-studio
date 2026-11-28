@@ -1,0 +1,43 @@
+name: Fetch product images
+# Copies hotlinked supplier images into site/public and commits them to the same branch.
+on:
+  push:
+    branches: ['claude/**', 'codex/**']
+    paths: ['catalog/products/**']
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: fetch-images-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Any hotlinked images?
+        id: check
+        run: |
+          if grep -Eq '^\s*-\s*src:\s*https://' catalog/products/*.yaml; then echo "todo=1" >> "$GITHUB_OUTPUT"; fi
+      - uses: actions/setup-node@v4
+        if: steps.check.outputs.todo
+        with:
+          node-version: 22
+          cache: npm
+      - if: steps.check.outputs.todo
+        run: npm ci
+      - name: Download and convert
+        if: steps.check.outputs.todo
+        run: node pipeline/src/cli/fetch-images.mjs
+      - name: Validate catalog
+        if: steps.check.outputs.todo
+        run: npm run catalog:validate
+      - name: Commit
+        if: steps.check.outputs.todo
+        run: |
+          git add catalog/products site/public/media/products
+          if git diff --cached --quiet; then echo "Nada para commitear"; exit 0; fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "Copia las imágenes de los productos físicos al sitio"
+          git push

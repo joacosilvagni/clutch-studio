@@ -125,7 +125,31 @@ describe('schema', () => {
     expect(errs({ files: [] }).join()).toMatch(/files/);
     expect(errs({ review: { flags: ['logo?'] } }).join()).toMatch(/flag/);
     expect(errs({ files: [{ r2_key: '../secrets' }] }).join()).toMatch(/r2_key/);
-    expect(validateProduct(approvedProduct({ kind: 'physical', fits: [], category: 'phone-tech', files: [], sources: [] }), { allowedLicenses: ALLOWED })).toEqual([]);
+    const supplier = {
+      platform: 'cj',
+      product_url: 'https://cjdropshipping.com/product/-p-1.html',
+      cost_usd: '3.19',
+      shipping: { US: { cost_usd: '6.69', days: '7-13' }, EU: { cost_usd: '8.34', days: '12-20' }, AU: { cost_usd: '7.27', days: '5-14' } },
+    };
+    const physical = { kind: 'physical', fits: [], category: 'phone-tech', files: [], sources: [], images: [{ src: '/x.webp' }], supplier };
+    expect(validateProduct(approvedProduct(physical), { allowedLicenses: ALLOWED })).toEqual([]);
+    // Approved physical products need a supplier, a quote for every destination and images.
+    expect(validateProduct(approvedProduct({ ...physical, supplier: undefined }), { allowedLicenses: ALLOWED })).toContain('físico aprobado sin supplier');
+    const noAU = { ...supplier, shipping: { US: supplier.shipping.US, EU: supplier.shipping.EU } };
+    expect(validateProduct(approvedProduct({ ...physical, supplier: noAU }), { allowedLicenses: ALLOWED }).join()).toMatch(/envío verificado a AU/);
+    expect(validateProduct(approvedProduct({ ...physical, images: [] }), { allowedLicenses: ALLOWED })).toContain('físico aprobado sin images');
+    // UK is not a destination at launch; supplier only applies to physical products.
+    const uk = { ...supplier, shipping: { ...supplier.shipping, UK: { cost_usd: '7.00', days: '6-10' } } };
+    expect(validateProduct(approvedProduct({ ...physical, supplier: uk }), { allowedLicenses: ALLOWED }).join()).toMatch(/UK: destino no habilitado/);
+    expect(validateProduct({ ...physical, status: 'draft', kind: 'file' }, { allowedLicenses: ALLOWED })).toContain('supplier solo aplica a kind: physical');
+    // Posters: the printed photo needs a Commons source, an allowed license, an author and a verified license to approve.
+    const artwork = { source_url: 'https://commons.wikimedia.org/wiki/File:Car.jpg', author: 'Someone', license: 'CC-BY-SA', verified_at: '2026-11-23' };
+    const poster = { ...physical, supplier: { ...supplier, platform: 'printful', product_url: 'https://www.printful.com/x' }, artwork };
+    expect(validateProduct(approvedProduct(poster), { allowedLicenses: ALLOWED })).toEqual([]);
+    expect(validateProduct(approvedProduct({ ...poster, artwork: { ...artwork, verified_at: null } }), { allowedLicenses: ALLOWED }).join()).toMatch(/artwork sin verified_at/);
+    expect(validateProduct(approvedProduct({ ...poster, artwork: { ...artwork, license: 'CC-BY-NC' } }), { allowedLicenses: ALLOWED }).join()).toMatch(/artwork.license/);
+    expect(validateProduct(approvedProduct({ ...poster, artwork: { ...artwork, source_url: 'https://example.com/a.jpg' } }), { allowedLicenses: ALLOWED }).join()).toMatch(/artwork.source_url/);
+    expect(validateProduct(approvedProduct({ ...poster, artwork: { ...artwork, author: '' } }), { allowedLicenses: ALLOWED }).join()).toMatch(/artwork sin author/);
     expect(errs({ fits: [] }).join()).toMatch(/sin fits/);
   });
   it('accepts cars outside the model list with a display name, and unconfirmed fits apart', () => {
