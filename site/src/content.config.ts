@@ -21,8 +21,18 @@ const products = defineCollection({
     category: str,
     part_type: str,
     fits: z
-      .array(z.object({ make: z.string(), model_slug: z.string(), years: z.object({ from: z.number(), to: z.number() }) }))
+      .array(
+        z.object({
+          make: z.string(),
+          model_slug: z.string(),
+          model: str, // display name for cars outside the model list (no /fits/ page)
+          years: z.object({ from: z.number(), to: z.number() }),
+          note: str, // e.g. "Wagon only", "Driver-side mirror"
+          unconfirmed: z.boolean().default(false), // "may also fit": not confirmed by the designer
+        }),
+      )
       .default([]),
+    fitment_note: str,
     price_usd: str,
     oem_part_numbers: z.array(z.coerce.string()).default([]),
     material: z

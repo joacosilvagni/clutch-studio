@@ -32,7 +32,6 @@ Leelo antes de empezar y actualizalo al terminar (ver `AGENTS.md`).
 
 ## Log de sesiones (lo más nuevo arriba)
 
-<<<<<<< HEAD
 ### 2026-11-28 · Claude (dropshipping) — 9 accesorios activados
 - Hecho: a pedido de Joaquín (los había aprobado en el chat el 23/11 y el 28/11 pidió que se vean), 9 accesorios
   pasan a `approved`. El escáner OBD2 queda en borrador hasta que CJ confirme el envío a Australia. Envío del set de
@@ -69,7 +68,21 @@ Leelo antes de empezar y actualizalo al terminar (ver `AGENTS.md`).
   Pidió logos de marcas de autos: no se hace (falsificación, PayPal lo prohíbe).
 - Pendiente: re-cotizar envío de las variantes multipack (notas en cada YAML); bajar las
   imágenes del CDN de CJ a `site/public`; elegir líneas con tracking (PayPal lo exige); política de devoluciones y plazos.
-=======
+
+### 2026-11-28 · Claude — Compatibilidad multi-modelo
+- Hecho (rama `claude/project-thread-gvep9u`): cada entrada de `fits` acepta `model` (nombre visible, obligatorio si el
+  `model_slug` no está en la lista de modelos), `note` y `unconfirmed: true` ("may also fit", se muestra aparte y no cuenta
+  para aprobar ni para `/fits/`); campo nuevo `fitment_note` por producto. La ficha lista todos los autos y las tarjetas
+  dicen "Fits N models". 33 piezas actualizadas con lo que dice la descripción original de cada thing
+  (`media_tienda/creditos/<id>/README.txt`). Ej.: manija de espejo Mercedes → W124, W123, W201, W126; switch blank VW →
+  Golf Mk1, Jetta Mk1, Passat B1, LT Mk1; tapa de motor BMW → E34/E36/E38/E39/E46/E60 con M50/M52/M54.
+- Correcciones que salieron de la fuente: el "Beetle armrest handle" es del **New Beetle** y el "antenna cap" es del
+  **MX-5 NC** (títulos corregidos, slugs sin cambiar); años más angostos en XJ stereo bracket (97–01), XJ cup holders
+  (84–96), XJ ash tray plate (97–01), Miata gauge panel (NA), perilla C10 (1978, sin probar en otros años), buje Saab (900 90–94 + 9000).
+- Sin confirmar (marcadas `unconfirmed`): W124 en el tirador del capó, Jetta Mk2/Mk3/Mk4 en piezas de Golf.
+- Pendiente: los modelos nuevos (W124, NC, New Beetle…) no tienen página `/fits/`; sumarlos a `models.yaml`/`catalog.ts`
+  si Joaquín quiere. PR #8 (42 piezas nuevas) no tiene esta info todavía.
+
 ### 2026-11-26 · Claude (backend) — Checkout de físicos
 - Hecho (rama `claude/project-thread-hvdo7j`, PR #9): STATUS al día; físicos aprobados entran al catálogo del Worker con
   zonas y datos de `supplier` (compatible con #7); PayPal con dirección (`GET_FROM_FILE`, envío incluido); país validado
@@ -81,7 +94,6 @@ Leelo antes de empezar y actualizalo al terminar (ver `AGENTS.md`).
   cantidades > 1; teléfono del comprador si CJ lo exige (PayPal no lo pasa).
 - Decisiones: ver `docs/DECISIONS.md` (2026-11-26).
 - Preguntas para Joaquín: ¿alcanza con que CJ use el mail del comprador, o pedimos teléfono en el sitio antes de pagar?
->>>>>>> origin/main
 
 ### 2026-11-23 · Claude (diseño) — Portadas y 3D
 - Hecho (rama `claude/media-3d`): 72 portadas y 111 GLB de `media_tienda` emparejados por id de Thingiverse (73/73, sin huérfanos);

@@ -52,3 +52,8 @@ Formato: fecha · decisión · por qué. Las más nuevas arriba. No re-discutir 
   Lo que se había probado: impresión bajo demanda en Printful con fotos de Wikimedia Commons bajo CC0, CC BY o CC BY-SA
   (Unsplash y Pexels prohíben vender copias sin cambios). La foto se acredita en el campo `artwork` y en la página del
   producto, con aviso de que no es oficial. Antes de imprimir se borran patentes y se retocan emblemas visibles.
+
+## 2026-11-28 — Compatibilidad con varios autos
+- Un auto se lista como compatible solo si lo dice la publicación original o es un cruce verificable; lo plausible va con
+  `unconfirmed: true` y se muestra como "May also fit (not confirmed by the designer)". Nunca se inventa compatibilidad.
+- Autos fuera de la lista de modelos se cargan igual en `fits` con `model` (texto); no generan página `/fits/`.

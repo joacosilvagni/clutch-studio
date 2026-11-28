@@ -1,16 +1,16 @@
 ---
 import ProductMedia from './ProductMedia.astro';
 import InstantBadge from './InstantBadge.astro';
-import { type Product, getModel, productFitsLabel, priceLabel } from '../data/catalog';
+import { type Product, fitEntryLabel, confirmedFits, priceLabel } from '../data/catalog';
 import { productUrl, fitSummaryKind, isDigital } from '../data/products';
 interface Props { product: Product; eager?: boolean }
 const { product: p, eager = false } = Astro.props;
-const fits = p.models.map((s) => getModel(s));
+const fits = confirmedFits(p);
 const fk = fitSummaryKind(p);
 const fitLine =
   fk === 'universal' ? 'Universal fit' :
   fk === 'unconfirmed' ? 'Check fitment' :
-  fits.length > 2 ? `Fits ${fits.length} models` : `Fits ${fits.map((m) => productFitsLabel(p, m)).join(' · ')}`;
+  fits.length > 2 ? `Fits ${fits.length} models` : `Fits ${fits.map(fitEntryLabel).join(' · ')}`;
 const digital = isDigital(p);
 ---
 <article class="card" data-product data-cat={p.category} data-dept={p.department} data-models={p.models.join(' ')} data-universal={fk === 'universal' ? '1' : '0'}>

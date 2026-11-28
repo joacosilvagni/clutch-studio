@@ -12,6 +12,12 @@ fits:
     years:
       from: 1989
       to: 2005
+  - make: Mazda
+    model_slug: mazda-eunos-roadster
+    model: Eunos Roadster (NA)
+    years:
+      from: 1989
+      to: 1997
 price_usd: null
 oem_part_numbers: []
 material:
@@ -54,4 +60,4 @@ review:
     - Escribir title, summary y description originales en inglés (no copiar al autor).
     - Verificar licencia, autor y archivos con la API (import-seed con THINGIVERSE_TOKEN).
 created_at: 2026-11-22
-updated_at: 2026-11-23
+updated_at: 2026-11-28

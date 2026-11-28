@@ -1,5 +1,5 @@
 import { getCollection } from 'astro:content';
-import { models, categories, getCategory, type Product, type PreviewModel, type ShipZone } from './catalog';
+import { models, categories, getCategory, getModel, getMake, type Product, type PreviewModel, type ShipZone } from './catalog';
 import mediaJson from './media.json';
 
 // Covers and GLB previews from media_tienda/productos_media.json, keyed by Thingiverse id.
@@ -27,8 +27,19 @@ export async function getProducts(): Promise<Product[]> {
       slug: d.slug,
       title: d.title,
       kind: d.kind,
-      models: d.fits.map((f) => f.model_slug).filter((s) => knownModels.has(s)),
+      models: d.fits.filter((f) => !f.unconfirmed && knownModels.has(f.model_slug)).map((f) => f.model_slug),
       fitYears: Object.fromEntries(d.fits.map((f) => [f.model_slug, [f.years.from, f.years.to]])),
+      fitList: d.fits.map((f) => {
+        const known = knownModels.has(f.model_slug) ? getModel(f.model_slug) : null;
+        return {
+          label: known ? `${getMake(known.make).name} ${known.name}` : `${f.make} ${f.model ?? f.model_slug}`,
+          years: [f.years.from, f.years.to] as [number, number],
+          model: known?.slug ?? null,
+          note: f.note ?? null,
+          unconfirmed: f.unconfirmed,
+        };
+      }),
+      fitmentNote: d.fitment_note ?? null,
       category: d.category && knownCats.has(d.category) ? d.category : d.kind === 'physical' ? 'interior-comfort' : 'interior-trim',
       department: 'accessories',
       priceUsd: d.price_usd != null ? Number(d.price_usd) : null,
@@ -93,7 +104,7 @@ export const findProduct = async (slug: string) => (await getProducts()).find((p
 
 // Short fitment line for cards and product pages.
 export const fitSummaryKind = (p: Product): 'specific' | 'universal' | 'unconfirmed' =>
-  p.models.length ? 'specific' : p.kind === 'physical' ? 'universal' : 'unconfirmed';
+  p.fitList.some((f) => !f.unconfirmed) ? 'specific' : p.kind === 'physical' ? 'universal' : 'unconfirmed';
 
 // Small variant generated next to each product image (<name>-sm.webp).
 export const thumbSrc = (src: string) =>

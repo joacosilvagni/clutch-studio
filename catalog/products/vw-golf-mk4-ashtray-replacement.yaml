@@ -6,7 +6,20 @@ summary: null
 description: null
 category: storage-cupholders
 part_type: ashtray replacement
-fits: []
+fits:
+  - make: Volkswagen
+    model_slug: vw-golf-mk4
+    model: Golf Mk4
+    years:
+      from: 1997
+      to: 2006
+  - make: Volkswagen
+    model_slug: vw-jetta-mk4
+    model: Jetta / Bora Mk4
+    years:
+      from: 1999
+      to: 2005
+    unconfirmed: true
 price_usd: null
 oem_part_numbers: []
 material:
@@ -50,4 +63,4 @@ review:
     - Escribir title, summary y description originales en inglés (no copiar al autor).
     - Verificar licencia, autor y archivos con la API (import-seed con THINGIVERSE_TOKEN).
 created_at: 2026-11-22
-updated_at: 2026-11-23
+updated_at: 2026-11-28

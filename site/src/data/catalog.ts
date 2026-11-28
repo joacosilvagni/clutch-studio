@@ -31,8 +31,10 @@ export type Product = {
   title: string;
   kind: ProductKind;
   department: DepartmentSlug;
-  models: string[]; // known Model.slug values; empty = universal or fitment not confirmed
+  models: string[]; // known Model.slug values with a confirmed fit; drives /fits/ pages and filters
   fitYears: Record<string, [number, number]>; // per-model years from the catalog (may be narrower than the model)
+  fitList: FitEntry[]; // every car it fits, including cars outside the model list; empty = universal or not confirmed
+  fitmentNote: string | null; // product-wide fitment caveat ("Only cars with the M50, M52 or M54 engine.")
   category: string;
   priceUsd: number | null; // null = not priced yet (drafts)
   summary: string | null;
@@ -61,6 +63,9 @@ export type Product = {
   thingId: string | null; // Thingiverse id of the first source, used to look up media
   preview3d: Preview3d | null; // GLB previews for the "View in 3D" tab
 };
+
+// One car a part fits. `model` is set only for known Model slugs (it links to /fits/<slug>/).
+export type FitEntry = { label: string; years: [number, number]; model: string | null; note: string | null; unconfirmed: boolean };
 
 export type PreviewModel = { src: string; label: string; name: string; bytes: number; optimized: boolean };
 export type Preview3d = { models: PreviewModel[]; defaultModel: number };
@@ -133,7 +138,12 @@ export const fitsLabel = (m: Model) => `${getMake(m.make).name} ${m.name} (${yea
 // Label using the product's own fit years, e.g. "Jeep Cherokee XJ (1997–2001)".
 export const productFitsLabel = (p: Product, m: Model) => {
   const y = p.fitYears[m.slug] ?? m.years;
-  return `${getMake(m.make).name} ${m.name} (${y[0]}–${y[1]})`;
+  return `${getMake(m.make).name} ${m.name} (${y[0] === y[1] ? y[0] : `${y[0]}–${y[1]}`})`;
 };
+const span = (y: [number, number]) => (y[0] === y[1] ? `${y[0]}` : `${y[0]}–${y[1]}`);
+// "Mercedes-Benz W124 (E-Class) (1984–1997)"
+export const fitEntryLabel = (f: FitEntry) => `${f.label} (${span(f.years)})`;
+export const confirmedFits = (p: Product) => p.fitList.filter((f) => !f.unconfirmed);
+export const possibleFits = (p: Product) => p.fitList.filter((f) => f.unconfirmed);
 export const priceLabel = (p: Product) =>
   p.priceUsd == null ? (p.status === 'preview' ? 'Coming soon' : 'Price TBD') : p.priceUsd === 0 ? 'Free' : `$${p.priceUsd.toFixed(2)}`;
